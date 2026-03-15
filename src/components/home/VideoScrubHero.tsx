@@ -8,14 +8,14 @@ import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 /**
  * CanvasScrubHero
  * ────────────────────────────────────────────────────
- * 80 frames JPEG pré-carregados em Image objects.
+ * 192 frames JPEG pré-carregados em Image objects.
  * Canvas desenha o frame correspondente ao scroll —
  * idêntico ao que a Apple faz. Zero video seek, 60fps.
  *
- * Frames em: /public/frames/frame_XXXX.jpg  (0001–0080)
+ * Frames em: /public/frames/frame_XXXX.jpg  (0001–0192)
  */
 
-const TOTAL_FRAMES = 80;
+const TOTAL_FRAMES = 192;
 const FRAME_PATH = (i: number) =>
   `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
 
