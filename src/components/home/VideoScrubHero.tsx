@@ -5,24 +5,11 @@ import { FiArrowRight } from "react-icons/fi";
 import { gsap, ScrollTrigger } from "@/lib/gsap-init";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
-/**
- * CanvasScrubHero
- * ────────────────────────────────────────────────────
- * 192 frames JPEG pré-carregados em Image objects.
- * Canvas desenha o frame correspondente ao scroll —
- * idêntico ao que a Apple faz. Zero video seek, 60fps.
- *
- * Frames em: /public/frames/frame_XXXX.jpg  (0001–0192)
- */
-
 const TOTAL_FRAMES = 192;
 const BATCH_SIZE = 24;
 const FRAME_PATH = (i: number) =>
   `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
 
-/**
- * Loads a single batch of frames (e.g. frames 0-23, 24-47, etc.)
- */
 function loadBatch(
   images: HTMLImageElement[],
   start: number,
@@ -42,21 +29,14 @@ function loadBatch(
   });
 }
 
-/**
- * Progressive frame loader — loads first batch immediately,
- * then remaining batches during idle time to avoid blocking
- * the initial page load with 192 simultaneous HTTP requests.
- */
 function preloadFrames(
   onFirstBatch: (images: HTMLImageElement[]) => void
 ): HTMLImageElement[] {
   const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
 
-  // Load first batch immediately (visible hero frames)
   loadBatch(images, 0, BATCH_SIZE).then(() => {
     onFirstBatch(images);
 
-    // Load remaining batches during idle time
     let nextStart = BATCH_SIZE;
     const loadNext = () => {
       if (nextStart >= TOTAL_FRAMES) return;
@@ -81,6 +61,36 @@ function preloadFrames(
   return images;
 }
 
+/* ── Card data ── */
+const CARDS = [
+  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Construímos histórias que vendem" },
+  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Do roteiro ao resultado mensurável" },
+  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Presença que converte todo mês" },
+  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Marca que move pessoas" },
+  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Cada frame trabalha pela venda" },
+  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "Sua empresa no auge da imagem" },
+];
+
+/* Desktop: 3 left, 3 right, scattered */
+const CARD_POSITIONS_DESKTOP = [
+  { x: "4%",  y: "12%", rotX: 18, rotY: 25,  rotZ: -4  },
+  { x: "8%",  y: "42%", rotX: -12, rotY: 20,  rotZ: 6   },
+  { x: "2%",  y: "68%", rotX: 15, rotY: -18, rotZ: -8  },
+  { x: "62%", y: "8%",  rotX: -20, rotY: -22, rotZ: 5   },
+  { x: "66%", y: "48%", rotX: 14, rotY: -28, rotZ: -3  },
+  { x: "58%", y: "72%", rotX: -16, rotY: 20,  rotZ: 7   },
+];
+
+/* Mobile: alternating left/right, stacked vertically */
+const CARD_POSITIONS_MOBILE = [
+  { x: "3%",  y: "2%",  rotX: 10, rotY: 12,  rotZ: -2  },
+  { x: "42%", y: "18%", rotX: -8,  rotY: -10, rotZ: 3   },
+  { x: "5%",  y: "34%", rotX: 8,  rotY: 14,  rotZ: -4  },
+  { x: "40%", y: "50%", rotX: -10, rotY: -12, rotZ: 2   },
+  { x: "3%",  y: "66%", rotX: 12, rotY: 10,  rotZ: -3  },
+  { x: "44%", y: "80%", rotX: -8,  rotY: -14, rotZ: 4   },
+];
+
 export function VideoScrubHero() {
   const outerRef   = useRef<HTMLDivElement>(null);
   const canvasRef  = useRef<HTMLCanvasElement>(null);
@@ -90,19 +100,28 @@ export function VideoScrubHero() {
   const ctaRef     = useRef<HTMLDivElement>(null);
   const scrollRef  = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const cardRefs   = useRef<(HTMLDivElement | null)[]>([]);
 
   const [loaded, setLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { lenis } = useSmoothScroll();
 
-  /* ── 1. Pré-carrega frames progressivamente ── */
+  /* ── Detect mobile ── */
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* ── 1. Preload frames ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const images = preloadFrames((loadedImages) => {
       setLoaded(true);
-
-      // Desenha o primeiro frame imediatamente
       const ctx = canvas.getContext("2d");
       if (ctx && loadedImages[0]) {
         canvas.width  = loadedImages[0].naturalWidth;
@@ -111,11 +130,10 @@ export function VideoScrubHero() {
       }
     });
 
-    // Guarda referência para uso no scroll (atualiza conforme batches carregam)
     (canvas as HTMLCanvasElement & { _frames?: HTMLImageElement[] })._frames = images;
   }, []);
 
-  /* ── 2. Scrub via Lenis direto ── */
+  /* ── 2. Scrub via Lenis ── */
   useEffect(() => {
     const outer  = outerRef.current;
     const canvas = canvasRef.current as (HTMLCanvasElement & { _frames?: HTMLImageElement[] }) | null;
@@ -134,7 +152,7 @@ export function VideoScrubHero() {
       const progress   = Math.max(0, Math.min(1, (scroll - outerTop) / scrollZone));
       const frameIndex = Math.round(progress * (frames.length - 1));
 
-      if (frameIndex === lastFrame) return; // sem mudança → não redraw
+      if (frameIndex === lastFrame) return;
       lastFrame = frameIndex;
 
       const ctx = canvas.getContext("2d");
@@ -148,11 +166,12 @@ export function VideoScrubHero() {
     return () => lenis.off("scroll", onScroll);
   }, [lenis]);
 
-  /* ── 3. Animações de texto ── */
+  /* ── 3. Text fade-out + cards scroll-in animations ── */
   useEffect(() => {
     const outer = outerRef.current;
     if (!outer) return;
 
+    // Hero text fade-out (same as before)
     gsap.timeline({
       scrollTrigger: { trigger: outer, start: "top top", end: "40% bottom", scrub: true },
     })
@@ -162,12 +181,81 @@ export function VideoScrubHero() {
       .to(ctaRef.current,    { opacity: 0, y: -20, duration: 0.3  }, 0.18)
       .to(scrollRef.current, { opacity: 0, duration: 0.15         }, 0);
 
+    // Overlay darken
     gsap.fromTo(overlayRef.current,
       { opacity: 0.1 },
       { opacity: 0.55, ease: "none",
         scrollTrigger: { trigger: outer, start: "top top", end: "bottom bottom", scrub: true },
       }
     );
+
+    // Cards container fade-in — starts right after CTA fades
+    gsap.fromTo(cardsContainerRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: outer,
+          start: "18% top",
+          end: "28% top",
+          scrub: true,
+        },
+      }
+    );
+
+    // Each card: single continuous timeline (entrance → drift) to avoid overlap stutter
+    const mobile = window.innerWidth < 768;
+    const positions = mobile ? CARD_POSITIONS_MOBILE : CARD_POSITIONS_DESKTOP;
+
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return;
+      const pos = positions[i];
+      const stagger = i * (mobile ? 0.02 : 0.03);
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: outer,
+          start: `${20 + stagger * 100}% top`,
+          end: "92% top",
+          scrub: 1,
+        },
+      });
+
+      // Phase 1: entrance (0 → 0.5 of timeline)
+      tl.fromTo(card,
+        {
+          y: mobile ? 60 : 120,
+          rotateX: pos.rotX * 2,
+          rotateY: pos.rotY * 2,
+          rotateZ: pos.rotZ * 1.5,
+          scale: 0.7,
+          filter: "blur(8px)",
+          opacity: 0,
+        },
+        {
+          y: 0,
+          rotateX: pos.rotX,
+          rotateY: pos.rotY,
+          rotateZ: pos.rotZ,
+          scale: 1,
+          filter: "blur(0.3px)",
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+        }
+      );
+
+      // Phase 2: gentle drift (0.5 → 1.0 of timeline, no overlap)
+      tl.to(card, {
+        rotateX: pos.rotX + (mobile ? 4 : 8),
+        rotateY: pos.rotY - (mobile ? 3 : 6),
+        rotateZ: pos.rotZ + 2,
+        y: mobile ? -15 : -30,
+        duration: 0.5,
+        ease: "none",
+      });
+    });
 
     return () => {
       ScrollTrigger.getAll()
@@ -180,14 +268,14 @@ export function VideoScrubHero() {
     <div ref={outerRef} style={{ height: "400vh" }}>
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#050508]">
 
-        {/* Canvas — substitui o <video> */}
+        {/* Canvas */}
         <canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.4s" }}
         />
 
-        {/* Poster enquanto carrega */}
+        {/* Poster while loading */}
         {!loaded && (
           <img
             src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1280&auto=format&fit=crop"
@@ -196,12 +284,12 @@ export function VideoScrubHero() {
           />
         )}
 
-        {/* Gradientes */}
+        {/* Gradients */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#050508]/80 to-transparent pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#050508] to-transparent pointer-events-none" />
         <div ref={overlayRef} className="absolute inset-0 bg-[#050508] pointer-events-none" style={{ opacity: 0.1 }} />
 
-        {/* Conteúdo */}
+        {/* Hero text content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <p ref={labelRef} className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.55em] uppercase text-cream/50 mb-5 sm:mb-7">
             Belis Agency
@@ -218,6 +306,43 @@ export function VideoScrubHero() {
               <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
             </a>
           </div>
+        </div>
+
+        {/* 3D Floating Cards — O QUE ENTREGAMOS */}
+        <div
+          ref={cardsContainerRef}
+          className="absolute inset-0 pointer-events-none"
+          style={{ perspective: "1200px", opacity: 0 }}
+        >
+          {CARDS.map((card, i) => {
+            const positions = isMobile ? CARD_POSITIONS_MOBILE : CARD_POSITIONS_DESKTOP;
+            return (
+            <div
+              key={i}
+              ref={(el) => { cardRefs.current[i] = el; }}
+              className="absolute pointer-events-auto"
+              style={{
+                left: positions[i].x,
+                top: positions[i].y,
+                width: isMobile ? "55vw" : "clamp(240px, 36vw, 408px)",
+                transformStyle: "preserve-3d",
+                willChange: "transform, filter",
+              }}
+            >
+              <div className="bg-[#050508]/70 backdrop-blur-md border border-cream/[0.12] rounded-2xl p-6 sm:p-7 shadow-2xl shadow-black/40 cursor-default">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-coral font-sans font-bold mb-2.5">
+                  {card.category}
+                </p>
+                <h3 className="text-lg sm:text-xl font-heading font-bold text-cream leading-tight mb-2.5">
+                  {card.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-cream/60 font-sans leading-relaxed">
+                  {card.result}
+                </p>
+              </div>
+            </div>
+          );
+          })}
         </div>
 
         {/* Scroll indicator */}
