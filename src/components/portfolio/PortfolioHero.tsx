@@ -39,7 +39,7 @@ export function PortfolioHero() {
             </span>
           ))}
         </h1>
-        <p className="mt-8 text-cream/70 font-sans font-light text-xl max-w-xl fade-up">
+        <p className="mt-8 text-cream/70 font-sans font-light text-xl max-w-xl">
           Exploração profunda da nossa engenharia de percepção visual e agressão cinematográfica.
         </p>
       </div>

@@ -45,40 +45,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Gradient Sphere Idle Float Animations ── */
-@keyframes floatA {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(4%, 8%) scale(1.08); }
-}
-@keyframes floatB {
-  from { transform: translate(0, 0) scale(1.05); }
-  to   { transform: translate(-5%, -7%) scale(1); }
-}
-@keyframes floatC {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(6%, -5%) scale(1.06); }
-}
-
-/* ── Liquid Glass Utility ── */
-.glass {
-  background: rgba(246, 247, 237, 0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(246, 247, 237, 0.08);
-}
-
-.glass-strong {
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(246, 247, 237, 0.12);
-}
-
-/* Specific class to prevent FOUC on text split */
-.char {
-  visibility: hidden;
-}
-
 /* 3D Perspective for scroll storytelling */
 .perspective-container {
   perspective: 1200px;
