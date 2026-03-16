@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { gsap } from "@/lib/gsap-init";
+import { gsap, ScrollTrigger } from "@/lib/gsap-init";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 /* ── Context ── */
@@ -118,9 +118,19 @@ export function PageTransition({ children }: { children: ReactNode }) {
       onComplete: () => {
         gsap.set(overlay, { pointerEvents: "none", opacity: 0 });
         gsap.set([b1, b2, b3], { scale: 0.3, opacity: 0, x: 0, y: 0, rotate: 0 });
+        // Clear GSAP-set transform on page wrapper to avoid creating a
+        // containing block that breaks position:fixed (GSAP pins)
+        if (pageContent) {
+          gsap.set(pageContent, { clearProps: "all" });
+        }
         busyRef.current = false;
         setTransitioning(false);
         play();
+        // Force ScrollTrigger to recalculate pin mode now that wrapper
+        // transform is gone (switches from relative+transform to fixed)
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
       },
     });
 

@@ -11,24 +11,28 @@ const projects = [
     title: "Krrom Construtora",
     tags: ["Institucional", "Marketing", "Website"],
     image: "/images/portfolio/krrom.png",
+    result: "/* SUBSTITUIR PELO DADO REAL — ex: +340% engajamento no Instagram */",
   },
   {
     id: 2,
     title: "Laticínios Latco",
     tags: ["Institucional"],
     image: "/images/portfolio/latco.jpg",
+    result: "/* SUBSTITUIR PELO DADO REAL — ex: Vídeo usado em 12 feiras nacionais */",
   },
   {
     id: 3,
     title: "Salles Nogueira Advogados",
     tags: ["Institucional", "Reels"],
     image: "/images/portfolio/salles-nogueira.png",
+    result: "/* SUBSTITUIR PELO DADO REAL — ex: 2x mais leads pelo site */",
   },
   {
     id: 4,
     title: "Kofar Metalúrgica",
-    tags: ["Sale", "Institucional"],
+    tags: ["Vendas", "Institucional"],
     image: "/images/portfolio/kofar.png",
+    result: "/* SUBSTITUIR PELO DADO REAL — ex: +R$200k em contratos */",
   },
 ];
 
@@ -75,10 +79,10 @@ export function PortfolioPreview() {
             Projetos
           </span>
           <h2 className="portfolio-header text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-cream leading-tight">
-            Projetos Com Resultados Reais
+            Projetos Que{" "}<span className="text-coral">Geraram Resultado</span>
           </h2>
           <p className="portfolio-header max-w-2xl mx-auto mt-5 text-cream/50 font-sans font-light text-base sm:text-lg leading-relaxed">
-            Não mostramos portfólio — mostramos provas. Cada projeto abaixo gerou resultado mensurável para o cliente. A próxima história de sucesso pode ser a sua.
+            Não mostramos portfólio — mostramos provas. Cada projeto abaixo gerou impacto real no faturamento do cliente. A próxima história de sucesso pode ser a sua.
           </p>
         </div>
 
@@ -142,6 +146,11 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
         <h3 className="text-xl sm:text-2xl font-heading font-bold text-cream tracking-tight">
           {project.title}
         </h3>
+        {project.result && !project.result.startsWith("/*") && (
+          <p className="text-sm font-sans font-medium text-coral mt-2">
+            {project.result}
+          </p>
+        )}
         <div className="flex flex-wrap gap-2 mt-3">
           {project.tags.map((tag) => (
             <span

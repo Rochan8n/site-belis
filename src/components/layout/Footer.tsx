@@ -44,7 +44,7 @@ export function Footer() {
               O FIM DA <br/><span className="text-coral">LINHA.</span>
             </h3>
             <p className="text-cream/60 font-sans font-medium text-lg leading-relaxed mt-4">
-              Pronto para dominar o seu mercado com estética brutalista e engenharia ultrarrápida de precisão?
+              Pronto para transformar sua marca com vídeo profissional que vende?
             </p>
             <a 
               href="mailto:contato@belisagency.com" 
@@ -73,7 +73,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="w-full mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-cream/30 text-[10px] sm:text-xs font-sans tracking-[0.2em] uppercase pt-8 border-t border-cream/10 mt-8">
           <span>&copy; {new Date().getFullYear()} Belis.</span>
-          <span>Designed with hate for the average.</span>
+          <span>Feito pra quem recusa o medíocre.</span>
         </div>
 
       </div>

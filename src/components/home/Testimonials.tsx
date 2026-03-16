@@ -102,11 +102,11 @@ export function Testimonials() {
               Depoimentos
             </span>
             <h2 className="testimonial-header text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-cream leading-tight max-w-3xl">
-              Quem confiou na Belis{" "}
-              <span className="text-coral">não voltou atrás.</span>
+              Dê play e ouça{" "}
+              <span className="text-coral">de quem já investiu.</span>
             </h2>
             <p className="testimonial-header max-w-2xl mt-5 text-cream/50 font-sans font-light text-base sm:text-lg leading-relaxed">
-              Resultados falam mais que promessas. Ouça direto de quem investiu em vídeo profissional e viu o retorno.
+              Depoimentos reais, sem roteiro. Clique no play e ouça direto de quem contratou a Belis e viu o retorno no faturamento.
             </p>
           </div>
 

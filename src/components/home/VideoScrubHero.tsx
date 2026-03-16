@@ -63,12 +63,12 @@ function preloadFrames(
 
 /* ── Card data ── */
 const CARDS = [
-  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Construímos histórias que vendem" },
-  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Do roteiro ao resultado mensurável" },
-  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Presença que converte todo mês" },
-  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Marca que move pessoas" },
-  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Cada frame trabalha pela venda" },
-  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "Sua empresa no auge da imagem" },
+  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Seu concorrente não tem isso" },
+  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Lançamento com ROI, não só buzz" },
+  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Seu Instagram virando canal de vendas" },
+  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Branding que faz cliente escolher você" },
+  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Funil visual: do clique ao contrato" },
+  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "A vitrine que seu faturamento merece" },
 ];
 
 /* Desktop: 3 left, 3 right, scattered */
@@ -294,11 +294,11 @@ export function VideoScrubHero() {
           <p ref={labelRef} className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.55em] uppercase text-cream/50 mb-5 sm:mb-7">
             Belis Agency
           </p>
-          <h1 ref={headRef} className="font-heading font-black uppercase tracking-tighter leading-[0.82] text-cream" style={{ fontSize: "clamp(3.5rem, 13vw, 11rem)" }}>
-            Impacto<br /><span className="text-coral">Digital.</span>
+          <h1 ref={headRef} className="font-heading font-black uppercase tracking-tighter leading-[0.82] text-cream" style={{ fontSize: "clamp(3rem, 11vw, 9rem)" }}>
+            Vídeos Que<br /><span className="text-coral">Vendem.</span>
           </h1>
-          <p ref={subRef} className="mt-5 sm:mt-7 font-sans text-[9px] sm:text-[10px] uppercase tracking-[0.35em] text-cream/40 max-w-[260px] sm:max-w-sm leading-relaxed">
-            Produção Audiovisual · Marketing · Vendas
+          <p ref={subRef} className="mt-5 sm:mt-7 font-sans text-[11px] sm:text-[13px] text-cream/50 max-w-[320px] sm:max-w-lg leading-relaxed text-center">
+            Somos a produtora que pensa como agência de performance.<br className="hidden sm:block" /> Cada frame é pensado pra vender.
           </p>
           <div ref={ctaRef} className="mt-9 sm:mt-11">
             <a href="/contato" className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 border border-coral/70 text-coral font-sans font-bold uppercase tracking-[0.2em] text-xs sm:text-sm hover:bg-coral hover:text-navy hover:border-coral transition-colors duration-300">
