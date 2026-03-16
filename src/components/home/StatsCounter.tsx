@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap-init";
 
 const stats = [
-  { id: "s1", end: 150, prefix: "+", suffix: "", label: "Projetos", color: "text-coral" },
-  { id: "s2", end: 80,  prefix: "+", suffix: "", label: "Clientes", color: "text-mantis" },
-  { id: "s3", end: 5,   prefix: "", suffix: "",  label: "Anos",     color: "text-cream" },
-  { id: "s4", end: 500, prefix: "+", suffix: "", label: "Vídeos",   color: "text-blue" },
+  { id: "s1", end: 150, prefix: "+", suffix: "", label: "Projetos Entregues", color: "text-coral" },
+  { id: "s2", end: 80,  prefix: "+", suffix: "", label: "Marcas Impactadas", color: "text-mantis" },
+  { id: "s3", end: 5,   prefix: "", suffix: "",  label: "Anos no Mercado",   color: "text-cream" },
+  { id: "s4", end: 500, prefix: "+", suffix: "", label: "Vídeos Produzidos", color: "text-blue" },
 ];
 
 export function StatsCounter() {

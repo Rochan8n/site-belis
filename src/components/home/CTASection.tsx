@@ -35,7 +35,7 @@ export function CTASection() {
     return () => ctx.revert();
   }, []);
 
-  const text = "VAMOS CRIAR ALGO INCRÍVEL JUNTOS";
+  const text = "SUA MARCA MERECE SER LEMBRADA";
 
   return (
     <section ref={containerRef} className="relative w-full py-32 sm:py-48 bg-coral text-navy z-20 overflow-hidden">
@@ -58,7 +58,7 @@ export function CTASection() {
           data-magnetic-text="GO!"
           className="group relative px-10 sm:px-16 py-6 sm:py-8 overflow-hidden bg-navy text-cream font-sans font-bold uppercase tracking-widest text-sm sm:text-base outline-none cursor-pointer md:cursor-none transition-transform hover:scale-105 duration-300 rounded-sm"
         >
-          <span className="relative z-10 pointer-events-none transition-colors duration-500 group-hover:text-coral">INICIAR PROJETO</span>
+          <span className="relative z-10 pointer-events-none transition-colors duration-500 group-hover:text-coral">QUERO MEU ORÇAMENTO</span>
           <div className="absolute inset-0 bg-cream transform scale-y-0 origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-y-100 z-0"></div>
         </button>
 

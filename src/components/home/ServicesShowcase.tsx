@@ -18,12 +18,11 @@ const services = [
     title: "Vídeos\nInstitucionais",
     bgTitle: "INSTITUCIONAL",
     description:
-      "Narrativas cinematográficas que traduzem a alma da sua marca. Convertemos sua história em um espetáculo visual que prende a atenção do primeiro ao último segundo.",
-    callouts: ["Cinema de verdade", "Cada frame importa"],
-    // Gradient spheres desta cena
-    glow1Color: "#00804C",   // Book Green — topo direito
-    glow2Color: "#001F3F",   // Midnight Mirage — base esquerda
-    glow3Color: "#74C365",   // Mantis — sotaque central
+      "Sua empresa tem uma história poderosa — mas ninguém está ouvindo. Transformamos a essência da sua marca em vídeos cinematográficos que geram autoridade instantânea, confiança e desejo. Empresas que investem em vídeo institucional fecham até 3x mais contratos.",
+    callouts: ["Autoridade instantânea", "Fecha mais contratos"],
+    glow1Color: "#00804C",
+    glow2Color: "#001F3F",
+    glow3Color: "#74C365",
     cardBorder: "rgba(0, 128, 76, 0.4)",
     cardGlow: "rgba(0, 128, 76, 0.10)",
     accentColor: "#74C365",
@@ -34,11 +33,11 @@ const services = [
     title: "Reels &\nShort Content",
     bgTitle: "REELS",
     description:
-      "Conteúdo vertical que para o scroll. Criamos peças magnéticas otimizadas para Instagram, TikTok e Shorts que viralizam e convertem seguidores em clientes.",
-    callouts: ["Viral por design", "Scroll-stopping"],
-    glow1Color: "#74C365",   // Mantis — topo direito
-    glow2Color: "#00804C",   // Book Green — base esquerda
-    glow3Color: "#001F3F",   // Midnight — sotaque
+      "Seu concorrente já está no feed do seu cliente. A diferença? Quem para o scroll, vende. Criamos reels com roteiro estratégico, edição magnética e ganchos que transformam visualizações em vendas reais no Instagram, TikTok e Shorts.",
+    callouts: ["Para o scroll", "Visualização → Venda"],
+    glow1Color: "#74C365",
+    glow2Color: "#00804C",
+    glow3Color: "#001F3F",
     cardBorder: "rgba(116, 195, 101, 0.45)",
     cardGlow: "rgba(116, 195, 101, 0.08)",
     accentColor: "#74C365",
@@ -46,14 +45,14 @@ const services = [
   },
   {
     id: "03",
-    title: "Vídeos\nYouTube",
-    bgTitle: "YOUTUBE",
+    title: "Anúncios\npara Redes Sociais",
+    bgTitle: "ADS",
     description:
-      "Conteúdo estratégico que retém audiência e posiciona sua marca como autoridade. Do roteiro à entrega, produção completa com foco em retenção e crescimento orgânico.",
-    callouts: ["Retenção máxima", "Conteúdo estratégico"],
-    glow1Color: "#1E488F",   // Nuit Blanche — topo direito
-    glow2Color: "#74C365",   // Mantis — base esquerda
-    glow3Color: "#001F3F",   // Midnight — sotaque
+      "Anúncio bonito que não converte é só gasto. Produzimos vídeos curtos e impactantes para campanhas no Instagram, Facebook e TikTok com um único objetivo: fazer o investimento em tráfego pago retornar em clientes reais e faturamento.",
+    callouts: ["ROI real", "Tráfego → Cliente"],
+    glow1Color: "#1E488F",
+    glow2Color: "#74C365",
+    glow3Color: "#001F3F",
     cardBorder: "rgba(30, 72, 143, 0.45)",
     cardGlow: "rgba(30, 72, 143, 0.12)",
     accentColor: "#74C365",
@@ -64,13 +63,28 @@ const services = [
     title: "Fotografia\nCorporativa",
     bgTitle: "FOTOGRAFIA",
     description:
-      "A imagem é o primeiro gatilho de desejo. Capturamos a essência do seu produto com iluminação dramática, direção de arte impecável e tratamento de alto nível.",
-    callouts: ["Primeiro gatilho", "Direção de arte"],
-    glow1Color: "#74C365",   // Mantis — topo direito
-    glow2Color: "#1E488F",   // Nuit Blanche — base esquerda
-    glow3Color: "#00804C",   // Book Green — sotaque
+      "Fotos genéricas passam despercebidas. Fotos profissionais vendem antes de você abrir a boca. Capturamos retratos executivos, fotos de equipe e ambientes corporativos que transmitem confiança, profissionalismo e posicionamento premium no LinkedIn, site e materiais.",
+    callouts: ["Vende antes da reunião", "Posicionamento premium"],
+    glow1Color: "#74C365",
+    glow2Color: "#1E488F",
+    glow3Color: "#00804C",
     cardBorder: "rgba(116, 195, 101, 0.35)",
     cardGlow: "rgba(116, 195, 101, 0.07)",
+    accentColor: "#74C365",
+    textColor: "#F6F7ED",
+  },
+  {
+    id: "05",
+    title: "Cobertura\nde Eventos",
+    bgTitle: "EVENTOS",
+    description:
+      "Seu evento acontece uma vez — mas o conteúdo gerado pode vender por meses. Filmamos congressos, palestras, workshops e feiras com edição para divulgação no mesmo dia. Transforme cada evento em uma máquina de conteúdo e prova social.",
+    callouts: ["Conteúdo no mesmo dia", "Prova social infinita"],
+    glow1Color: "#00804C",
+    glow2Color: "#74C365",
+    glow3Color: "#1E488F",
+    cardBorder: "rgba(0, 128, 76, 0.4)",
+    cardGlow: "rgba(0, 128, 76, 0.10)",
     accentColor: "#74C365",
     textColor: "#F6F7ED",
   },
