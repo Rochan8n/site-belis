@@ -110,7 +110,14 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
   return (
     <div className="project-card group relative cursor-pointer">
       {/* Image Container */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-navy/50">
+      <div
+        className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-navy/50"
+        style={{
+          border: "1px solid rgba(45,212,191,0.25)",
+          boxShadow:
+            "0 0 18px 2px rgba(45,212,191,0.12), 0 0 60px 8px rgba(45,212,191,0.06)",
+        }}
+      >
         <Image
           src={project.image}
           alt={project.title}

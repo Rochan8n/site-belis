@@ -7,6 +7,7 @@ import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { GradientBackground } from "@/components/ui/GradientBackground";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -56,13 +57,15 @@ export default function RootLayout({
       </head>
       <body className="font-sans bg-navy text-cream selection:bg-coral selection:text-white antialiased cursor-auto md:cursor-none overflow-x-hidden">
         <SmoothScroll>
-          {/* Gradient spheres fixas — se movem no scroll via GSAP */}
-          <GradientBackground />
-          <NoiseOverlay />
-          <CustomCursor />
-          <Navbar />
-          {children}
-          <Footer />
+          <PageTransition>
+            {/* Gradient spheres fixas — se movem no scroll via GSAP */}
+            <GradientBackground />
+            <NoiseOverlay />
+            <CustomCursor />
+            <Navbar />
+            {children}
+            <Footer />
+          </PageTransition>
         </SmoothScroll>
       </body>
     </html>

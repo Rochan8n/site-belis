@@ -278,7 +278,7 @@ export function VideoScrubHero() {
         {/* Poster while loading */}
         {!loaded && (
           <img
-            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1280&auto=format&fit=crop"
+            src="/frames/frame_0001.jpg"
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
           />

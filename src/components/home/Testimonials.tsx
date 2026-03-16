@@ -167,8 +167,15 @@ function TestimonialCard({
       className="testimonial-card group relative cursor-pointer"
       onClick={() => onPlay(testimonial.youtubeId)}
     >
-      {/* Thumbnail */}
-      <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-navy/50">
+      {/* Thumbnail — gradient border + glow */}
+      <div
+        className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-navy/50"
+        style={{
+          border: "1px solid rgba(45,212,191,0.25)",
+          boxShadow:
+            "0 0 18px 2px rgba(45,212,191,0.12), 0 0 60px 8px rgba(45,212,191,0.06)",
+        }}
+      >
         <Image
           src={testimonial.thumbnail}
           alt={`Depoimento de ${testimonial.name}`}
