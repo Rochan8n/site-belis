@@ -16,22 +16,69 @@ import { useSmoothScroll } from "@/hooks/useSmoothScroll";
  */
 
 const TOTAL_FRAMES = 192;
+const BATCH_SIZE = 24;
 const FRAME_PATH = (i: number) =>
   `/frames/frame_${String(i).padStart(4, "0")}.jpg`;
 
-function preloadFrames(): Promise<HTMLImageElement[]> {
+/**
+ * Loads a single batch of frames (e.g. frames 0-23, 24-47, etc.)
+ */
+function loadBatch(
+  images: HTMLImageElement[],
+  start: number,
+  end: number
+): Promise<void> {
   return new Promise((resolve) => {
-    const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
     let loaded = 0;
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
+    const count = end - start;
+    for (let i = start; i < end; i++) {
       const img = new Image();
       img.src = FRAME_PATH(i + 1);
       img.onload = img.onerror = () => {
         images[i] = img;
-        if (++loaded === TOTAL_FRAMES) resolve(images);
+        if (++loaded === count) resolve();
       };
     }
   });
+}
+
+/**
+ * Progressive frame loader — loads first batch immediately,
+ * then remaining batches during idle time to avoid blocking
+ * the initial page load with 192 simultaneous HTTP requests.
+ */
+function preloadFrames(
+  onFirstBatch: (images: HTMLImageElement[]) => void
+): HTMLImageElement[] {
+  const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
+
+  // Load first batch immediately (visible hero frames)
+  loadBatch(images, 0, BATCH_SIZE).then(() => {
+    onFirstBatch(images);
+
+    // Load remaining batches during idle time
+    let nextStart = BATCH_SIZE;
+    const loadNext = () => {
+      if (nextStart >= TOTAL_FRAMES) return;
+      const end = Math.min(nextStart + BATCH_SIZE, TOTAL_FRAMES);
+      loadBatch(images, nextStart, end).then(() => {
+        nextStart = end;
+        if (typeof requestIdleCallback !== "undefined") {
+          requestIdleCallback(loadNext);
+        } else {
+          setTimeout(loadNext, 100);
+        }
+      });
+    };
+
+    if (typeof requestIdleCallback !== "undefined") {
+      requestIdleCallback(loadNext);
+    } else {
+      setTimeout(loadNext, 100);
+    }
+  });
+
+  return images;
 }
 
 export function VideoScrubHero() {
@@ -47,25 +94,25 @@ export function VideoScrubHero() {
   const [loaded, setLoaded] = useState(false);
   const { lenis } = useSmoothScroll();
 
-  /* ── 1. Pré-carrega todos os frames ── */
+  /* ── 1. Pré-carrega frames progressivamente ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    preloadFrames().then((images) => {
+    const images = preloadFrames((loadedImages) => {
       setLoaded(true);
 
       // Desenha o primeiro frame imediatamente
       const ctx = canvas.getContext("2d");
-      if (ctx && images[0]) {
-        canvas.width  = images[0].naturalWidth;
-        canvas.height = images[0].naturalHeight;
-        ctx.drawImage(images[0], 0, 0);
+      if (ctx && loadedImages[0]) {
+        canvas.width  = loadedImages[0].naturalWidth;
+        canvas.height = loadedImages[0].naturalHeight;
+        ctx.drawImage(loadedImages[0], 0, 0);
       }
-
-      // Guarda as imagens no elemento para uso no scroll
-      (canvas as HTMLCanvasElement & { _frames?: HTMLImageElement[] })._frames = images;
     });
+
+    // Guarda referência para uso no scroll (atualiza conforme batches carregam)
+    (canvas as HTMLCanvasElement & { _frames?: HTMLImageElement[] })._frames = images;
   }, []);
 
   /* ── 2. Scrub via Lenis direto ── */
