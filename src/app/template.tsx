@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePageTransition } from "@/components/layout/PageTransition";
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const { animateIn } = usePageTransition();
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Reset scroll to top
@@ -14,7 +15,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div data-page-content style={{ willChange: "transform" }}>
+    <div ref={wrapperRef} data-page-content>
       {children}
     </div>
   );
