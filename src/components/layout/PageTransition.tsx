@@ -36,13 +36,14 @@ export function PageTransition({ children }: { children: ReactNode }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const blob1Ref = useRef<HTMLDivElement>(null);
   const blob2Ref = useRef<HTMLDivElement>(null);
+  const blob3Ref = useRef<HTMLDivElement>(null);
   const [transitioning, setTransitioning] = useState(false);
   const busyRef = useRef(false);
 
-  /* ── Exit animation (cover page) ── */
+  /* ── Exit animation ── */
+  /* 1. Navbar slides up  2. Overlay fades in + blobs drift  3. Navigate */
   const triggerTransition = useCallback(
     (href: string) => {
-      // Skip if same page or already transitioning
       if (href === pathname || busyRef.current) return;
       busyRef.current = true;
       setTransitioning(true);
@@ -51,7 +52,9 @@ export function PageTransition({ children }: { children: ReactNode }) {
       const overlay = overlayRef.current;
       const b1 = blob1Ref.current;
       const b2 = blob2Ref.current;
-      if (!overlay || !b1 || !b2) return;
+      const b3 = blob3Ref.current;
+      const nav = document.querySelector("nav");
+      if (!overlay || !b1 || !b2 || !b3) return;
 
       const tl = gsap.timeline({
         onComplete: () => {
@@ -59,48 +62,106 @@ export function PageTransition({ children }: { children: ReactNode }) {
         },
       });
 
-      // Reset blobs to starting position
-      tl.set(overlay, { pointerEvents: "all" });
-      tl.set(b1, { scale: 0.3, x: "20%", y: "-30%", opacity: 0.8 });
-      tl.set(b2, { scale: 0.4, x: "-20%", y: "30%", opacity: 0.9 });
+      // 1. Navbar slides up out of view
+      if (nav) {
+        tl.to(nav, {
+          yPercent: -100,
+          duration: 0.35,
+          ease: "power3.inOut",
+        }, 0);
+      }
 
-      // Fade in overlay + expand blobs
-      tl.to(overlay, { opacity: 1, duration: 0.55, ease: "power2.inOut" }, 0);
-      tl.to(
-        b1,
-        { scale: 1.3, x: "0%", y: "0%", opacity: 1, duration: 0.6, ease: "power2.inOut" },
-        0
-      );
-      tl.to(
-        b2,
-        { scale: 1.4, x: "0%", y: "0%", opacity: 1, duration: 0.6, ease: "power2.inOut" },
+      // 2. Overlay becomes visible
+      tl.set(overlay, { pointerEvents: "all" }, 0);
+      tl.to(overlay, {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.inOut",
+      }, 0.1);
+
+      // 3. Blobs drift and scale with organic movement
+      // Blob 1 — green, starts top-right, drifts to center-left
+      tl.fromTo(b1,
+        { scale: 0.4, x: "30vw", y: "-20vh", opacity: 0, rotate: 0 },
+        { scale: 1.5, x: "-10vw", y: "10vh", opacity: 0.9, rotate: 45, duration: 0.7, ease: "power2.inOut" },
         0.05
+      );
+      // Blob 2 — dark blue, starts bottom-left, drifts to center-right
+      tl.fromTo(b2,
+        { scale: 0.5, x: "-30vw", y: "25vh", opacity: 0, rotate: 0 },
+        { scale: 1.6, x: "15vw", y: "-5vh", opacity: 1, rotate: -30, duration: 0.7, ease: "power2.inOut" },
+        0.1
+      );
+      // Blob 3 — green accent, center, expands
+      tl.fromTo(b3,
+        { scale: 0.2, x: "0vw", y: "0vh", opacity: 0, rotate: 0 },
+        { scale: 1.2, x: "-5vw", y: "15vh", opacity: 0.6, rotate: 20, duration: 0.65, ease: "power2.inOut" },
+        0.15
       );
     },
     [pathname, router, stop]
   );
 
-  /* ── Enter animation (reveal new page) ── */
+  /* ── Enter animation ── */
+  /* New page slides up from below while blobs continue drifting out */
   const animateIn = useCallback(() => {
     const overlay = overlayRef.current;
     const b1 = blob1Ref.current;
     const b2 = blob2Ref.current;
-    if (!overlay || !b1 || !b2) return;
+    const b3 = blob3Ref.current;
+    const nav = document.querySelector("nav");
+    // The page content wrapper created in template.tsx
+    const pageContent = document.querySelector("[data-page-content]");
+    if (!overlay || !b1 || !b2 || !b3) return;
 
     const tl = gsap.timeline({
       onComplete: () => {
         gsap.set(overlay, { pointerEvents: "none", opacity: 0 });
-        gsap.set([b1, b2], { scale: 0.3, opacity: 0 });
+        gsap.set([b1, b2, b3], { scale: 0.3, opacity: 0, x: 0, y: 0, rotate: 0 });
         busyRef.current = false;
         setTransitioning(false);
         play();
       },
     });
 
-    // Blobs expand further + overlay fades out
-    tl.to(b1, { scale: 2.2, opacity: 0, duration: 0.6, ease: "power2.in" }, 0);
-    tl.to(b2, { scale: 2.4, opacity: 0, duration: 0.6, ease: "power2.in" }, 0.05);
-    tl.to(overlay, { opacity: 0, duration: 0.55, ease: "power2.inOut" }, 0.1);
+    // 1. Page content slides up from below — creamy ease with soft bounce
+    if (pageContent) {
+      tl.fromTo(pageContent,
+        { y: "100vh", opacity: 1 },
+        { y: "0vh", duration: 1.1, ease: "back.out(0.7)" },
+        0
+      );
+    }
+
+    // 2. Blobs continue drifting outward and fade (match longer duration)
+    tl.to(b1, {
+      scale: 2.5, x: "-40vw", y: "30vh", opacity: 0, rotate: 90,
+      duration: 0.9, ease: "power2.inOut",
+    }, 0);
+    tl.to(b2, {
+      scale: 2.8, x: "40vw", y: "-30vh", opacity: 0, rotate: -60,
+      duration: 0.9, ease: "power2.inOut",
+    }, 0.05);
+    tl.to(b3, {
+      scale: 2.0, x: "20vw", y: "40vh", opacity: 0, rotate: 45,
+      duration: 0.85, ease: "power2.inOut",
+    }, 0.05);
+
+    // 3. Overlay fades out smoothly
+    tl.to(overlay, {
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.inOut",
+    }, 0.2);
+
+    // 4. Navbar slides back in gently
+    if (nav) {
+      tl.to(nav, {
+        yPercent: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      }, 0.5);
+    }
   }, [play]);
 
   const ctx: TransitionContextValue = {
@@ -113,7 +174,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
     <TransitionCtx.Provider value={ctx}>
       {children}
 
-      {/* Overlay — fixed, covers everything */}
+      {/* Transition Overlay — fixed, covers everything */}
       <div
         ref={overlayRef}
         aria-hidden="true"
@@ -125,38 +186,53 @@ export function PageTransition({ children }: { children: ReactNode }) {
           background: "#050508",
         }}
       >
-        {/* Blob 1 — Book Green */}
+        {/* Blob 1 — Book Green, large */}
         <div
           ref={blob1Ref}
           style={{
             position: "absolute",
-            width: "80vw",
-            height: "80vw",
+            width: "70vw",
+            height: "70vw",
+            top: "15%",
+            right: "-5%",
             borderRadius: "100%",
-            filter: "blur(90px)",
+            filter: "blur(80px)",
             background: "radial-gradient(circle, #00804C 0%, transparent 65%)",
-            top: "10%",
-            right: "-10%",
             opacity: 0,
-            scale: 0.3,
             willChange: "transform, opacity",
           }}
         />
 
-        {/* Blob 2 — Midnight Mirage */}
+        {/* Blob 2 — Midnight blue, large */}
         <div
           ref={blob2Ref}
           style={{
             position: "absolute",
-            width: "90vw",
-            height: "90vw",
+            width: "85vw",
+            height: "85vw",
+            bottom: "5%",
+            left: "-10%",
             borderRadius: "100%",
             filter: "blur(100px)",
             background: "radial-gradient(circle, #001F3F 0%, transparent 60%)",
-            bottom: "-5%",
-            left: "-15%",
             opacity: 0,
-            scale: 0.3,
+            willChange: "transform, opacity",
+          }}
+        />
+
+        {/* Blob 3 — Green accent, medium */}
+        <div
+          ref={blob3Ref}
+          style={{
+            position: "absolute",
+            width: "50vw",
+            height: "50vw",
+            top: "35%",
+            left: "25%",
+            borderRadius: "100%",
+            filter: "blur(75px)",
+            background: "radial-gradient(circle, #00804C 0%, transparent 60%)",
+            opacity: 0,
             willChange: "transform, opacity",
           }}
         />

@@ -9,9 +9,13 @@ export default function Template({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Reset scroll to top
     window.scrollTo(0, 0);
-    // Reveal the new page (curtain enter animation)
+    // Trigger the enter animation (page slides up, blobs drift out)
     animateIn();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <>{children}</>;
+  return (
+    <div data-page-content style={{ willChange: "transform" }}>
+      {children}
+    </div>
+  );
 }
