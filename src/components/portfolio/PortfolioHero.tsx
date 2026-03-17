@@ -50,18 +50,28 @@ export function PortfolioHero() {
       className="relative w-full h-screen min-h-[600px] overflow-hidden bg-navy flex flex-col"
     >
       {/* YouTube Embed — fullscreen background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-navy/70 z-10" />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-navy to-transparent z-20" />
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Global dim */}
+        <div className="absolute inset-0 bg-navy/55 z-10" />
+        {/* Heavy gradient at the bottom — readable text area */}
+        <div className="absolute inset-x-0 bottom-0 h-[75%] bg-gradient-to-t from-navy via-navy/80 to-transparent z-20" />
 
+        {/* iframe — covers viewport at any aspect ratio */}
         <iframe
           ref={videoRef}
           src="https://www.youtube.com/embed/abG_KLFMwCY?autoplay=1&mute=1&loop=1&playlist=abG_KLFMwCY&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&origin=http://localhost:3000&playsinline=1"
-          className="absolute w-[150vw] h-[150vh] -top-[25vh] -left-[25vw] border-0"
           allow="autoplay; encrypted-media"
           title="Belis Showreel"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "max(100vw, calc(100vh * 1.7778))",
+            height: "max(100vh, calc(100vw * 0.5625))",
+            border: "none",
+            pointerEvents: "none",
+          }}
         />
       </div>
 
