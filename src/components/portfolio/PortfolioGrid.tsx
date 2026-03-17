@@ -47,13 +47,19 @@ function WhatsAppCTA({ message }: { message: string }) {
 
 // ─── Video Lightbox ───────────────────────────────────────────────────────────
 
-function VideoLightbox({ youtubeId, onClose }: { youtubeId: string; onClose: () => void }) {
+function VideoLightbox({ youtubeId, aspect = "16/9", onClose }: {
+  youtubeId: string;
+  aspect?: "9/16" | "16/9";
+  onClose: () => void;
+}) {
   useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", fn);
     document.body.style.overflow = "hidden";
     return () => { document.removeEventListener("keydown", fn); document.body.style.overflow = ""; };
   }, [onClose]);
+
+  const isVertical = aspect === "9/16";
 
   return (
     <div
@@ -66,12 +72,23 @@ function VideoLightbox({ youtubeId, onClose }: { youtubeId: string; onClose: () 
           <path d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
-      <div className="w-full max-w-5xl aspect-video bg-black" onClick={e => e.stopPropagation()}>
+
+      {/* Container: vertical para Reels (9:16), horizontal para demais (16:9) */}
+      <div
+        className="bg-black"
+        style={
+          isVertical
+            ? { height: "min(90vh, 90svh)", aspectRatio: "9/16" }
+            : { width: "min(90vw, 900px)", aspectRatio: "16/9" }
+        }
+        onClick={e => e.stopPropagation()}
+      >
         <iframe
           src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`}
           className="w-full h-full border-0"
           allow="autoplay; encrypted-media; fullscreen"
-          allowFullScreen title="Portfolio video"
+          allowFullScreen
+          title="Portfolio video"
         />
       </div>
     </div>
@@ -117,7 +134,7 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
 function CinematicCarousel({
   items, onPlay, bgLabel, aspect = "9/16", initialActive,
 }: {
-  items: VideoItem[]; onPlay: (id: string) => void;
+  items: VideoItem[]; onPlay: (id: string, aspect: "9/16" | "16/9") => void;
   bgLabel: string; aspect?: "9/16" | "16/9"; initialActive?: number;
 }) {
   const [active, setActive] = useState(initialActive ?? Math.floor(items.length / 2));
@@ -294,7 +311,7 @@ function CinematicCarousel({
                 onClick={() => {
                   if (wasDragged.current) return;
                   if (!isCenter) { setActive(i); return; }
-                  if (item.youtubeId) onPlay(item.youtubeId);
+                  if (item.youtubeId) onPlay(item.youtubeId, aspect);
                 }}
                 className="flex flex-col gap-4 flex-none cursor-pointer"
                 style={{ width: CARD_W }}
@@ -345,7 +362,7 @@ function CinematicCarousel({
                       {/* Play button */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <button
-                          onClick={(e) => { e.stopPropagation(); if (item.youtubeId) onPlay(item.youtubeId); }}
+                          onClick={(e) => { e.stopPropagation(); if (item.youtubeId) onPlay(item.youtubeId, aspect); }}
                           className="flex items-center justify-center rounded-full border border-white/30 transition-transform duration-200 hover:scale-110 active:scale-95"
                           style={{ width: "60px", height: "60px", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)" }}
                           aria-label="Reproduzir"
@@ -597,10 +614,10 @@ const photos: PhotoItem[] = [
 // ─── Main Export ──────────────────────────────────────────────────────────────
 
 export function PortfolioGrid() {
-  const [videoLightbox, setVideoLightbox] = useState<string | null>(null);
+  const [videoLightbox, setVideoLightbox] = useState<{ id: string; aspect: "9/16" | "16/9" } | null>(null);
   const [photoLightbox, setPhotoLightbox] = useState<number | null>(null);
 
-  const openVideo  = useCallback((id: string) => setVideoLightbox(id), []);
+  const openVideo  = useCallback((id: string, aspect: "9/16" | "16/9") => setVideoLightbox({ id, aspect }), []);
   const closeVideo  = useCallback(() => setVideoLightbox(null), []);
   const openPhoto  = useCallback((i: number) => setPhotoLightbox(i), []);
   const closePhoto  = useCallback(() => setPhotoLightbox(null), []);
@@ -733,7 +750,7 @@ export function PortfolioGrid() {
       </TheaterSection>
 
       {/* ── Lightboxes ─────────────────────────────────────────────────── */}
-      {videoLightbox && <VideoLightbox youtubeId={videoLightbox} onClose={closeVideo} />}
+      {videoLightbox && <VideoLightbox youtubeId={videoLightbox.id} aspect={videoLightbox.aspect} onClose={closeVideo} />}
       {photoLightbox !== null && (
         <PhotoLightbox
           photo={photos[photoLightbox]}
