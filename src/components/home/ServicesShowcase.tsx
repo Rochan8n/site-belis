@@ -231,13 +231,19 @@ export function ServicesShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-auto md:h-screen md:overflow-hidden overflow-x-clip"
+      className="relative w-full h-auto md:h-screen overflow-x-clip"
     >
-      {/* Base sempre preta — os glows ficam dentro de cada cena */}
+      {/* Base sempre preta — os glows ficam dentro de cada cena.
+          Adicionamos um mask-image para esfumaçar a borda inferior
+          e mesclar perfeitamente com o fundo global do site. */}
       <div
         ref={bgRef}
         className="absolute inset-0"
-        style={{ backgroundColor: "#050508" }}
+        style={{ 
+          backgroundColor: "#050508",
+          maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"
+        }}
       />
 
       {/* Scenes */}
@@ -245,7 +251,7 @@ export function ServicesShowcase() {
         <div
           key={service.id}
           ref={(el) => { scenesRef.current[index] = el; }}
-          className="relative w-full min-h-[70svh] py-16 md:py-0 md:absolute md:inset-0 md:h-full flex items-center justify-center overflow-visible md:overflow-hidden"
+          className="relative w-full min-h-[70svh] py-16 md:py-0 md:absolute md:inset-0 md:h-full flex items-center justify-center overflow-visible"
           style={{ zIndex: index + 1, color: service.textColor }}
         >
           {/* ── Gradient sphere 1 — topo direito ── */}
@@ -348,7 +354,7 @@ export function ServicesShowcase() {
             {/* Left callout */}
             <div
               ref={(el) => { calloutsLeftRef.current[index] = el; }}
-              className="absolute left-6 sm:left-10 md:-left-12 top-0 md:top-[15%] -translate-y-1/2 md:translate-y-0 z-20"
+              className="absolute left-6 sm:left-10 md:-left-12 lg:-left-36 xl:-left-56 top-0 md:top-[15%] -translate-y-1/2 md:translate-y-0 z-20"
             >
               <div
                 className="relative px-4 md:px-5 py-2 md:py-3 rounded-lg border text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider overflow-hidden"
@@ -362,7 +368,7 @@ export function ServicesShowcase() {
             {/* Right callout */}
             <div
               ref={(el) => { calloutsRightRef.current[index] = el; }}
-              className="absolute right-6 sm:right-10 md:-right-12 bottom-0 md:bottom-[15%] translate-y-1/2 md:translate-y-0 z-20"
+              className="absolute right-6 sm:right-10 md:-right-12 lg:-right-36 xl:-right-56 bottom-0 md:bottom-[15%] translate-y-1/2 md:translate-y-0 z-20"
             >
               <div
                 className="relative px-4 md:px-5 py-2 md:py-3 rounded-lg border text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider overflow-hidden"

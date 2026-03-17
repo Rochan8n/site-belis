@@ -73,9 +73,9 @@ const CARDS = [
 
 /* Desktop: 3 left, 3 right, scattered */
 const CARD_POSITIONS_DESKTOP = [
-  { x: "4%",  y: "12%", rotX: 18, rotY: 25,  rotZ: -4  },
-  { x: "8%",  y: "42%", rotX: -12, rotY: 20,  rotZ: 6   },
-  { x: "2%",  y: "68%", rotX: 15, rotY: -18, rotZ: -8  },
+  { x: "14%", y: "12%", rotX: 18, rotY: 25,  rotZ: -4  },
+  { x: "18%", y: "42%", rotX: -12, rotY: 20,  rotZ: 6   },
+  { x: "12%", y: "68%", rotX: 15, rotY: -18, rotZ: -8  },
   { x: "62%", y: "8%",  rotX: -20, rotY: -22, rotZ: 5   },
   { x: "66%", y: "48%", rotX: 14, rotY: -28, rotZ: -3  },
   { x: "58%", y: "72%", rotX: -16, rotY: 20,  rotZ: 7   },
