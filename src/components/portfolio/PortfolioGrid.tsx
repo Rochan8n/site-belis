@@ -131,17 +131,30 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
     return () => window.removeEventListener("keydown", fn);
   }, []);
 
-  // Drag / swipe
+  // Drag / swipe — pointer capture keeps events even when cursor leaves container
   const dragStartX = useRef<number | null>(null);
-  const onPointerDown = (e: React.PointerEvent) => { dragStartX.current = e.clientX; };
+  const wasDragged = useRef(false);
+  const onPointerDown = (e: React.PointerEvent) => {
+    dragStartX.current = e.clientX;
+    wasDragged.current = false;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
-    if (Math.abs(delta) > 50) { delta < 0 ? next() : prev(); }
+    if (Math.abs(delta) > 50) {
+      wasDragged.current = true;
+      delta < 0 ? next() : prev();
+    }
     dragStartX.current = null;
   };
+  const onPointerCancel = () => { dragStartX.current = null; wasDragged.current = false; };
 
-  // Card positional logic — translate + scale only (no rotateY to avoid squish)
+  // Card positional logic — ALL size differences via scale only (no width changes = no layout reflow)
+  // Scale values recalibrated so side cards visually match the original design:
+  // center DOM 260px × scale(1.08) ≈ 281px visual
+  // adj   DOM 260px × scale(0.63) ≈ 164px visual (≈ old 200px × 0.88)
+  // far   DOM 260px × scale(0.55) ≈ 143px visual (≈ old 200px × 0.76)
   function getCardStyle(offset: number): React.CSSProperties {
     const abs = Math.abs(offset);
     const dir = offset > 0 ? 1 : -1;
@@ -151,14 +164,14 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
       zIndex: 20,
     };
     if (abs === 1) return {
-      transform: `translateX(${dir * -18}px) scale(0.88)`,
+      transform: `translateX(${dir * -10}px) scale(0.63)`,
       filter: "brightness(0.48)",
       zIndex: 10,
       opacity: 1,
     };
     // abs >= 2
     return {
-      transform: `translateX(${dir * -30}px) scale(0.76)`,
+      transform: `translateX(${dir * -20}px) scale(0.55)`,
       filter: "brightness(0.28)",
       zIndex: 5,
       opacity: 0.65,
@@ -166,14 +179,18 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
   }
 
   const currentItem = items[active];
+  // Fixed card width for ALL cards — visual size via scale only, never via width change
+  const CARD_W = "clamp(180px, 18vw, 260px)";
 
   return (
     <div
       ref={containerRef}
       className="relative w-full flex flex-col items-center justify-center select-none"
-      style={{ minHeight: "680px", overflow: "visible" }}
+      style={{ minHeight: "680px", overflow: "visible", touchAction: "none" }}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
+      onDragStart={(e) => e.preventDefault()}
     >
       {/* ── Giant background text ── */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden" aria-hidden="true">
@@ -227,23 +244,30 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
               <div
                 key={item.id}
                 onClick={() => {
+                  if (wasDragged.current) return;
                   if (!isCenter) { setActive(i); return; }
                   if (item.youtubeId) onPlay(item.youtubeId);
                 }}
                 className="flex flex-col gap-4 flex-none cursor-pointer"
-                style={{ transition: "all 0.7s cubic-bezier(0.4,0,0.2,1)" }}
+                style={{ width: CARD_W }}
               >
-                {/* Card — aspect-ratio keeps 9:16 always correct */}
+                {/* Card — same DOM width always; visual size only via transform scale */}
                 <div
                   className="relative overflow-hidden"
                   style={{
-                    width: isCenter ? "clamp(180px, 18vw, 260px)" : "clamp(130px, 13vw, 200px)",
+                    width: "100%",
                     aspectRatio: "9 / 16",
                     borderRadius: "12px",
                     border: isCenter ? "2px solid var(--color-coral)" : "1px solid rgba(246,247,237,0.1)",
                     boxShadow: isCenter ? "0 0 40px color-mix(in srgb, var(--color-coral) 40%, transparent)" : "0 0 30px rgba(0,0,0,0.5)",
                     ...cardStyle,
-                    transition: "all 0.7s cubic-bezier(0.4,0,0.2,1)",
+                    transition: [
+                      "transform 0.85s cubic-bezier(0.34, 1.2, 0.64, 1)",
+                      "filter 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+                      "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                      "box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1)",
+                      "border-color 0.5s ease",
+                    ].join(", "),
                   }}
                 >
                   {/* Thumbnail */}
@@ -251,6 +275,7 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
                     src={item.thumb}
                     alt={item.title}
                     fill
+                    draggable={false}
                     className="object-cover"
                     sizes="300px"
                     unoptimized={item.thumb.startsWith("https://img.youtube")}
@@ -304,15 +329,13 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
                   )}
                 </div>
 
-                {/* Below-card label (side cards) */}
-                {!isCenter && (
-                  <div className="px-1">
-                    <p className="font-sans text-[9px] font-black tracking-[0.2em] uppercase" style={{ color: "rgba(246,247,237,0.4)" }}>
-                      {item.category}
-                    </p>
-                    <p className="font-sans text-sm font-bold text-cream truncate max-w-[160px]">{item.title}</p>
-                  </div>
-                )}
+                {/* Below-card label — always rendered to keep stable height; hidden for center card */}
+                <div className="px-1" style={{ opacity: isCenter ? 0 : 1, transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)", pointerEvents: isCenter ? "none" : "auto" }}>
+                  <p className="font-sans text-[9px] font-black tracking-[0.2em] uppercase" style={{ color: "rgba(246,247,237,0.4)" }}>
+                    {item.category}
+                  </p>
+                  <p className="font-sans text-sm font-bold text-cream truncate max-w-[160px]">{item.title}</p>
+                </div>
               </div>
             );
           })}
