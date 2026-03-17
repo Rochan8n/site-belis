@@ -112,16 +112,22 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
   );
 }
 
-// ─── REELS 3D SHOWCASE (code.html design) ────────────────────────────────────
+// ─── Cinematic Carousel — unified 9:16 / 16:9 showcase ───────────────────────
 
-function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: string) => void }) {
+function CinematicCarousel({
+  items, onPlay, bgLabel, aspect = "9/16",
+}: {
+  items: VideoItem[]; onPlay: (id: string) => void;
+  bgLabel: string; aspect?: "9/16" | "16/9";
+}) {
   const [active, setActive] = useState(Math.floor(items.length / 2));
   const containerRef = useRef<HTMLDivElement>(null);
+  const dragStartX = useRef<number | null>(null);
+  const wasDragged = useRef(false);
 
   const prev = () => setActive(i => Math.max(0, i - 1));
   const next = () => setActive(i => Math.min(items.length - 1, i + 1));
 
-  // Keyboard nav
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prev();
@@ -131,9 +137,6 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
     return () => window.removeEventListener("keydown", fn);
   }, []);
 
-  // Drag / swipe — pointer capture keeps events even when cursor leaves container
-  const dragStartX = useRef<number | null>(null);
-  const wasDragged = useRef(false);
   const onPointerDown = (e: React.PointerEvent) => {
     dragStartX.current = e.clientX;
     wasDragged.current = false;
@@ -142,51 +145,44 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
-    if (Math.abs(delta) > 50) {
-      wasDragged.current = true;
-      delta < 0 ? next() : prev();
-    }
+    if (Math.abs(delta) > 50) { wasDragged.current = true; delta < 0 ? next() : prev(); }
     dragStartX.current = null;
   };
   const onPointerCancel = () => { dragStartX.current = null; wasDragged.current = false; };
 
-  // Card positional logic — ALL size differences via scale only (no width changes = no layout reflow)
-  // Scale values recalibrated so side cards visually match the original design:
-  // center DOM 260px × scale(1.08) ≈ 281px visual
-  // adj   DOM 260px × scale(0.63) ≈ 164px visual (≈ old 200px × 0.88)
-  // far   DOM 260px × scale(0.55) ≈ 143px visual (≈ old 200px × 0.76)
+  // Sizing — all differences via scale only (no width change = no layout reflow)
+  const is916 = aspect === "9/16";
+  const CARD_W = is916 ? "clamp(180px, 18vw, 260px)" : "clamp(260px, 24vw, 380px)";
+
   function getCardStyle(offset: number): React.CSSProperties {
     const abs = Math.abs(offset);
     const dir = offset > 0 ? 1 : -1;
-    if (abs === 0) return {
-      transform: "translateX(0) scale(1.08)",
-      filter: "brightness(1)",
-      zIndex: 20,
-    };
+    if (abs === 0) return { transform: "translateX(0) scale(1.08)", filter: "brightness(1)", zIndex: 20 };
     if (abs === 1) return {
-      transform: `translateX(${dir * -10}px) scale(0.63)`,
-      filter: "brightness(0.48)",
-      zIndex: 10,
-      opacity: 1,
+      transform: `translateX(${dir * (is916 ? -10 : -14)}px) scale(${is916 ? 0.63 : 0.72})`,
+      filter: "brightness(0.48)", zIndex: 10, opacity: 1,
     };
-    // abs >= 2
     return {
-      transform: `translateX(${dir * -20}px) scale(0.55)`,
-      filter: "brightness(0.28)",
-      zIndex: 5,
-      opacity: 0.65,
+      transform: `translateX(${dir * (is916 ? -20 : -24)}px) scale(${is916 ? 0.55 : 0.62})`,
+      filter: "brightness(0.28)", zIndex: 5, opacity: 0.65,
     };
   }
 
+  const TRANSITION = [
+    "transform 0.85s cubic-bezier(0.34, 1.2, 0.64, 1)",
+    "filter 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+    "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+    "box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1)",
+    "border-color 0.5s ease",
+  ].join(", ");
+
   const currentItem = items[active];
-  // Fixed card width for ALL cards — visual size via scale only, never via width change
-  const CARD_W = "clamp(180px, 18vw, 260px)";
 
   return (
     <div
       ref={containerRef}
       className="relative w-full flex flex-col items-center justify-center select-none"
-      style={{ minHeight: "680px", overflow: "visible", touchAction: "none" }}
+      style={{ minHeight: is916 ? "680px" : "500px", overflow: "visible", touchAction: "none" }}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerCancel}
@@ -194,7 +190,7 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
     >
       {/* ── Giant background text ── */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden" aria-hidden="true">
-        <span className="font-heading font-black text-cream leading-none" style={{ fontSize: "30vw" }}>REELS</span>
+        <span className="font-heading font-black text-cream leading-none" style={{ fontSize: "30vw" }}>{bgLabel}</span>
       </div>
 
       {/* ── Stats — Left ── */}
@@ -256,18 +252,12 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
                   className="relative overflow-hidden"
                   style={{
                     width: "100%",
-                    aspectRatio: "9 / 16",
+                    aspectRatio: aspect.replace("/", " / "),
                     borderRadius: "12px",
                     border: isCenter ? "2px solid var(--color-coral)" : "1px solid rgba(246,247,237,0.1)",
                     boxShadow: isCenter ? "0 0 40px color-mix(in srgb, var(--color-coral) 40%, transparent)" : "0 0 30px rgba(0,0,0,0.5)",
                     ...cardStyle,
-                    transition: [
-                      "transform 0.85s cubic-bezier(0.34, 1.2, 0.64, 1)",
-                      "filter 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
-                      "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                      "box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1)",
-                      "border-color 0.5s ease",
-                    ].join(", "),
+                    transition: TRANSITION,
                   }}
                 >
                   {/* Thumbnail */}
@@ -277,7 +267,7 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
                     fill
                     draggable={false}
                     className="object-cover"
-                    sizes="300px"
+                    sizes={is916 ? "300px" : "450px"}
                     unoptimized={item.thumb.startsWith("https://img.youtube")}
                   />
 
@@ -360,134 +350,6 @@ function ReelsShowcase3D({ items, onPlay }: { items: VideoItem[]; onPlay: (id: s
           Arraste para explorar
         </p>
         <div className="w-px h-10 bg-gradient-to-b from-coral to-transparent" />
-      </div>
-    </div>
-  );
-}
-
-// ─── Standard 16:9 Video Carousel (Institucionais / Anúncios) ────────────────
-
-function VideoCarousel({ items, onPlay }: { items: VideoItem[]; onPlay: (id: string) => void }) {
-  const [centerIdx, setCenterIdx] = useState(Math.floor(items.length / 2));
-  const trackRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-
-  const prev = () => setCenterIdx(i => Math.max(0, i - 1));
-  const next = () => setCenterIdx(i => Math.min(items.length - 1, i + 1));
-
-  useEffect(() => {
-    if (!trackRef.current) return;
-    const cards = trackRef.current.children;
-    if (!cards[centerIdx + 1]) return; // +1 for padding div
-    const card = cards[centerIdx + 1] as HTMLElement;
-    const track = trackRef.current;
-    const offset = card.offsetLeft - track.clientWidth / 2 + card.offsetWidth / 2;
-    track.scrollTo({ left: offset, behavior: "smooth" });
-  }, [centerIdx]);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
-    startX.current = e.pageX - (trackRef.current?.offsetLeft ?? 0);
-    scrollLeft.current = trackRef.current?.scrollLeft ?? 0;
-  };
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !trackRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - (trackRef.current.offsetLeft ?? 0);
-    trackRef.current.scrollLeft = scrollLeft.current - (x - startX.current);
-  };
-  const stopDrag = () => { isDragging.current = false; };
-
-  return (
-    <div className="relative">
-      <div
-        ref={trackRef}
-        className="flex items-center gap-4 sm:gap-6 overflow-x-auto hide-scrollbar select-none pb-2"
-        style={{ cursor: "grab" }}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={stopDrag}
-        onMouseLeave={stopDrag}
-      >
-        <div className="flex-none w-[8vw] sm:w-[12vw] lg:w-[18vw] shrink-0" />
-        {items.map((item, i) => {
-          const isCenter = i === centerIdx;
-          return (
-            <div
-              key={item.id}
-              onClick={() => { if (!isCenter) { setCenterIdx(i); return; } if (item.youtubeId) onPlay(item.youtubeId); }}
-              className="relative flex-none overflow-hidden cursor-pointer group"
-              style={{
-                width: isCenter ? "clamp(280px, 28vw, 440px)" : "clamp(200px, 20vw, 320px)",
-                height: isCenter ? "clamp(170px, 17vw, 260px)" : "clamp(120px, 12vw, 190px)",
-                borderRadius: "10px",
-                border: isCenter ? "2px solid var(--color-coral)" : "1px solid rgba(246,247,237,0.08)",
-                boxShadow: isCenter ? "0 0 35px color-mix(in srgb, var(--color-coral) 35%, transparent)" : "none",
-                filter: isCenter ? "brightness(1)" : "brightness(0.55)",
-                transform: isCenter ? "scale(1)" : "scale(0.92)",
-                transition: "all 0.6s cubic-bezier(0.4,0,0.2,1)",
-              }}
-            >
-              <Image
-                src={item.thumb}
-                alt={item.title}
-                fill
-                className="object-cover"
-                sizes="400px"
-                unoptimized={item.thumb.startsWith("https://img.youtube")}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
-              {isCenter && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex items-center justify-center rounded-full border border-white/30 transition-transform duration-200 group-hover:scale-110"
-                    style={{ width: "52px", height: "52px", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)" }}>
-                    <svg className="w-6 h-6 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                </div>
-              )}
-              <div className="absolute bottom-3 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-coral text-[9px] font-black tracking-[0.2em] uppercase mb-0.5">{item.category}</p>
-                <p className="text-cream font-heading font-black text-sm uppercase tracking-tight truncate">{item.title}</p>
-              </div>
-            </div>
-          );
-        })}
-        <div className="flex-none w-[8vw] sm:w-[12vw] lg:w-[18vw] shrink-0" />
-      </div>
-
-      {/* Controls */}
-      <div className="mt-6 flex items-center justify-between max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
-        <div className="flex items-center gap-2">
-          {items.map((_, i) => (
-            <button key={i} onClick={() => setCenterIdx(i)}
-              className="transition-all duration-300"
-              style={{
-                width: i === centerIdx ? "32px" : "8px",
-                height: "4px",
-                background: i === centerIdx ? "var(--color-coral)" : "rgba(246,247,237,0.2)",
-                borderRadius: "2px",
-              }}
-              aria-label={`Item ${i + 1}`}
-            />
-          ))}
-        </div>
-        <div className="flex gap-3">
-          {([["Anterior", prev, "M15 19l-7-7 7-7"], ["Próximo", next, "M9 5l7 7-7 7"]] as const).map(([label, fn, path]) => (
-            <button key={label} onClick={() => fn()}
-              className="flex items-center justify-center border border-cream/20 text-cream/60 hover:text-cream hover:border-cream/40 transition-all"
-              style={{ width: "40px", height: "40px" }}
-              aria-label={label}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d={path}/>
-              </svg>
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -698,7 +560,7 @@ export function PortfolioGrid() {
         </div>
         {/* 3D Reels carousel — matches code.html design */}
         <div className="theater-reveal py-6">
-          <ReelsShowcase3D items={reels} onPlay={openVideo} />
+          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-6 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Reels no portfólio da Belis e quero saber mais sobre esse serviço." />
@@ -722,7 +584,7 @@ export function PortfolioGrid() {
           />
         </div>
         <div className="theater-reveal">
-          <VideoCarousel items={institucionais} onPlay={openVideo} />
+          <CinematicCarousel items={institucionais} onPlay={openVideo} bgLabel="INST." aspect="16/9" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Vídeos Institucionais no portfólio da Belis e quero saber mais sobre esse serviço." />
@@ -746,7 +608,7 @@ export function PortfolioGrid() {
           />
         </div>
         <div className="theater-reveal">
-          <VideoCarousel items={anuncios} onPlay={openVideo} />
+          <CinematicCarousel items={anuncios} onPlay={openVideo} bgLabel="ADS" aspect="16/9" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Anúncios para Tráfego Pago no portfólio da Belis e quero saber mais sobre esse serviço." />
@@ -770,7 +632,7 @@ export function PortfolioGrid() {
           />
         </div>
         <div className="theater-reveal">
-          <VideoCarousel items={horizontais} onPlay={openVideo} />
+          <CinematicCarousel items={horizontais} onPlay={openVideo} bgLabel="WIDE" aspect="16/9" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Vídeos Horizontais no portfólio da Belis e quero saber mais sobre esse serviço." />
