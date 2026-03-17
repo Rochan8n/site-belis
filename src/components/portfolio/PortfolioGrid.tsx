@@ -169,12 +169,12 @@ function CinematicCarousel({
   const onPointerDown = (e: React.PointerEvent) => {
     dragStartX.current = e.clientX;
     wasDragged.current = false;
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    // Não usar setPointerCapture: ele redireciona o click event para o container,
+    // impedindo que os handlers onClick dos cards filhos sejam disparados.
   };
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
-    // Movimento mínimo para detectar drag (drag suave)
     if (Math.abs(delta) > 30) {
       wasDragged.current = true;
       delta < 0 ? next() : prev();
@@ -182,6 +182,18 @@ function CinematicCarousel({
     dragStartX.current = null;
   };
   const onPointerCancel = () => { dragStartX.current = null; wasDragged.current = false; };
+
+  // Reset drag state se pointer soltar fora do container
+  useEffect(() => {
+    const onGlobalUp = () => {
+      if (dragStartX.current !== null) {
+        dragStartX.current = null;
+        wasDragged.current = false;
+      }
+    };
+    window.addEventListener("pointerup", onGlobalUp);
+    return () => window.removeEventListener("pointerup", onGlobalUp);
+  }, []);
 
   // Sizing — all differences via scale only (no width change = no layout reflow)
   const is916 = aspect === "9/16";
@@ -331,8 +343,9 @@ function CinematicCarousel({
                         </svg>
                       </div>
                       {/* Play button */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                      <div className="absolute inset-0 flex items-center justify-center">
                         <button
+                          onClick={(e) => { e.stopPropagation(); if (item.youtubeId) onPlay(item.youtubeId); }}
                           className="flex items-center justify-center rounded-full border border-white/30 transition-transform duration-200 hover:scale-110 active:scale-95"
                           style={{ width: "60px", height: "60px", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)" }}
                           aria-label="Reproduzir"
@@ -341,10 +354,6 @@ function CinematicCarousel({
                             <path d="M8 5v14l11-7z"/>
                           </svg>
                         </button>
-                        {/* Progress bar */}
-                        <div className="w-2/3 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.2)" }}>
-                          <div className="h-full rounded-full" style={{ width: "33%", background: "var(--color-coral)" }} />
-                        </div>
                       </div>
                     </>
                   )}
@@ -384,12 +393,31 @@ function CinematicCarousel({
         </div>
       )}
 
-      {/* ── Drag indicator ── */}
-      <div className="mt-8 flex flex-col items-center gap-2 opacity-50 z-10">
-        <p className="font-sans text-[10px] font-black tracking-[0.3em] uppercase text-coral">
-          Arraste para explorar
-        </p>
-        <div className="w-px h-10 bg-gradient-to-b from-coral to-transparent" />
+      {/* ── Navigation arrows ── */}
+      <div className="mt-8 flex items-center gap-5 z-10">
+        <button
+          onClick={prev}
+          disabled={active === 0}
+          aria-label="Vídeo anterior"
+          className="flex items-center justify-center w-12 h-12 rounded-full border border-cream/20 text-cream/60 hover:border-coral hover:text-coral transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <span className="font-sans text-[11px] font-black tracking-[0.25em] uppercase text-coral tabular-nums">
+          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+        </span>
+        <button
+          onClick={next}
+          disabled={active === items.length - 1}
+          aria-label="Próximo vídeo"
+          className="flex items-center justify-center w-12 h-12 rounded-full border border-cream/20 text-cream/60 hover:border-coral hover:text-coral transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
       </div>
     </div>
   );
