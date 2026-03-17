@@ -164,7 +164,7 @@ export function ServicesShowcase() {
           if (!scene || !bgText || !card || !calloutL || !calloutR || !number) return;
 
           // ── ENTER ──
-          masterTl.to(scene, { autoAlpha: 1, duration: dur * 0.01, ease: "none" }, sceneStart);
+          masterTl.to(scene, { autoAlpha: 1, duration: dur * 0.15, ease: "power2.inOut" }, sceneStart);
 
           masterTl.to(bgText,  { autoAlpha: 0.06, y: 0,  duration: dur * 0.25, ease: "power2.out" }, sceneStart + dur * 0.05);
           masterTl.to(card,    { autoAlpha: 1, rotateX: 0, rotateY: 0, scale: 1, y: 0, duration: dur * 0.45, ease: "power1.out" }, sceneStart + dur * 0.05);
@@ -174,10 +174,10 @@ export function ServicesShowcase() {
 
           // ── EXIT (except last) ──
           if (i < totalScenes - 1) {
-            const fadeStart = sceneStart + dur * 0.85;
-            masterTl.to([bgText, card, calloutL, calloutR, number], { autoAlpha: 0, duration: dur * 0.14, ease: "power2.in" }, fadeStart);
-            masterTl.to(card,  { scale: 0.92, y: -40, duration: dur * 0.14, ease: "power2.in" }, fadeStart);
-            masterTl.to(scene, { autoAlpha: 0, duration: dur * 0.01, ease: "none" }, sceneStart + dur * 0.99);
+            const fadeStart = sceneStart + dur * 0.75;
+            masterTl.to([bgText, card, calloutL, calloutR, number], { autoAlpha: 0, duration: dur * 0.15, ease: "power2.in" }, fadeStart);
+            masterTl.to(card,  { scale: 0.92, y: -40, duration: dur * 0.15, ease: "power2.in" }, fadeStart);
+            masterTl.to(scene, { autoAlpha: 0, duration: dur * 0.20, ease: "power2.inOut" }, sceneStart + dur * 0.80);
           }
         });
       });
@@ -185,7 +185,20 @@ export function ServicesShowcase() {
       // ─── MOBILE ───
       mm.add("(max-width: 767px)", () => {
         scenesRef.current.forEach((scene) => {
-          if (scene) gsap.set(scene, { autoAlpha: 1 });
+          if (scene) {
+            gsap.set(scene, { autoAlpha: 0.2 });
+            gsap.to(scene, {
+              autoAlpha: 1,
+              duration: 1.5,
+              ease: "power2.inOut",
+              scrollTrigger: {
+                trigger: scene,
+                start: "top 75%",
+                end: "bottom 25%",
+                toggleActions: "play reverse play reverse",
+              }
+            });
+          }
         });
         bgTextsRef.current.forEach((el) => {
           if (el) gsap.set(el, { autoAlpha: 0.05, y: 0 });
@@ -218,7 +231,7 @@ export function ServicesShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-auto md:h-screen md:overflow-hidden"
+      className="relative w-full h-auto md:h-screen md:overflow-hidden overflow-x-clip"
     >
       {/* Base sempre preta — os glows ficam dentro de cada cena */}
       <div
@@ -232,7 +245,7 @@ export function ServicesShowcase() {
         <div
           key={service.id}
           ref={(el) => { scenesRef.current[index] = el; }}
-          className="relative w-full h-screen md:absolute md:inset-0 md:h-full flex items-center justify-center overflow-hidden"
+          className="relative w-full min-h-[70svh] py-16 md:py-0 md:absolute md:inset-0 md:h-full flex items-center justify-center overflow-visible md:overflow-hidden"
           style={{ zIndex: index + 1, color: service.textColor }}
         >
           {/* ── Gradient sphere 1 — topo direito ── */}
@@ -296,21 +309,21 @@ export function ServicesShowcase() {
             </span>
           </div>
 
-          {/* Number - bottom left */}
+          {/* Number */}
           <div
             ref={(el) => { numbersRef.current[index] = el; }}
-            className="absolute bottom-12 left-12 pointer-events-none select-none"
+            className="absolute top-4 left-4 md:top-auto md:bottom-12 md:left-12 pointer-events-none select-none z-0"
           >
-            <span className="text-[180px] font-heading font-black leading-none tracking-tighter text-current">
+            <span className="text-[130px] md:text-[180px] font-heading font-black leading-none tracking-tighter text-current opacity-30 md:opacity-100">
               {service.id}
             </span>
           </div>
 
           {/* Center: Card */}
-          <div className="perspective-container relative z-10 w-full max-w-2xl mx-auto px-6">
+          <div className="perspective-container relative z-10 w-full max-w-2xl mx-auto px-5 sm:px-6">
             <div
               ref={(el) => { cardsRef.current[index] = el; }}
-              className="service-card-3d relative p-10 md:p-14 rounded-sm border-2"
+              className="service-card-3d relative p-8 sm:p-10 md:p-14 rounded-sm border-2"
               style={{
                 borderColor: service.cardBorder,
                 background: `radial-gradient(circle at top left, ${service.cardGlow}, transparent 80%)`,
@@ -318,44 +331,46 @@ export function ServicesShowcase() {
                 WebkitBackdropFilter: "blur(20px)",
               }}
             >
-              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black uppercase tracking-tight leading-[0.9] whitespace-pre-line">
+              <h2 className="text-[2.3rem] sm:text-5xl md:text-7xl lg:text-8xl font-heading font-black uppercase tracking-tight leading-[1] whitespace-pre-line">
                 {service.title}
               </h2>
 
               <div
-                className="w-full h-[2px] my-6 md:my-8"
+                className="w-full h-[2px] my-5 md:my-8"
                 style={{ backgroundColor: service.accentColor, opacity: 0.5 }}
               />
 
-              <p className="text-lg md:text-xl font-sans font-light leading-relaxed opacity-80 max-w-lg">
+              <p className="text-base sm:text-lg md:text-xl font-sans font-light leading-relaxed opacity-80 max-w-lg">
                 {service.description}
               </p>
             </div>
-          </div>
 
-          {/* Left callout */}
-          <div
-            ref={(el) => { calloutsLeftRef.current[index] = el; }}
-            className="absolute left-8 md:left-16 top-1/4"
-          >
+            {/* Left callout */}
             <div
-              className="px-5 py-3 rounded-lg border text-sm md:text-base font-heading font-bold uppercase tracking-wider backdrop-blur-sm"
-              style={{ borderColor: service.cardBorder, background: service.cardGlow }}
+              ref={(el) => { calloutsLeftRef.current[index] = el; }}
+              className="absolute left-6 sm:left-10 md:-left-12 top-0 md:top-[15%] -translate-y-1/2 md:translate-y-0 z-20"
             >
-              {service.callouts[0]}
+              <div
+                className="relative px-4 md:px-5 py-2 md:py-3 rounded-lg border text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider overflow-hidden"
+                style={{ borderColor: service.cardBorder, backgroundColor: "#050508" }}
+              >
+                <div className="absolute inset-0 opacity-40 pointer-events-none" style={{ backgroundColor: service.cardGlow }} />
+                <span className="relative z-10">{service.callouts[0]}</span>
+              </div>
             </div>
-          </div>
 
-          {/* Right callout */}
-          <div
-            ref={(el) => { calloutsRightRef.current[index] = el; }}
-            className="absolute right-8 md:right-16 bottom-1/4"
-          >
+            {/* Right callout */}
             <div
-              className="px-5 py-3 rounded-lg border text-sm md:text-base font-heading font-bold uppercase tracking-wider backdrop-blur-sm"
-              style={{ borderColor: service.cardBorder, background: service.cardGlow }}
+              ref={(el) => { calloutsRightRef.current[index] = el; }}
+              className="absolute right-6 sm:right-10 md:-right-12 bottom-0 md:bottom-[15%] translate-y-1/2 md:translate-y-0 z-20"
             >
-              {service.callouts[1]}
+              <div
+                className="relative px-4 md:px-5 py-2 md:py-3 rounded-lg border text-xs sm:text-sm md:text-base font-heading font-bold uppercase tracking-wider overflow-hidden"
+                style={{ borderColor: service.cardBorder, backgroundColor: "#050508" }}
+              >
+                <div className="absolute inset-0 opacity-40 pointer-events-none" style={{ backgroundColor: service.cardGlow }} />
+                <span className="relative z-10">{service.callouts[1]}</span>
+              </div>
             </div>
           </div>
         </div>
