@@ -154,13 +154,15 @@ export function Navbar() {
 
         {/* CTA no drawer */}
         <div className="mobile-link mt-12">
-          <TransitionLink
-            href="/contato"
+          <a
+            href="https://wa.me/5511973138895"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={close}
             className="inline-flex items-center gap-2 px-8 py-3 bg-coral text-navy font-sans font-bold text-sm rounded-full uppercase tracking-wider hover:shadow-[0_0_30px_rgba(116,195,101,0.3)] transition-all duration-300"
           >
             Iniciar Projeto
-          </TransitionLink>
+          </a>
         </div>
       </div>
     </>

@@ -305,7 +305,12 @@ export function VideoScrubHero() {
             Estratégia audiovisual com mentalidade de performance.<br className="hidden sm:block" /> Desenvolvemos ativos em vídeo que sustentam seu posicionamento e aceleram a conversão.
           </p>
           <div ref={ctaRef} className="mt-9 sm:mt-11">
-            <a href="/contato" className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 border border-coral/70 text-coral font-sans font-bold uppercase tracking-[0.2em] text-xs sm:text-sm hover:bg-coral hover:text-navy hover:border-coral transition-colors duration-300">
+            <a 
+              href="https://wa.me/5511973138895" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 border border-coral/70 text-coral font-sans font-bold uppercase tracking-[0.2em] text-xs sm:text-sm hover:bg-coral hover:text-navy hover:border-coral transition-colors duration-300"
+            >
               Iniciar Projeto
               <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
             </a>
