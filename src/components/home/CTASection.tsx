@@ -52,17 +52,32 @@ export function CTASection() {
           ))}
         </h2>
         
-        {/* Constant magnetic wrapper - removed fake shadow-2xl preventing blurred bleeding */}
+        {/* Brutalist WhatsApp Button */}
         <a 
           href="https://wa.me/5511973138895"
           target="_blank"
           rel="noopener noreferrer"
-          data-magnetic 
+          className="group relative flex items-center justify-between w-full sm:w-[500px] border border-navy/20 bg-navy p-6 sm:p-8 outline-none transition-colors duration-500 overflow-hidden cursor-pointer md:cursor-none"
+          data-magnetic
           data-magnetic-text="GO!"
-          className="group relative px-10 sm:px-16 py-6 sm:py-8 overflow-hidden bg-navy text-cream font-sans font-bold uppercase tracking-widest text-sm sm:text-base outline-none cursor-pointer md:cursor-none transition-transform hover:scale-105 duration-300 rounded-sm"
         >
-          <span className="relative z-10 pointer-events-none transition-colors duration-500 group-hover:text-coral">QUERO VENDER MAIS COM VÍDEO</span>
-          <div className="absolute inset-0 bg-cream transform scale-y-0 origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-y-100 z-0"></div>
+          {/* Brutalist Fill on Hover */}
+          <div className="absolute inset-0 bg-cream origin-left scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-x-100" />
+          
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-start gap-1.5 text-left">
+            <span className="font-sans text-[9px] sm:text-[11px] font-bold tracking-[0.25em] uppercase text-coral group-hover:text-navy/60 transition-colors duration-500">
+              Contato Direto
+            </span>
+            <span className="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tighter text-cream group-hover:text-navy transition-colors duration-500 whitespace-nowrap">
+              CHAMAR WHATSAPP
+            </span>
+          </div>
+          
+          {/* Arrow */}
+          <div className="relative z-10 flex items-center justify-center p-3 sm:p-4 rounded-full border border-cream/20 group-hover:border-navy/20 transition-all duration-500 group-hover:-rotate-45 group-hover:bg-navy text-cream group-hover:text-coral ml-4">
+             <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
         </a>
 
       </div>
