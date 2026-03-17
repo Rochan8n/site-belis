@@ -6,9 +6,9 @@ import { gsap, ScrollTrigger } from "@/lib/gsap-init";
 const steps = [
   {
     number: "01",
-    title: "Briefing Estratégico",
+    title: "Diagnóstico e Estratégia",
     description:
-      "Entendemos seu negócio, objetivo e público-alvo. Nada de fórmula pronta — cada projeto começa com estratégia.",
+      "Alinhamos seus objetivos de negócio ao perfil do seu público. Sem fórmulas prontas, cada projeto nasce de um planejamento exclusivo.",
   },
   {
     number: "02",
@@ -30,9 +30,9 @@ const steps = [
   },
   {
     number: "05",
-    title: "Entrega + Otimização",
+    title: "Entrega Otimizada",
     description:
-      "Entregamos editado e otimizado para cada plataforma — Instagram, YouTube, site, ads. Pronto pra vender.",
+      "Material finalizado e adaptado para cada canal (Instagram, YouTube, Ads). Conteúdo pronto para veiculação e performance.",
   },
 ];
 
@@ -131,12 +131,12 @@ export function HowItWorks() {
             Como Funciona
           </span>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-cream leading-[1.05]">
-            Do briefing à entrega.{" "}
-            <span className="text-coral">Simples, rápido e premium.</span>
+            Do conceito à entrega final.{" "}
+            <span className="text-coral">Processo estruturado e sem burocracia.</span>
           </h2>
           <p className="mt-5 text-cream/50 font-sans font-light text-sm sm:text-lg leading-relaxed max-w-md">
-            Nosso processo foi desenhado pra você focar no seu negócio enquanto
-            a gente cuida de tudo.
+            Uma metodologia desenhada para que você foque na gestão do seu negócio enquanto
+            cuidamos de toda a produção.
           </p>
         </div>
 

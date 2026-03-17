@@ -63,12 +63,12 @@ function preloadFrames(
 
 /* ── Card data ── */
 const CARDS = [
-  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Seu concorrente não tem isso" },
-  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Lançamento com ROI, não só buzz" },
-  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Seu Instagram virando canal de vendas" },
-  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Branding que faz cliente escolher você" },
-  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Funil visual: do clique ao contrato" },
-  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "A vitrine que seu faturamento merece" },
+  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Posicionamento de mercado em alto nível" },
+  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Lançamentos com viabilidade e retorno financeiro" },
+  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Presença digital que funciona como vitrine de vendas" },
+  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Identidade visual que transmite autoridade imediata" },
+  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Jornada de compra assistida por conteúdo estratégico" },
+  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "Produção audiovisual com acabamento cinematográfico" },
 ];
 
 /* Desktop: 3 left, 3 right, scattered */

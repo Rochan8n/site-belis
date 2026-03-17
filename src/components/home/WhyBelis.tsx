@@ -6,14 +6,14 @@ import { gsap } from "@/lib/gsap-init";
 
 const pillars = [
   {
-    title: "Diretor Dedicado ao Seu Projeto",
+    title: "Direção Dedicada",
     description:
-      "Nada de freelancer rotativo. Você tem um diretor criativo fixo do briefing à entrega final — alguém que entende sua marca de verdade.",
+      "Sem rotatividade de freelancers. Um diretor criativo acompanha seu projeto do briefing à entrega final, garantindo unidade estratégica.",
   },
   {
-    title: "Grupo no WhatsApp com a Equipe",
+    title: "Comunicação Direta",
     description:
-      "Acesso direto à equipe criativa, sem intermediários. Você manda mensagem e recebe resposta — não um ticket de suporte.",
+      "Acesso imediato à equipe criativa, sem intermediários. Respostas rápidas e decisões ágeis diretamente no canal de comunicação da sua preferência.",
   },
   {
     title: "Primeira Entrega em até 7 Dias",
@@ -21,9 +21,9 @@ const pillars = [
       "Enquanto outras produtoras levam semanas, sua primeira versão fica pronta em até 7 dias úteis. Urgência do seu negócio respeitada.",
   },
   {
-    title: "Equipamento de Cinema. Preço de Agência.",
+    title: "Infraestrutura de Cinema",
     description:
-      "Câmeras e lentes cinema-grade, drone, iluminação profissional — tudo incluso. Qualidade de filme, sem orçamento de Hollywood.",
+      "Equipamentos de ponta e equipe técnica especializada inclusos. Entregamos qualidade cinematográfica com a eficiência de uma agência parceira.",
   },
 ];
 
@@ -138,7 +138,7 @@ export function WhyBelis() {
             </h2>
 
             <p className="why-header text-cream/50 font-sans font-light text-base sm:text-lg leading-relaxed mb-10">
-              Pensamos em como alavancar suas vendas com estratégias audiovisuais eficazes e comprovadas. Cada entrega é pensada para gerar resultado — não apenas "conteúdo bonito".
+              Nossa metodologia une visão estratégica e inteligência de negócio. Cada entrega é projetada para ser um ativo de vendas, priorizando resultados sobre estética vazia.
             </p>
 
             {/* Glass cards grid */}
