@@ -5,7 +5,7 @@ import { WhyBelis } from "@/components/home/WhyBelis";
 import { ClientLogos } from "@/components/home/ClientLogos";
 import { PortfolioPreview } from "@/components/home/PortfolioPreview";
 import { Testimonials } from "@/components/home/Testimonials";
-import { CTASection } from "@/components/home/CTASection";
+
 import { HowItWorks } from "@/components/home/HowItWorks";
 import Link from "next/link";
 
@@ -52,7 +52,7 @@ export default function Home() {
       <ClientLogos />
       <PortfolioPreview />
       <Testimonials />
-      <CTASection />
+
     </main>
   );
 }

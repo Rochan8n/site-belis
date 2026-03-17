@@ -1,6 +1,6 @@
 import { PortfolioHero } from "@/components/portfolio/PortfolioHero";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
-import { CTASection } from "@/components/home/CTASection";
+
 
 export const metadata = {
   title: "Arquivo - Belis Agency",
@@ -12,7 +12,7 @@ export default function PortfolioPage() {
     <main className="w-full min-h-screen bg-navy overflow-hidden">
       <PortfolioHero />
       <PortfolioGrid />
-      <CTASection />
+
     </main>
   );
 }

@@ -1,7 +1,7 @@
 import { AboutHero } from "@/components/sobre/AboutHero";
 import { Timeline } from "@/components/sobre/Timeline";
 import { ValuesSection } from "@/components/sobre/ValuesSection";
-import { CTASection } from "@/components/home/CTASection";
+
 
 export const metadata = {
   title: "Sobre a Agência - Belis Agency",
@@ -14,7 +14,7 @@ export default function SobrePage() {
       <AboutHero />
       <Timeline />
       <ValuesSection />
-      <CTASection />
+
     </main>
   );
 }
