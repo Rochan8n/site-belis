@@ -20,7 +20,7 @@ export default function Home() {
       <HeroSection />
       <ServicesShowcase />
 
-      <section className="w-full pt-12 pb-24 flex justify-center relative z-20 px-6 sm:px-12 lg:px-24">
+      <section className="w-full pt-4 pb-8 flex justify-center relative z-20 px-6 sm:px-12 lg:px-24">
         {/* Soft blending glow connecting the sections */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] sm:w-[800px] h-[300px] bg-coral/5 blur-[100px] rounded-full pointer-events-none" />
         
