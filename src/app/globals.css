@@ -6,7 +6,7 @@
   --color-blue: #1E488F;          /* Nuit Blanche     */
   --color-coral: #74C365;         /* Mantis (accent)  */
   --color-cream: #F6F7ED;         /* Praxeti White    */
-  --color-book-green: #00804C;    /* Book Green       */
+  /* --color-book-green removido: era idêntico a --color-mantis (#74C365) */
   --color-mantis: #74C365;        /* Mantis           */
 
   --color-background: var(--color-navy);
@@ -96,4 +96,16 @@ body {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Acessibilidade: respeita preferência por menos movimento ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

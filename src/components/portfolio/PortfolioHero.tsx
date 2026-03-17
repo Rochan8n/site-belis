@@ -59,7 +59,7 @@ export function PortfolioHero() {
         {/* iframe — covers viewport at any aspect ratio */}
         <iframe
           ref={videoRef}
-          src="https://www.youtube.com/embed/abG_KLFMwCY?autoplay=1&mute=1&loop=1&playlist=abG_KLFMwCY&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&origin=http://localhost:3000&playsinline=1"
+          src={`https://www.youtube.com/embed/abG_KLFMwCY?autoplay=1&mute=1&loop=1&playlist=abG_KLFMwCY&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&origin=${process.env.NEXT_PUBLIC_SITE_URL ?? "https://belisagency.com"}&playsinline=1`}
           allow="autoplay; encrypted-media"
           title="Belis Showreel"
           style={{

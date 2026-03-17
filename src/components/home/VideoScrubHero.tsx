@@ -107,12 +107,20 @@ export function VideoScrubHero() {
   const [isMobile, setIsMobile] = useState(false);
   const { lenis } = useSmoothScroll();
 
-  /* ── Detect mobile ── */
+  /* ── Detect mobile (com debounce de 150ms para evitar jank no resize) ── */
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    let timer: ReturnType<typeof setTimeout>;
+    const check = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => setIsMobile(window.innerWidth < 768), 150);
+    };
+    // Verificação imediata sem debounce no mount
+    setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", check, { passive: true });
+    return () => {
+      window.removeEventListener("resize", check);
+      clearTimeout(timer);
+    };
   }, []);
 
   /* ── 1. Preload frames ── */
@@ -275,11 +283,15 @@ export function VideoScrubHero() {
           style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.4s" }}
         />
 
-        {/* Poster while loading */}
+        {/* Poster while loading — dimensões explícitas evitam CLS; fetchPriority acelera LCP */}
         {!loaded && (
           <img
             src="/frames/frame_0001.jpg"
             alt=""
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
