@@ -122,11 +122,10 @@ export function HowItWorks() {
       {/* Horizontal scrolling track */}
       <div
         ref={trackRef}
-        className="flex items-center h-screen will-change-transform"
-        style={{ width: `${steps.length * 45 + 30}vw` }}
+        className="flex items-center h-screen will-change-transform w-max"
       >
         {/* Header (first panel) */}
-        <div className="flex-shrink-0 w-[40vw] sm:w-[35vw] h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24">
+        <div className="flex-shrink-0 w-[85vw] sm:w-[50vw] md:w-[40vw] lg:w-[35vw] h-full flex flex-col justify-center pl-6 pr-4 sm:px-16 lg:px-24">
           <span className="inline-block text-xs font-sans font-bold tracking-[0.3em] uppercase text-cream/40 border border-cream/10 rounded-full px-5 py-2 mb-6 w-fit">
             Como Funciona
           </span>
@@ -141,7 +140,7 @@ export function HowItWorks() {
         </div>
 
         {/* Timeline area */}
-        <div className="relative flex-shrink-0 flex items-center" style={{ width: `${steps.length * 40}vw`, paddingRight: "10vw" }}>
+        <div className="relative flex-shrink-0 flex items-center w-[300vw] sm:w-[250vw] md:w-[200vw] lg:w-[180vw] pr-[15vw] sm:pr-[10vw]">
           {/* Horizontal line — background track */}
           <div
             className="absolute left-0 right-0 h-[2px] bg-cream/10"
