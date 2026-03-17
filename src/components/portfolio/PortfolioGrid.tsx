@@ -227,14 +227,20 @@ function CinematicCarousel({
       {/* ── Carousel ── */}
       <div className="relative w-full flex items-center justify-center px-4">
         <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
-          {items.map((item, i) => {
-            const offset = i - active;
-            const absOff = Math.abs(offset);
-            // Only render -2..+2 range
-            if (absOff > 2) return null;
-
+          {/* Always render exactly 5 slots (-2..+2) so center card stays centered at edges */}
+          {[-2, -1, 0, 1, 2].map((offset) => {
+            const i = active + offset;
+            const item = items[i];
             const isCenter = offset === 0;
             const cardStyle = getCardStyle(offset);
+
+            // Ghost slot — no real item at this position, keeps layout symmetric
+            if (!item) return (
+              <div key={`ghost-${offset}`} className="flex flex-col gap-4 flex-none pointer-events-none" style={{ width: CARD_W, opacity: 0 }}>
+                <div style={{ width: "100%", aspectRatio: aspect.replace("/", " / ") }} />
+                <div className="px-1"><p className="text-[9px]">&nbsp;</p><p className="text-sm">&nbsp;</p></div>
+              </div>
+            );
 
             return (
               <div
