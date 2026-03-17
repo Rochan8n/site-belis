@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap-init";
+import { gsap } from "@/lib/gsap-init";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { TransitionLink } from "./TransitionLink";
 
 const links = [
@@ -12,34 +13,38 @@ const links = [
 ];
 
 export function Navbar() {
-  const navRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  // Desktop: hide/show on scroll
+  const { lenis } = useSmoothScroll();
+  const lastScrollY = useRef(0);
+
+  // Hide/show on scroll using Lenis events (since Lenis hijacks native scroll)
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const showAnim = gsap.from(navRef.current, {
-        yPercent: -100,
-        paused: true,
-        duration: 0.4,
-        ease: "power3.out",
-      }).progress(1);
+    if (!lenis) return;
 
-      ScrollTrigger.create({
-        start: "top top-=-50",
-        onUpdate: (self) => {
-          if (self.direction === -1) {
-            showAnim.play();
-          } else if (self.direction === 1) {
-            showAnim.reverse();
-          }
-        },
-      });
-    });
+    const onScroll = ({ scroll, direction }: { scroll: number; direction: number }) => {
+      // Always show when near the top
+      if (scroll <= 50) {
+        setHidden(false);
+        lastScrollY.current = scroll;
+        return;
+      }
 
-    return () => ctx.revert();
-  }, []);
+      // direction: 1 = down, -1 = up
+      if (direction === 1) {
+        setHidden(true);
+      } else if (direction === -1) {
+        setHidden(false);
+      }
+
+      lastScrollY.current = scroll;
+    };
+
+    lenis.on("scroll", onScroll);
+    return () => lenis.off("scroll", onScroll);
+  }, [lenis]);
 
   // Mobile drawer animation
   useEffect(() => {
@@ -82,9 +87,13 @@ export function Navbar() {
   return (
     <>
       <nav
-        ref={navRef}
+        data-navbar
         className="fixed top-0 left-0 w-full z-[999] backdrop-blur-xl border-b border-cream/10"
-        style={{ background: "rgba(5, 5, 8, 0.80)" }}
+        style={{
+          background: "rgba(5, 5, 8, 0.80)",
+          transform: hidden ? "translateY(-100%)" : "translateY(0%)",
+          transition: "transform 0.35s cubic-bezier(0.33, 1, 0.68, 1)",
+        }}
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 h-24 flex items-center justify-between">
           <TransitionLink href="/" className="text-2xl font-heading font-black text-cream uppercase tracking-widest outline-none">

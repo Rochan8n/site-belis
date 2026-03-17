@@ -53,7 +53,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
       const b1 = blob1Ref.current;
       const b2 = blob2Ref.current;
       const b3 = blob3Ref.current;
-      const nav = document.querySelector("nav");
+      const nav = document.querySelector("[data-navbar]");
       if (!overlay || !b1 || !b2 || !b3) return;
 
       const tl = gsap.timeline({
@@ -109,7 +109,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
     const b1 = blob1Ref.current;
     const b2 = blob2Ref.current;
     const b3 = blob3Ref.current;
-    const nav = document.querySelector("nav");
+    const nav = document.querySelector("[data-navbar]");
     // The page content wrapper created in template.tsx
     const pageContent = document.querySelector("[data-page-content]");
     if (!overlay || !b1 || !b2 || !b3) return;
@@ -122,6 +122,10 @@ export function PageTransition({ children }: { children: ReactNode }) {
         // containing block that breaks position:fixed (GSAP pins)
         if (pageContent) {
           gsap.set(pageContent, { clearProps: "all" });
+        }
+        // Clear GSAP inline transforms on nav so React state controls visibility
+        if (nav) {
+          gsap.set(nav, { clearProps: "transform" });
         }
         busyRef.current = false;
         setTransitioning(false);
