@@ -47,18 +47,16 @@ export function Footer() {
               Pronto para transformar sua marca com vídeo profissional que vende?
             </p>
             <a 
-              href="mailto:contato@belisagency.com" 
+              href="mailto:Lucas@belis.agency" 
               className="text-coral font-bold font-sans tracking-widest text-sm uppercase mt-6 hover:text-white transition-colors duration-300 w-fit outline-none"
             >
-              contato@belisagency.com
+              Lucas@belis.agency
             </a>
           </div>
           
           <ul className="flex flex-col gap-6 text-left md:text-right font-sans tracking-[0.2em] text-xs font-bold uppercase text-cream/70 sm:pr-12 lg:pr-24">
-            <li><a href="#instagram" className="hover:text-coral transition-colors duration-300 outline-none">Instagram</a></li>
-            <li><a href="#linkedin" className="hover:text-coral transition-colors duration-300 outline-none">LinkedIn</a></li>
-            <li><a href="#dribbble" className="hover:text-coral transition-colors duration-300 outline-none">Dribbble</a></li>
-            <li><a href="#behance" className="hover:text-coral transition-colors duration-300 outline-none">Behance</a></li>
+            <li><a href="https://www.instagram.com/belisvideo/" target="_blank" rel="noopener noreferrer" className="hover:text-coral transition-colors duration-300 outline-none">Instagram</a></li>
+            <li><a href="https://wa.me/5511973138895" target="_blank" rel="noopener noreferrer" className="hover:text-coral transition-colors duration-300 outline-none">WhatsApp</a></li>
           </ul>
 
         </div>

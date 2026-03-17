@@ -36,11 +36,14 @@ export function ContactInfo() {
       <div className="info-line flex flex-col gap-6">
         <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Infoline</h3>
         <div className="flex flex-col gap-2 font-sans font-bold text-lg text-cream/80">
-          <a href="mailto:contato@belisagency.com" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
-            contato@belisagency.com
+          <a href="mailto:Lucas@belis.agency" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
+            Lucas@belis.agency
           </a>
-          <a href="tel:+5511999999999" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
-            +55 11 99999-9999
+          <a href="https://wa.me/5511973138895" target="_blank" rel="noopener noreferrer" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
+            WhatsApp: (11) 97313-8895
+          </a>
+          <a href="tel:+5511973138895" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
+            Tel: (11) 97313-8895
           </a>
         </div>
       </div>
@@ -49,18 +52,8 @@ export function ContactInfo() {
         <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Redes</h3>
         <ul className="flex flex-col gap-3 font-sans font-bold uppercase tracking-widest text-sm text-cream/70">
           <li>
-            <a href="#instagram" data-magnetic data-magnetic-text="GO!" className="hover:text-coral transition-colors duration-300 inline-block outline-none cursor-pointer md:cursor-none">
+            <a href="https://www.instagram.com/belisvideo/" target="_blank" rel="noopener noreferrer" data-magnetic data-magnetic-text="GO!" className="hover:text-coral transition-colors duration-300 inline-block outline-none cursor-pointer md:cursor-none">
               Instagram
-            </a>
-          </li>
-          <li>
-            <a href="#linkedin" data-magnetic data-magnetic-text="GO!" className="hover:text-coral transition-colors duration-300 inline-block outline-none cursor-pointer md:cursor-none">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href="#youtube" data-magnetic data-magnetic-text="GO!" className="hover:text-coral transition-colors duration-300 inline-block outline-none cursor-pointer md:cursor-none">
-              YouTube
             </a>
           </li>
         </ul>
