@@ -70,7 +70,7 @@ export function CTASection() {
               Contato Direto
             </span>
             <span className="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tighter text-cream group-hover:text-navy transition-colors duration-500 whitespace-nowrap">
-              CHAMAR WHATSAPP
+              WHATSAPP
             </span>
           </div>
           
