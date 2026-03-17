@@ -115,12 +115,12 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
 // ─── Cinematic Carousel — unified 9:16 / 16:9 showcase ───────────────────────
 
 function CinematicCarousel({
-  items, onPlay, bgLabel, aspect = "9/16",
+  items, onPlay, bgLabel, aspect = "9/16", initialActive,
 }: {
   items: VideoItem[]; onPlay: (id: string) => void;
-  bgLabel: string; aspect?: "9/16" | "16/9";
+  bgLabel: string; aspect?: "9/16" | "16/9"; initialActive?: number;
 }) {
-  const [active, setActive] = useState(Math.floor(items.length / 2));
+  const [active, setActive] = useState(initialActive ?? Math.floor(items.length / 2));
   const containerRef = useRef<HTMLDivElement>(null);
   const dragStartX = useRef<number | null>(null);
   const wasDragged = useRef(false);
@@ -473,10 +473,10 @@ function PhotoMasonry({ photos, onOpen }: { photos: PhotoItem[]; onOpen: (i: num
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const reels: VideoItem[] = [
-  { id: 1,  title: "Reel 01",  category: "Reels", thumb: "https://img.youtube.com/vi/zdX9BuSYV6g/maxresdefault.jpg",  youtubeId: "zdX9BuSYV6g",  aspect: "9/16", label: "Destaque" },
+  { id: 1,  title: "Reel 01",  category: "Reels", thumb: "https://img.youtube.com/vi/zdX9BuSYV6g/maxresdefault.jpg",  youtubeId: "zdX9BuSYV6g",  aspect: "9/16" },
   { id: 2,  title: "Reel 02",  category: "Reels", thumb: "https://img.youtube.com/vi/2sJZiyXJ9hE/maxresdefault.jpg",  youtubeId: "2sJZiyXJ9hE",  aspect: "9/16" },
   { id: 3,  title: "Reel 03",  category: "Reels", thumb: "https://img.youtube.com/vi/-z7L3RkbvRw/maxresdefault.jpg",  youtubeId: "-z7L3RkbvRw",  aspect: "9/16" },
-  { id: 4,  title: "Reel 04",  category: "Reels", thumb: "https://img.youtube.com/vi/bwFaHBxRw6Y/maxresdefault.jpg",  youtubeId: "bwFaHBxRw6Y",  aspect: "9/16" },
+  { id: 4,  title: "Reel 04",  category: "Reels", thumb: "https://img.youtube.com/vi/bwFaHBxRw6Y/maxresdefault.jpg",  youtubeId: "bwFaHBxRw6Y",  aspect: "9/16", label: "Destaque" },
   { id: 5,  title: "Reel 05",  category: "Reels", thumb: "https://img.youtube.com/vi/4PSicx4qZnw/maxresdefault.jpg",  youtubeId: "4PSicx4qZnw",  aspect: "9/16" },
   { id: 6,  title: "Reel 06",  category: "Reels", thumb: "https://img.youtube.com/vi/GneJ-tchPuY/maxresdefault.jpg",  youtubeId: "GneJ-tchPuY",  aspect: "9/16" },
   { id: 7,  title: "Reel 07",  category: "Reels", thumb: "https://img.youtube.com/vi/ssJZv5HwX9c/maxresdefault.jpg",  youtubeId: "ssJZv5HwX9c",  aspect: "9/16" },
@@ -566,7 +566,7 @@ export function PortfolioGrid() {
         </div>
         {/* 3D Reels carousel — matches code.html design */}
         <div className="theater-reveal py-6">
-          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" />
+          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={3} />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-6 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Reels no portfólio da Belis e quero saber mais sobre esse serviço." />
