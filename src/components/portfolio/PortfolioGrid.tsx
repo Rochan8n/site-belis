@@ -124,9 +124,38 @@ function CinematicCarousel({
   const containerRef = useRef<HTMLDivElement>(null);
   const dragStartX = useRef<number | null>(null);
   const wasDragged = useRef(false);
+  const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const prev = () => setActive(i => Math.max(0, i - 1));
   const next = () => setActive(i => Math.min(items.length - 1, i + 1));
+
+  // Wheel scroll suave na horizontal
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!containerRef.current?.contains(e.target as Node)) return;
+      e.preventDefault();
+
+      // Debounce wheel events para evitar múltiplos acionamentos
+      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
+
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        // Scroll vertical → horizontal no carousel
+        if (e.deltaY > 0) next();
+        else prev();
+      }
+
+      wheelTimeoutRef.current = setTimeout(() => {
+        wheelTimeoutRef.current = null;
+      }, 300);
+    };
+
+    const container = containerRef.current;
+    container?.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      container?.removeEventListener("wheel", handleWheel);
+      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
@@ -145,7 +174,11 @@ function CinematicCarousel({
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
-    if (Math.abs(delta) > 50) { wasDragged.current = true; delta < 0 ? next() : prev(); }
+    // Movimento mínimo para detectar drag (drag suave)
+    if (Math.abs(delta) > 30) {
+      wasDragged.current = true;
+      delta < 0 ? next() : prev();
+    }
     dragStartX.current = null;
   };
   const onPointerCancel = () => { dragStartX.current = null; wasDragged.current = false; };
@@ -168,12 +201,13 @@ function CinematicCarousel({
     };
   }
 
+  // Transições ultra-suaves com easing otimizado
   const TRANSITION = [
-    "transform 0.85s cubic-bezier(0.34, 1.2, 0.64, 1)",
-    "filter 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
-    "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-    "box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1)",
-    "border-color 0.5s ease",
+    "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "border-color 0.4s ease",
   ].join(", ");
 
   const currentItem = items[active];
