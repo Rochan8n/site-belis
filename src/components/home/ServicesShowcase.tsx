@@ -18,7 +18,7 @@ const services = [
     title: "Vídeos\nInstitucionais",
     bgTitle: "INSTITUCIONAL",
     description:
-      "Sua empresa tem uma história poderosa — mas ninguém está ouvindo. Transformamos a essência da sua marca em vídeos cinematográficos que geram autoridade instantânea, confiança e desejo. Empresas que investem em vídeo institucional fecham até 3x mais contratos.",
+      "Sua empresa possui uma trajetória sólida que merece ser comunicada com precisão. Traduzimos a essência da sua marca em produções cinematográficas que estabelecem confiança e facilitam o fechamento de contratos de alto valor.",
     callouts: ["Autoridade instantânea", "Fecha mais contratos"],
     glow1Color: "#00804C",
     glow2Color: "#001F3F",
@@ -33,7 +33,7 @@ const services = [
     title: "Reels &\nShort Content",
     bgTitle: "REELS",
     description:
-      "Seu concorrente já está no feed do seu cliente. A diferença? Quem para o scroll, vende. Criamos reels com roteiro estratégico, edição magnética e ganchos que transformam visualizações em vendas reais no Instagram, TikTok e Shorts.",
+      "O feed é a porta de entrada da sua marca. Criamos Reels estratégicos com foco em retenção e ganchos de conversão, transformando a atenção do scroll em oportunidades reais de negócio no Instagram e TikTok.",
     callouts: ["Para o scroll", "Visualização → Venda"],
     glow1Color: "#74C365",
     glow2Color: "#00804C",
@@ -48,7 +48,7 @@ const services = [
     title: "Anúncios\npara Redes Sociais",
     bgTitle: "ADS",
     description:
-      "Anúncio bonito que não converte é só gasto. Produzimos vídeos curtos e impactantes para campanhas no Instagram, Facebook e TikTok com um único objetivo: fazer o investimento em tráfego pago retornar em clientes reais e faturamento.",
+      "Criativos que não performam são ineficiências no seu orçamento. Produzimos peças diretas e assertivas para campanhas, focadas em transformar o investimento em tráfego pago em faturamento real.",
     callouts: ["ROI real", "Tráfego → Cliente"],
     glow1Color: "#1E488F",
     glow2Color: "#74C365",
@@ -63,7 +63,7 @@ const services = [
     title: "Fotografia\nCorporativa",
     bgTitle: "FOTOGRAFIA",
     description:
-      "Fotos genéricas passam despercebidas. Fotos profissionais vendem antes de você abrir a boca. Capturamos retratos executivos, fotos de equipe e ambientes corporativos que transmitem confiança, profissionalismo e posicionamento premium no LinkedIn, site e materiais.",
+      "A primeira impressão é visual e definitiva. Retratos executivos e fotos de ambiente que comunicam profissionalismo e reforçam seu posicionamento premium em todos os pontos de contato, do LinkedIn ao site.",
     callouts: ["Vende antes da reunião", "Posicionamento premium"],
     glow1Color: "#74C365",
     glow2Color: "#1E488F",
@@ -78,7 +78,7 @@ const services = [
     title: "Cobertura\nde Eventos",
     bgTitle: "EVENTOS",
     description:
-      "Seu evento acontece uma vez — mas o conteúdo gerado pode vender por meses. Filmamos congressos, palestras, workshops e feiras com edição para divulgação no mesmo dia. Transforme cada evento em uma máquina de conteúdo e prova social.",
+      "Eventos são investimentos únicos que podem render meses de autoridade. Capturamos congressos e palestras com edição ágil, transformando sua entrega presencial em uma máquina de prova social e conteúdo.",
     callouts: ["Conteúdo no mesmo dia", "Prova social infinita"],
     glow1Color: "#00804C",
     glow2Color: "#74C365",

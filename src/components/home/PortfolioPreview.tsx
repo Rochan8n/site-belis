@@ -82,7 +82,7 @@ export function PortfolioPreview() {
             Projetos Que{" "}<span className="text-coral">Geraram Resultado</span>
           </h2>
           <p className="portfolio-header max-w-2xl mx-auto mt-5 text-cream/50 font-sans font-light text-base sm:text-lg leading-relaxed">
-            Não mostramos portfólio — mostramos provas. Cada projeto abaixo gerou impacto real no faturamento do cliente. A próxima história de sucesso pode ser a sua.
+            Resultados tangíveis em diversos setores. Conheça os projetos que transformaram a percepção de marca e o faturamento dos nossos clientes. O próximo case pode ser o seu.
           </p>
         </div>
 

@@ -63,12 +63,12 @@ function preloadFrames(
 
 /* ── Card data ── */
 const CARDS = [
-  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Seu concorrente não tem isso" },
-  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Lançamento com ROI, não só buzz" },
-  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Seu Instagram virando canal de vendas" },
-  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Branding que faz cliente escolher você" },
-  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Funil visual: do clique ao contrato" },
-  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "A vitrine que seu faturamento merece" },
+  { title: "Vídeo Institucional",        category: "Narrativa de Marca",   result: "Posicionamento de mercado em alto nível" },
+  { title: "Campanha de Lançamento",     category: "Vendas · Conversão",   result: "Lançamentos com viabilidade e retorno financeiro" },
+  { title: "Conteúdo Premium Recorrente", category: "Consistência Visual", result: "Presença digital que funciona como vitrine de vendas" },
+  { title: "Identidade em Motion",       category: "Branding Audiovisual", result: "Identidade visual que transmite autoridade imediata" },
+  { title: "Funil de Vendas Visual",     category: "Performance Digital",  result: "Jornada de compra assistida por conteúdo estratégico" },
+  { title: "Showreel de Marca",          category: "Percepção Premium",    result: "Produção audiovisual com acabamento cinematográfico" },
 ];
 
 /* Desktop: 3 left, 3 right, scattered */
@@ -289,16 +289,20 @@ export function VideoScrubHero() {
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#050508] to-transparent pointer-events-none" />
         <div ref={overlayRef} className="absolute inset-0 bg-[#050508] pointer-events-none" style={{ opacity: 0.1 }} />
 
+        {/* Text backdrop for readability */}
+        <div className="absolute inset-0 pointer-events-none z-[1]"
+             style={{ background: 'radial-gradient(ellipse 80% 75% at 50% 48%, rgba(5,5,8,0.75) 0%, rgba(5,5,8,0.35) 50%, transparent 80%)' }} />
+
         {/* Hero text content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center px-6 text-center">
           <p ref={labelRef} className="font-sans text-[9px] sm:text-[10px] font-bold tracking-[0.55em] uppercase text-cream/50 mb-5 sm:mb-7">
             Belis Agency
           </p>
           <h1 ref={headRef} className="font-heading font-black uppercase tracking-tighter leading-[0.82] text-cream" style={{ fontSize: "clamp(3rem, 11vw, 9rem)" }}>
             Vídeos Que<br /><span className="text-coral">Vendem.</span>
           </h1>
-          <p ref={subRef} className="mt-5 sm:mt-7 font-sans text-[11px] sm:text-[13px] text-cream/50 max-w-[320px] sm:max-w-lg leading-relaxed text-center">
-            Somos a produtora que pensa como agência de performance.<br className="hidden sm:block" /> Cada frame é pensado pra vender.
+          <p ref={subRef} className="mt-5 sm:mt-7 font-sans text-[13px] sm:text-base text-cream/90 max-w-[320px] sm:max-w-lg leading-relaxed text-center">
+            Estratégia audiovisual com mentalidade de performance.<br className="hidden sm:block" /> Desenvolvemos ativos em vídeo que sustentam seu posicionamento e aceleram a conversão.
           </p>
           <div ref={ctaRef} className="mt-9 sm:mt-11">
             <a href="/contato" className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 border border-coral/70 text-coral font-sans font-bold uppercase tracking-[0.2em] text-xs sm:text-sm hover:bg-coral hover:text-navy hover:border-coral transition-colors duration-300">

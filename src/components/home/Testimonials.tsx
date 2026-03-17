@@ -106,7 +106,7 @@ export function Testimonials() {
               <span className="text-coral">de quem já investiu.</span>
             </h2>
             <p className="testimonial-header max-w-2xl mt-5 text-cream/50 font-sans font-light text-base sm:text-lg leading-relaxed">
-              Depoimentos reais, sem roteiro. Clique no play e ouça direto de quem contratou a Belis e viu o retorno no faturamento.
+              A perspectiva de quem confia na Belis. Assista aos depoimentos de parceiros que alcançaram resultados reais através da nossa estratégia audiovisual.
             </p>
           </div>
 
