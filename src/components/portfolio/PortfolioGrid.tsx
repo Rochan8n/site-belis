@@ -508,9 +508,9 @@ function SectionHeader({ index, title, subtitle, tag, meta }: {
       </div>
       <div className="flex flex-col gap-3 min-w-[220px]">
         {meta.map(({ label, value }) => (
-          <div key={label} className="flex items-baseline justify-between border-b border-cream/10 pb-3 last:border-0 last:pb-0">
-            <span className="text-cream/40 font-sans text-xs tracking-[0.15em] uppercase">{label}</span>
-            <span className="text-cream font-sans text-sm font-medium">{value}</span>
+          <div key={label} className="flex items-baseline justify-between gap-6 border-b border-cream/10 pb-3 last:border-0 last:pb-0">
+            <span className="text-cream/40 font-sans text-xs tracking-[0.15em] uppercase shrink-0">{label}</span>
+            <span className="text-cream font-sans text-sm font-medium text-right">{value}</span>
           </div>
         ))}
       </div>
