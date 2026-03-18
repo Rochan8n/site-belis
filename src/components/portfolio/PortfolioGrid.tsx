@@ -432,12 +432,10 @@ function CinematicCarousel({
                   )}
                 </div>
 
-                {/* Below-card label — always rendered to keep stable height; hidden for center card */}
-                <div className="px-1" style={{ opacity: isCenter ? 0 : 1, transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)", pointerEvents: isCenter ? "none" : "auto" }}>
-                  <p className="font-sans text-[9px] font-black tracking-[0.2em] uppercase" style={{ color: "rgba(246,247,237,0.4)" }}>
-                    {item.category}
-                  </p>
-                  <p className="font-sans text-sm font-bold text-cream truncate max-w-[160px]">{item.title}</p>
+                {/* Below-card label — kept for stable height but always invisible */}
+                <div className="px-1" style={{ opacity: 0, pointerEvents: "none" }}>
+                  <p className="font-sans text-[9px] font-black tracking-[0.2em] uppercase">&nbsp;</p>
+                  <p className="font-sans text-sm font-bold text-cream truncate max-w-[160px]">&nbsp;</p>
                 </div>
               </div>
             );
