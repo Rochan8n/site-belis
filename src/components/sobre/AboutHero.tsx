@@ -42,11 +42,11 @@ export function AboutHero() {
     return () => ctx.revert();
   }, []);
 
-  const text = "NÃO SEGUIMOS TENDÊNCIAS. NÓS AS CRIAMOS.";
+  const text = "Estratégia Audiovisual com Rigor de Engenharia e Visão de Negócios.";
 
   return (
     <section ref={containerRef} className="relative w-full h-[80vh] sm:h-screen flex items-center justify-center overflow-hidden bg-navy z-10">
-      
+
       {/* Parallax Background */}
       <div className="absolute inset-0 w-full h-[130%] -top-[15%]" ref={bgRef}>
         <Image
@@ -59,18 +59,21 @@ export function AboutHero() {
         />
         <div className="absolute inset-0 bg-navy/60 mix-blend-multiply" />
       </div>
-      
+
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full flex flex-col justify-end h-full pt-32 pb-16 sm:pb-24">
-        <h1 className="text-[12vw] font-heading font-black text-cream mix-blend-difference uppercase tracking-tighter leading-[0.85] w-full flex flex-wrap gap-x-3 sm:gap-x-6 gap-y-2 px-6 sm:px-12 lg:px-24">
+      <div className="relative z-10 mx-auto w-full flex flex-col justify-end h-full pt-32 pb-16 sm:pb-24 gap-6">
+        <h1 className="text-[7vw] font-heading font-black text-cream mix-blend-difference uppercase tracking-tighter leading-[0.9] w-full flex flex-wrap gap-x-3 sm:gap-x-5 gap-y-2 px-6 sm:px-12 lg:px-24">
           {text.split(" ").map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden pb-4 sm:-mb-4">
+            <span key={i} className="inline-block overflow-hidden pt-3 -mt-3 pb-4 sm:-mb-4">
               <span className="char-hero-about inline-block origin-bottom-left will-change-transform">
                 {word}
               </span>
             </span>
           ))}
         </h1>
+        <p className="text-cream/70 text-base sm:text-lg lg:text-xl font-body max-w-3xl px-6 sm:px-12 lg:px-24 leading-relaxed">
+          A Belis não nasceu apenas para filmar. Nasceu para transformar inteligência de mercado em ativos de vídeo que sustentam o crescimento de grandes marcas e profissionais de elite.
+        </p>
       </div>
     </section>
   );

@@ -5,22 +5,25 @@
 
 const values = [
   {
-    title: "A Nossa Missão",
-    desc: "Oferecer soluções estratégicas de vídeo que maximizem o impacto de vendas. Combinando excelência criativa e visão de negócios, tornamo-nos parceiros de grandes empresas para gerar resultados mensuráveis.",
+    title: "Nossa Missão",
+    desc: "Desenvolver soluções audiovisuais que reduzam o ciclo de vendas e maximizem a autoridade dos nossos clientes através de um rigor técnico absoluto.",
     bgcolor: "bg-navy",
     textColor: "text-cream",
+    style: {},
   },
   {
-    title: "A Nossa Visão",
-    desc: "Inovar na produção de conteúdos que não apenas convertem, mas constroem conexões duradouras. Elevamos a comunicação digital audiovisual, operando sempre como parceiros absolutos de negócios.",
-    bgcolor: "bg-coral",
-    textColor: "text-navy",
+    title: "Nossa Visão",
+    desc: "Ser a referência em produção estratégica para o mercado premium, onde a estética cinematográfica serve sempre ao objetivo de negócio.",
+    bgcolor: "",
+    textColor: "text-cream",
+    style: { backgroundColor: "#001f3f" },
   },
   {
-    title: "Posicionamento",
-    desc: "Somos mais que uma produtora: somos contadores de histórias que traduzem a essência de marcas milionárias. Não apenas executamos projetos, orquestramos o marketing tático e as conversões por trás de cada frame.",
-    bgcolor: "bg-cream",
-    textColor: "text-navy",
+    title: "Diferencial Estratégico",
+    desc: "Nossa liderança combina formação em Administração (Mackenzie) e Gestão de Engenharia da Qualidade (USP). Isso garante que cada frame entregue pela Belis passe por um controle de qualidade focado em resultados reais, não apenas em visualizações.",
+    bgcolor: "",
+    textColor: "text-cream",
+    style: { backgroundColor: "#44403C" },
   }
 ];
 
@@ -33,6 +36,7 @@ export function ValuesSection() {
           <div
             key={i}
             className={`flex flex-col justify-between p-12 sm:p-16 lg:p-20 border-b lg:border-b-0 lg:border-r border-cream/10 last:border-r-0 ${v.bgcolor} ${v.textColor} group cursor-crosshair h-full`}
+            style={v.style}
           >
             <div className="mb-24 lg:mb-48">
               <span className="text-sm font-sans font-bold tracking-[0.3em] uppercase opacity-50 block mb-6 transition-opacity duration-300 group-hover:opacity-100">
@@ -48,12 +52,7 @@ export function ValuesSection() {
               CSS transition nativo é mais performático — roda na GPU sem overhead JS.
               Efeito final idêntico ao Framer Motion original.
             */}
-            <p
-              className="text-lg font-sans font-medium leading-relaxed max-w-sm
-                         opacity-70 translate-y-5
-                         transition-[opacity,transform] duration-[400ms] ease-out
-                         group-hover:opacity-100 group-hover:translate-y-0"
-            >
+            <p className="text-lg font-sans font-medium leading-relaxed max-w-sm opacity-70 translate-y-5 transition-[opacity,transform] duration-[400ms] ease-out group-hover:opacity-100 group-hover:translate-y-0">
               {v.desc}
             </p>
           </div>
