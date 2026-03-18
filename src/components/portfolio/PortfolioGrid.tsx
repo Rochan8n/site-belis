@@ -299,8 +299,42 @@ function CinematicCarousel({
       onDragStart={(e) => e.preventDefault()}
     >
       {/* ── Giant background text ── */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden" aria-hidden="true">
-        <span className="font-heading font-black text-cream leading-none" style={{ fontSize: "30vw" }}>{bgLabel}</span>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden" style={{ zIndex: 1 }} aria-hidden="true">
+        <span className="font-heading font-black text-cream leading-none opacity-[0.07]" style={{ fontSize: "30vw" }}>{bgLabel}</span>
+      </div>
+
+      {/* ── Green gradient blob — illuminates background text ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} aria-hidden="true">
+        {/* Central radial glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            width: "70%",
+            height: "80%",
+            background: "radial-gradient(ellipse at center, rgba(116,195,101,0.14) 0%, rgba(116,195,101,0.07) 30%, rgba(116,195,101,0.02) 55%, transparent 75%)",
+            filter: "blur(40px)",
+          }}
+        />
+        {/* Secondary upper glow for depth */}
+        <div
+          className="absolute top-[20%] left-1/2 -translate-x-1/2"
+          style={{
+            width: "50%",
+            height: "40%",
+            background: "radial-gradient(ellipse at center, rgba(116,195,101,0.10) 0%, rgba(116,195,101,0.03) 50%, transparent 75%)",
+            filter: "blur(60px)",
+          }}
+        />
+        {/* Bottom subtle glow */}
+        <div
+          className="absolute bottom-[10%] left-1/2 -translate-x-1/2"
+          style={{
+            width: "60%",
+            height: "30%",
+            background: "radial-gradient(ellipse at center, rgba(116,195,101,0.06) 0%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+        />
       </div>
 
       {/* ── Stats — Left ── */}
@@ -335,7 +369,7 @@ function CinematicCarousel({
       </div>
 
       {/* ── Carousel ── */}
-      <div className="relative w-full flex items-center justify-center px-4">
+      <div className="relative w-full flex items-center justify-center px-4" style={{ zIndex: 10 }}>
         <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
           {/* Always render exactly 5 slots (-2..+2) so center card stays centered at edges */}
           {[-2, -1, 0, 1, 2].map((offset) => {
