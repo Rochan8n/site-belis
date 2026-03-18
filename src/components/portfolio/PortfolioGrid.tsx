@@ -625,7 +625,7 @@ const anuncios: VideoItem[] = [
   { id: 40, title: "Anúncio Tráfego Pago 01", category: "Anúncio", thumb: "https://img.youtube.com/vi/7aO6jWnDL-k/maxresdefault.jpg",  youtubeId: "7aO6jWnDL-k",  aspect: "16/9" },
   { id: 41, title: "Anúncio Tráfego Pago 02", category: "Anúncio", thumb: "https://img.youtube.com/vi/lUJQDiXKnRk/maxresdefault.jpg",  youtubeId: "lUJQDiXKnRk",  aspect: "16/9" },
   { id: 42, title: "Anúncio Tráfego Pago 03", category: "Anúncio", thumb: "https://img.youtube.com/vi/4JM-osmNvl0/maxresdefault.jpg",  youtubeId: "4JM-osmNvl0",  aspect: "16/9" },
-  { id: 43, title: "Anúncio Tráfego Pago 04", category: "Anúncio", thumb: "https://img.youtube.com/vi/J0sKdzCiMcU/maxresdefault.jpg",  youtubeId: "J0sKdzCiMcU",  aspect: "16/9" },
+  { id: 43, title: "Anúncio Tráfego Pago 04", category: "Anúncio", thumb: "https://img.youtube.com/vi/j4joj9qw4EM/maxresdefault.jpg",  youtubeId: "j4joj9qw4EM",  aspect: "16/9" },
 ];
 
 const horizontais: VideoItem[] = [
