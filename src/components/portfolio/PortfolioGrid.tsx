@@ -520,20 +520,21 @@ function PhotoMasonry({ photos, onOpen }: { photos: PhotoItem[]; onOpen: (i: num
 
   function Col({ items, topOffset }: { items: PhotoItem[]; topOffset: number }) {
     return (
-      <div className="flex flex-col" style={{ marginTop: `${topOffset}px` }}>
+      <div className="flex flex-col gap-2" style={{ marginTop: `${topOffset}px` }}>
         {items.map(photo => {
           const globalIndex = photos.findIndex(p => p.id === photo.id);
           return (
             <div
               key={photo.id}
               onClick={() => onOpen(globalIndex)}
-              className="relative overflow-hidden cursor-pointer group mb-3"
+              className="relative overflow-hidden cursor-pointer group rounded-xl"
               role="button" aria-label={`Ver foto: ${photo.alt}`} tabIndex={0}
+              style={{ boxShadow: "0 0 0 1px #74C36555, 0 0 10px #74C36530" }}
             >
               <Image
                 src={photo.src} alt={photo.alt} width={800} height={600}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
+                sizes="33vw"
               />
               <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-all duration-500 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -550,10 +551,10 @@ function PhotoMasonry({ photos, onOpen }: { photos: PhotoItem[]; onOpen: (i: num
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+    <div className="grid grid-cols-3 gap-2">
       <Col items={col1} topOffset={0} />
-      <Col items={col2} topOffset={32} />
-      <Col items={col3} topOffset={64} />
+      <Col items={col2} topOffset={24} />
+      <Col items={col3} topOffset={48} />
     </div>
   );
 }
