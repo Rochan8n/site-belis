@@ -27,7 +27,7 @@ export default function ContatoPage() {
     return () => ctx.revert();
   }, []);
 
-  const text = "VAMOS CONSTRUIR O SEU IMPÉRIO DIGITAL.";
+  const text = "VIABILIZE SUA ESTRATÉGIA AUDIOVISUAL.";
 
   return (
     <main className="w-full min-h-screen bg-navy overflow-hidden pt-36 pb-24 sm:pt-48 sm:pb-32 relative z-20">
