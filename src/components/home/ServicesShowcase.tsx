@@ -88,6 +88,21 @@ const services = [
     accentColor: "#74C365",
     textColor: "#F6F7ED",
   },
+  {
+    id: "06",
+    title: "Web\nDesign",
+    bgTitle: "LANDING PAGES",
+    description:
+      "Um vídeo de alto nível precisa de um destino à altura. Desenvolvemos ecossistemas digitais e páginas de conversão focadas em performance, velocidade e experiência do usuário (UX). Construímos a estrutura técnica necessária para que sua autoridade se transforme em leads qualificados e faturamento real.",
+    callouts: ["Alta conversão", "Performance & UX"],
+    glow1Color: "#1E488F",
+    glow2Color: "#00804C",
+    glow3Color: "#74C365",
+    cardBorder: "rgba(30, 72, 143, 0.45)",
+    cardGlow: "rgba(30, 72, 143, 0.12)",
+    accentColor: "#74C365",
+    textColor: "#F6F7ED",
+  },
 ];
 
 export function ServicesShowcase() {
