@@ -81,14 +81,14 @@ const CARD_POSITIONS_DESKTOP = [
   { x: "58%", y: "72%", rotX: -16, rotY: 20,  rotZ: 7   },
 ];
 
-/* Mobile: alternating left/right, stacked vertically */
+/* Mobile: alternating left/right, bem espaçados verticalmente */
 const CARD_POSITIONS_MOBILE = [
-  { x: "3%",  y: "2%",  rotX: 10, rotY: 12,  rotZ: -2  },
-  { x: "42%", y: "18%", rotX: -8,  rotY: -10, rotZ: 3   },
-  { x: "5%",  y: "34%", rotX: 8,  rotY: 14,  rotZ: -4  },
-  { x: "40%", y: "50%", rotX: -10, rotY: -12, rotZ: 2   },
-  { x: "3%",  y: "66%", rotX: 12, rotY: 10,  rotZ: -3  },
-  { x: "44%", y: "80%", rotX: -8,  rotY: -14, rotZ: 4   },
+  { x: "3%",  y: "5%",  rotX: 10, rotY: 12,  rotZ: -2  },
+  { x: "42%", y: "22%", rotX: -8,  rotY: -10, rotZ: 3   },
+  { x: "5%",  y: "39%", rotX: 8,  rotY: 14,  rotZ: -4  },
+  { x: "40%", y: "53%", rotX: -10, rotY: -12, rotZ: 2   },
+  { x: "3%",  y: "67%", rotX: 12, rotY: 10,  rotZ: -3  },
+  { x: "42%", y: "78%", rotX: -8,  rotY: -14, rotZ: 4   },
 ];
 
 export function VideoScrubHero() {
@@ -197,7 +197,7 @@ export function VideoScrubHero() {
       }
     );
 
-    // Cards container fade-in — starts right after CTA fades
+    // Cards container fade-in — aparece logo que os textos começam a sumir
     gsap.fromTo(cardsContainerRef.current,
       { opacity: 0 },
       {
@@ -205,40 +205,35 @@ export function VideoScrubHero() {
         ease: "none",
         scrollTrigger: {
           trigger: outer,
-          start: "18% top",
-          end: "28% top",
+          start: "5% top",
+          end: "12% top",
           scrub: true,
         },
       }
     );
 
-    // Each card: single continuous timeline (entrance → drift) to avoid overlap stutter
+    // Cada card entra 1 por vez: janela própria de scroll, depois fica fixo na tela
     const mobile = window.innerWidth < 768;
     const positions = mobile ? CARD_POSITIONS_MOBILE : CARD_POSITIONS_DESKTOP;
+    // Espaçamento entre cards: 12% do scroll no mobile, 11% no desktop
+    // Janela de entrada de cada card: 9% do scroll
+    const spacing = mobile ? 12 : 11;
+    const entranceWindow = 9;
 
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
       const pos = positions[i];
-      const stagger = i * (mobile ? 0.02 : 0.03);
+      const startPct = 10 + i * spacing;
+      const endPct   = startPct + entranceWindow;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: outer,
-          start: `${20 + stagger * 100}% top`,
-          end: "92% top",
-          scrub: 1,
-        },
-      });
-
-      // Phase 1: entrance (0 → 0.5 of timeline)
-      tl.fromTo(card,
+      gsap.fromTo(card,
         {
-          y: mobile ? 60 : 120,
+          y: mobile ? 90 : 120,
           rotateX: pos.rotX * 2,
           rotateY: pos.rotY * 2,
           rotateZ: pos.rotZ * 1.5,
-          scale: 0.7,
-          filter: "blur(8px)",
+          scale: 0.82,
+          filter: "blur(10px)",
           opacity: 0,
         },
         {
@@ -247,22 +242,17 @@ export function VideoScrubHero() {
           rotateY: pos.rotY,
           rotateZ: pos.rotZ,
           scale: 1,
-          filter: "blur(0.3px)",
+          filter: "blur(0px)",
           opacity: 1,
-          duration: 0.5,
           ease: "power2.out",
+          scrollTrigger: {
+            trigger: outer,
+            start: `${startPct}% top`,
+            end:   `${endPct}% top`,
+            scrub: 1,
+          },
         }
       );
-
-      // Phase 2: gentle drift (0.5 → 1.0 of timeline, no overlap)
-      tl.to(card, {
-        rotateX: pos.rotX + (mobile ? 4 : 8),
-        rotateY: pos.rotY - (mobile ? 3 : 6),
-        rotateZ: pos.rotZ + 2,
-        y: mobile ? -15 : -30,
-        duration: 0.5,
-        ease: "none",
-      });
     });
 
     return () => {
