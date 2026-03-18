@@ -100,6 +100,9 @@ function VideoLightbox({ youtubeId, aspect = "16/9", onClose }: {
 function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
   photo: PhotoItem; onClose: () => void; onPrev: () => void; onNext: () => void;
 }) {
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -111,10 +114,33 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
     return () => { document.removeEventListener("keydown", fn); document.body.style.overflow = ""; };
   }, [onClose, onPrev, onNext]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      dx < 0 ? onNext() : onPrev();
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   return (
-    <div className="fixed inset-0 z-[200] bg-navy/97 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8" onClick={onClose} role="dialog" aria-modal="true">
-      <button onClick={onClose} className="absolute top-6 right-6 text-cream/50 hover:text-cream transition-colors z-10" aria-label="Fechar">
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    <div
+      className="fixed inset-0 z-[200] bg-navy/97 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+      onClick={onClose}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      role="dialog"
+      aria-modal="true"
+    >
+      <button onClick={onClose} className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-navy/60 hover:bg-navy/90 text-cream/80 hover:text-cream rounded-full w-10 h-10 flex items-center justify-center transition-all z-10" aria-label="Fechar">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
       <button onClick={e => { e.stopPropagation(); onPrev(); }} className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-cream/40 hover:text-cream transition-colors z-10" aria-label="Anterior">
         <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
