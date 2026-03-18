@@ -303,35 +303,16 @@ function CinematicCarousel({
         <span className="font-heading font-black text-cream leading-none opacity-[0.07]" style={{ fontSize: "30vw" }}>{bgLabel}</span>
       </div>
 
-      {/* ── Green gradient blob — illuminates background text ── */}
+      {/* ── Green gradient blob — bottom-right of background text ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 2 }} aria-hidden="true">
-        {/* Central radial glow */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="absolute"
           style={{
-            width: "70%",
-            height: "80%",
-            background: "radial-gradient(ellipse at center, rgba(116,195,101,0.14) 0%, rgba(116,195,101,0.07) 30%, rgba(116,195,101,0.02) 55%, transparent 75%)",
-            filter: "blur(40px)",
-          }}
-        />
-        {/* Secondary upper glow for depth */}
-        <div
-          className="absolute top-[20%] left-1/2 -translate-x-1/2"
-          style={{
+            bottom: "5%",
+            right: "10%",
             width: "50%",
-            height: "40%",
-            background: "radial-gradient(ellipse at center, rgba(116,195,101,0.10) 0%, rgba(116,195,101,0.03) 50%, transparent 75%)",
-            filter: "blur(60px)",
-          }}
-        />
-        {/* Bottom subtle glow */}
-        <div
-          className="absolute bottom-[10%] left-1/2 -translate-x-1/2"
-          style={{
-            width: "60%",
-            height: "30%",
-            background: "radial-gradient(ellipse at center, rgba(116,195,101,0.06) 0%, transparent 70%)",
+            height: "60%",
+            background: "radial-gradient(ellipse at 70% 70%, rgba(116,195,101,0.18) 0%, rgba(116,195,101,0.08) 35%, rgba(116,195,101,0.02) 60%, transparent 80%)",
             filter: "blur(50px)",
           }}
         />
