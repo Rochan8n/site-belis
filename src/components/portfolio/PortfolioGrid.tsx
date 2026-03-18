@@ -146,24 +146,32 @@ function CinematicCarousel({
   const prev = () => setActive(i => Math.max(0, i - 1));
   const next = () => setActive(i => Math.min(items.length - 1, i + 1));
 
-  // Wheel scroll suave na horizontal
+  // Wheel scroll suave na horizontal (desktop)
+  // Referência estável para active dentro do handler sem re-registrar o listener
+  const activeRef = useRef(active);
+  useEffect(() => { activeRef.current = active; }, [active]);
+
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (!containerRef.current?.contains(e.target as Node)) return;
-      e.preventDefault();
+      // Só intercepta scroll vertical; scroll horizontal do trackpad passa livre
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      // Se já há debounce ativo, ignora sem bloquear a página
+      if (wheelTimeoutRef.current) return;
 
-      // Debounce wheel events para evitar múltiplos acionamentos
-      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
+      const cur = activeRef.current;
+      const goingDown = e.deltaY > 0;
+      const canNav = goingDown ? cur < items.length - 1 : cur > 0;
 
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        // Scroll vertical → horizontal no carousel
-        if (e.deltaY > 0) next();
-        else prev();
+      // Só bloqueia o scroll da página se ainda houver item para ir
+      if (canNav) {
+        e.preventDefault();
+        goingDown ? next() : prev();
+        wheelTimeoutRef.current = setTimeout(() => {
+          wheelTimeoutRef.current = null;
+        }, 500);
       }
-
-      wheelTimeoutRef.current = setTimeout(() => {
-        wheelTimeoutRef.current = null;
-      }, 300);
+      // Se estiver na borda, não chama preventDefault → página scrolla normalmente
     };
 
     const container = containerRef.current;
@@ -172,7 +180,8 @@ function CinematicCarousel({
       container?.removeEventListener("wheel", handleWheel);
       if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
     };
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items.length]);
 
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
@@ -245,7 +254,7 @@ function CinematicCarousel({
     <div
       ref={containerRef}
       className="relative w-full flex flex-col items-center justify-center select-none"
-      style={{ minHeight: is916 ? "680px" : "500px", overflow: "visible", touchAction: "none" }}
+      style={{ minHeight: is916 ? "680px" : "500px", overflow: "visible", touchAction: "pan-y" }}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerCancel}
