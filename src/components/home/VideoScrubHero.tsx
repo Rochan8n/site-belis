@@ -81,14 +81,14 @@ const CARD_POSITIONS_DESKTOP = [
   { x: "58%", y: "72%", rotX: -16, rotY: 20,  rotZ: 7   },
 ];
 
-/* Mobile: alternating left/right, stacked vertically */
+/* Mobile: alternating left/right, bem espaçados verticalmente */
 const CARD_POSITIONS_MOBILE = [
-  { x: "3%",  y: "2%",  rotX: 10, rotY: 12,  rotZ: -2  },
-  { x: "42%", y: "18%", rotX: -8,  rotY: -10, rotZ: 3   },
-  { x: "5%",  y: "34%", rotX: 8,  rotY: 14,  rotZ: -4  },
-  { x: "40%", y: "50%", rotX: -10, rotY: -12, rotZ: 2   },
-  { x: "3%",  y: "66%", rotX: 12, rotY: 10,  rotZ: -3  },
-  { x: "44%", y: "80%", rotX: -8,  rotY: -14, rotZ: 4   },
+  { x: "3%",  y: "5%",  rotX: 10, rotY: 12,  rotZ: -2  },
+  { x: "42%", y: "22%", rotX: -8,  rotY: -10, rotZ: 3   },
+  { x: "5%",  y: "39%", rotX: 8,  rotY: 14,  rotZ: -4  },
+  { x: "40%", y: "53%", rotX: -10, rotY: -12, rotZ: 2   },
+  { x: "3%",  y: "67%", rotX: 12, rotY: 10,  rotZ: -3  },
+  { x: "42%", y: "78%", rotX: -8,  rotY: -14, rotZ: 4   },
 ];
 
 export function VideoScrubHero() {
@@ -197,7 +197,7 @@ export function VideoScrubHero() {
       }
     );
 
-    // Cards container fade-in — starts right after CTA fades
+    // Cards container fade-in — aparece logo que os textos começam a sumir
     gsap.fromTo(cardsContainerRef.current,
       { opacity: 0 },
       {
@@ -205,8 +205,8 @@ export function VideoScrubHero() {
         ease: "none",
         scrollTrigger: {
           trigger: outer,
-          start: "18% top",
-          end: "28% top",
+          start: "4% top",
+          end: "11% top",
           scrub: true,
         },
       }
@@ -219,13 +219,15 @@ export function VideoScrubHero() {
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
       const pos = positions[i];
-      const stagger = i * (mobile ? 0.02 : 0.03);
+      // Mobile: cards começam a aparecer em 6%, 10%, 14%, 18%, 22%, 26%
+      // Desktop: cards começam a aparecer em 6%, 11%, 16%, 21%, 26%, 31%
+      const startPct = mobile ? 6 + i * 4 : 6 + i * 5;
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: outer,
-          start: `${20 + stagger * 100}% top`,
-          end: "92% top",
+          start: `${startPct}% top`,
+          end: mobile ? "78% top" : "82% top",
           scrub: 1,
         },
       });
