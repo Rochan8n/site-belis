@@ -111,7 +111,16 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
     };
     document.addEventListener("keydown", fn);
     document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", fn); document.body.style.overflow = ""; };
+
+    // Esconde o header
+    const navbar = document.querySelector<HTMLElement>("[data-navbar]");
+    if (navbar) navbar.style.transform = "translateY(-100%)";
+
+    return () => {
+      document.removeEventListener("keydown", fn);
+      document.body.style.overflow = "";
+      if (navbar) navbar.style.transform = "";
+    };
   }, [onClose, onPrev, onNext]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -123,7 +132,10 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
     if (touchStartX.current === null || touchStartY.current === null) return;
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     const dy = e.changedTouches[0].clientY - touchStartY.current;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 60) {
+      // Swipe vertical → fecha
+      onClose();
+    } else if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
       dx < 0 ? onNext() : onPrev();
     }
     touchStartX.current = null;
@@ -132,7 +144,7 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
 
   return (
     <div
-      className="fixed inset-0 z-[200] bg-navy/97 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+      className="fixed inset-0 z-[1000] bg-navy/97 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
       onClick={onClose}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
