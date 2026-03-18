@@ -205,42 +205,35 @@ export function VideoScrubHero() {
         ease: "none",
         scrollTrigger: {
           trigger: outer,
-          start: "4% top",
-          end: "11% top",
+          start: "5% top",
+          end: "12% top",
           scrub: true,
         },
       }
     );
 
-    // Each card: single continuous timeline (entrance → drift) to avoid overlap stutter
+    // Cada card entra 1 por vez: janela própria de scroll, depois fica fixo na tela
     const mobile = window.innerWidth < 768;
     const positions = mobile ? CARD_POSITIONS_MOBILE : CARD_POSITIONS_DESKTOP;
+    // Espaçamento entre cards: 12% do scroll no mobile, 11% no desktop
+    // Janela de entrada de cada card: 9% do scroll
+    const spacing = mobile ? 12 : 11;
+    const entranceWindow = 9;
 
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
       const pos = positions[i];
-      // Mobile: cards começam a aparecer em 6%, 10%, 14%, 18%, 22%, 26%
-      // Desktop: cards começam a aparecer em 6%, 11%, 16%, 21%, 26%, 31%
-      const startPct = mobile ? 6 + i * 4 : 6 + i * 5;
+      const startPct = 10 + i * spacing;
+      const endPct   = startPct + entranceWindow;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: outer,
-          start: `${startPct}% top`,
-          end: mobile ? "78% top" : "82% top",
-          scrub: 1,
-        },
-      });
-
-      // Phase 1: entrance (0 → 0.5 of timeline)
-      tl.fromTo(card,
+      gsap.fromTo(card,
         {
-          y: mobile ? 60 : 120,
+          y: mobile ? 90 : 120,
           rotateX: pos.rotX * 2,
           rotateY: pos.rotY * 2,
           rotateZ: pos.rotZ * 1.5,
-          scale: 0.7,
-          filter: "blur(8px)",
+          scale: 0.82,
+          filter: "blur(10px)",
           opacity: 0,
         },
         {
@@ -249,22 +242,17 @@ export function VideoScrubHero() {
           rotateY: pos.rotY,
           rotateZ: pos.rotZ,
           scale: 1,
-          filter: "blur(0.3px)",
+          filter: "blur(0px)",
           opacity: 1,
-          duration: 0.5,
           ease: "power2.out",
+          scrollTrigger: {
+            trigger: outer,
+            start: `${startPct}% top`,
+            end:   `${endPct}% top`,
+            scrub: 1,
+          },
         }
       );
-
-      // Phase 2: gentle drift (0.5 → 1.0 of timeline, no overlap)
-      tl.to(card, {
-        rotateX: pos.rotX + (mobile ? 4 : 8),
-        rotateY: pos.rotY - (mobile ? 3 : 6),
-        rotateZ: pos.rotZ + 2,
-        y: mobile ? -15 : -30,
-        duration: 0.5,
-        ease: "none",
-      });
     });
 
     return () => {
