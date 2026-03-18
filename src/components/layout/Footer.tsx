@@ -31,7 +31,7 @@ function BelisWordmark() {
   );
 }
 
-const CTA_TEXT = "ENQUANTO VOCÊ PENSA SEU CONCORRENTE FECHA";
+const CTA_TEXT = "FALE COM A PRODUTORA QUE REALMENTE ENTENDE DE NEGÓCIOS";
 
 export function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
