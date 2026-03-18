@@ -170,10 +170,10 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
 // ─── Cinematic Carousel — unified 9:16 / 16:9 showcase ───────────────────────
 
 function CinematicCarousel({
-  items, onPlay, bgLabel, aspect = "9/16", initialActive,
+  items, onPlay, bgLabel, aspect = "9/16", initialActive, fixedTitle,
 }: {
   items: VideoItem[]; onPlay: (id: string, aspect: "9/16" | "16/9") => void;
-  bgLabel: string; aspect?: "9/16" | "16/9"; initialActive?: number;
+  bgLabel: string; aspect?: "9/16" | "16/9"; initialActive?: number; fixedTitle?: string;
 }) {
   const [active, setActive] = useState(initialActive ?? Math.floor(items.length / 2));
   const containerRef = useRef<HTMLDivElement>(null);
@@ -446,13 +446,10 @@ function CinematicCarousel({
       </div>
 
       {/* ── Center card info below ── */}
-      {currentItem && (
+      {fixedTitle && (
         <div className="mt-8 text-center z-10">
-          <p className="font-sans text-[10px] font-black tracking-[0.3em] uppercase text-coral mb-1">
-            {currentItem.category}
-          </p>
           <h3 className="font-heading font-black text-2xl sm:text-3xl text-cream uppercase tracking-tight">
-            {currentItem.title}
+            {fixedTitle}
           </h3>
         </div>
       )}
@@ -694,7 +691,7 @@ export function PortfolioGrid() {
         </div>
         {/* 3D Reels carousel — matches code.html design */}
         <div className="theater-reveal py-6">
-          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={3} />
+          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={3} fixedTitle="REELS" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-6 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Reels no portfólio da Belis e quero saber mais sobre esse serviço." />
@@ -718,7 +715,7 @@ export function PortfolioGrid() {
           />
         </div>
         <div className="theater-reveal">
-          <CinematicCarousel items={institucionais} onPlay={openVideo} bgLabel="INST." aspect="16/9" />
+          <CinematicCarousel items={institucionais} onPlay={openVideo} bgLabel="INST." aspect="16/9" fixedTitle="VÍDEOS INSTITUCIONAIS" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Vídeos Institucionais no portfólio da Belis e quero saber mais sobre esse serviço." />
@@ -742,7 +739,7 @@ export function PortfolioGrid() {
           />
         </div>
         <div className="theater-reveal">
-          <CinematicCarousel items={anuncios} onPlay={openVideo} bgLabel="ADS" aspect="16/9" />
+          <CinematicCarousel items={anuncios} onPlay={openVideo} bgLabel="ADS" aspect="16/9" fixedTitle="ANÚNCIOS PARA TRÁFEGO PAGO" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Anúncios para Tráfego Pago no portfólio da Belis e quero saber mais sobre esse serviço." />
@@ -766,7 +763,7 @@ export function PortfolioGrid() {
           />
         </div>
         <div className="theater-reveal">
-          <CinematicCarousel items={horizontais} onPlay={openVideo} bgLabel="WIDE" aspect="16/9" />
+          <CinematicCarousel items={horizontais} onPlay={openVideo} bgLabel="WIDE" aspect="16/9" fixedTitle="VÍDEOS YOUTUBE" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Vídeos Horizontais no portfólio da Belis e quero saber mais sobre esse serviço." />
