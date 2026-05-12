@@ -8,6 +8,7 @@ import { GradientBackground } from "@/components/ui/GradientBackground";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -20,6 +21,7 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://belisagency.com"),
   title: {
     template: "%s | Belis Agency",
     default: "Belis Agency | Impacto Digital",
@@ -27,6 +29,43 @@ export const metadata: Metadata = {
   description: "Agressivo, Premium e Inesquecível. Produção audiovisual e experiências digitais high-ticket para marcas que não seguem tendências, mas as criam.",
   keywords: ["Audiovisual", "Web Design Premium", "Tráfego Pago", "Agência Digital", "Belis Agency"],
   robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Belis Agency",
+    title: "Belis Agency | Impacto Digital",
+    description: "Agressivo, Premium e Inesquecível. Produção audiovisual e experiências digitais high-ticket para marcas que não seguem tendências, mas as criam.",
+    url: "https://belisagency.com",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Belis Agency — Produtora Audiovisual e Agência Digital",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Belis Agency | Impacto Digital",
+    description: "Agressivo, Premium e Inesquecível. Produção audiovisual e experiências digitais high-ticket para marcas que não seguem tendências, mas as criam.",
+    images: ["/images/og-image.jpg"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  verification: {
+    google: "COLE_SEU_CODIGO_AQUI",
+  },
+  alternates: {
+    canonical: "https://belisagency.com",
+  },
 };
 
 export default function RootLayout({
@@ -72,6 +111,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-navy text-cream selection:bg-coral selection:text-white antialiased cursor-auto md:cursor-none overflow-x-hidden">
+        <GoogleAnalytics />
         <SmoothScroll>
           <PageTransition>
             {/* Gradient spheres fixas — se movem no scroll via GSAP */}

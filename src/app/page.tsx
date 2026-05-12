@@ -12,6 +12,16 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Belis Agency | Produtora Audiovisual que Vende",
   description: "Produtora audiovisual especializada em vídeos que vendem. Institucional, reels, campanhas e cobertura de eventos para empresas que querem resultado.",
+  openGraph: {
+    title: "Belis Agency | Produtora Audiovisual que Vende",
+    description: "Produtora audiovisual especializada em vídeos que vendem. Institucional, reels, campanhas e cobertura de eventos para empresas que querem resultado.",
+    url: "https://belisagency.com",
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Belis Agency",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Belis Agency — Produtora Audiovisual e Agência Digital" }],
+  },
+  alternates: { canonical: "https://belisagency.com" },
 };
 
 export default function Home() {
