@@ -1,32 +1,36 @@
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://belisagency.com";
+const BASE_URL = "https://belis.agency";
 
+// Data estática de build evita "lastModified = agora" toda request, que dilui o sinal de
+// frescor para o Google. Atualize manualmente quando publicar mudanças relevantes.
+const LAST_UPDATED = new Date("2026-05-11");
+
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: `${BASE_URL}/`,
+      lastModified: LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/portfolio`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/portfolio`,
+      lastModified: LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/sobre`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contato`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/contato`,
+      lastModified: LAST_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/sobre`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
   ];
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Red_Hat_Display, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
@@ -20,35 +20,69 @@ const interTight = Inter_Tight({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://belis.agency";
+const SITE_NAME = "Belis Agency";
+const DEFAULT_TITLE = "Belis Agency — Produtora Audiovisual e Agência Digital em São Paulo";
+const DEFAULT_DESCRIPTION =
+  "Produtora audiovisual e agência digital em São Paulo. +150 projetos entregues, primeira versão em até 7 dias e direção criativa dedicada do briefing à entrega final.";
+
+export const viewport: Viewport = {
+  themeColor: "#0a0f1c",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://belisagency.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Belis Agency",
-    default: "Belis Agency | Impacto Digital",
+    default: DEFAULT_TITLE,
   },
-  description: "Agressivo, Premium e Inesquecível. Produção audiovisual e experiências digitais high-ticket para marcas que não seguem tendências, mas as criam.",
-  keywords: ["Audiovisual", "Web Design Premium", "Tráfego Pago", "Agência Digital", "Belis Agency"],
-  robots: "index, follow",
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "Marketing & Advertising",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: true,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    siteName: "Belis Agency",
-    title: "Belis Agency | Impacto Digital",
-    description: "Agressivo, Premium e Inesquecível. Produção audiovisual e experiências digitais high-ticket para marcas que não seguem tendências, mas as criam.",
-    url: "https://belisagency.com",
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: SITE_URL,
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Belis Agency — Produtora Audiovisual e Agência Digital",
+        type: "image/jpeg",
+        alt: "Belis Agency — Produtora Audiovisual e Agência Digital em São Paulo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Belis Agency | Impacto Digital",
-    description: "Agressivo, Premium e Inesquecível. Produção audiovisual e experiências digitais high-ticket para marcas que não seguem tendências, mas as criam.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     images: ["/images/og-image.jpg"],
   },
   icons: {
@@ -56,15 +90,18 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
   },
   manifest: "/site.webmanifest",
-  verification: {
-    google: "COLE_SEU_CODIGO_AQUI",
-  },
   alternates: {
-    canonical: "https://belisagency.com",
+    canonical: SITE_URL,
+  },
+  other: {
+    "msapplication-TileColor": "#0a0f1c",
   },
 };
 
@@ -75,15 +112,92 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Belis Agency",
-    url: "https://belisagency.com",
-    logo: "https://belisagency.com/logo.png",
-    description: "Produtora Audiovisual e Agência Digital High-Ticket.",
-    sameAs: [
-      "https://instagram.com/belisagency",
-      "https://linkedin.com/company/belisagency"
-    ]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        legalName: "Belis Agency",
+        url: SITE_URL,
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}/logo.png`,
+          width: 512,
+          height: 512,
+        },
+        image: `${SITE_URL}/images/og-image.jpg`,
+        description:
+          "Produtora audiovisual e agência digital em São Paulo, especializada em vídeos institucionais, reels, campanhas, cobertura de eventos, web design e tráfego pago para marcas high-ticket.",
+        foundingDate: "2021",
+        slogan: "Feito pra quem recusa o medíocre.",
+        knowsAbout: [
+          "Produção Audiovisual",
+          "Vídeo Institucional",
+          "Reels para Instagram",
+          "Campanhas Publicitárias",
+          "Cobertura de Eventos",
+          "Web Design",
+          "Landing Pages",
+          "Tráfego Pago",
+          "Branding",
+        ],
+        areaServed: [
+          { "@type": "Country", name: "Brasil" },
+          { "@type": "City", name: "São Paulo" },
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "São Paulo",
+          addressRegion: "SP",
+          addressCountry: "BR",
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            telephone: "+55-11-97313-8895",
+            email: "Lucas@belis.agency",
+            areaServed: "BR",
+            availableLanguage: ["Portuguese", "English"],
+          },
+        ],
+        sameAs: ["https://www.instagram.com/belisvideo/"],
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${SITE_URL}/#service`,
+        name: SITE_NAME,
+        url: SITE_URL,
+        image: `${SITE_URL}/images/og-image.jpg`,
+        priceRange: "$$$",
+        telephone: "+55-11-97313-8895",
+        email: "Lucas@belis.agency",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "São Paulo",
+          addressRegion: "SP",
+          addressCountry: "BR",
+        },
+        areaServed: { "@type": "Country", name: "Brasil" },
+        serviceType: [
+          "Produção Audiovisual",
+          "Vídeo Institucional",
+          "Web Design",
+          "Landing Pages",
+          "Tráfego Pago",
+        ],
+        parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        description: DEFAULT_DESCRIPTION,
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        inLanguage: "pt-BR",
+      },
+    ],
   };
 
   return (

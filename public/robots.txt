@@ -1,6 +1,49 @@
 # https://www.robotstxt.org/robotstxt.html
+
+# Bots tradicionais
 User-agent: *
 Allow: /
 
+# Bots de IA — liberados explicitamente para citações em AI Search
+# (Google AI Overviews, ChatGPT, Perplexity, Claude, Copilot)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 # Sitemap
-Sitemap: https://belisagency.com/sitemap.xml
+Sitemap: https://belis.agency/sitemap.xml

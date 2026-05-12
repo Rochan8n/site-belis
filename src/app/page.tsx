@@ -9,19 +9,37 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import Link from "next/link";
 
+const HOME_TITLE = "Produtora Audiovisual em São Paulo — Vídeos que Vendem";
+const HOME_DESCRIPTION =
+  "+150 projetos entregues e primeira versão em até 7 dias. Vídeo institucional, reels, campanhas, cobertura de eventos, web design e tráfego pago para empresas que querem resultado.";
+
 export const metadata: Metadata = {
-  title: "Belis Agency | Produtora Audiovisual que Vende",
-  description: "Produtora audiovisual especializada em vídeos que vendem. Institucional, reels, campanhas e cobertura de eventos para empresas que querem resultado.",
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
   openGraph: {
-    title: "Belis Agency | Produtora Audiovisual que Vende",
-    description: "Produtora audiovisual especializada em vídeos que vendem. Institucional, reels, campanhas e cobertura de eventos para empresas que querem resultado.",
-    url: "https://belisagency.com",
+    title: `${HOME_TITLE} | Belis Agency`,
+    description: HOME_DESCRIPTION,
+    url: "https://belis.agency",
     type: "website",
     locale: "pt_BR",
     siteName: "Belis Agency",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Belis Agency — Produtora Audiovisual e Agência Digital" }],
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+        alt: "Belis Agency — Produtora Audiovisual em São Paulo",
+      },
+    ],
   },
-  alternates: { canonical: "https://belisagency.com" },
+  twitter: {
+    card: "summary_large_image",
+    title: `${HOME_TITLE} | Belis Agency`,
+    description: HOME_DESCRIPTION,
+    images: ["/images/og-image.jpg"],
+  },
+  alternates: { canonical: "https://belis.agency" },
 };
 
 export default function Home() {
