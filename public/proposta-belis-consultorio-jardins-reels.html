@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta BELIS — Captação consultório Jardins (Reels)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: "#050508",
+                        blue: "#1E488F",
+                        mantis: "#74C365",
+                        cream: "#F6F7ED",
+                        paper: "#FAFAF8",
+                        muted: "#8A8F85",
+                    },
+                    fontFamily: {
+                        sans: ["Inter Tight", "system-ui", "sans-serif"],
+                        display: ["Red Hat Display", "Georgia", "serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        :root {
+            --belis-navy: #050508;
+            --belis-mantis: #74c365;
+            --belis-blue: #1e488f;
+            --belis-cream: #f6f7ed;
+        }
+
+        body {
+            background: linear-gradient(160deg, #0a0f14 0%, #050508 40%, #0d1520 100%);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .a4-canvas {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            background: var(--belis-cream);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .content-padding {
+            padding: 18px 26px;
+        }
+
+        .top-accent {
+            height: 5px;
+            background: linear-gradient(90deg, var(--belis-navy) 0%, var(--belis-blue) 45%, var(--belis-mantis) 100%);
+        }
+
+        .logo-img {
+            height: 3.5rem;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            html,
+            body {
+                background: #fff !important;
+                height: auto;
+            }
+
+            .a4-canvas {
+                margin: 0 auto;
+                box-shadow: none;
+                width: 210mm;
+                min-height: 297mm;
+                max-width: 210mm;
+            }
+
+            .content-padding {
+                padding: 14px 22px !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .card-pdf {
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-navy antialiased">
+
+    <div class="fixed top-5 right-5 no-print z-50 flex flex-col items-end gap-2">
+        <button
+            type="button"
+            onclick="window.print()"
+            class="inline-flex items-center gap-2 rounded-lg bg-mantis px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-navy shadow-lg shadow-mantis/25 transition hover:brightness-110"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Salvar PDF
+        </button>
+        <p class="max-w-[220px] text-right text-[10px] text-cream/70">No diálogo de impressão, escolha <strong class="text-cream">“Salvar como PDF”</strong> (Chrome/Edge).</p>
+    </div>
+
+    <div class="a4-canvas text-[12px] leading-snug">
+        <div class="top-accent"></div>
+
+        <header class="content-padding flex flex-wrap items-start justify-between gap-4 bg-navy text-cream">
+            <div class="min-w-0 flex-1">
+                <img
+                    src="https://belis.agency/logo.png"
+                    alt="Belis Agency"
+                    class="logo-img mb-1 block"
+                    onerror="this.onerror=null;this.src='/logo.png';this.onerror=function(){this.outerHTML='<span class=\'font-display text-4xl font-extrabold tracking-tight text-cream\'>BELIS</span>';};"
+                />
+                <p class="text-[10px] font-semibold uppercase tracking-[0.35em] text-mantis/90">Produtora audiovisual</p>
+            </div>
+            <div class="text-right">
+                <p class="font-display text-sm font-bold uppercase tracking-[0.2em] text-cream">Proposta comercial</p>
+                <p class="mt-1 text-[11px] text-cream/65">Nº 243 · São Paulo, 13 de maio de 2026</p>
+            </div>
+        </header>
+
+        <main class="content-padding bg-paper pb-3 pt-4">
+            <div class="mb-3">
+                <h1 class="font-display text-[1.35rem] font-bold leading-tight text-navy">Captação em consultório — Jardins (SP)</h1>
+                <div class="mt-2 h-0.5 w-16 rounded-full bg-gradient-to-r from-mantis to-blue"></div>
+                <p class="mt-2 text-[11px] leading-snug text-navy/75">
+                    Captação de <strong class="text-navy">18 Reels</strong> em arquivo bruto <strong class="text-navy">sem edição de corte</strong>, no <strong class="text-navy">domingo, 17/05</strong>, em consultório na região dos Jardins. Entrega dos vídeos <strong class="text-navy">no mesmo dia</strong> da gravação.
+                </p>
+            </div>
+
+            <div class="mb-3 rounded-md border border-mantis/30 bg-mantis/[0.12] px-3 py-2">
+                <p class="text-[10px] leading-snug text-navy/90">
+                    <strong class="text-navy">Mais de 150 projetos</strong> entregues — conteúdo pensado para <strong class="text-navy">autoridade e presença digital</strong> do consultório, com captação enxuta e agenda resolvida em um único domingo.
+                </p>
+            </div>
+
+            <div class="card-pdf mb-3 rounded-md border border-navy/12 bg-white px-3 py-2.5 shadow-sm">
+                <h2 class="mb-1.5 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">Equipe e equipamentos</h2>
+                <p class="text-[10.5px] leading-snug text-navy/85">
+                    <strong class="text-navy">1 profissional</strong> em campo com <strong class="text-navy">Sony A7 IV</strong>, lentes <strong class="text-navy">Sigma 24-70mm</strong> e <strong class="text-navy">Tamron 70-300mm</strong>, <strong class="text-navy">microfone profissional Hollyland</strong> para captação de áudio, <strong class="text-navy">teleprompter</strong> para roteiro confortável à câmera e <strong class="text-navy">3 pontos de iluminação LED</strong> para pele e ambiente equilibrados em consultório.
+                </p>
+                <ul class="mt-2 grid gap-1.5 border-t border-navy/10 pt-2 text-[9px] text-navy/75 sm:grid-cols-2">
+                    <li class="flex gap-1.5"><span class="text-mantis">✓</span> Briefing prévio incluso (pauta, mensagens e tom de fala)</li>
+                    <li class="flex gap-1.5"><span class="text-mantis">✓</span> Arquivos prontos para <strong class="text-navy/90">corte e publicação</strong> na sua equipe ou conosco</li>
+                </ul>
+            </div>
+
+            <div class="mb-3 grid grid-cols-1 gap-3 md:grid-cols-12">
+                <div class="card-pdf rounded-md border border-navy/10 bg-cream/60 p-3 md:col-span-5 md:border-l-4 md:border-l-mantis">
+                    <h2 class="mb-1 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">O escopo</h2>
+                    <p class="text-[10.5px] leading-snug text-navy/80">
+                        Sessão de captação no consultório (Jardins) com suporte de luz, áudio e teleprompter para gravação orientada de até <strong class="text-navy">18 takes</strong> no formato de Reel (material bruto).
+                    </p>
+                </div>
+                <div class="md:col-span-7">
+                    <h2 class="mb-1.5 border-b border-navy/10 pb-1 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">Entregáveis</h2>
+                    <ul class="space-y-1">
+                        <li class="flex gap-2">
+                            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis ring-1 ring-mantis/30"></span>
+                            <p class="text-[10.5px] leading-snug text-navy/85"><strong class="text-navy">18 arquivos de vídeo</strong> (Reels) em captação bruta, <strong class="text-navy">sem edição</strong> incluída neste valor.</p>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis ring-1 ring-mantis/30"></span>
+                            <p class="text-[10.5px] leading-snug text-navy/85"><strong class="text-navy">Entrega no mesmo dia (17/05)</strong> dos vídeos em mídia combinada.</p>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis ring-1 ring-mantis/30"></span>
+                            <p class="text-[10.5px] leading-snug text-navy/85"><strong class="text-navy">Fotos para capa de Reels</strong> (pacote opcional listado abaixo).</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 class="mb-2 border-b border-navy/10 pb-1 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">Investimento</h2>
+
+            <div class="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div class="card-pdf relative rounded-md border-2 border-navy bg-white px-3 pb-2.5 pt-3 shadow-sm">
+                    <div class="absolute -top-2 right-2 rounded bg-mantis px-2 py-0.5 text-[8px] font-bold uppercase tracking-wide text-navy">Mesmo dia</div>
+                    <h3 class="font-display text-base font-bold text-navy">Captação — 18 Reels</h3>
+                    <p class="mt-1 text-[10px] leading-snug text-navy/70">Gravação em consultório, 17/05 · arquivo bruto, sem edição de corte.</p>
+                    <p class="mt-1.5 font-display text-2xl font-extrabold leading-none text-navy">R$ 1.800</p>
+                </div>
+                <div class="card-pdf relative rounded-md border border-navy/15 bg-cream/40 px-3 pb-2.5 pt-3">
+                    <div class="absolute -top-2 right-2 rounded bg-navy/10 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wide text-navy/70">Add-on</div>
+                    <h3 class="font-display text-base font-bold text-navy">Fotos para capa</h3>
+                    <p class="mt-1 text-[10px] leading-snug text-navy/70">Imagens estáticas para capa/thumb dos Reels e redes.</p>
+                    <p class="mt-1.5 font-display text-2xl font-extrabold leading-none text-navy/80">R$ 600</p>
+                </div>
+            </div>
+
+            <div class="card-pdf mb-3 rounded-md border border-mantis/35 bg-mantis/10 px-3 py-2 text-center">
+                <p class="text-[10px] font-bold text-navy">Total com fotos para capa: <span class="font-display text-xl text-navy">R$ 2.400</span></p>
+                <p class="mt-0.5 text-[9px] text-navy/70">Somente captação de vídeo: R$ 1.800</p>
+            </div>
+
+            <div class="card-pdf flex flex-col gap-2 rounded-md border border-navy/10 bg-cream/50 p-2.5 text-[10px] leading-snug text-navy/75 sm:flex-row sm:gap-4">
+                <div class="sm:w-1/2">
+                    <p class="mb-1 text-[8px] font-bold uppercase tracking-[0.18em] text-blue">Adicionais</p>
+                    <ul class="space-y-1">
+                        <li><span class="font-bold text-mantis">»</span> Vídeo extra gravado (além dos 18): <strong class="text-navy">R$ 100 / un.</strong></li>
+                        <li><span class="font-bold text-mantis">»</span> Edição de Reels: <strong class="text-navy">sob orçamento</strong> (não inclusa neste pacote).</li>
+                    </ul>
+                </div>
+                <div class="border-t border-navy/10 pt-2 sm:w-1/2 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
+                    <p class="mb-1 text-[8px] font-bold uppercase tracking-[0.18em] text-blue">Pagamento</p>
+                    <p>Pagamento no ato da entrega dos vídeos, <strong class="text-navy">no mesmo dia (17/05)</strong>. Este valor é de <strong class="text-navy">captação bruta, sem edição</strong>; edição, se desejada, é tratada em orçamento à parte.</p>
+                </div>
+            </div>
+
+            <div class="mt-2 rounded-md bg-navy px-3 py-2 text-center">
+                <p class="text-[9px] leading-snug text-cream/95">
+                    <strong class="text-mantis">Próximo passo:</strong> confirme data e pacote (com ou sem fotos para capa) até <strong class="text-cream">15/05</strong> para reservar o domingo 17/05.
+                </p>
+            </div>
+        </main>
+
+        <footer class="content-padding border-t border-navy/10 bg-paper pb-3 pt-1">
+            <div class="mb-3 flex flex-col gap-6 pt-2 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+                <div class="min-w-0 flex-1 space-y-3">
+                    <p class="text-[11px] font-bold text-navy">De acordo:</p>
+                    <div class="border-b-2 border-navy/80"></div>
+                    <p class="text-center text-[8px] font-semibold uppercase tracking-[0.2em] text-muted">Assinatura do cliente</p>
+                </div>
+                <div class="w-full shrink-0 space-y-3 sm:w-36">
+                    <p class="text-[11px] font-bold text-navy">Data:</p>
+                    <div class="border-b-2 border-navy/80"></div>
+                </div>
+            </div>
+
+            <div class="border-t border-navy/10 pt-2 text-center">
+                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-navy">Belisrocha produtora audiovisual</p>
+                <p class="mt-0.5 text-[8px] text-muted">
+                    CNPJ 45.204.623/0001-14 · Rua Professor Hilário Veiga de Carvalho, 100 — São Paulo
+                </p>
+                <p class="mt-1 text-[8px] font-medium text-navy">
+                    <span class="text-mantis">(11) 97313-8895</span>
+                    <span class="text-navy/30"> · </span>
+                    lucas@belis.agency
+                    <span class="text-navy/30"> · </span>
+                    <span class="text-blue">www.belis.agency</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
