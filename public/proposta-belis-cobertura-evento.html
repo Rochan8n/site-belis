@@ -52,7 +52,7 @@
         }
 
         .content-padding {
-            padding: 32px 40px;
+            padding: 18px 26px;
         }
 
         .top-accent {
@@ -61,16 +61,11 @@
         }
 
         .logo-img {
-            height: 4.75rem;
+            height: 3.5rem;
             width: auto;
-            max-width: 220px;
+            max-width: 200px;
             object-fit: contain;
             object-position: left center;
-        }
-
-        .card-pdf {
-            break-inside: avoid;
-            page-break-inside: avoid;
         }
 
         @media print {
@@ -93,6 +88,10 @@
                 max-width: 210mm;
             }
 
+            .content-padding {
+                padding: 14px 22px !important;
+            }
+
             .no-print {
                 display: none !important;
             }
@@ -100,6 +99,12 @@
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+            }
+
+            /* Evita que blocos “indivisíveis” empurrem o rodapé para a 2ª página */
+            .card-pdf {
+                break-inside: auto;
+                page-break-inside: auto;
             }
         }
     </style>
@@ -118,16 +123,15 @@
         <p class="max-w-[220px] text-right text-[10px] text-cream/70">No diálogo de impressão, escolha <strong class="text-cream">“Salvar como PDF”</strong> (Chrome/Edge).</p>
     </div>
 
-    <div class="a4-canvas flex flex-col text-[13px] leading-relaxed">
-        <div class="flex min-h-0 flex-1 flex-col">
+    <div class="a4-canvas text-[12px] leading-snug">
             <div class="top-accent"></div>
 
-            <header class="content-padding flex flex-wrap items-start justify-between gap-6 bg-navy text-cream">
+            <header class="content-padding flex flex-wrap items-start justify-between gap-4 bg-navy text-cream">
                 <div class="min-w-0 flex-1">
                     <img
                         src="https://belis.agency/logo.png"
                         alt="Belis Agency"
-                        class="logo-img mb-2 block"
+                        class="logo-img mb-1 block"
                         onerror="this.onerror=null;this.src='/logo.png';this.onerror=function(){this.outerHTML='<span class=\'font-display text-4xl font-extrabold tracking-tight text-cream\'>BELIS</span>';};"
                     />
                     <p class="text-[10px] font-semibold uppercase tracking-[0.35em] text-mantis/90">Produtora audiovisual</p>
@@ -138,93 +142,92 @@
                 </div>
             </header>
 
-            <main class="content-padding flex-1 bg-paper pb-6 pt-7">
-                <div class="mb-7">
-                    <h1 class="font-display text-[1.65rem] font-bold leading-tight text-navy md:text-[1.85rem]">Cobertura de evento médico</h1>
-                    <div class="mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-mantis to-blue"></div>
-                    <p class="mt-4 text-[12px] leading-relaxed text-navy/75">
+            <main class="content-padding bg-paper pb-3 pt-4">
+                <div class="mb-4">
+                    <h1 class="font-display text-[1.35rem] font-bold leading-tight text-navy">Cobertura de evento médico</h1>
+                    <div class="mt-2 h-0.5 w-16 rounded-full bg-gradient-to-r from-mantis to-blue"></div>
+                    <p class="mt-2 text-[11px] leading-snug text-navy/75">
                         Proposta para cobertura audiovisual completa do curso voltado a médicos, nos dias <strong class="text-navy">sexta-feira (15/05)</strong> e <strong class="text-navy">sábado (16/05)</strong>.
                     </p>
                 </div>
 
-                <div class="mb-7 grid grid-cols-1 gap-5 md:grid-cols-12">
-                    <div class="card-pdf rounded-lg border border-navy/10 bg-cream/60 p-5 md:col-span-5 md:border-l-4 md:border-l-mantis">
-                        <h2 class="mb-2 text-[10px] font-bold uppercase tracking-[0.28em] text-blue">O escopo</h2>
-                        <p class="text-[11.5px] leading-relaxed text-navy/80">
+                <div class="mb-4 grid grid-cols-1 gap-3 md:grid-cols-12">
+                    <div class="card-pdf rounded-md border border-navy/10 bg-cream/60 p-3 md:col-span-5 md:border-l-4 md:border-l-mantis">
+                        <h2 class="mb-1 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">O escopo</h2>
+                        <p class="text-[10.5px] leading-snug text-navy/80">
                             Cobertura imersiva ponta a ponta: ambiente, palestras, interações entre participantes e entrevistas com alunos e professores.
                         </p>
                     </div>
                     <div class="md:col-span-7">
-                        <h2 class="mb-3 border-b border-navy/10 pb-2 text-[10px] font-bold uppercase tracking-[0.28em] text-blue">Entregáveis (volume por dia)</h2>
-                        <ul class="space-y-2.5">
-                            <li class="flex gap-3">
-                                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-mantis ring-2 ring-mantis/30"></span>
-                                <p class="text-[11.5px] text-navy/85"><strong class="text-navy">2 vídeos resumo (highlights):</strong> edição com os melhores momentos.</p>
+                        <h2 class="mb-1.5 border-b border-navy/10 pb-1 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">Entregáveis (volume por dia)</h2>
+                        <ul class="space-y-1">
+                            <li class="flex gap-2">
+                                <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis ring-1 ring-mantis/30"></span>
+                                <p class="text-[10.5px] leading-snug text-navy/85"><strong class="text-navy">2 vídeos resumo (highlights):</strong> edição com os melhores momentos.</p>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-mantis ring-2 ring-mantis/30"></span>
-                                <p class="text-[11.5px] text-navy/85"><strong class="text-navy">5 vídeos de depoimentos:</strong> entrevistas captadas e editadas.</p>
+                            <li class="flex gap-2">
+                                <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis ring-1 ring-mantis/30"></span>
+                                <p class="text-[10.5px] leading-snug text-navy/85"><strong class="text-navy">5 vídeos de depoimentos:</strong> entrevistas captadas e editadas.</p>
                             </li>
-                            <li class="flex gap-3">
-                                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-mantis ring-2 ring-mantis/30"></span>
-                                <p class="text-[11.5px] text-navy/85"><strong class="text-navy">Fotografias ilimitadas:</strong> curadoria e tratamento de cor e pele.</p>
+                            <li class="flex gap-2">
+                                <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis ring-1 ring-mantis/30"></span>
+                                <p class="text-[10.5px] leading-snug text-navy/85"><strong class="text-navy">Fotografias ilimitadas:</strong> curadoria e tratamento de cor e pele.</p>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <h2 class="mb-3 border-b border-navy/10 pb-2 text-[10px] font-bold uppercase tracking-[0.28em] text-blue">Opções de investimento</h2>
+                <h2 class="mb-2 border-b border-navy/10 pb-1 text-[9px] font-bold uppercase tracking-[0.26em] text-blue">Opções de investimento</h2>
 
-                <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div class="card-pdf relative rounded-lg border-2 border-navy bg-white p-5 shadow-sm">
-                        <div class="absolute -top-2.5 right-3 rounded bg-mantis px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-navy">Entrega imediata</div>
-                        <h3 class="font-display text-xl font-bold text-navy">Plano Realtime</h3>
-                        <p class="mt-2 min-h-[38px] text-[11px] text-navy/70">Edição e entrega contínua durante os dois dias de evento.</p>
-                        <p class="mt-4 font-display text-3xl font-extrabold text-navy">R$ 5.000</p>
+                <div class="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div class="card-pdf relative rounded-md border-2 border-navy bg-white px-3 pb-2.5 pt-3 shadow-sm">
+                        <div class="absolute -top-2 right-2 rounded bg-mantis px-2 py-0.5 text-[8px] font-bold uppercase tracking-wide text-navy">Entrega imediata</div>
+                        <h3 class="font-display text-base font-bold text-navy">Plano Realtime</h3>
+                        <p class="mt-1 text-[10px] leading-snug text-navy/70">Edição e entrega contínua durante os dois dias de evento.</p>
+                        <p class="mt-1.5 font-display text-2xl font-extrabold leading-none text-navy">R$ 5.000</p>
                     </div>
-                    <div class="card-pdf relative rounded-lg border border-navy/15 bg-cream/40 p-5">
-                        <div class="absolute -top-2.5 right-3 rounded bg-navy/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-navy/70">Entrega padrão</div>
-                        <h3 class="font-display text-xl font-bold text-navy">Plano 20/05</h3>
-                        <p class="mt-2 min-h-[38px] text-[11px] text-navy/70">Material finalizado até a quarta-feira seguinte ao evento.</p>
-                        <p class="mt-4 font-display text-3xl font-extrabold text-navy/55">R$ 4.500</p>
+                    <div class="card-pdf relative rounded-md border border-navy/15 bg-cream/40 px-3 pb-2.5 pt-3">
+                        <div class="absolute -top-2 right-2 rounded bg-navy/10 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wide text-navy/70">Entrega padrão</div>
+                        <h3 class="font-display text-base font-bold text-navy">Plano 20/05</h3>
+                        <p class="mt-1 text-[10px] leading-snug text-navy/70">Material finalizado até a quarta-feira seguinte ao evento.</p>
+                        <p class="mt-1.5 font-display text-2xl font-extrabold leading-none text-navy/55">R$ 4.500</p>
                     </div>
                 </div>
 
-                <div class="card-pdf flex flex-col gap-4 rounded-lg border border-navy/10 bg-cream/50 p-4 text-[11px] text-navy/75 sm:flex-row sm:gap-6">
+                <div class="card-pdf flex flex-col gap-2 rounded-md border border-navy/10 bg-cream/50 p-2.5 text-[10px] leading-snug text-navy/75 sm:flex-row sm:gap-4">
                     <div class="sm:w-1/2">
-                        <p class="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-blue">Material adicional</p>
+                        <p class="mb-1 text-[8px] font-bold uppercase tracking-[0.18em] text-blue">Material adicional</p>
                         <ul class="space-y-1">
                             <li><span class="font-bold text-mantis">»</span> Vídeo de depoimento extra: <strong class="text-navy">R$ 100 / un.</strong></li>
                             <li><span class="font-bold text-mantis">»</span> Vídeo extra de aula/curso: <strong class="text-navy">R$ 300 / un.</strong></li>
                         </ul>
                     </div>
-                    <div class="border-t border-navy/10 pt-4 sm:w-1/2 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
-                        <p class="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-blue">Condição de pagamento</p>
-                        <p>Pagamento no ato da entrega final dos materiais, vinculado à emissão da Nota Fiscal.</p>
+                    <div class="border-t border-navy/10 pt-2 sm:w-1/2 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
+                        <p class="mb-1 text-[8px] font-bold uppercase tracking-[0.18em] text-blue">Condições de pagamento</p>
+                        <p><strong class="text-navy">50%</strong> com vencimento em <strong class="text-navy">14/05</strong> e <strong class="text-navy">50%</strong> com vencimento em <strong class="text-navy">18/05</strong>.</p>
                     </div>
                 </div>
             </main>
-        </div>
 
-        <footer class="content-padding border-t border-navy/10 bg-paper pb-8 pt-2">
-            <div class="mb-7 flex flex-wrap items-end justify-between gap-6 pt-4">
-                <div class="min-w-[200px] flex-1 basis-[45%]">
-                    <p class="mb-6 text-xs font-bold text-navy">De acordo:</p>
-                    <div class="mb-2 border-b-2 border-navy/80"></div>
-                    <p class="text-center text-[9px] font-semibold uppercase tracking-[0.25em] text-muted">Assinatura do cliente</p>
+        <footer class="content-padding border-t border-navy/10 bg-paper pb-3 pt-1">
+            <div class="mb-3 flex flex-col gap-6 pt-2 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+                <div class="min-w-0 flex-1 space-y-3">
+                    <p class="text-[11px] font-bold text-navy">De acordo:</p>
+                    <div class="border-b-2 border-navy/80"></div>
+                    <p class="text-center text-[8px] font-semibold uppercase tracking-[0.2em] text-muted">Assinatura do cliente</p>
                 </div>
-                <div class="w-full max-w-[140px] sm:w-[28%]">
-                    <p class="mb-6 text-xs font-bold text-navy">Data:</p>
-                    <div class="mb-2 border-b-2 border-navy/80"></div>
+                <div class="w-full shrink-0 space-y-3 sm:w-36">
+                    <p class="text-[11px] font-bold text-navy">Data:</p>
+                    <div class="border-b-2 border-navy/80"></div>
                 </div>
             </div>
 
-            <div class="border-t border-navy/10 pt-4 text-center">
-                <p class="text-[10px] font-bold uppercase tracking-[0.28em] text-navy">Belisrocha produtora audiovisual</p>
-                <p class="mt-1 text-[9px] text-muted">
+            <div class="border-t border-navy/10 pt-2 text-center">
+                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-navy">Belisrocha produtora audiovisual</p>
+                <p class="mt-0.5 text-[8px] text-muted">
                     CNPJ 45.204.623/0001-14 · Rua Professor Hilário Veiga de Carvalho, 100 — São Paulo
                 </p>
-                <p class="mt-1.5 text-[9px] font-medium text-navy">
+                <p class="mt-1 text-[8px] font-medium text-navy">
                     <span class="text-mantis">(11) 97313-8895</span>
                     <span class="text-navy/30"> · </span>
                     lucas@belis.agency
