@@ -2,19 +2,19 @@
 // Usage: node scripts/generate-icons.mjs
 //
 // Sources expected at:
-//   C:\Users\Lucas PC\.cursor\projects\g-site-belis\assets\favicon-master.png
-//   C:\Users\Lucas PC\.cursor\projects\g-site-belis\assets\logo.png
+//   ./assets/favicon-master.png
+//   ./assets/logo-navy.png
 //
 // Writes into ./public
 
 import sharp from "sharp";
-import { mkdir } from "node:fs/promises";
+import pngToIco from "png-to-ico";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, "public");
-const ASSETS_DIR =
-  "C:\\Users\\Lucas PC\\.cursor\\projects\\g-site-belis\\assets";
+const ASSETS_DIR = path.join(ROOT, "assets");
 
 const FAVICON_SRC = path.join(ASSETS_DIR, "favicon-master.png");
 const LOGO_SRC = path.join(ASSETS_DIR, "logo-navy.png");
@@ -83,6 +83,17 @@ async function main() {
   await squarePng(FAVICON_SRC, 16, path.join(PUBLIC_DIR, "favicon-16x16.png"));
   await squarePng(FAVICON_SRC, 32, path.join(PUBLIC_DIR, "favicon-32x32.png"));
   await squarePng(FAVICON_SRC, 48, path.join(PUBLIC_DIR, "favicon-48x48.png"));
+
+  console.log("\nfavicon.ico (multi-res, browsers prefer this over PNG alone):");
+  const icoBuf = await pngToIco([
+    await readFile(path.join(PUBLIC_DIR, "favicon-16x16.png")),
+    await readFile(path.join(PUBLIC_DIR, "favicon-32x32.png")),
+    await readFile(path.join(PUBLIC_DIR, "favicon-48x48.png")),
+  ]);
+  const icoPath = path.join(PUBLIC_DIR, "favicon.ico");
+  await writeFile(icoPath, icoBuf);
+  console.log(`  ✓ ${path.relative(ROOT, icoPath)}`);
+
   await squarePng(FAVICON_SRC, 180, path.join(PUBLIC_DIR, "apple-touch-icon.png"));
   await squarePng(
     FAVICON_SRC,
