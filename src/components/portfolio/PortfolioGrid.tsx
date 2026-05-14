@@ -610,22 +610,23 @@ function PhotoMasonry({ photos, onOpen }: { photos: PhotoItem[]; onOpen: (i: num
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const reels: VideoItem[] = [
-  { id: 1,  title: "Reel 01",  category: "Reels", thumb: "https://img.youtube.com/vi/zdX9BuSYV6g/maxresdefault.jpg",  youtubeId: "zdX9BuSYV6g",  aspect: "9/16" },
-  { id: 2,  title: "Reel 02",  category: "Reels", thumb: "https://img.youtube.com/vi/2sJZiyXJ9hE/maxresdefault.jpg",  youtubeId: "2sJZiyXJ9hE",  aspect: "9/16" },
-  { id: 3,  title: "Reel 03",  category: "Reels", thumb: "https://img.youtube.com/vi/-z7L3RkbvRw/maxresdefault.jpg",  youtubeId: "-z7L3RkbvRw",  aspect: "9/16" },
-  { id: 4,  title: "Reel 04",  category: "Reels", thumb: "https://img.youtube.com/vi/bwFaHBxRw6Y/maxresdefault.jpg",  youtubeId: "bwFaHBxRw6Y",  aspect: "9/16", label: "Destaque" },
-  { id: 5,  title: "Reel 05",  category: "Reels", thumb: "https://img.youtube.com/vi/4PSicx4qZnw/maxresdefault.jpg",  youtubeId: "4PSicx4qZnw",  aspect: "9/16" },
-  { id: 6,  title: "Reel 06",  category: "Reels", thumb: "https://img.youtube.com/vi/GneJ-tchPuY/maxresdefault.jpg",  youtubeId: "GneJ-tchPuY",  aspect: "9/16" },
-  { id: 7,  title: "Reel 07",  category: "Reels", thumb: "https://img.youtube.com/vi/ssJZv5HwX9c/maxresdefault.jpg",  youtubeId: "ssJZv5HwX9c",  aspect: "9/16" },
-  { id: 8,  title: "Reel 08",  category: "Reels", thumb: "https://img.youtube.com/vi/Q7PH8rXWTcY/maxresdefault.jpg",  youtubeId: "Q7PH8rXWTcY",  aspect: "9/16" },
-  { id: 9,  title: "Reel 09",  category: "Reels", thumb: "https://img.youtube.com/vi/PBTFBH9SYaE/maxresdefault.jpg",  youtubeId: "PBTFBH9SYaE",  aspect: "9/16" },
-  { id: 10, title: "Reel 10",  category: "Reels", thumb: "https://img.youtube.com/vi/-qRKKZ5fKcY/maxresdefault.jpg",  youtubeId: "-qRKKZ5fKcY",  aspect: "9/16" },
-  { id: 11, title: "Reel 11",  category: "Reels", thumb: "https://img.youtube.com/vi/dQ4_JbErZGU/maxresdefault.jpg",  youtubeId: "dQ4_JbErZGU",  aspect: "9/16" },
-  { id: 12, title: "Reel 12",  category: "Reels", thumb: "https://img.youtube.com/vi/AYCYLCFpfZk/maxresdefault.jpg",  youtubeId: "AYCYLCFpfZk",  aspect: "9/16" },
-  { id: 13, title: "Reel 13",  category: "Reels", thumb: "https://img.youtube.com/vi/osuCh8HGXKA/maxresdefault.jpg",  youtubeId: "osuCh8HGXKA",  aspect: "9/16" },
-  { id: 14, title: "Reel 14",  category: "Reels", thumb: "https://img.youtube.com/vi/53eaJDRlwuk/maxresdefault.jpg",  youtubeId: "53eaJDRlwuk",  aspect: "9/16" },
-  { id: 15, title: "Reel 15",  category: "Reels", thumb: "https://img.youtube.com/vi/TOD53juaID0/maxresdefault.jpg",  youtubeId: "TOD53juaID0",  aspect: "9/16" },
-  { id: 16, title: "Reel 16",  category: "Reels", thumb: "https://img.youtube.com/vi/PZQSjCNOIc8/maxresdefault.jpg",  youtubeId: "PZQSjCNOIc8",  aspect: "9/16" },
+  { id: 1,  title: "Reel 01",  category: "Reels", thumb: "https://img.youtube.com/vi/QrEuDF6x9Xs/maxresdefault.jpg",  youtubeId: "QrEuDF6x9Xs",  aspect: "9/16" },
+  { id: 2,  title: "Reel 02",  category: "Reels", thumb: "https://img.youtube.com/vi/zdX9BuSYV6g/maxresdefault.jpg",  youtubeId: "zdX9BuSYV6g",  aspect: "9/16" },
+  { id: 3,  title: "Reel 03",  category: "Reels", thumb: "https://img.youtube.com/vi/2sJZiyXJ9hE/maxresdefault.jpg",  youtubeId: "2sJZiyXJ9hE",  aspect: "9/16" },
+  { id: 4,  title: "Reel 04",  category: "Reels", thumb: "https://img.youtube.com/vi/-z7L3RkbvRw/maxresdefault.jpg",  youtubeId: "-z7L3RkbvRw",  aspect: "9/16" },
+  { id: 5,  title: "Reel 05",  category: "Reels", thumb: "https://img.youtube.com/vi/bwFaHBxRw6Y/maxresdefault.jpg",  youtubeId: "bwFaHBxRw6Y",  aspect: "9/16", label: "Destaque" },
+  { id: 6,  title: "Reel 06",  category: "Reels", thumb: "https://img.youtube.com/vi/4PSicx4qZnw/maxresdefault.jpg",  youtubeId: "4PSicx4qZnw",  aspect: "9/16" },
+  { id: 7,  title: "Reel 07",  category: "Reels", thumb: "https://img.youtube.com/vi/GneJ-tchPuY/maxresdefault.jpg",  youtubeId: "GneJ-tchPuY",  aspect: "9/16" },
+  { id: 8,  title: "Reel 08",  category: "Reels", thumb: "https://img.youtube.com/vi/ssJZv5HwX9c/maxresdefault.jpg",  youtubeId: "ssJZv5HwX9c",  aspect: "9/16" },
+  { id: 9,  title: "Reel 09",  category: "Reels", thumb: "https://img.youtube.com/vi/Q7PH8rXWTcY/maxresdefault.jpg",  youtubeId: "Q7PH8rXWTcY",  aspect: "9/16" },
+  { id: 10, title: "Reel 10",  category: "Reels", thumb: "https://img.youtube.com/vi/PBTFBH9SYaE/maxresdefault.jpg",  youtubeId: "PBTFBH9SYaE",  aspect: "9/16" },
+  { id: 11, title: "Reel 11",  category: "Reels", thumb: "https://img.youtube.com/vi/-qRKKZ5fKcY/maxresdefault.jpg",  youtubeId: "-qRKKZ5fKcY",  aspect: "9/16" },
+  { id: 12, title: "Reel 12",  category: "Reels", thumb: "https://img.youtube.com/vi/dQ4_JbErZGU/maxresdefault.jpg",  youtubeId: "dQ4_JbErZGU",  aspect: "9/16" },
+  { id: 13, title: "Reel 13",  category: "Reels", thumb: "https://img.youtube.com/vi/AYCYLCFpfZk/maxresdefault.jpg",  youtubeId: "AYCYLCFpfZk",  aspect: "9/16" },
+  { id: 14, title: "Reel 14",  category: "Reels", thumb: "https://img.youtube.com/vi/osuCh8HGXKA/maxresdefault.jpg",  youtubeId: "osuCh8HGXKA",  aspect: "9/16" },
+  { id: 15, title: "Reel 15",  category: "Reels", thumb: "https://img.youtube.com/vi/53eaJDRlwuk/maxresdefault.jpg",  youtubeId: "53eaJDRlwuk",  aspect: "9/16" },
+  { id: 16, title: "Reel 16",  category: "Reels", thumb: "https://img.youtube.com/vi/TOD53juaID0/maxresdefault.jpg",  youtubeId: "TOD53juaID0",  aspect: "9/16" },
+  { id: 17, title: "Reel 17",  category: "Reels", thumb: "https://img.youtube.com/vi/PZQSjCNOIc8/maxresdefault.jpg",  youtubeId: "PZQSjCNOIc8",  aspect: "9/16" },
 ];
 
 const institucionais: VideoItem[] = [
@@ -708,7 +709,7 @@ export function PortfolioGrid() {
         </div>
         {/* 3D Reels carousel — matches code.html design */}
         <div className="theater-reveal py-6">
-          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={3} fixedTitle="REELS" />
+          <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={0} fixedTitle="REELS" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-6 theater-reveal">
           <WhatsAppCTA message="Olá! Vi os Reels no portfólio da Belis e quero saber mais sobre esse serviço." />
