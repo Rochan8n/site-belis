@@ -14,6 +14,7 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, "public");
+const APP_DIR = path.join(ROOT, "src", "app");
 const ASSETS_DIR = path.join(ROOT, "assets");
 
 const FAVICON_SRC = path.join(ASSETS_DIR, "favicon-master.png");
@@ -77,6 +78,7 @@ async function ogImage(srcPath, outPath) {
 
 async function main() {
   await mkdir(PUBLIC_DIR, { recursive: true });
+  await mkdir(APP_DIR, { recursive: true });
   await mkdir(path.join(PUBLIC_DIR, "images"), { recursive: true });
 
   console.log("Favicons (square, solid navy bg):");
@@ -93,6 +95,10 @@ async function main() {
   const icoPath = path.join(PUBLIC_DIR, "favicon.ico");
   await writeFile(icoPath, icoBuf);
   console.log(`  ✓ ${path.relative(ROOT, icoPath)}`);
+  // App Router: app/favicon.ico wins over public/ — keep in sync with public
+  const appIcoPath = path.join(APP_DIR, "favicon.ico");
+  await writeFile(appIcoPath, icoBuf);
+  console.log(`  ✓ ${path.relative(ROOT, appIcoPath)}`);
 
   await squarePng(FAVICON_SRC, 180, path.join(PUBLIC_DIR, "apple-touch-icon.png"));
   await squarePng(
