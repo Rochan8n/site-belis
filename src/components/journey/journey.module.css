@@ -1,4 +1,3 @@
-:global(html.belis-journey-active) { scroll-snap-type: y proximity; }
 .journey {
   --green: #74c365; --cream: #efece2; position: relative; width: 100%; background: var(--journey-bg, #0a0a0c); color: var(--journey-ink, #efece2);
   font-family: var(--font-plex-mono), monospace; cursor: none;
@@ -247,7 +246,6 @@
   .hudBottom div > i { width: 60px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  :global(html.belis-journey-active) { scroll-snap-type: none; }
   .spacers { scroll-snap-type: none; }
   .stage,
   .stations,

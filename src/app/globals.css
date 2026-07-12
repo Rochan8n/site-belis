@@ -102,8 +102,16 @@ body {
   display: none;
 }
 
+html.belis-journey-active {
+  scroll-snap-type: y proximity;
+}
+
 /* ── Acessibilidade: respeita preferência por menos movimento ── */
 @media (prefers-reduced-motion: reduce) {
+  html.belis-journey-active {
+    scroll-snap-type: none;
+  }
+
   *,
   *::before,
   *::after {

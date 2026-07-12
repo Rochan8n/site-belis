@@ -225,14 +225,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
         {/* Preconnect para CDN de logos dos clientes */}
         <link rel="preconnect" href="https://belis.agency" crossOrigin="" />
-        {/* Preload do primeiro frame do hero (LCP crítico) */}
-        {/* eslint-disable-next-line @next/next/no-head-element */}
-        <link
-          rel="preload"
-          as="image"
-          href="/frames/frame_0001.jpg"
-          fetchPriority="high"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

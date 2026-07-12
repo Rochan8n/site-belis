@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { BelisJourney } from "@/components/journey/BelisJourney";
 
-const HOME_TITLE = "Produtora Audiovisual em São Paulo — Vídeos que Vendem";
+const HOME_TITLE = "Do Frame ao Sistema — Audiovisual, Web e Software";
 const HOME_DESCRIPTION =
-  "+150 projetos entregues e primeira versão em até 7 dias. Vídeo institucional, reels, campanhas, cobertura de eventos, web design e tráfego pago para empresas que querem resultado.";
+  "Da produção audiovisual ao website que converte e ao sistema que escala. +150 projetos, primeira versão em até 7 dias. Belis Agency — São Paulo.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Belis Agency — Produtora Audiovisual em São Paulo",
+        alt: "Belis Agency — Do Frame ao Sistema",
       },
     ],
   },

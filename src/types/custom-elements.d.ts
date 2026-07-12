@@ -15,6 +15,12 @@ export interface BelisBlobLook {
   fadeCol?: BelisBlobColor;
 }
 
+export interface BelisBlobElement extends HTMLElement {
+  setBulge(screenX: number, screenY: number, amount: number): void;
+  enter(onMid?: () => void, onDone?: () => void): void;
+  reset(): void;
+}
+
 export interface BelisBlobV2Element extends HTMLElement {
   setLook(look: BelisBlobLook): void;
   setBulge(screenX: number, screenY: number, amount: number): void;
@@ -23,9 +29,14 @@ export interface BelisBlobV2Element extends HTMLElement {
   getRotationDeg(): number;
 }
 
+type BelisBlobAttributes = HTMLAttributes<BelisBlobElement> & {
+  variant?: "obsidian" | "wire";
+};
+
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
+      "belis-blob": DetailedHTMLProps<BelisBlobAttributes, BelisBlobElement>;
       "belis-blob-v2": DetailedHTMLProps<
         HTMLAttributes<BelisBlobV2Element>,
         BelisBlobV2Element

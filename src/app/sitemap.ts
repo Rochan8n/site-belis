@@ -4,7 +4,7 @@ const BASE_URL = "https://belis.agency";
 
 // Data estática de build evita "lastModified = agora" toda request, que dilui o sinal de
 // frescor para o Google. Atualize manualmente quando publicar mudanças relevantes.
-const LAST_UPDATED = new Date("2026-05-11");
+const LAST_UPDATED = new Date("2026-07-12");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -19,6 +19,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/websites`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/sistemas`,
+      lastModified: LAST_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.85,
     },
     {
       url: `${BASE_URL}/contato`,

@@ -8,6 +8,8 @@ import { TransitionLink } from "./TransitionLink";
 const links = [
   { href: "/", label: "Home" },
   { href: "/portfolio", label: "Portfólio" },
+  { href: "/websites", label: "Websites" },
+  { href: "/sistemas", label: "Sistemas" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];
@@ -101,7 +103,7 @@ export function Navbar() {
           </TransitionLink>
 
           {/* Desktop links */}
-          <ul className="hidden sm:flex items-center gap-10 font-sans text-xs font-semibold tracking-[0.2em] transform translate-y-[2px] uppercase text-cream/70">
+          <ul className="hidden md:flex items-center gap-6 lg:gap-10 font-sans text-xs font-semibold tracking-[0.2em] transform translate-y-[2px] uppercase text-cream/70">
             {links.map((l) => (
               <li key={l.href}>
                 <TransitionLink href={l.href} className="hover:text-coral transition-colors duration-300 outline-none">
@@ -113,7 +115,7 @@ export function Navbar() {
 
           {/* Mobile hamburger / close */}
           <button
-            className="sm:hidden relative w-10 h-10 flex items-center justify-center outline-none z-[1001]"
+            className="md:hidden relative w-10 h-10 flex items-center justify-center outline-none z-[1001]"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Fechar menu" : "Abrir menu"}
           >
@@ -139,7 +141,7 @@ export function Navbar() {
       {/* Mobile fullscreen drawer */}
       <div
         ref={drawerRef}
-        className="fixed inset-0 z-[998] flex flex-col items-center justify-center sm:hidden"
+        className="fixed inset-0 z-[998] flex flex-col items-center justify-center md:hidden"
         style={{
           background: "rgba(5, 5, 8, 0.95)",
           backdropFilter: "blur(24px)",

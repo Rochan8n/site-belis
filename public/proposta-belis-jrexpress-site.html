@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta BELIS — JR Express · Site institucional completo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: "#050508",
+                        blue: "#1E488F",
+                        mantis: "#74C365",
+                        cream: "#F6F7ED",
+                        paper: "#FAFAF8",
+                        muted: "#8A8F85",
+                    },
+                    fontFamily: {
+                        sans: ["Inter Tight", "system-ui", "sans-serif"],
+                        display: ["Red Hat Display", "Georgia", "serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        :root {
+            --belis-navy: #050508;
+            --belis-mantis: #74c365;
+            --belis-blue: #1e488f;
+            --belis-cream: #f6f7ed;
+        }
+
+        body {
+            background: linear-gradient(160deg, #0a0f14 0%, #050508 40%, #0d1520 100%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .a4-canvas {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            background: var(--belis-cream);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+            position: relative;
+            box-sizing: border-box;
+            font-family: "Inter Tight", system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.5;
+            letter-spacing: 0;
+        }
+
+        .a4-canvas strong {
+            font-weight: 600;
+        }
+
+        .a4-canvas h1,
+        .a4-canvas .font-display {
+            font-family: "Red Hat Display", Georgia, serif;
+        }
+
+        .section-label {
+            font-family: "Inter Tight", system-ui, sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .text-body {
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .text-small {
+            font-size: 10px;
+            line-height: 1.45;
+        }
+
+        .text-fine {
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        .content-padding {
+            padding: 14px 24px;
+        }
+
+        .header-compact {
+            padding: 8px 24px 10px;
+        }
+
+        .top-accent {
+            height: 4px;
+            background: linear-gradient(90deg, var(--belis-navy) 0%, var(--belis-blue) 45%, var(--belis-mantis) 100%);
+        }
+
+        .logo-img {
+            height: 2.25rem;
+            width: auto;
+            max-width: 160px;
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .invest-card {
+            padding: 8px 10px 6px;
+        }
+
+        .invest-table th,
+        .invest-table td {
+            padding: 4px 10px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            html,
+            body {
+                background: #fff !important;
+                height: auto;
+            }
+
+            .a4-canvas {
+                margin: 0 auto;
+                box-shadow: none;
+                width: 210mm;
+                min-height: 297mm;
+                max-width: 210mm;
+            }
+
+            .content-padding {
+                padding: 10px 20px !important;
+            }
+
+            .header-compact {
+                padding: 6px 20px 8px !important;
+            }
+
+            .logo-img {
+                height: 2rem !important;
+            }
+
+            .footer-compact {
+                padding-top: 4px !important;
+                padding-bottom: 8px !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .card-pdf {
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-navy antialiased">
+
+    <div class="fixed top-5 right-5 no-print z-50 flex flex-col items-end gap-2">
+        <button
+            type="button"
+            onclick="window.print()"
+            class="inline-flex items-center gap-2 rounded-lg bg-mantis px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-navy shadow-lg shadow-mantis/25 transition hover:brightness-110"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Salvar PDF
+        </button>
+        <p class="max-w-[220px] text-right text-[10px] text-cream/70">No diálogo de impressão, escolha <strong class="text-cream">“Salvar como PDF”</strong> (Chrome/Edge).</p>
+    </div>
+
+    <div class="a4-canvas text-navy">
+        <div class="top-accent"></div>
+
+        <header class="header-compact flex flex-wrap items-center justify-between gap-2 bg-navy text-cream">
+            <div class="min-w-0 flex-1 leading-none">
+                <img
+                    src="https://belis.agency/logo.png"
+                    alt="Belis Agency"
+                    class="logo-img block"
+                    onerror="this.onerror=null;this.src='/logo.png';this.onerror=function(){this.outerHTML='<span class=\'font-display text-2xl font-extrabold tracking-tight text-cream\'>BELIS</span>';};"
+                />
+                <p class="mt-0.5 text-fine font-semibold uppercase tracking-wide text-mantis/90">Desenvolvimento web</p>
+            </div>
+            <div class="text-right leading-tight">
+                <p class="font-display text-xs font-bold uppercase tracking-wide text-cream">Proposta comercial</p>
+                <p class="mt-0.5 text-fine text-cream/65">Nº 245 · São Paulo, 30 de junho de 2026</p>
+                <p class="text-fine font-semibold text-mantis/95">Cliente: JR Express</p>
+            </div>
+        </header>
+
+        <main class="content-padding bg-paper pb-2 pt-3">
+            <div class="mb-2">
+                <h1 class="font-display text-lg font-bold leading-tight text-navy">Site institucional completo — renovação digital</h1>
+                <div class="mt-1.5 h-0.5 w-16 rounded-full bg-gradient-to-r from-mantis to-blue"></div>
+                <p class="mt-1.5 text-body text-navy/80">
+                    Desenvolvimento de um <strong>site novo, moderno e responsivo</strong> para a <a href="https://www.jrexpress.com.br/" class="font-medium text-blue underline decoration-blue/30">JR Express</a> (Speed Boys) — motoboys e utilitários em São Paulo, com mais de 20 anos de mercado — substituindo o site atual por uma presença digital mais rápida, clara e orientada à conversão, <strong>preservando o acesso ao sistema que a empresa já utiliza</strong> (Área do Cliente e fluxos operacionais existentes).
+                </p>
+            </div>
+
+            <div class="mb-2 rounded-md border border-mantis/30 bg-mantis/[0.12] px-3 py-1.5">
+                <p class="text-small text-navy/85">
+                    <strong>Objetivo:</strong> transmitir <strong>rapidez, confiança e facilidade</strong> — pilares da JR Express — com CTAs diretos para WhatsApp, solicitação de motoboy, cadastro de clientes e cotação de serviços fixos, sem interromper o que já funciona no dia a dia da operação.
+                </p>
+            </div>
+
+            <div class="card-pdf mb-2 rounded-md border border-navy/12 bg-white px-3 py-2 shadow-sm">
+                <h2 class="section-label mb-1.5 text-blue">O que será renovado</h2>
+                <p class="text-body text-navy/85">
+                    Site institucional <strong>100% novo</strong> em layout, tipografia, navegação e experiência mobile — com conteúdo reorganizado a partir do site atual: apresentação da empresa, serviços avulsos, portadores fixos, contato e trabalhe conosco.
+                </p>
+                <ul class="mt-2 grid gap-1.5 border-t border-navy/10 pt-2 text-small text-navy/80 sm:grid-cols-2">
+                    <li class="flex gap-1.5"><span class="shrink-0 font-semibold text-mantis">✓</span> Design moderno alinhado à marca Speed Boys / JR Express</li>
+                    <li class="flex gap-1.5"><span class="shrink-0 font-semibold text-mantis">✓</span> Site responsivo (celular, tablet e desktop)</li>
+                    <li class="flex gap-1.5"><span class="shrink-0 font-semibold text-mantis">✓</span> Botões de WhatsApp e solicitação de serviço em destaque</li>
+                    <li class="flex gap-1.5"><span class="shrink-0 font-semibold text-mantis">✓</span> Links e acesso à Área do Cliente mantidos e integrados</li>
+                </ul>
+            </div>
+
+            <div class="card-pdf mb-2 rounded-md border border-navy/10 bg-cream/60 p-2.5 md:border-l-4 md:border-l-mantis">
+                <h2 class="section-label mb-1.5 border-b border-navy/10 pb-0.5 text-blue">Entregáveis</h2>
+                <ul class="space-y-1 text-body text-navy/85">
+                    <li class="flex gap-2">
+                        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis"></span>
+                        <span><strong>Páginas principais:</strong> Início, Serviços (avulsos e fixos), Sobre, Contato, Trabalhe Conosco e Cadastro de Clientes.</span>
+                    </li>
+                    <li class="flex gap-2">
+                        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis"></span>
+                        <span><strong>Integração preservada:</strong> acesso à Área do Cliente e demais sistemas já em uso — sem perda de funcionalidade operacional.</span>
+                    </li>
+                    <li class="flex gap-2">
+                        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis"></span>
+                        <span><strong>Publicação:</strong> site no ar no domínio <strong>jrexpress.com.br</strong>, com configuração básica de SEO e performance.</span>
+                    </li>
+                    <li class="flex gap-2">
+                        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis"></span>
+                        <span><strong>Imagens com IA:</strong> geração profissional de imagens para ilustrar o site (hero, serviços e seções principais).</span>
+                    </li>
+                    <li class="flex gap-2">
+                        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mantis"></span>
+                        <span><strong>2 rodadas de ajustes</strong> após a entrega (textos, imagens ou pequenos refinamentos visuais).</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-pdf mb-2 rounded-md border border-blue/20 bg-blue/[0.06] px-3 py-2">
+                <h2 class="section-label mb-1.5 text-blue">Cronograma — 7 dias</h2>
+                <div class="grid gap-1.5 sm:grid-cols-4 text-fine text-navy/85">
+                    <div class="rounded border border-navy/10 bg-white/70 px-2 py-1">
+                        <p class="font-semibold text-navy">Dia 1–2</p>
+                        <p class="mt-px">Briefing, materiais e layout inicial</p>
+                    </div>
+                    <div class="rounded border border-navy/10 bg-white/70 px-2 py-1">
+                        <p class="font-semibold text-navy">Dia 3–5</p>
+                        <p class="mt-px">Desenvolvimento das páginas e integrações</p>
+                    </div>
+                    <div class="rounded border border-navy/10 bg-white/70 px-2 py-1">
+                        <p class="font-semibold text-navy">Dia 6</p>
+                        <p class="mt-px">Revisão, testes mobile e Área do Cliente</p>
+                    </div>
+                    <div class="rounded border border-navy/10 bg-white/70 px-2 py-1">
+                        <p class="font-semibold text-navy">Dia 7</p>
+                        <p class="mt-px">Publicação e entrega final</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-label mb-1.5 border-b border-navy/10 pb-0.5 text-blue">Investimento</h2>
+
+            <div class="mb-2 grid grid-cols-3 gap-2">
+                <div class="card-pdf invest-card rounded-md border border-navy/15 bg-cream/40">
+                    <h3 class="text-small font-semibold text-navy">Design &amp; páginas</h3>
+                    <p class="mt-0.5 text-fine text-navy/70">Layout + mobile</p>
+                    <p class="mt-1 text-sm font-semibold text-navy">Incluso</p>
+                </div>
+                <div class="card-pdf invest-card rounded-md border border-navy/15 bg-cream/40">
+                    <h3 class="text-small font-semibold text-navy">Imagens com IA</h3>
+                    <p class="mt-0.5 text-fine text-navy/70">Ilustrações do site</p>
+                    <p class="mt-1 text-sm font-semibold text-navy">Incluso</p>
+                </div>
+                <div class="card-pdf invest-card relative rounded-md border-2 border-navy bg-white">
+                    <div class="absolute -top-1.5 right-1.5 rounded bg-mantis px-1.5 py-px text-[8px] font-semibold uppercase text-navy">Projeto</div>
+                    <h3 class="text-small font-semibold text-navy">Total do projeto</h3>
+                    <p class="mt-0.5 text-fine text-navy/70">7 dias · pagamento único</p>
+                    <p class="font-display mt-0.5 text-xl font-bold leading-none text-navy">R$ 1.500</p>
+                </div>
+            </div>
+
+            <div class="card-pdf mb-2 overflow-hidden rounded-md border border-mantis/35 bg-mantis/10">
+                <table class="invest-table w-full text-left text-fine text-navy/85">
+                    <thead>
+                        <tr class="border-b border-navy/10 bg-white/50">
+                            <th class="section-label text-blue">Item</th>
+                            <th class="section-label text-right text-blue">Qtd.</th>
+                            <th class="section-label text-right text-blue">Unit.</th>
+                            <th class="section-label text-right text-blue">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-navy/8">
+                            <td>Site institucional completo (design + desenvolvimento + publicação)</td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">R$ 1.500</td>
+                            <td class="text-right font-semibold text-navy">R$ 1.500</td>
+                        </tr>
+                        <tr class="border-b border-navy/8">
+                            <td>Integração e preservação da Área do Cliente / sistema existente</td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">—</td>
+                            <td class="text-right font-semibold text-navy">Incluso</td>
+                        </tr>
+                        <tr class="border-b border-navy/8">
+                            <td>Geração de imagens com IA profissionais para ilustrar o site</td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">—</td>
+                            <td class="text-right font-semibold text-navy">Incluso</td>
+                        </tr>
+                        <tr class="border-b border-navy/8">
+                            <td>2 rodadas de ajustes pós-entrega</td>
+                            <td class="text-right">2</td>
+                            <td class="text-right">—</td>
+                            <td class="text-right font-semibold text-navy">Incluso</td>
+                        </tr>
+                        <tr class="bg-mantis/15 font-semibold text-navy">
+                            <td colspan="3">Total do projeto</td>
+                            <td class="text-right">R$ 1.500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-pdf mb-2 flex flex-col gap-1.5 rounded-md border border-navy/10 bg-cream/50 p-2 text-small text-navy/80 sm:flex-row sm:gap-3">
+                <div class="sm:w-1/2">
+                    <p class="section-label mb-1 text-blue">Não inclusos</p>
+                    <ul class="space-y-1 text-body">
+                        <li><span class="font-semibold text-mantis">»</span> Produção de fotos ou vídeos novos: <strong>sob orçamento</strong></li>
+                        <li><span class="font-semibold text-mantis">»</span> Desenvolvimento de novo sistema / app: <strong>fora do escopo</strong></li>
+                        <li><span class="font-semibold text-mantis">»</span> Manutenção mensal após entrega: <strong>sob contrato à parte</strong></li>
+                    </ul>
+                </div>
+                <div class="border-t border-navy/10 pt-2 sm:w-1/2 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
+                    <p class="section-label mb-1 text-blue">Pagamento e validade</p>
+                    <p class="text-body"><strong>100% do valor na entrega do site</strong> (R$ 1.500). Valores em reais (BRL). Proposta válida por <strong>15 dias</strong>. Início do prazo de 7 dias após aprovação e envio de logo, textos e acesso ao sistema atual.</p>
+                </div>
+            </div>
+
+            <div class="mt-1.5 rounded-md bg-navy px-3 py-1.5 text-center">
+                <p class="text-small text-cream/95">
+                    <strong class="text-mantis">Próximo passo:</strong> confirmar aprovação desta proposta e enviar <strong class="text-cream">logo, fotos e acesso à Área do Cliente</strong> para iniciarmos o novo site da JR Express em até <strong class="text-cream">7 dias</strong>.
+                </p>
+            </div>
+        </main>
+
+        <footer class="footer-compact content-padding border-t border-navy/10 bg-paper pb-2 pt-1">
+            <div class="mb-2 flex flex-row items-start justify-between gap-6">
+                <div class="min-w-0 flex-1 space-y-1.5">
+                    <p class="text-small font-semibold text-navy">De acordo — JR Express:</p>
+                    <div class="border-b-2 border-navy/80"></div>
+                    <p class="text-center text-[8px] font-medium uppercase tracking-wide text-muted">Assinatura do cliente</p>
+                </div>
+                <div class="w-28 shrink-0 space-y-1.5">
+                    <p class="text-small font-semibold text-navy">Data:</p>
+                    <div class="border-b-2 border-navy/80"></div>
+                </div>
+            </div>
+
+            <div class="border-t border-navy/10 pt-1.5 text-center">
+                <p class="text-fine font-semibold uppercase tracking-wide text-navy">Belisrocha produtora audiovisual</p>
+                <p class="mt-0.5 text-fine text-muted">
+                    CNPJ 45.204.623/0001-14 · Rua Professor Hilário Veiga de Carvalho, 100 — São Paulo
+                </p>
+                <p class="mt-1 text-fine font-medium text-navy">
+                    <span class="text-mantis">(11) 97313-8895</span>
+                    <span class="text-navy/30"> · </span>
+                    lucas@belis.agency
+                    <span class="text-navy/30"> · </span>
+                    <span class="text-blue">www.belis.agency</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
