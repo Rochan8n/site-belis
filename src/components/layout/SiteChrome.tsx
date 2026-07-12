@@ -17,16 +17,18 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <SmoothScroll>
-      <PageTransition>
-        {/* Gradient spheres fixas — se movem no scroll via GSAP */}
-        <GradientBackground />
-        <NoiseOverlay />
-        <CustomCursor />
-        <Navbar />
-        {children}
-        <Footer />
-      </PageTransition>
-    </SmoothScroll>
+    <div className="cursor-auto md:cursor-none">
+      <SmoothScroll>
+        <PageTransition>
+          {/* Gradient spheres fixas — se movem no scroll via GSAP */}
+          <GradientBackground />
+          <NoiseOverlay />
+          <CustomCursor />
+          <Navbar />
+          {children}
+          <Footer />
+        </PageTransition>
+      </SmoothScroll>
+    </div>
   );
 }

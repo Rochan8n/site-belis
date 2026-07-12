@@ -238,7 +238,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans bg-navy text-cream selection:bg-coral selection:text-white antialiased cursor-auto md:cursor-none overflow-x-hidden">
+      <body className="font-sans bg-navy text-cream selection:bg-coral selection:text-white antialiased cursor-auto overflow-x-hidden">
         <GoogleAnalytics />
         <SiteChrome>{children}</SiteChrome>
       </body>
