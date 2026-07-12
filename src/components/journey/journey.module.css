@@ -2,16 +2,16 @@
   --green: #74c365; --cream: #efece2; position: relative; width: 100%; background: var(--journey-bg, #0a0a0c); color: var(--journey-ink, #efece2);
   font-family: var(--font-plex-mono), monospace; cursor: none;
 }
-.spacers { position: relative; z-index: 1; scroll-snap-type: y proximity; }
+.spacers { position: relative; z-index: 1; }
 .spacer { height: var(--journey-vh, 100vh); scroll-snap-align: start; }
-.stage { position: fixed; inset: 0; z-index: 2; overflow: hidden; color: var(--journey-ink, #efece2); pointer-events: none; transition: opacity 0.5s ease; }
+.stage { position: fixed; inset: 0; z-index: 2; overflow: clip; color: var(--journey-ink, #efece2); pointer-events: none; transition: opacity 0.5s ease; }
 .locked .stations,
 .locked .markers { opacity: 0 !important; }
 .background { position: absolute; inset: 0; background: var(--journey-bg, #0a0a0c); transition: background 0.08s linear; }
 .grid { position: absolute; inset: 0; opacity: 0.09; background-image: radial-gradient(currentColor 1px, transparent 1.5px); background-size: 30px 30px; }
 .blobButton {
   position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(76vmin, 730px); height: min(76vmin, 730px); z-index: 2;
-  pointer-events: auto; padding: 0; border: 0; background: transparent; cursor: none;
+  pointer-events: auto; padding: 0; border: 0; background: transparent; cursor: none; touch-action: pan-y;
 }
 .blobButton:focus-visible { outline: 2px solid var(--green); outline-offset: -10px; }
 .blob { display: block; width: 100%; height: 100%; }
@@ -30,11 +30,11 @@
 .cage b:nth-of-type(4) { left: 50%; width: 1px; height: 9px; }
 .cage b:nth-of-type(3) { top: -5px; }
 .cage b:nth-of-type(4) { bottom: -5px; }
-.markers { position: absolute; inset: 0; z-index: 7; transition: opacity 0.45s ease; }
+.markers { position: absolute; inset: 0; z-index: 7; pointer-events: none; transition: opacity 0.45s ease; }
 .marker {
   position: absolute; pointer-events: auto; border: 0; padding: 7px 12px; color: inherit; background: transparent;
   font: 500 10px/1 var(--font-plex-mono),
-    monospace; letter-spacing: 0.24em; white-space: nowrap; cursor: none; opacity: 0.6;
+    monospace; letter-spacing: 0.24em; white-space: nowrap; cursor: none; opacity: 0.6; touch-action: pan-y;
   transition: opacity 0.3s,
     background 0.3s,
     color 0.3s;
@@ -47,7 +47,7 @@
 .marker-web { right: clamp(48px, 11vw, 200px); bottom: 26%; }
 .marker-systems { left: clamp(22px, 6vw, 96px); bottom: 22%; }
 .marker-return { left: clamp(22px, 6vw, 96px); top: 34%; }
-.stations { position: absolute; inset: 0; z-index: 5; transition: opacity 0.45s ease; }
+.stations { position: absolute; inset: 0; z-index: 5; pointer-events: none; transition: opacity 0.45s ease; }
 .stations :global(.journey-station) { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; will-change: opacity, transform; }
 .stations :global(.journey-station:first-child) { opacity: 1; visibility: visible; }
 .stations :global(.hero-kicker) {
@@ -66,7 +66,7 @@
 .stations :global(.journey-text-button) {
   pointer-events: auto; border: 0; padding: 4px; color: inherit; background: transparent; font: 500 11px/1.3 var(--font-plex-mono),
     monospace;
-  letter-spacing: 0.3em; cursor: none;
+  letter-spacing: 0.3em; cursor: none; touch-action: pan-y;
 }
 .stations :global(.scroll-hint) { font-size: 9px; letter-spacing: 0.4em; animation: blink 3s ease-in-out infinite; }
 .stations :global(.station-block) {
@@ -103,7 +103,7 @@
   pointer-events: auto; display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 14px 22px; border: 1px solid currentColor;
   color: inherit; background: color-mix(in srgb, var(--journey-bg) 55%, transparent); text-decoration: none;
   font: 600 10px/1.2 var(--font-plex-mono),
-    monospace; letter-spacing: 0.26em; cursor: none; transition: background 0.3s,
+    monospace; letter-spacing: 0.26em; cursor: none; touch-action: pan-y; transition: background 0.3s,
     color 0.3s;
 }
 .stations :global(.journey-cta:hover),
@@ -126,12 +126,12 @@
 .stations :global(.contact-actions) { display: flex; gap: 10px; flex-wrap: wrap; }
 .stations :global(.projects-line) { max-width: 560px !important; }
 .stations :global(.testimonial-proof) {
-  position: absolute; right: clamp(22px, 6vw, 96px); top: 50%; translate: 0 -50%; width: min(30vw, 340px); pointer-events: auto;
+  position: absolute; right: clamp(22px, 6vw, 96px); top: 50%; translate: 0 -50%; width: min(30vw, 340px); pointer-events: auto; touch-action: pan-y;
 }
 .stations :global(.proof-label) { font-size: 9px; letter-spacing: 0.28em; opacity: 0.5; }
 .stations :global(.proof-cards) { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
 .stations :global(.proof-card) {
-  position: relative; aspect-ratio: 9/16; overflow: hidden; padding: 0; border: 1px solid #efece240; background: #111; color: #efece2; cursor: none;
+  position: relative; aspect-ratio: 9/16; overflow: hidden; padding: 0; border: 1px solid #efece240; background: #111; color: #efece2; cursor: none; touch-action: pan-y;
 }
 .stations :global(.proof-card img) { object-fit: cover; opacity: 0.72; transition: transform 0.4s,
     opacity 0.4s; }
@@ -170,7 +170,7 @@
 .hudTop button {
   pointer-events: auto; border: 0; padding: 5px; background: transparent; color: inherit; font: 700 14px var(--font-archivo),
     sans-serif;
-  letter-spacing: 0.38em; cursor: none;
+  letter-spacing: 0.38em; cursor: none; touch-action: pan-y;
 }
 .hudTop i { opacity: 0.45; font-weight: 400; }
 .hudBottom { bottom: 0; align-items: flex-end; padding: 0 clamp(20px, 4vw, 56px) max(16px, env(safe-area-inset-bottom)); }
@@ -246,7 +246,7 @@
   .hudBottom div > i { width: 60px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .spacers { scroll-snap-type: none; }
+  .spacer { scroll-snap-align: none; }
   .stage,
   .stations,
   .markers,

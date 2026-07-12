@@ -27,7 +27,7 @@ export default function ContatoPage() {
     return () => ctx.revert();
   }, []);
 
-  const text = "VIABILIZE SUA ESTRATÉGIA AUDIOVISUAL.";
+  const text = "VAMOS CONSTRUIR A VERSÃO QUE O MERCADO RESPEITA.";
 
   return (
     <main className="w-full min-h-screen bg-navy overflow-hidden pt-36 pb-24 sm:pt-48 sm:pb-32 relative z-20">

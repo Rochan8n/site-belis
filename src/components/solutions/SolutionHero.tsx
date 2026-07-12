@@ -1,11 +1,12 @@
 import { SolutionBlob } from "./SolutionBlob";
-import { WHATSAPP_HREF } from "./solutionsData";
 
 type SolutionHeroProps = {
   eyebrow: string;
   headline: string;
   accent: string;
   subcopy: string;
+  ctaLabel: string;
+  ctaHref: string;
 };
 
 export function SolutionHero({
@@ -13,6 +14,8 @@ export function SolutionHero({
   headline,
   accent,
   subcopy,
+  ctaLabel,
+  ctaHref,
 }: SolutionHeroProps) {
   return (
     <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pb-16 pt-36 text-center sm:px-12 lg:px-24">
@@ -40,12 +43,12 @@ export function SolutionHero({
           {subcopy}
         </p>
         <a
-          href={WHATSAPP_HREF}
+          href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex min-h-12 items-center justify-center gap-3 bg-coral px-7 py-4 text-xs font-bold uppercase tracking-[0.22em] text-navy outline-none transition hover:shadow-[0_0_34px_rgba(116,195,101,0.45)] focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-4 focus-visible:ring-offset-navy sm:px-9"
         >
-          Iniciar projeto <span aria-hidden="true">→</span>
+          {ctaLabel} <span aria-hidden="true">→</span>
         </a>
       </div>
 

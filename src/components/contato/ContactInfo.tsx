@@ -26,10 +26,10 @@ export function ContactInfo() {
       <div className="info-line">
         <h3 className="font-heading font-black text-3xl sm:text-4xl text-cream tracking-tight uppercase mb-4">Contato Direto</h3>
         <p className="font-sans text-cream/70 text-lg leading-relaxed max-w-sm mb-6">
-          Preencha o formulário ou entre em contato pelos nossos canais prioritários.
+          Conte o que precisa — vídeo, site ou sistema. Respondemos pelos canais abaixo.
         </p>
         <span className="block font-sans font-bold text-coral uppercase tracking-widest text-sm py-3 border-l-2 border-coral pl-4">
-          Respondemos aplicações qualificadas em até 24 horas.
+          Resposta em até 24 horas.
         </span>
       </div>
 

@@ -5,7 +5,7 @@ import { ValuesSection } from "@/components/sobre/ValuesSection";
 
 const SOBRE_TITLE = "Sobre a Agência";
 const SOBRE_DESCRIPTION =
-  "Produtora audiovisual fundada em 2021, com +150 projetos entregues, direção criativa dedicada e infraestrutura de cinema. Conheça a história e os valores da Belis Agency.";
+  "Do frame ao sistema: audiovisual, websites e software sob medida. +150 projetos, direção dedicada. Conheça a Belis Agency — São Paulo.";
 
 export const metadata: Metadata = {
   title: SOBRE_TITLE,

@@ -6,7 +6,11 @@ import { ProcessSteps } from "@/components/solutions/ProcessSteps";
 import { QualityGrid } from "@/components/solutions/QualityGrid";
 import { SolutionHero } from "@/components/solutions/SolutionHero";
 import {
-  HERO_SUBCOPY,
+  HERO_CTA_LABEL,
+  SYS_CTA_HEADING,
+  SYS_CTA_LABEL,
+  SYS_HERO_SUBCOPY,
+  SYS_WHATSAPP_HREF,
   sysItems,
   systemAudiences,
 } from "@/components/solutions/solutionsData";
@@ -46,13 +50,19 @@ export default function SistemasPage() {
         eyebrow="Sistemas"
         headline="Do vídeo que vende"
         accent="ao sistema que escala."
-        subcopy={HERO_SUBCOPY}
+        subcopy={SYS_HERO_SUBCOPY}
+        ctaLabel={HERO_CTA_LABEL}
+        ctaHref={SYS_WHATSAPP_HREF}
       />
       <ItemGrid category="Sistemas" items={sysItems} />
       <AudienceGrid items={systemAudiences} />
       <ProcessSteps />
       <QualityGrid />
-      <CtaBanner />
+      <CtaBanner
+        heading={SYS_CTA_HEADING}
+        ctaLabel={SYS_CTA_LABEL}
+        ctaHref={SYS_WHATSAPP_HREF}
+      />
     </main>
   );
 }

@@ -88,6 +88,53 @@ export function BelisJourney() {
     };
   }, []);
 
+  // Stage fixo engole wheel sobre hit-targets (blob, CTAs, markers).
+  // Com pointer-events:none nas camadas cheias, só alvos clicáveis caem aqui.
+  useEffect(() => {
+    const onWheel = (event: WheelEvent) => {
+      if (event.ctrlKey || event.defaultPrevented) return;
+      const target = event.target as Element | null;
+      if (!target?.closest("[data-journey-stage]")) return;
+      if (target.closest(".proof-lightbox, [role='dialog']")) return;
+      event.preventDefault();
+      window.scrollBy(0, event.deltaY);
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, []);
+
+  // Settle leve: só encaixa se já estiver perto do pico (~18% da viewport).
+  useEffect(() => {
+    let settleTimer = 0;
+    const settle = () => {
+      if (locked) return;
+      const vh = getJourneyViewportHeight();
+      const progress = window.scrollY / vh;
+      const nearest = Math.min(
+        STATION_COUNT - 1,
+        Math.max(0, Math.round(progress)),
+      );
+      const distance = Math.abs(progress - nearest);
+      if (distance < 0.02 || distance > 0.18) return;
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      window.scrollTo({
+        top: nearest * vh,
+        behavior: reduced ? "auto" : "smooth",
+      });
+    };
+    const onScroll = () => {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(settle, 180);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.clearTimeout(settleTimer);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [locked]);
+
   useEffect(() => {
     const cursor = cursorRef.current;
     if (!cursor || !window.matchMedia("(pointer: fine)").matches) return;
@@ -113,7 +160,7 @@ export function BelisJourney() {
         ))}
       </div>
 
-      <div className={styles.stage}>
+      <div className={styles.stage} data-journey-stage>
         <div className={styles.background} />
         <div className={styles.grid} aria-hidden="true" />
 
@@ -137,7 +184,7 @@ export function BelisJourney() {
           <b />
         </div>
 
-        <nav className={styles.markers} aria-label="Estações da jornada">
+        <nav className={styles.markers} aria-label="Seções">
           {markers.map((marker) => (
             <button
               key={marker.station}

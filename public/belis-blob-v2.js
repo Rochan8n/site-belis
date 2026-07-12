@@ -268,7 +268,7 @@
     this.style.touchAction = 'pan-y';
 
     var canvas = document.createElement('canvas');
-    canvas.style.cssText = 'width:100%;height:100%;display:block;';
+    canvas.style.cssText = 'width:100%;height:100%;display:block;touch-action:pan-y;';
     this.appendChild(canvas);
     this._canvas = canvas;
 

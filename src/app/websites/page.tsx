@@ -6,7 +6,11 @@ import { ProcessSteps } from "@/components/solutions/ProcessSteps";
 import { QualityGrid } from "@/components/solutions/QualityGrid";
 import { SolutionHero } from "@/components/solutions/SolutionHero";
 import {
-  HERO_SUBCOPY,
+  HERO_CTA_LABEL,
+  WEB_CTA_HEADING,
+  WEB_CTA_LABEL,
+  WEB_HERO_SUBCOPY,
+  WEB_WHATSAPP_HREF,
   webAudiences,
   webItems,
 } from "@/components/solutions/solutionsData";
@@ -46,13 +50,19 @@ export default function WebsitesPage() {
         eyebrow="Websites"
         headline="Do vídeo que vende"
         accent="à página que converte."
-        subcopy={HERO_SUBCOPY}
+        subcopy={WEB_HERO_SUBCOPY}
+        ctaLabel={HERO_CTA_LABEL}
+        ctaHref={WEB_WHATSAPP_HREF}
       />
       <ItemGrid category="Websites" items={webItems} />
       <AudienceGrid items={webAudiences} />
       <ProcessSteps />
       <QualityGrid />
-      <CtaBanner />
+      <CtaBanner
+        heading={WEB_CTA_HEADING}
+        ctaLabel={WEB_CTA_LABEL}
+        ctaHref={WEB_WHATSAPP_HREF}
+      />
     </main>
   );
 }

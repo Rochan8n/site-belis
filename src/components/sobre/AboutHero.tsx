@@ -42,7 +42,7 @@ export function AboutHero() {
     return () => ctx.revert();
   }, []);
 
-  const text = "Estratégia Audiovisual com Rigor de Engenharia e Visão de Negócios.";
+  const text = "Do frame ao sistema — presença que fecha e operação que escala.";
 
   return (
     <section ref={containerRef} className="relative w-full h-[80vh] sm:h-screen flex items-center justify-center overflow-hidden bg-navy z-10">
@@ -72,7 +72,8 @@ export function AboutHero() {
           ))}
         </h1>
         <p className="text-cream/70 text-base sm:text-lg lg:text-xl font-body max-w-3xl px-6 sm:px-12 lg:px-24 leading-relaxed">
-          A Belis não nasceu apenas para filmar. Nasceu para transformar inteligência de mercado em ativos de vídeo que sustentam o crescimento de grandes marcas e profissionais de elite.
+          A Belis nasceu no audiovisual — e evoluiu para o que o negócio precisa depois do vídeo:
+          página que converte e sistema que escala. Um time, um padrão, do roteiro ao deploy.
         </p>
       </div>
     </section>

@@ -54,25 +54,39 @@ export const sysItems = [
   },
 ] as const satisfies readonly SolutionItem[];
 
-const companiesAudience = {
-  name: "Empresas que já filmam com a Belis",
-  description:
-    "O vídeo abre a porta; a página e o sistema fecham e escalam o negócio. Um parceiro só, do roteiro ao deploy.",
-} as const;
-
-export const webAudiences = [companiesAudience] as const satisfies readonly SolutionItem[];
+export const webAudiences = [
+  {
+    name: "Empresas que já filmam com a Belis",
+    description:
+      "O vídeo abre a porta; a página fecha o negócio. Mesmo padrão visual, mesma direção.",
+  },
+  {
+    name: "Marcas com site que não vende",
+    description:
+      "Bonito no desktop, morto no celular, sem CTA claro. A gente reconstrói para converter.",
+  },
+  {
+    name: "Lançamentos e campanhas",
+    description:
+      "Landing rápida, mensurável e alinhada ao criativo — pronta para tráfego pago.",
+  },
+] as const satisfies readonly SolutionItem[];
 
 export const systemAudiences = [
-  companiesAudience,
+  {
+    name: "Empresas que já filmam com a Belis",
+    description:
+      "Depois da autoridade e da conversão, o sistema sustenta a operação. Um parceiro do roteiro ao deploy.",
+  },
   {
     name: "Negócios presos em planilhas",
     description:
-      "Quando o Excel vira gargalo, um sistema interno sob medida devolve as horas da sua equipe.",
+      "Quando o Excel vira gargalo, um sistema interno sob medida devolve as horas da equipe.",
   },
   {
     name: "Fundadores com uma ideia de produto",
     description:
-      "Do conceito ao MVP funcional com auth, billing e dashboard — pronto para os primeiros usuários.",
+      "Do conceito ao MVP com auth, billing e dashboard — pronto para os primeiros usuários.",
   },
 ] as const satisfies readonly SolutionItem[];
 
@@ -128,13 +142,28 @@ export const qualityItems = [
 export const STACK_LINE =
   "Next.js · React · Tailwind · Node · PostgreSQL · integrações via API";
 
-export const HERO_SUBCOPY =
-  "A mesma direção dedicada que produz o seu vídeo agora projeta a página que converte e o software que sustenta a operação.";
+export const WEB_HERO_SUBCOPY =
+  "O vídeo gera atenção. A página transforma atenção em lead. Mesma direção criativa, construída para converter.";
 
-export const CTA_HEADING = "Seu próximo sistema começa com uma conversa.";
+export const SYS_HERO_SUBCOPY =
+  "Quando a operação trava em planilha, o crescimento trava junto. Software sob medida — do conceito ao deploy.";
 
-export const WHATSAPP_HREF =
-  "https://wa.me/5511973138895?text=Ol%C3%A1!%20Quero%20um%20website%20ou%20sistema%20com%20a%20Belis.";
+export const WEB_CTA_HEADING = "Sua próxima página começa com uma conversa.";
+export const SYS_CTA_HEADING = "Seu próximo sistema começa com uma conversa.";
+
+export const WEB_CTA_LABEL = "Falar sobre meu site";
+export const SYS_CTA_LABEL = "Falar sobre meu sistema";
+export const HERO_CTA_LABEL = "Pedir orçamento";
+
+const wa = (text: string) =>
+  `https://wa.me/5511973138895?text=${encodeURIComponent(text)}`;
+
+export const WEB_WHATSAPP_HREF = wa(
+  "Olá! Quero um website / landing page com a Belis.",
+);
+export const SYS_WHATSAPP_HREF = wa(
+  "Olá! Quero um sistema / software com a Belis.",
+);
 
 export const INSTAGRAM_HREF = "https://www.instagram.com/belisvideo/";
 export const EMAIL_HREF = "mailto:Lucas@belis.agency";

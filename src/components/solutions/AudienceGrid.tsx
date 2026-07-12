@@ -14,9 +14,9 @@ export function AudienceGrid({ items }: { items: readonly SolutionItem[] }) {
           id="solutions-audience-title"
           className="mb-14 font-heading text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl"
         >
-          Para quem recusa
+          Para quem precisa
           <br />
-          o medíocre.
+          de resultado.
         </h2>
         <ul className={`grid gap-x-12 ${items.length > 1 ? "md:grid-cols-3" : "max-w-2xl"}`}>
           {items.map((item) => (

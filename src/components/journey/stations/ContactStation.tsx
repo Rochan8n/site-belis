@@ -4,14 +4,24 @@ import { TestimonialProof } from "../TestimonialProof";
 
 export function ContactStation() {
   return (
-    <section id="journey-station-5" className="journey-station content-station contact-station" aria-label="O Retorno">
+    <section id="journey-station-5" className="journey-station content-station contact-station" aria-label="Contato">
       <div className="station-block contact-block">
-        <span className="act-kicker">ATO III · RETORNO</span>
-        <span className="station-badge">✦ A TRAVESSIA DO LIMIAR</span>
-        <h2>O primeiro passo<br />é seu.</h2>
-        <p>Você atravessa o limiar com uma mensagem. Do outro lado, um parceiro do roteiro ao deploy — e a versão da sua empresa que o mercado vai admirar.</p>
+        <span className="act-kicker">PRÓXIMO PASSO</span>
+        <span className="station-badge">✦ VAMOS CONVERSAR</span>
+        <h2>Pronto para a versão<br />que o mercado respeita?</h2>
+        <p>
+          Manda uma mensagem. Do outro lado, um time do roteiro ao deploy —
+          audiovisual, web e software no mesmo padrão.
+        </p>
         <div className="contact-actions">
-          <a className="journey-cta primary" href="https://wa.me/5511973138895" target="_blank" rel="noopener noreferrer">DAR O PRIMEIRO PASSO <span aria-hidden="true">→</span></a>
+          <a
+            className="journey-cta primary"
+            href="https://wa.me/5511973138895"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            FALAR NO WHATSAPP <span aria-hidden="true">→</span>
+          </a>
           <Link className="journey-cta" href="/portfolio">PORTFÓLIO ↗</Link>
         </div>
         <p className="projects-line">{importantProjects.join(" · ")}</p>

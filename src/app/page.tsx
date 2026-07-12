@@ -3,7 +3,7 @@ import { BelisJourney } from "@/components/journey/BelisJourney";
 
 const HOME_TITLE = "Do Frame ao Sistema — Audiovisual, Web e Software";
 const HOME_DESCRIPTION =
-  "Da produção audiovisual ao website que converte e ao sistema que escala. +150 projetos, primeira versão em até 7 dias. Belis Agency — São Paulo.";
+  "Sua empresa já entrega. Falta a presença que fecha. Audiovisual, websites e sistemas no mesmo padrão. +150 projetos. Belis Agency — São Paulo.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,

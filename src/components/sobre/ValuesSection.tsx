@@ -6,21 +6,21 @@
 const values = [
   {
     title: "Nossa Missão",
-    desc: "Desenvolver soluções audiovisuais que reduzam o ciclo de vendas e maximizem a autoridade dos nossos clientes através de um rigor técnico absoluto.",
+    desc: "Construir presença e operação que vendem: audiovisual que gera autoridade, páginas que convertem e sistemas que escalam — com rigor técnico e foco em resultado de negócio.",
     bgcolor: "bg-navy",
     textColor: "text-cream",
     style: {},
   },
   {
     title: "Nossa Visão",
-    desc: "Ser a referência em produção estratégica para o mercado premium, onde a estética cinematográfica serve sempre ao objetivo de negócio.",
+    desc: "Ser o parceiro do frame ao sistema para marcas que não aceitam mediocridade — estética cinematográfica a serviço de conversão e escala.",
     bgcolor: "",
     textColor: "text-cream",
     style: { backgroundColor: "#001f3f" },
   },
   {
     title: "Diferencial Estratégico",
-    desc: "Nossa liderança combina formação em Administração (Mackenzie) e Gestão de Engenharia da Qualidade (USP). Isso garante que cada frame entregue pela Belis passe por um controle de qualidade focado em resultados reais, não apenas em visualizações.",
+    desc: "Liderança com Administração (Mackenzie) e Gestão de Engenharia da Qualidade (USP). Cada entrega — vídeo, site ou software — passa por controle de qualidade focado em resultado, não em vanity metrics.",
     bgcolor: "",
     textColor: "text-cream",
     style: { backgroundColor: "#44403C" },

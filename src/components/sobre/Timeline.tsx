@@ -8,8 +8,8 @@ const milestones = [
   { year: "2016", title: "O Rigor Acadêmico e Gestão", desc: "Conclusão da formação em Administração (Mackenzie) e especialização em Gestão de Engenharia da Qualidade (USP). Este período consolidou a visão de processos e eficiência operacional que hoje diferencia a entrega técnica da Belis." },
   { year: "2021", title: "Fundamentos e Mercado", desc: "Transição estratégica para o audiovisual. Início da operação focada em setores de alta complexidade, como indústria, logística e o setor automotivo, onde a precisão é mandatória." },
   { year: "2023", title: "Ativos de Performance", desc: "Consolidação da metodologia Belis. O vídeo deixa de ser uma peça criativa isolada para se tornar um ativo financeiro estratégico, focado em ROI e autoridade para médias e grandes empresas." },
-  { year: "2025", title: "Inteligência e Escala", desc: "Integração de tecnologia de ponta e análise de dados. Desenvolvimento de ecossistemas de conteúdo que sustentam o posicionamento digital de profissionais de elite e marcas corporativas." },
-  { year: "2026", title: "Expansão e Social Commerce", desc: "Lançamento da vertical focada em TikTok Shops e vendas em tempo real. A união definitiva entre a estética cinematográfica e a conversão direta de alta escala." },
+  { year: "2025", title: "Inteligência e Escala", desc: "Integração de tecnologia e dados. Ecossistemas de conteúdo que sustentam o posicionamento digital de profissionais de elite e marcas corporativas." },
+  { year: "2026", title: "Do Frame ao Sistema", desc: "Expansão formal para websites e software sob medida. O mesmo padrão do estúdio — agora também na página que converte e no sistema que escala." },
 ];
 
 export function Timeline() {

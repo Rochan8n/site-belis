@@ -40,7 +40,7 @@ export function TestimonialProof() {
   return (
     <>
       <div className="testimonial-proof" aria-label="Depoimentos de clientes">
-        <span className="proof-label">HERÓIS QUE JÁ ATRAVESSARAM</span>
+        <span className="proof-label">QUEM JÁ CONSTRUIU COM A GENTE</span>
         <div className="proof-cards">
           {proofs.map((proof) => (
             <button key={proof.youtubeId} className="proof-card" onClick={() => openProof(proof)} aria-label={`Assistir depoimento de ${proof.name}`}>

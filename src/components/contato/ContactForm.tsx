@@ -8,9 +8,11 @@ const projectTypes = [
   "Produção mensal de Reels",
   "Vídeo Institucional",
   "Vídeo para Youtube",
+  "Website / Landing page",
+  "Sistema / Software",
   "Foto",
   "Produção TikTok Shops",
-  "Outros"
+  "Outros",
 ];
 
 export function ContactForm() {

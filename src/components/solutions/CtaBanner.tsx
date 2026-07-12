@@ -1,12 +1,13 @@
 import Link from "next/link";
-import {
-  CTA_HEADING,
-  EMAIL_HREF,
-  INSTAGRAM_HREF,
-  WHATSAPP_HREF,
-} from "./solutionsData";
+import { EMAIL_HREF, INSTAGRAM_HREF } from "./solutionsData";
 
-export function CtaBanner() {
+type CtaBannerProps = {
+  heading: string;
+  ctaLabel: string;
+  ctaHref: string;
+};
+
+export function CtaBanner({ heading, ctaLabel, ctaHref }: CtaBannerProps) {
   return (
     <section
       aria-labelledby="solutions-cta-title"
@@ -17,15 +18,15 @@ export function CtaBanner() {
           id="solutions-cta-title"
           className="mb-9 max-w-5xl font-heading text-[clamp(2.35rem,6vw,4.75rem)] font-black uppercase leading-[0.95] tracking-tight"
         >
-          {CTA_HEADING}
+          {heading}
         </h2>
         <a
-          href={WHATSAPP_HREF}
+          href={ctaHref}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex min-h-14 items-center justify-center gap-3 bg-navy px-9 py-5 text-xs font-bold uppercase tracking-[0.24em] text-coral outline-none transition hover:shadow-[0_12px_40px_rgba(5,5,8,0.4)] focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-coral sm:px-11 sm:text-sm"
         >
-          WhatsApp <span aria-hidden="true">→</span>
+          {ctaLabel} <span aria-hidden="true">→</span>
         </a>
         <nav
           aria-label="Links complementares"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const CONTATO_TITLE = "Contato — Fale com a Belis Agency";
 const CONTATO_DESCRIPTION =
-  "Aplicações qualificadas respondidas em até 24h. Fale com a Belis Agency por WhatsApp, e-mail ou telefone para orçar produção audiovisual, web design ou tráfego pago.";
+  "Orçamento para audiovisual, website ou sistema. Resposta em até 24h. Fale com a Belis Agency por WhatsApp, e-mail ou formulário.";
 
 export const metadata: Metadata = {
   title: CONTATO_TITLE,

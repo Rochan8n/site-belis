@@ -31,7 +31,7 @@ function BelisWordmark() {
   );
 }
 
-const CTA_TEXT = "FALE COM A PRODUTORA QUE REALMENTE ENTENDE DE NEGÓCIOS";
+const CTA_TEXT = "FALE COM O TIME QUE VAI DO FRAME AO SISTEMA";
 
 export function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -207,7 +207,7 @@ export function Footer() {
 
           <div className="flex flex-col items-start sm:items-end gap-1 text-navy/40 text-[10px] font-sans tracking-[0.2em] uppercase">
             <span>© {new Date().getFullYear()} Belis.</span>
-            <span>Feito pra quem recusa o medíocre.</span>
+            <span>Do frame ao sistema.</span>
           </div>
         </div>
 

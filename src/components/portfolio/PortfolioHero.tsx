@@ -106,8 +106,7 @@ export function PortfolioHero() {
         {/* Subtitle + scroll */}
         <div className="hero-sub flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mt-6">
           <p className="text-cream/60 font-sans font-light text-base sm:text-lg max-w-md leading-relaxed">
-            Aqui você não encontra apenas vídeos. Você encontra soluções de negócio 
-            traduzidas em imagem e som.
+            Cases reais: autoridade em imagem e som — o primeiro passo da presença que fecha.
           </p>
           {/* Scroll indicator */}
           <div className="flex items-center gap-3 self-end sm:self-auto">
