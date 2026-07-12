@@ -1,10 +1,10 @@
-# Portfolio Orbit HUD — Design
+# Spherical Portfolio HUD — Design
 
 ## Goal
 
-Add four important Belis projects to Studio station of new journey landing page. Images orbit blob as clickable spherical HUD, adding portfolio proof without obscuring existing copy or controls.
+Replace current card orbit in Studio station with nearly closed 3D sphere made from four project-image panels. Sphere surrounds and partially covers blob while gaps preserve visible blob core.
 
-## Projects and assets
+## Projects
 
 | Project | Asset |
 | --- | --- |
@@ -13,47 +13,48 @@ Add four important Belis projects to Studio station of new journey landing page.
 | Salles Nogueira Advogados | `/images/portfolio/salles-nogueira.png` |
 | Kofar Metalúrgica | `/images/portfolio/kofar.png` |
 
-All four cards link to `/portfolio`.
+Every panel links to `/portfolio`.
 
-## Component design
+## Geometry
 
-Create `PortfolioOrbit`, rendered only inside Studio trial station (`station === 2`). Component owns project metadata and emits four semantic links with image, project name, and HUD decoration. Existing blob remains separate and unchanged.
+Four panels form sphere quadrants. Each panel uses perspective, asymmetric border radius, clipping, and 3D transforms to imply curved shell. Narrow horizontal and vertical gaps expose animated blob beneath. Shell remains visually centered on blob and never becomes fully opaque across its entire surface.
 
-Orbit layer sits around blob and below Studio copy, CTA, notes, statistics, HUD chrome, and navigation. Pointer events remain disabled on orbit container and enabled only on card links.
+Sphere uses one rotating 3D scene. Panel positions remain locked to quadrants while scene rotates slowly around Y axis with subtle X-axis tilt. Depth uses backface visibility, brightness, scale, and shadow rather than duplicated images.
 
-## Motion and depth
+## Materialization lifecycle
 
-Use CSS transforms and keyframes; add no runtime dependency.
+`BelisJourney` passes active station state into Studio `TrialStation`, then `PortfolioOrbit` receives `active`.
 
-- Four cards begin in a 2×2 spatial arrangement around blob.
-- Shared elliptical orbit rotates slowly and continuously.
-- Per-card transforms use staggered phases, scale, opacity, and z-index to imply front/back depth.
-- Front cards appear larger and more opaque. Rear cards remain readable but visually quieter.
-- Hover or keyboard focus pauses orbit and strengthens focused card border.
-- Motion uses transform and opacity only.
+When Studio becomes active:
 
-When `prefers-reduced-motion: reduce` is active, animation stops. Cards remain visible in stable 2×2 layout.
+1. Panels begin inside blob at reduced scale, blurred and transparent.
+2. Panels expand outward with short stagger into four shell quadrants.
+3. Blur resolves and opacity rises.
+4. Continuous 360-degree rotation starts after entrance settles.
+
+When Studio becomes inactive, active class is removed. Panels contract toward blob core and fade, preventing shell from bleeding into adjacent stations.
+
+## Layering and interaction
+
+Sphere sits above blob but below Studio title, description, CTA, note, statistics, and global HUD. Only panel surfaces accept pointer events. Clicking any panel opens `/portfolio`. Hover or keyboard focus pauses continuous rotation and shows green focus treatment.
 
 ## Responsive behavior
 
-Desktop orbit may extend beyond blob cage while staying inside stage. Mobile orbit stays within blob region below Studio CTA and above statistics. Cards shrink enough to avoid Studio title, description, CTA, note, and bottom HUD.
+Desktop shell approximately follows blob cage size. Mobile shell stays centered in lower blob region, below CTA and above statistics. Panel labels use compact opaque strips. Minimum card hit target remains 44px.
 
-Mobile cards retain minimum 44px interactive target. Project labels may use compact single-line truncation when space is limited. Existing opaque content surfaces remain above orbit.
+## Accessibility and motion
 
-## Accessibility
-
-- Each card is a normal Next.js link to `/portfolio`.
-- Image `alt` identifies project.
-- Link accessible name includes project and portfolio destination.
-- Focus-visible state has clear green outline.
-- Decorative HUD marks are hidden from assistive technology.
-- Reduced-motion preference disables orbit animation.
+- Semantic links with project-specific accessible names.
+- Project images use descriptive alt text.
+- Decorative shell marks remain hidden from assistive technology.
+- `prefers-reduced-motion: reduce` disables materialization and rotation; four panels render immediately in stable 2×2 sphere silhouette.
 
 ## Verification
 
 - Production build succeeds.
-- TypeScript and CSS compile without new errors.
-- Four links render in Studio station and resolve to `/portfolio`.
-- Cards do not intercept clicks outside their bounds.
-- Mobile widths around 390px keep title, paragraph, CTA, notes, stats, and HUD readable.
-- Reduced-motion layout remains stable and clickable.
+- Changed TypeScript files pass ESLint.
+- Studio active state controls entrance and exit classes.
+- Four images and four `/portfolio` links render.
+- Sphere leaves visible gaps for blob core.
+- Mobile content remains readable and clickable.
+- Reduced-motion layout remains stable.
