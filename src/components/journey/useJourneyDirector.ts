@@ -41,6 +41,7 @@ const interpolateLook = (
   solid: lerp(a.solid ?? 0, b.solid ?? 0, t),
   wire: lerp(a.wire ?? 0, b.wire ?? 0, t),
   points: lerp(a.points ?? 0, b.points ?? 0, t),
+  tex: lerp(a.tex ?? 0, b.tex ?? 0, t),
   colA: mixArray(a.colA!, b.colA!, t),
   colB: mixArray(a.colB!, b.colB!, t),
   base: mixArray(a.base!, b.base!, t),

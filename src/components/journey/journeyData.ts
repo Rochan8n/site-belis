@@ -33,7 +33,7 @@ export const acts = [
 export const looks: readonly BelisBlobLook[] = [
   { amp: 0.06, freq: 1.2, spin: 0.12, solid: 1, wire: 0, points: 0, colA: "#DBDEE6", colB: "#74C365", base: "#0B0C10", fadeCol: "#0A0A0C" },
   { amp: 0.12, freq: 1.35, spin: 0.16, solid: 1, wire: 0, points: 0, colA: "#E6E9EE", colB: "#74C365", base: "#0B0C10", fadeCol: "#0B0B0D" },
-  { amp: 0.07, freq: 1.12, spin: 0.13, solid: 1, wire: 0, points: 0, colA: "#C9CCD4", colB: "#74C365", base: "#0C0D11", fadeCol: "#E9E5DA" },
+  { amp: 0.006, freq: 0.9, spin: 0.16, solid: 1, wire: 0, points: 0, tex: 1, colA: "#C9CCD4", colB: "#74C365", base: "#0C0D11", fadeCol: "#E9E5DA" },
   { amp: 0.2, freq: 1.7, spin: 0.22, solid: 0, wire: 0.9, points: 0, colA: "#5B5F31", colB: "#74C365", base: "#101013", fadeCol: "#E5E2D5" },
   { amp: 0.18, freq: 1.55, spin: 0.22, solid: 0, wire: 0.95, points: 0, colA: "#EFE9D8", colB: "#74C365", base: "#101013", fadeCol: "#0B0B0D" },
   { amp: 0.08, freq: 1.25, spin: 0.34, solid: 1, wire: 0, points: 0, colA: "#DBDEE6", colB: "#74C365", base: "#0B0C10", fadeCol: "#0A0A0C" },

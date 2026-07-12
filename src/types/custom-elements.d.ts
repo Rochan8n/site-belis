@@ -9,6 +9,7 @@ export interface BelisBlobLook {
   solid?: number;
   wire?: number;
   points?: number;
+  tex?: number;
   colA?: BelisBlobColor;
   colB?: BelisBlobColor;
   base?: BelisBlobColor;
