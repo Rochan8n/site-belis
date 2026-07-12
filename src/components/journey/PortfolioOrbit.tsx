@@ -25,6 +25,12 @@ interface PortfolioOrbitProps {
   active: boolean;
 }
 
+const getPanelStyle = (index: number) =>
+  ({
+    "--panel-index": index,
+    "--panel-latitude": `${index % 2 === 0 ? -18 : 18}deg`,
+  }) as CSSProperties;
+
 export function PortfolioOrbit({ active }: PortfolioOrbitProps) {
   return (
     <div
@@ -33,27 +39,27 @@ export function PortfolioOrbit({ active }: PortfolioOrbitProps) {
       aria-hidden={!active}
     >
       <span className="portfolio-sphere-axis" aria-hidden="true" />
-      <div className="portfolio-sphere-scene">
-        {orbitProjects.map((project, index) => (
-          <Link
-            className="portfolio-sphere-panel"
-            href="/portfolio"
-            key={project.name}
-            style={{ "--panel-index": index } as CSSProperties}
-            aria-label={`${project.name} — conhecer portfólio`}
-            tabIndex={active ? 0 : -1}
-          >
+      {orbitProjects.map((project, index) => (
+        <Link
+          className="portfolio-sphere-orbiter"
+          href="/portfolio"
+          key={project.name}
+          style={getPanelStyle(index)}
+          aria-label={`${project.name} — conhecer portfólio`}
+          tabIndex={active ? 0 : -1}
+        >
+          <span className="portfolio-sphere-panel">
             <Image
               src={project.image}
               alt={project.name}
               fill
-              sizes="(max-width: 800px) 42vw, 270px"
+              sizes="(max-width: 800px) 46vw, 320px"
             />
             <span>{project.name}</span>
             <i aria-hidden="true" />
-          </Link>
-        ))}
-      </div>
+          </span>
+        </Link>
+      ))}
     </div>
   );
 }
