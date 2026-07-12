@@ -70,7 +70,7 @@
 }
 .stations :global(.scroll-hint) { font-size: 9px; letter-spacing: 0.4em; animation: blink 3s ease-in-out infinite; }
 .stations :global(.station-block) {
-  position: absolute; left: clamp(22px, 6vw, 96px); top: 50%; translate: 0 -50%; display: flex; flex-direction: column; align-items: flex-start;
+  position: absolute; left: clamp(22px, 6vw, 96px); top: 50%; z-index: 3; translate: 0 -50%; display: flex; flex-direction: column; align-items: flex-start;
   max-width: min(34vw, 470px);
 }
 .stations :global(.guide-block) { max-width: min(46vw, 610px); }
@@ -111,12 +111,12 @@
 .stations :global(.journey-cta.primary) { background: var(--green); border-color: var(--green); color: #0a0a0c; }
 .stations :global(.act-kicker) { margin-bottom: 10px; font-size: 9px; letter-spacing: 0.26em; }
 .stations :global(.trial-note) {
-  position: absolute; right: clamp(22px, 6vw, 96px); top: 20%; display: flex; flex-direction: column; gap: 6px; min-width: 190px; padding: 12px 14px;
+  position: absolute; right: clamp(22px, 6vw, 96px); top: 20%; z-index: 3; display: flex; flex-direction: column; gap: 6px; min-width: 190px; padding: 12px 14px;
   border: 1px solid color-mix(in srgb, currentColor 22%, transparent); font-size: 9px; letter-spacing: 0.2em; opacity: 0.65;
 }
 .stations :global(.trial-note strong) { opacity: 1; }
 .stations :global(.portfolio-sphere) {
-  --sphere-gap: 8px; position: absolute; left: 50%; top: 52%; z-index: -1; width: min(57vmin, 560px); aspect-ratio: 1;
+  --sphere-gap: 8px; position: absolute; left: 50%; top: 52%; z-index: 1; width: min(66vmin, 650px); aspect-ratio: 1;
   translate: -50% -50%; pointer-events: none; perspective: 1100px; opacity: 0; transition: opacity 0.35s ease;
 }
 .stations :global(.portfolio-sphere-active) { opacity: 1; }
@@ -159,7 +159,7 @@
 .stations :global(.portfolio-sphere-panel:focus-visible) { border-color: var(--green); outline: 2px solid var(--green); outline-offset: -4px; }
 .stations :global(.portfolio-sphere:has(.portfolio-sphere-panel:hover) .portfolio-sphere-scene),
 .stations :global(.portfolio-sphere:has(.portfolio-sphere-panel:focus-visible) .portfolio-sphere-scene) { animation-play-state: paused; }
-.stations :global(.studio-proof) { position: absolute; left: clamp(22px, 6vw, 96px); right: clamp(22px, 6vw, 96px); bottom: clamp(56px, 9vh, 90px); }
+.stations :global(.studio-proof) { position: absolute; left: clamp(22px, 6vw, 96px); right: clamp(22px, 6vw, 96px); bottom: clamp(56px, 9vh, 90px); z-index: 3; }
 .stations :global(.stats) { display: flex; gap: clamp(28px, 4vw, 64px); }
 .stations :global(.stats div) { display: flex; flex-direction: column; gap: 4px; }
 .stations :global(.stats strong) { font: 600 clamp(22px, 2.2vw, 30px) / 1 var(--font-archivo),
@@ -285,7 +285,7 @@
     top: auto; right: 22px; bottom: 170px; min-width: 0; padding: 8px 10px; font-size: 10px; line-height: 1.35; letter-spacing: 0.12em;
     background: var(--journey-bg); opacity: 1;
   }
-  .stations :global(.portfolio-sphere) { --sphere-gap: 6px; top: 63%; width: min(79vw, 330px); }
+  .stations :global(.portfolio-sphere) { --sphere-gap: 7px; top: 63%; width: min(90vw, 380px); }
   .stations :global(.portfolio-sphere-panel) { min-width: 44px; min-height: 44px; cursor: pointer; }
   .stations :global(.portfolio-sphere-panel > span) { padding: 3px 4px; font-size: 5px; letter-spacing: 0.08em; }
   .stations :global(.studio-proof) { left: 22px; right: 22px; bottom: 48px; }
