@@ -41,8 +41,8 @@ export function PortfolioHero() {
     return () => ctx.revert();
   }, []);
 
-  const titleLine1 = "NOSSO";
-  const titleLine2 = "ARQUIVO";
+  const titleLine1 = "PERCEPÇÃO";
+  const titleLine2 = "EM MOVIMENTO";
 
   return (
     <section
@@ -106,7 +106,7 @@ export function PortfolioHero() {
         {/* Subtitle + scroll */}
         <div className="hero-sub flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mt-6">
           <p className="text-cream/60 font-sans font-light text-base sm:text-lg max-w-md leading-relaxed">
-            Cases reais: autoridade em imagem e som — o primeiro passo da presença que fecha.
+            Marcas reais traduzidas em imagem, som e histórias que aumentam confiança antes da primeira conversa.
           </p>
           {/* Scroll indicator */}
           <div className="flex items-center gap-3 self-end sm:self-auto">

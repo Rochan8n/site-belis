@@ -6,21 +6,21 @@
 const values = [
   {
     title: "Nossa Missão",
-    desc: "Construir presença e operação que vendem: audiovisual que gera autoridade, páginas que convertem e sistemas que escalam — com rigor técnico e foco em resultado de negócio.",
+    desc: "Fazer empresas excelentes serem percebidas com a clareza, a confiança e o valor que já existem dentro delas.",
     bgcolor: "bg-navy",
     textColor: "text-cream",
     style: {},
   },
   {
     title: "Nossa Visão",
-    desc: "Ser o parceiro do frame ao sistema para marcas que não aceitam mediocridade — estética cinematográfica a serviço de conversão e escala.",
+    desc: "Construir relações duradouras com empresas que querem alinhar marca, experiência digital e operação à próxima fase do negócio.",
     bgcolor: "",
     textColor: "text-cream",
     style: { backgroundColor: "#001f3f" },
   },
   {
-    title: "Diferencial Estratégico",
-    desc: "Liderança com Administração (Mackenzie) e Gestão de Engenharia da Qualidade (USP). Cada entrega — vídeo, site ou software — passa por controle de qualidade focado em resultado, não em vanity metrics.",
+    title: "Como trabalhamos",
+    desc: "Escutamos antes de propor. Organizamos antes de executar. Cada decisão precisa fortalecer percepção, facilitar uma escolha ou remover um gargalo real.",
     bgcolor: "",
     textColor: "text-cream",
     style: { backgroundColor: "#44403C" },

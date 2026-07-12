@@ -6,12 +6,12 @@ export function ContactStation() {
   return (
     <section id="journey-station-5" className="journey-station content-station contact-station" aria-label="Contato">
       <div className="station-block contact-block">
-        <span className="act-kicker">PRÓXIMO PASSO</span>
-        <span className="station-badge">✦ VAMOS CONVERSAR</span>
-        <h2>Pronto para a versão<br />que o mercado respeita?</h2>
+        <span className="act-kicker">SUA PRÓXIMA EVOLUÇÃO</span>
+        <span className="station-badge">✦ VAMOS CONSTRUIR</span>
+        <h2>Sua empresa já evoluiu.<br />Agora a percepção precisa acompanhar.</h2>
         <p>
-          Manda uma mensagem. Do outro lado, um time do roteiro ao deploy —
-          audiovisual, web e software no mesmo padrão.
+          Vamos construir uma presença capaz de traduzir sua qualidade,
+          fortalecer sua confiança no mercado e sustentar seu crescimento.
         </p>
         <div className="contact-actions">
           <a
@@ -20,7 +20,7 @@ export function ContactStation() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            FALAR NO WHATSAPP <span aria-hidden="true">→</span>
+            VAMOS CONSTRUIR ISSO JUNTOS <span aria-hidden="true">→</span>
           </a>
           <Link className="journey-cta" href="/portfolio">PORTFÓLIO ↗</Link>
         </div>

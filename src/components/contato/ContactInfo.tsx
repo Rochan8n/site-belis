@@ -24,9 +24,9 @@ export function ContactInfo() {
   return (
     <div ref={containerRef} className="flex flex-col gap-12 sm:gap-16 pt-8 md:pt-0">
       <div className="info-line">
-        <h3 className="font-heading font-black text-3xl sm:text-4xl text-cream tracking-tight uppercase mb-4">Contato Direto</h3>
+        <h3 className="font-heading font-black text-3xl sm:text-4xl text-cream tracking-tight uppercase mb-4">Uma conversa clara</h3>
         <p className="font-sans text-cream/70 text-lg leading-relaxed max-w-sm mb-6">
-          Conte o que precisa — vídeo, site ou sistema. Respondemos pelos canais abaixo.
+          Você não precisa chegar com briefing pronto. Conte o momento da empresa e onde sente que está perdendo oportunidades. Ajudamos a organizar o próximo passo.
         </p>
         <span className="block font-sans font-bold text-coral uppercase tracking-widest text-sm py-3 border-l-2 border-coral pl-4">
           Resposta em até 24 horas.
@@ -34,7 +34,7 @@ export function ContactInfo() {
       </div>
 
       <div className="info-line flex flex-col gap-6">
-        <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Infoline</h3>
+        <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Fale direto com a Belis</h3>
         <div className="flex flex-col gap-2 font-sans font-bold text-lg text-cream/80">
           <a href="mailto:Lucas@belis.agency" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
             Lucas@belis.agency
@@ -49,7 +49,7 @@ export function ContactInfo() {
       </div>
 
       <div className="info-line flex flex-col gap-6">
-        <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Redes</h3>
+        <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Acompanhe nosso trabalho</h3>
         <ul className="flex flex-col gap-3 font-sans font-bold uppercase tracking-widest text-sm text-cream/70">
           <li>
             <a href="https://www.instagram.com/belisvideo/" target="_blank" rel="noopener noreferrer" data-magnetic data-magnetic-text="GO!" className="hover:text-coral transition-colors duration-300 inline-block outline-none cursor-pointer md:cursor-none">

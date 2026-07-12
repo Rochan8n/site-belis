@@ -4,19 +4,19 @@ export function GuideStation({ onContinue }: GuideStationProps) {
   return (
     <section id="journey-station-1" className="journey-station content-station" aria-label="Parceiro">
       <div className="station-block guide-block">
-        <span className="station-badge">✦ DO FRAME AO SISTEMA</span>
-        <h2>Você cuida do negócio.<br />A gente constrói o que te coloca na frente.</h2>
+        <span className="station-badge">✦ PERCEPÇÃO QUE GERA CRESCIMENTO</span>
+        <h2>Enquanto você faz sua empresa crescer por dentro,<br />nós fazemos o mercado enxergar esse crescimento por fora.</h2>
         <p>
-          Audiovisual que gera autoridade, site que converte e sistema que escala —
-          no mesmo padrão, com o mesmo time. Sem reinventar o funil a cada etapa.
+          Seus clientes decidem em segundos se sua empresa transmite confiança.
+          Construímos essa percepção porque ela influencia preço, confiança e vendas.
         </p>
         <div className="story-arc" aria-label="Como a Belis trabalha">
-          <div><small>HOJE</small><span>Marca invisível, site que não vende, operação travada.</span></div>
-          <div><small>COM A BELIS</small><span>Vídeo, web e software no mesmo padrão de entrega.</span></div>
-          <div><small>DEPOIS</small><span>A referência que o mercado cita — e escolhe.</span></div>
+          <div><small>HOJE</small><span>Uma empresa melhor do que sua presença digital demonstra.</span></div>
+          <div><small>COM A BELIS</small><span>Estratégia, audiovisual, web e software alinhados à sua evolução.</span></div>
+          <div><small>DEPOIS</small><span>Uma marca percebida, lembrada e escolhida pelo mercado.</span></div>
         </div>
         <button className="journey-cta" onClick={onContinue}>
-          VER O QUE ENTREGAMOS <span aria-hidden="true">↓</span>
+          CONHECER OS ATIVOS DE CRESCIMENTO <span aria-hidden="true">↓</span>
         </button>
       </div>
     </section>

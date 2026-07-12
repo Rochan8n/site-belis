@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const CONTATO_TITLE = "Contato — Fale com a Belis Agency";
+const CONTATO_TITLE = "Contato | Vamos Construir seu Próximo Passo";
 const CONTATO_DESCRIPTION =
-  "Orçamento para audiovisual, website ou sistema. Resposta em até 24h. Fale com a Belis Agency por WhatsApp, e-mail ou formulário.";
+  "Converse com a Belis sobre percepção de marca, audiovisual, website ou software sob medida. Conte seu momento e receba resposta em até 24 horas.";
 
 export const metadata: Metadata = {
   title: CONTATO_TITLE,

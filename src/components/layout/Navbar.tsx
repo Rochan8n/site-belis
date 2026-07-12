@@ -6,7 +6,7 @@ import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { TransitionLink } from "./TransitionLink";
 
 const links = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Início" },
   { href: "/portfolio", label: "Portfólio" },
   { href: "/websites", label: "Websites" },
   { href: "/sistemas", label: "Sistemas" },
@@ -172,7 +172,7 @@ export function Navbar() {
             onClick={close}
             className="inline-flex items-center gap-2 px-8 py-3 bg-coral text-navy font-sans font-bold text-sm rounded-full uppercase tracking-wider hover:shadow-[0_0_30px_rgba(116,195,101,0.3)] transition-all duration-300"
           >
-            Iniciar Projeto
+            Conversar com a Belis
           </a>
         </div>
       </div>

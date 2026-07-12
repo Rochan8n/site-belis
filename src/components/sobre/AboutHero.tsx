@@ -42,7 +42,7 @@ export function AboutHero() {
     return () => ctx.revert();
   }, []);
 
-  const text = "Do frame ao sistema — presença que fecha e operação que escala.";
+  const text = "Ajudamos boas empresas a serem percebidas como realmente são.";
 
   return (
     <section ref={containerRef} className="relative w-full h-[80vh] sm:h-screen flex items-center justify-center overflow-hidden bg-navy z-10">
@@ -72,8 +72,9 @@ export function AboutHero() {
           ))}
         </h1>
         <p className="text-cream/70 text-base sm:text-lg lg:text-xl font-body max-w-3xl px-6 sm:px-12 lg:px-24 leading-relaxed">
-          A Belis nasceu no audiovisual — e evoluiu para o que o negócio precisa depois do vídeo:
-          página que converte e sistema que escala. Um time, um padrão, do roteiro ao deploy.
+          A Belis nasceu no audiovisual e cresceu acompanhando um problema maior: empresas excelentes
+          que ainda pareciam comuns por fora. Hoje unimos estratégia, audiovisual, web e software para
+          transformar percepção e sustentar crescimento.
         </p>
       </div>
     </section>

@@ -33,9 +33,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const SITE_URL = "https://belis.agency";
 const SITE_NAME = "Belis Agency";
-const DEFAULT_TITLE = "Belis Agency — Produtora Audiovisual e Agência Digital em São Paulo";
+const DEFAULT_TITLE = "Belis Agency | Ativos Digitais de Crescimento";
 const DEFAULT_DESCRIPTION =
-  "Produtora audiovisual e agência digital em São Paulo. +150 projetos entregues, primeira versão em até 7 dias e direção criativa dedicada do briefing à entrega final.";
+  "Estratégia, audiovisual, web e software para transformar a percepção da sua empresa, gerar confiança e acelerar o crescimento.";
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1c",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
-  category: "Marketing & Advertising",
+  category: "Digital Growth Services",
   formatDetection: {
     email: false,
     address: false,
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Belis Agency — Produtora Audiovisual e Agência Digital em São Paulo",
+        alt: "Belis Agency, ativos digitais de crescimento em São Paulo",
       },
     ],
   },
@@ -138,9 +138,9 @@ export default function RootLayout({
         },
         image: `${SITE_URL}/images/og-image.jpg`,
         description:
-          "Produtora audiovisual e agência digital em São Paulo, especializada em vídeos institucionais, reels, campanhas, cobertura de eventos, web design e tráfego pago para marcas high-ticket.",
+          "Empresa especializada em construir ativos digitais de crescimento com estratégia, audiovisual, web e software para aumentar percepção, confiança e conversão.",
         foundingDate: "2021",
-        slogan: "Feito pra quem recusa o medíocre.",
+        slogan: "Construímos percepção que sustenta crescimento.",
         knowsAbout: [
           "Produção Audiovisual",
           "Vídeo Institucional",
@@ -151,6 +151,11 @@ export default function RootLayout({
           "Landing Pages",
           "Tráfego Pago",
           "Branding",
+          "Ativos Digitais de Crescimento",
+          "SEO",
+          "GEO",
+          "AEO",
+          "Software sob medida",
         ],
         areaServed: [
           { "@type": "Country", name: "Brasil" },
@@ -195,7 +200,8 @@ export default function RootLayout({
           "Vídeo Institucional",
           "Web Design",
           "Landing Pages",
-          "Tráfego Pago",
+          "Software sob medida",
+          "Estratégia de marca",
         ],
         parentOrganization: { "@id": `${SITE_URL}/#organization` },
       },

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { PortfolioHero } from "@/components/portfolio/PortfolioHero";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
 
-const PORTFOLIO_TITLE = "Portfólio — Cases de Produção Audiovisual";
+const PORTFOLIO_TITLE = "Portfólio Audiovisual | Percepção em Movimento";
 const PORTFOLIO_DESCRIPTION =
-  "Vídeos institucionais, reels, campanhas e coberturas de eventos produzidos pela Belis Agency. +150 projetos com direção criativa dedicada e resultados mensuráveis.";
+  "Conheça projetos audiovisuais criados para tornar empresas mais claras, confiáveis e memoráveis. Vídeos institucionais, reels, campanhas e fotografia.";
 
 export const metadata: Metadata = {
   title: PORTFOLIO_TITLE,
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Portfólio Belis Agency — cases audiovisuais",
+        alt: "Portfólio audiovisual da Belis Agency",
       },
     ],
   },

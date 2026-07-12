@@ -7,15 +7,15 @@ export function ProcessSteps() {
       className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:px-12 sm:py-32 lg:px-24"
     >
       <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.38em] text-coral sm:text-xs">
-        ++ 03 — Processo
+        ++ 03 — Como construímos
       </p>
       <h2
         id="solutions-process-title"
         className="mb-14 font-heading text-4xl font-black uppercase leading-none tracking-tight text-cream sm:text-6xl"
       >
-        Discovery →
+        Clareza antes
         <br />
-        Launch.
+        de execução.
       </h2>
       <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         {processSteps.map((step) => (

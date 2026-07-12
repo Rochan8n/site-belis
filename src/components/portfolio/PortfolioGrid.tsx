@@ -37,7 +37,7 @@ function WhatsAppCTA({ message }: { message: string }) {
       <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
-      Quero um projeto assim
+      Quero construir essa percepção
       <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
@@ -697,8 +697,8 @@ export function PortfolioGrid() {
           <SectionHeader
             index={1}
             tag="Reels Estratégicos"
-            title="Retenção e Autoridade Digital"
-            subtitle="O feed é, muitas vezes, o primeiro ponto de contato entre sua marca e o mercado. Nossos Reels são projetados com roteiros de alta retenção e ganchos de conversão, transformando o tempo de tela do usuário em reconhecimento de autoridade para o seu negócio."
+            title="Sua expertise precisa ser lembrada"
+            subtitle="Muitas pessoas conhecem sua empresa pelo feed. Criamos vídeos curtos que prendem atenção, tornam sua expertise fácil de entender e mantêm sua marca presente na memória."
             meta={[
               { label: "Foco",    value: "Instagram, TikTok, Shorts" },
               { label: "Duração", value: "até 1:30 min" },
@@ -712,7 +712,7 @@ export function PortfolioGrid() {
           <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={0} fixedTitle="REELS" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-6 theater-reveal">
-          <WhatsAppCTA message="Olá! Vi os Reels no portfólio da Belis e quero saber mais sobre esse serviço." />
+          <WhatsAppCTA message="Olá! Quero usar vídeos curtos para tornar minha empresa mais presente e reconhecida. Podemos conversar sobre o melhor caminho?" />
         </div>
       </TheaterSection>
 
@@ -722,8 +722,8 @@ export function PortfolioGrid() {
           <SectionHeader
             index={2}
             tag="Vídeos Institucionais"
-            title="Ativos de Credibilidade e Confiança"
-            subtitle="A segurança na tomada de decisão é o fator crítico para clientes de alto valor. Produzimos vídeos institucionais que consolidam sua trajetória, estrutura e expertise, servindo como uma ferramenta definitiva de vendas para sites e apresentações comerciais de alto nível."
+            title="Confiança antes da decisão"
+            subtitle="Clientes de alto valor precisam confiar antes de decidir. Um vídeo institucional mostra trajetória, estrutura e expertise de forma humana, ajudando sua empresa a chegar mais forte ao site, à apresentação e à reunião."
             meta={[
               { label: "Foco",    value: "YouTube, Sites e Reuniões" },
               { label: "Duração", value: "3:00 – 5:00 min" },
@@ -736,7 +736,7 @@ export function PortfolioGrid() {
           <CinematicCarousel items={institucionais} onPlay={openVideo} bgLabel="INST." aspect="16/9" fixedTitle="VÍDEOS INSTITUCIONAIS" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
-          <WhatsAppCTA message="Olá! Vi os Vídeos Institucionais no portfólio da Belis e quero saber mais sobre esse serviço." />
+          <WhatsAppCTA message="Olá! Quero apresentar a história, a estrutura e a qualidade da minha empresa com mais clareza. Podemos conversar sobre um vídeo institucional?" />
         </div>
       </TheaterSection>
 
@@ -746,8 +746,8 @@ export function PortfolioGrid() {
           <SectionHeader
             index={3}
             tag="Anúncios para Tráfego Pago"
-            title="Performance e Conversão em Escala"
-            subtitle="Vídeos de anúncios devem ser tratados como investimentos, não custos. Criamos peças curtas, diretas e focadas em métricas, desenhadas especificamente para reduzir o custo por lead e maximizar o retorno sobre o investimento (ROI) em campanhas de tráfego pago."
+            title="Atenção que conduz à próxima ação"
+            subtitle="Um anúncio precisa conquistar atenção e tornar a oferta compreensível rápido. Criamos peças diretas, alinhadas à campanha e preparadas para transformar investimento em oportunidades mensuráveis."
             meta={[
               { label: "Plataformas", value: "Meta, LinkedIn, Google Ads" },
               { label: "Duração",     value: "até 1:00 min" },
@@ -760,7 +760,7 @@ export function PortfolioGrid() {
           <CinematicCarousel items={anuncios} onPlay={openVideo} bgLabel="ADS" aspect="16/9" fixedTitle="ANÚNCIOS PARA TRÁFEGO PAGO" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
-          <WhatsAppCTA message="Olá! Vi os Anúncios para Tráfego Pago no portfólio da Belis e quero saber mais sobre esse serviço." />
+          <WhatsAppCTA message="Olá! Quero transformar minha oferta em anúncios mais claros e capazes de gerar oportunidades. Podemos conversar?" />
         </div>
       </TheaterSection>
 
@@ -770,8 +770,8 @@ export function PortfolioGrid() {
           <SectionHeader
             index={4}
             tag="Vídeos Horizontais"
-            title="Conteúdo Horizontal de Alta Produção"
-            subtitle="Vídeos no formato wide-screen para YouTube, apresentações, eventos e campanhas de alto impacto. Produções que unem narrativa visual com qualidade cinematográfica para elevar a percepção de valor da sua marca."
+            title="Histórias que merecem mais tempo"
+            subtitle="Filmes para YouTube, apresentações, eventos e campanhas que precisam sustentar atenção. Narrativa e acabamento trabalham juntos para aumentar a percepção de valor da marca."
             meta={[
               { label: "Plataformas", value: "YouTube, TV, Eventos" },
               { label: "Duração",     value: "1:00 – 10:00 min" },
@@ -784,7 +784,7 @@ export function PortfolioGrid() {
           <CinematicCarousel items={horizontais} onPlay={openVideo} bgLabel="WIDE" aspect="16/9" fixedTitle="VÍDEOS YOUTUBE" />
         </div>
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
-          <WhatsAppCTA message="Olá! Vi os Vídeos Horizontais no portfólio da Belis e quero saber mais sobre esse serviço." />
+          <WhatsAppCTA message="Olá! Tenho uma história que precisa ser apresentada com profundidade e qualidade. Quero entender como a Belis pode transformá-la em filme." />
         </div>
       </TheaterSection>
 
@@ -795,8 +795,8 @@ export function PortfolioGrid() {
             <SectionHeader
               index={5}
               tag="Fotografia Corporativa"
-              title="Posicionamento Visual Premium"
-              subtitle="A imagem comunica profissionalismo antes mesmo da primeira palavra ser dita. Nossos retratos executivos e registros de ambiente são pensados para elevar o padrão da sua presença digital, garantindo uma identidade visual coerente e sofisticada em todos os seus canais."
+              title="Profissionalismo antes da primeira palavra"
+              subtitle="Uma imagem já comunica antes da primeira palavra. Criamos retratos e registros de ambiente que mostram profissionalismo, personalidade e consistência em todos os pontos de contato."
               meta={[
                 { label: "Foco",    value: "Perfil, Posts e Site" },
                 { label: "Formato", value: "Horizontal e/ou Vertical" },
@@ -808,7 +808,7 @@ export function PortfolioGrid() {
             <PhotoMasonry photos={photos} onOpen={openPhoto} />
           </div>
           <div className="mt-12 theater-reveal">
-            <WhatsAppCTA message="Olá! Vi as Fotografias Corporativas no portfólio da Belis e quero saber mais sobre esse serviço." />
+            <WhatsAppCTA message="Olá! Quero imagens que representem melhor minha empresa e as pessoas por trás dela. Podemos conversar sobre fotografia corporativa?" />
           </div>
         </div>
       </TheaterSection>

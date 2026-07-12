@@ -15,9 +15,9 @@ import {
   systemAudiences,
 } from "@/components/solutions/solutionsData";
 
-const TITLE = "Sistemas, SaaS e Software Sob Medida";
+const TITLE = "Software Sob Medida para Eliminar Gargalos";
 const DESCRIPTION =
-  "Micro-SaaS, MVPs, sistemas internos, portais, dashboards, automações e integrações desenvolvidos para escalar a operação do seu negócio.";
+  "Sistemas, SaaS, portais e automações criados para reduzir trabalho manual, organizar processos e preparar sua empresa para escalar.";
 const CANONICAL = "https://belis.agency/sistemas";
 
 export const metadata: Metadata = {
@@ -43,13 +43,36 @@ export const metadata: Metadata = {
   },
 };
 
+const softwareServiceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Desenvolvimento de software sob medida",
+  description: DESCRIPTION,
+  url: CANONICAL,
+  provider: { "@id": "https://belis.agency/#organization" },
+  areaServed: { "@type": "Country", name: "Brasil" },
+  serviceType: [
+    "Software sob medida",
+    "Sistemas internos",
+    "SaaS",
+    "MVP",
+    "Portais",
+    "Automações",
+    "Integrações",
+  ],
+};
+
 export default function SistemasPage() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-navy font-sans text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareServiceJsonLd) }}
+      />
       <SolutionHero
         eyebrow="Sistemas"
-        headline="Do vídeo que vende"
-        accent="ao sistema que escala."
+        headline="Crescer não deveria"
+        accent="multiplicar o trabalho."
         subcopy={SYS_HERO_SUBCOPY}
         ctaLabel={HERO_CTA_LABEL}
         ctaHref={SYS_WHATSAPP_HREF}

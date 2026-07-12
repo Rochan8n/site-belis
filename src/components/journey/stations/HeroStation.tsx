@@ -5,13 +5,13 @@ export function HeroStation({ onContinue }: HeroStationProps) {
     <section id="journey-station-0" className="journey-station hero-station" aria-label="Início">
       <div className="hero-kicker">
         <span>BELIS AGENCY — SÃO PAULO</span>
-        <span>PRODUTORA CRIATIVA</span>
-        <span>AUDIOVISUAL + SOFTWARE</span>
+        <span>ATIVOS DIGITAIS DE CRESCIMENTO</span>
+        <span>ESTRATÉGIA + AUDIOVISUAL + WEB + SOFTWARE</span>
       </div>
       <div className="hero-copy">
-        <h1>Sua empresa já entrega.<br />Falta a presença que fecha.</h1>
+        <h1>Sua empresa evoluiu.<br />O mercado ainda não percebeu.</h1>
         <button className="journey-text-button" onClick={onContinue}>
-          VER O QUE MUDA <span aria-hidden="true">↓</span>
+          QUERO CONSTRUIR UMA MARCA QUE VENDE ANTES DA REUNIÃO <span aria-hidden="true">↓</span>
         </button>
         <span className="scroll-hint">SCROLL ↓</span>
       </div>

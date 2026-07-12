@@ -12,15 +12,15 @@ export function ItemGrid({ category, items }: ItemGridProps) {
       className="relative z-10 mx-auto max-w-7xl px-6 py-24 sm:px-12 sm:py-32 lg:px-24"
     >
       <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.38em] text-coral sm:text-xs">
-        ++ 01 — O que construímos
+        ++ 01 — O que muda
       </p>
       <h2
         id="solutions-items-title"
         className="mb-14 font-heading text-4xl font-black uppercase leading-none tracking-tight text-cream sm:text-6xl"
       >
-        Um eixo,
+        Soluções diferentes,
         <br />
-        o mesmo padrão.
+        uma transformação coerente.
       </h2>
 
       <div className="grid gap-8 lg:grid-cols-[0.7fr_2fr] lg:gap-20">

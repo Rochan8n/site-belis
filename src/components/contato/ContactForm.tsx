@@ -5,19 +5,36 @@ import { gsap } from "@/lib/gsap-init";
 import clsx from "clsx";
 
 const projectTypes = [
-  "Produção mensal de Reels",
-  "Vídeo Institucional",
-  "Vídeo para Youtube",
-  "Website / Landing page",
-  "Sistema / Software",
-  "Foto",
-  "Produção TikTok Shops",
-  "Outros",
+  "Fortalecer minha marca",
+  "Projeto audiovisual",
+  "Website ou landing page",
+  "Sistema sob medida",
+  "Ainda não sei",
 ];
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [selectedType, setSelectedType] = useState(projectTypes[0]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const message = [
+      "Olá! Quero conversar sobre um projeto com a Belis.",
+      "",
+      `Nome: ${data.get("name")}`,
+      `Empresa: ${data.get("company")}`,
+      `E-mail: ${data.get("email")}`,
+      `Interesse: ${selectedType}`,
+      `Desafio: ${data.get("message") || "Prefiro explicar na conversa."}`,
+    ].join("\n");
+
+    window.open(
+      `https://wa.me/5511973138895?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
 
   useEffect(() => {
     if (!formRef.current) return;
@@ -44,16 +61,17 @@ export function ContactForm() {
   }, []);
 
   return (
-    <form ref={formRef} className="w-full flex-col flex gap-10" onSubmit={(e) => e.preventDefault()}>
+    <form ref={formRef} className="w-full flex-col flex gap-10" onSubmit={handleSubmit}>
       
       {/* Name */}
       <div className="form-element flex flex-col relative group">
         <label htmlFor="name" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          Nome Completo
+          Como podemos chamar você?
         </label>
         <input 
           type="text" 
           id="name" 
+          name="name"
           required 
           className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20"
           placeholder="Seu nome"
@@ -63,11 +81,12 @@ export function ContactForm() {
       {/* Email */}
       <div className="form-element flex flex-col relative group">
         <label htmlFor="email" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          E-mail Corporativo
+          Melhor e-mail
         </label>
         <input 
           type="email" 
           id="email" 
+          name="email"
           required 
           className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20"
           placeholder="seu@email.com"
@@ -77,34 +96,36 @@ export function ContactForm() {
       {/* Empresa */}
       <div className="form-element flex flex-col relative group">
         <label htmlFor="company" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          Empresa
+          Sua empresa
         </label>
         <input 
           type="text" 
           id="company" 
+          name="company"
           required 
           className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20"
-          placeholder="Nome da sua marca"
+          placeholder="Nome da empresa"
         />
       </div>
 
       {/* Mensagem */}
       <div className="form-element flex flex-col relative group">
         <label htmlFor="message" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          Mensagem
+          O que precisa mudar?
         </label>
         <textarea
           id="message"
+          name="message"
           rows={4}
           className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20 resize-none"
-          placeholder="Conte um pouco sobre o seu projeto..."
+          placeholder="Conte o momento da empresa, o principal desafio e o resultado que você busca."
         />
       </div>
 
       {/* Tipo de Projeto (Styled Radio Buttons) */}
       <div className="form-element flex flex-col mt-4">
         <label className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-6 transition-colors duration-300">
-          Tipo de Projeto
+          Por onde podemos começar?
         </label>
         <div className="flex flex-wrap gap-4">
           {projectTypes.map((type) => (
@@ -133,7 +154,7 @@ export function ContactForm() {
           data-magnetic-text="SEND"
           className="group relative px-10 sm:px-14 py-6 sm:py-7 overflow-hidden rounded-full bg-coral text-navy font-sans font-bold uppercase tracking-[0.2em] text-sm outline-none cursor-pointer md:cursor-none transition-transform hover:scale-105 duration-300 w-full sm:w-auto"
         >
-          <span className="relative z-10 pointer-events-none transition-colors duration-500 group-hover:text-cream">ENVIAR MENSAGEM</span>
+          <span className="relative z-10 pointer-events-none transition-colors duration-500 group-hover:text-cream">CONVERSAR SOBRE MEU PROJETO</span>
           <div className="absolute inset-0 bg-navy transform scale-y-0 origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-y-100 z-0 rounded-full"></div>
         </button>
       </div>

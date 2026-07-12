@@ -5,11 +5,11 @@ import { gsap } from "@/lib/gsap-init";
 import clsx from "clsx";
 
 const milestones = [
-  { year: "2016", title: "O Rigor Acadêmico e Gestão", desc: "Conclusão da formação em Administração (Mackenzie) e especialização em Gestão de Engenharia da Qualidade (USP). Este período consolidou a visão de processos e eficiência operacional que hoje diferencia a entrega técnica da Belis." },
-  { year: "2021", title: "Fundamentos e Mercado", desc: "Transição estratégica para o audiovisual. Início da operação focada em setores de alta complexidade, como indústria, logística e o setor automotivo, onde a precisão é mandatória." },
-  { year: "2023", title: "Ativos de Performance", desc: "Consolidação da metodologia Belis. O vídeo deixa de ser uma peça criativa isolada para se tornar um ativo financeiro estratégico, focado em ROI e autoridade para médias e grandes empresas." },
-  { year: "2025", title: "Inteligência e Escala", desc: "Integração de tecnologia e dados. Ecossistemas de conteúdo que sustentam o posicionamento digital de profissionais de elite e marcas corporativas." },
-  { year: "2026", title: "Do Frame ao Sistema", desc: "Expansão formal para websites e software sob medida. O mesmo padrão do estúdio — agora também na página que converte e no sistema que escala." },
+  { year: "2016", title: "Gestão antes da criação", desc: "A formação em Administração pelo Mackenzie e a especialização em Gestão da Qualidade pela USP criaram uma base que continua presente: entender processos, cuidar dos detalhes e entregar com consistência." },
+  { year: "2021", title: "A imagem como começo", desc: "A Belis nasce no audiovisual atendendo empresas de setores complexos. Aprendemos cedo que uma boa imagem precisa respeitar a verdade do negócio que representa." },
+  { year: "2023", title: "Conteúdo com função", desc: "O vídeo passa a ocupar um papel maior: tornar conhecimento visível, fortalecer autoridade e ajudar clientes a decidir com mais confiança." },
+  { year: "2025", title: "Presença conectada", desc: "Estratégia, conteúdo e dados se aproximam. Cada peça começa a fazer parte de uma presença digital coerente, em vez de existir isoladamente." },
+  { year: "2026", title: "Ativos digitais de crescimento", desc: "Web e software completam a transformação. A percepção atrai, a experiência converte e a estrutura permite crescer com controle." },
 ];
 
 export function Timeline() {
@@ -72,7 +72,7 @@ export function Timeline() {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
         
         <h2 className="text-4xl sm:text-6xl font-heading font-black text-center uppercase tracking-tight mb-32">
-          Nossa <span className="text-coral">História.</span>
+          Como chegamos <span className="text-coral">até aqui.</span>
         </h2>
 
         {/* Timeline Core */}

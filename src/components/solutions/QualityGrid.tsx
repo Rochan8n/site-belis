@@ -8,15 +8,15 @@ export function QualityGrid() {
     >
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-12 sm:py-32 lg:px-24">
         <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.38em] text-coral sm:text-xs">
-          ++ 04 — Qualidade &amp; stack
+          ++ 04 — O que sustenta a entrega
         </p>
         <h2
           id="solutions-quality-title"
           className="mb-14 font-heading text-4xl font-black uppercase leading-none tracking-tight text-cream sm:text-6xl"
         >
-          Cinema-grade
+          Tecnologia que sustenta
           <br />
-          também no código.
+          sua próxima fase.
         </h2>
         <ul className="grid gap-x-12 sm:grid-cols-2">
           {qualityItems.map((item) => (

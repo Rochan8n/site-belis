@@ -31,7 +31,7 @@ function BelisWordmark() {
   );
 }
 
-const CTA_TEXT = "FALE COM O TIME QUE VAI DO FRAME AO SISTEMA";
+const CTA_TEXT = "SUA EMPRESA EVOLUIU. VAMOS FAZER O MERCADO PERCEBER.";
 
 export function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -133,7 +133,7 @@ export function Footer() {
         
         {/* Eyebrow label */}
         <span className="inline-block text-[10px] font-sans font-bold tracking-[0.3em] uppercase text-navy/50 border border-navy/20 px-5 py-2 mb-12">
-          Pronto para crescer
+          Próximo passo
         </span>
 
         {/* Massive headline */}
@@ -166,7 +166,7 @@ export function Footer() {
 
           <div className="relative z-10 flex flex-col items-start gap-1.5 text-left">
             <span className="font-sans text-[9px] sm:text-[11px] font-bold tracking-[0.25em] uppercase text-coral group-hover:text-navy/50 transition-colors duration-500">
-              Contato Direto
+              Vamos conversar
             </span>
             <span className="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tighter text-cream group-hover:text-navy transition-colors duration-500 whitespace-nowrap">
               WHATSAPP
@@ -207,7 +207,7 @@ export function Footer() {
 
           <div className="flex flex-col items-start sm:items-end gap-1 text-navy/40 text-[10px] font-sans tracking-[0.2em] uppercase">
             <span>© {new Date().getFullYear()} Belis.</span>
-            <span>Do frame ao sistema.</span>
+            <span>Percepção que sustenta crescimento.</span>
           </div>
         </div>
 

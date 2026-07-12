@@ -15,9 +15,9 @@ import {
   webItems,
 } from "@/components/solutions/solutionsData";
 
-const TITLE = "Websites e Landing Pages de Alta Conversão";
+const TITLE = "Sites que Transformam Percepção em Oportunidades";
 const DESCRIPTION =
-  "Landing pages, sites institucionais e ecossistemas digitais rápidos, mobile-first e construídos para converter, com direção dedicada da Belis Agency.";
+  "Sites institucionais e landing pages preparados para SEO, GEO, AEO, performance e conversão. Transforme sua presença digital em ativo de crescimento.";
 const CANONICAL = "https://belis.agency/websites";
 
 export const metadata: Metadata = {
@@ -43,13 +43,35 @@ export const metadata: Metadata = {
   },
 };
 
+const webServiceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Criação de websites e landing pages",
+  description: DESCRIPTION,
+  url: CANONICAL,
+  provider: { "@id": "https://belis.agency/#organization" },
+  areaServed: { "@type": "Country", name: "Brasil" },
+  serviceType: [
+    "Site institucional",
+    "Landing page",
+    "SEO",
+    "GEO",
+    "AEO",
+    "Otimização de conversão",
+  ],
+};
+
 export default function WebsitesPage() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-navy font-sans text-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webServiceJsonLd) }}
+      />
       <SolutionHero
         eyebrow="Websites"
-        headline="Do vídeo que vende"
-        accent="à página que converte."
+        headline="Sua empresa evoluiu."
+        accent="Seu site precisa mostrar isso."
         subcopy={WEB_HERO_SUBCOPY}
         ctaLabel={HERO_CTA_LABEL}
         ctaHref={WEB_WHATSAPP_HREF}

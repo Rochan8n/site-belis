@@ -11,17 +11,17 @@ export const webItems = [
   {
     name: "Landing pages de alta conversão",
     description:
-      "Uma página, um objetivo. Estrutura, copy e velocidade desenhadas para transformar visita em contato.",
+      "Uma mensagem clara, um próximo passo evidente. Estrutura, copy e velocidade para transformar interesse em conversa.",
   },
   {
     name: "Sites institucionais / brand sites",
     description:
-      "A presença digital no mesmo nível do vídeo que apresenta a sua marca.",
+      "Uma presença digital capaz de transmitir, em segundos, a qualidade que sua empresa levou anos para construir.",
   },
   {
     name: "Ecossistemas digitais",
     description:
-      "Performance, velocidade e UX tratados como requisito, não como promessa.",
+      "Páginas, conteúdo e integrações trabalhando juntos para atrair, explicar e converter.",
   },
 ] as const satisfies readonly SolutionItem[];
 
@@ -29,140 +29,140 @@ export const sysItems = [
   {
     name: "Micro-SaaS / MVPs",
     description:
-      "Valide a ideia e chegue ao primeiro cliente pagante sem queimar orçamento.",
+      "Transforme uma boa ideia em produto utilizável, valide com clientes reais e invista com mais segurança.",
   },
   {
     name: "SaaS completo",
     description:
-      "Autenticação, billing e dashboard prontos para crescer com o produto.",
+      "Produto digital preparado para receber clientes, cobrar, organizar dados e evoluir sem perder controle.",
   },
   {
     name: "ERP & sistemas internos",
-    description: "Operação sob medida, sem pagar por licenças que não usa.",
+    description: "Processos organizados ao redor da sua operação, sem adaptar sua empresa a um software genérico.",
   },
   {
     name: "Portais do cliente",
-    description: "Autoatendimento que reduz suporte e aumenta retenção.",
+    description: "Mais autonomia para o cliente, menos tarefas repetitivas para sua equipe.",
   },
   {
     name: "Dashboards & automações",
-    description: "Seus dados e rotinas trabalhando enquanto você dorme.",
+    description: "Decisões mais rápidas, menos trabalho manual e uma visão clara do que acontece na operação.",
   },
   {
     name: "Integrações",
-    description: "CRM, WhatsApp, pagamentos e APIs conversando entre si.",
+    description: "CRM, WhatsApp, pagamentos e outras ferramentas conectadas em um fluxo confiável.",
   },
 ] as const satisfies readonly SolutionItem[];
 
 export const webAudiences = [
   {
-    name: "Empresas que já filmam com a Belis",
+    name: "Empresas cuja presença ficou para trás",
     description:
-      "O vídeo abre a porta; a página fecha o negócio. Mesmo padrão visual, mesma direção.",
+      "A operação evoluiu, mas o site ainda transmite uma versão antiga do negócio.",
   },
   {
-    name: "Marcas com site que não vende",
+    name: "Marcas que recebem visitas, mas poucos contatos",
     description:
-      "Bonito no desktop, morto no celular, sem CTA claro. A gente reconstrói para converter.",
+      "Quando a proposta não fica clara e o próximo passo exige esforço, bons clientes vão embora.",
   },
   {
     name: "Lançamentos e campanhas",
     description:
-      "Landing rápida, mensurável e alinhada ao criativo — pronta para tráfego pago.",
+      "Uma página focada na oferta, alinhada à campanha e preparada para medir cada oportunidade.",
   },
 ] as const satisfies readonly SolutionItem[];
 
 export const systemAudiences = [
   {
-    name: "Empresas que já filmam com a Belis",
+    name: "Empresas crescendo além dos próprios processos",
     description:
-      "Depois da autoridade e da conversão, o sistema sustenta a operação. Um parceiro do roteiro ao deploy.",
+      "Quando vender mais também significa criar mais planilhas, mensagens e retrabalho, a operação precisa evoluir.",
   },
   {
     name: "Negócios presos em planilhas",
     description:
-      "Quando o Excel vira gargalo, um sistema interno sob medida devolve as horas da equipe.",
+      "Um sistema interno reúne informações, reduz erros e devolve tempo para sua equipe cuidar do que importa.",
   },
   {
     name: "Fundadores com uma ideia de produto",
     description:
-      "Do conceito ao MVP com auth, billing e dashboard — pronto para os primeiros usuários.",
+      "Da ideia ao primeiro produto funcional, com escopo claro para aprender rápido e crescer com segurança.",
   },
 ] as const satisfies readonly SolutionItem[];
 
 export const processSteps = [
   {
     index: "01",
-    name: "Discovery",
+    name: "Entendimento",
     description:
-      "Entendemos o negócio, o gargalo e o resultado esperado. Escopo claro antes de qualquer linha de código.",
+      "Começamos pelo negócio, pelo cliente e pelo resultado esperado. Tecnologia entra depois da clareza.",
   },
   {
     index: "02",
-    name: "Prototype",
+    name: "Direção",
     description:
-      "Protótipo navegável para validar fluxo e visual antes de construir. Você aprova vendo, não imaginando.",
+      "Organizamos conteúdo, fluxo e solução em um protótipo que você consegue avaliar antes da construção.",
   },
   {
     index: "03",
-    name: "Build",
+    name: "Construção",
     description:
-      "Sprints semanais com entregas visíveis e comunicação direta — sem intermediários.",
+      "Entregas visíveis, decisões compartilhadas e comunicação direta durante todo o projeto.",
   },
   {
     index: "04",
-    name: "Launch",
+    name: "Evolução",
     description:
-      "Deploy, monitoramento e evolução contínua. O lançamento é o começo, não o fim.",
+      "Publicamos, acompanhamos e evoluímos. Um ativo digital começa a provar valor quando encontra o mercado.",
   },
 ] as const satisfies readonly ProcessStep[];
 
 export const qualityItems = [
   {
-    name: "Performance de verdade",
+    name: "Velocidade que protege oportunidades",
     description:
-      "Carregamento rápido e Core Web Vitals no verde — porque página lenta não converte.",
+      "Carregamento rápido para reduzir abandono e criar uma experiência confiável desde o primeiro acesso.",
   },
   {
-    name: "Mobile-first",
-    description: "A maioria dos seus clientes chega pelo celular. É onde começamos.",
+    name: "Experiência pensada para o celular",
+    description: "Sua empresa precisa causar uma boa impressão na tela que o cliente mais usa.",
   },
   {
-    name: "Código que dura",
+    name: "Base pronta para evoluir",
     description:
-      "Stack moderna e manutenível: seu sistema cresce sem precisar ser reescrito.",
+      "Tecnologia manutenível para adicionar novas etapas sem reconstruir tudo a cada mudança.",
   },
   {
-    name: "Segurança & dados",
+    name: "Segurança e dados",
     description:
-      "Autenticação, permissões e backups tratados como fundação, não como extra.",
+      "Acessos, permissões e backups fazem parte da fundação de cada sistema.",
   },
 ] as const satisfies readonly SolutionItem[];
 
 export const STACK_LINE =
-  "Next.js · React · Tailwind · Node · PostgreSQL · integrações via API";
+  "Tecnologia escolhida para cada desafio · Next.js · React · Node · PostgreSQL · integrações via API";
 
 export const WEB_HERO_SUBCOPY =
-  "O vídeo gera atenção. A página transforma atenção em lead. Mesma direção criativa, construída para converter.";
+  "Seu cliente decide em segundos se vale a pena continuar. Criamos sites que tornam sua qualidade visível, explicam seu valor e conduzem a próxima conversa.";
 
 export const SYS_HERO_SUBCOPY =
-  "Quando a operação trava em planilha, o crescimento trava junto. Software sob medida — do conceito ao deploy.";
+  "Se cada novo cliente cria mais trabalho manual, sua operação ainda não está pronta para escalar. Criamos software sob medida para devolver controle e capacidade de crescimento.";
 
-export const WEB_CTA_HEADING = "Sua próxima página começa com uma conversa.";
-export const SYS_CTA_HEADING = "Seu próximo sistema começa com uma conversa.";
+export const WEB_CTA_HEADING = "Seu site pode começar a trabalhar pela sua próxima venda.";
+export const SYS_CTA_HEADING = "Sua empresa pode crescer sem multiplicar o caos.";
 
-export const WEB_CTA_LABEL = "Falar sobre meu site";
-export const SYS_CTA_LABEL = "Falar sobre meu sistema";
-export const HERO_CTA_LABEL = "Pedir orçamento";
+export const WEB_CTA_LABEL = "Quero melhorar minha presença";
+export const SYS_CTA_LABEL = "Quero destravar minha operação";
+export const HERO_CTA_LABEL = "Quero conversar sobre meu projeto";
 
 const wa = (text: string) =>
   `https://wa.me/5511973138895?text=${encodeURIComponent(text)}`;
 
 export const WEB_WHATSAPP_HREF = wa(
-  "Olá! Quero um website / landing page com a Belis.",
+  "Olá! Meu site não representa mais a empresa que construí. Quero conversar sobre uma nova presença digital com a Belis.",
 );
 export const SYS_WHATSAPP_HREF = wa(
-  "Olá! Quero um sistema / software com a Belis.",
+  "Olá! Quero eliminar gargalos da minha operação e entender como um sistema sob medida pode ajudar.",
 );
 
 export const INSTAGRAM_HREF = "https://www.instagram.com/belisvideo/";

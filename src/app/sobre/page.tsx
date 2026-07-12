@@ -3,9 +3,9 @@ import { AboutHero } from "@/components/sobre/AboutHero";
 import { Timeline } from "@/components/sobre/Timeline";
 import { ValuesSection } from "@/components/sobre/ValuesSection";
 
-const SOBRE_TITLE = "Sobre a Agência";
+const SOBRE_TITLE = "Sobre a Belis | Estratégia que Constrói Percepção";
 const SOBRE_DESCRIPTION =
-  "Do frame ao sistema: audiovisual, websites e software sob medida. +150 projetos, direção dedicada. Conheça a Belis Agency — São Paulo.";
+  "Conheça a Belis, empresa de São Paulo que une estratégia, audiovisual, web e software para transformar percepção e sustentar crescimento.";
 
 export const metadata: Metadata = {
   title: SOBRE_TITLE,
