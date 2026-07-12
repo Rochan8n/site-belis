@@ -21,28 +21,39 @@ const orbitProjects = [
   },
 ] as const;
 
-export function PortfolioOrbit() {
+interface PortfolioOrbitProps {
+  active: boolean;
+}
+
+export function PortfolioOrbit({ active }: PortfolioOrbitProps) {
   return (
-    <div className="portfolio-orbit" aria-label="Projetos em destaque">
-      <span className="portfolio-orbit-ring" aria-hidden="true" />
-      {orbitProjects.map((project, index) => (
-        <Link
-          className="portfolio-orbit-card"
-          href="/portfolio"
-          key={project.name}
-          style={{ "--orbit-index": index } as CSSProperties}
-          aria-label={`${project.name} — conhecer portfólio`}
-        >
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            sizes="(max-width: 800px) 84px, 132px"
-          />
-          <span>{project.name}</span>
-          <i aria-hidden="true" />
-        </Link>
-      ))}
+    <div
+      className={`portfolio-sphere ${active ? "portfolio-sphere-active" : ""}`}
+      aria-label="Projetos em destaque"
+      aria-hidden={!active}
+    >
+      <span className="portfolio-sphere-axis" aria-hidden="true" />
+      <div className="portfolio-sphere-scene">
+        {orbitProjects.map((project, index) => (
+          <Link
+            className="portfolio-sphere-panel"
+            href="/portfolio"
+            key={project.name}
+            style={{ "--panel-index": index } as CSSProperties}
+            aria-label={`${project.name} — conhecer portfólio`}
+            tabIndex={active ? 0 : -1}
+          >
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              sizes="(max-width: 800px) 42vw, 270px"
+            />
+            <span>{project.name}</span>
+            <i aria-hidden="true" />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

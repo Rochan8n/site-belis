@@ -214,6 +214,7 @@ export function BelisJourney() {
             <TrialStation
               key={trial.station}
               trial={trial}
+              active={hud.active === trial.station}
               onEnter={() => enterAndNavigate(trial.href)}
             />
           ))}

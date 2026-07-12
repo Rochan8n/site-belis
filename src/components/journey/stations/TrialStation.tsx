@@ -2,9 +2,9 @@ import { importantProjects, studioStats, type trials } from "../journeyData";
 import { PortfolioOrbit } from "../PortfolioOrbit";
 
 type Trial = (typeof trials)[number];
-interface TrialStationProps { trial: Trial; onEnter: () => void }
+interface TrialStationProps { trial: Trial; active: boolean; onEnter: () => void }
 
-export function TrialStation({ trial, onEnter }: TrialStationProps) {
+export function TrialStation({ trial, active, onEnter }: TrialStationProps) {
   return (
     <section
       id={`journey-station-${trial.station}`}
@@ -29,7 +29,7 @@ export function TrialStation({ trial, onEnter }: TrialStationProps) {
         <span>{trial.noteLines[0]}</span>
         <span>{trial.noteLines[1]}</span>
       </aside>
-      {trial.station === 2 && <PortfolioOrbit />}
+      {trial.station === 2 && <PortfolioOrbit active={active} />}
       {trial.station === 2 && (
         <div className="studio-proof">
           <div className="stats">
