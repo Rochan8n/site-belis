@@ -122,14 +122,14 @@
 :global(.portfolio-sphere-active) { opacity: 1; }
 :global(.portfolio-sphere-axis) {
   position: absolute; inset: -7%; border: 1px solid color-mix(in srgb, currentColor 20%, transparent); border-radius: 50%; opacity: 0;
-  scale: 0.35; transition: opacity 0.7s ease 0.7s, scale 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s;
+  transform: scale(0.35); transition: opacity 0.7s ease 0.7s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s;
 }
 :global(.portfolio-sphere-axis::before),
 :global(.portfolio-sphere-axis::after) {
   content: ""; position: absolute; left: 50%; top: -5%; width: 1px; height: 110%; background: color-mix(in srgb, currentColor 22%, transparent);
 }
 :global(.portfolio-sphere-axis::after) { rotate: 90deg; }
-:global(.portfolio-sphere-active .portfolio-sphere-axis) { opacity: 0.52; scale: 1; }
+:global(.portfolio-sphere-active .portfolio-sphere-axis) { opacity: 0.52; transform: scale(1); }
 :global(.portfolio-sphere-scene) {
   position: absolute; inset: 0; transform-style: preserve-3d; filter: drop-shadow(0 18px 32px #0008);
 }
@@ -137,15 +137,15 @@
 :global(.portfolio-sphere-panel) {
   position: absolute; width: calc(50% - var(--sphere-gap) / 2); height: calc(50% - var(--sphere-gap) / 2); overflow: hidden;
   pointer-events: none; border: 1px solid color-mix(in srgb, currentColor 55%, transparent); background: #0a0a0c; color: #efece2;
-  box-shadow: inset 0 0 28px #0008; text-decoration: none; opacity: 0; filter: blur(14px) brightness(1.4); scale: 0.06;
-  transition-property: transform, scale, opacity, filter; transition-duration: 0.9s; transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: inset 0 0 28px #0008; text-decoration: none; opacity: 0; filter: blur(14px) brightness(1.4);
+  transition-property: transform, opacity, filter; transition-duration: 0.9s; transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: calc(var(--panel-index) * 90ms); cursor: none; touch-action: pan-y; backface-visibility: hidden;
 }
-:global(.portfolio-sphere-panel:nth-child(1)) { left: 0; top: 0; border-radius: 100% 8% 8% 8%; transform: translate(50%, 50%) rotateX(-14deg) rotateY(14deg); }
-:global(.portfolio-sphere-panel:nth-child(2)) { right: 0; top: 0; border-radius: 8% 100% 8% 8%; transform: translate(-50%, 50%) rotateX(-14deg) rotateY(-14deg); }
-:global(.portfolio-sphere-panel:nth-child(3)) { left: 0; bottom: 0; border-radius: 8% 8% 8% 100%; transform: translate(50%, -50%) rotateX(14deg) rotateY(14deg); }
-:global(.portfolio-sphere-panel:nth-child(4)) { right: 0; bottom: 0; border-radius: 8% 8% 100% 8%; transform: translate(-50%, -50%) rotateX(14deg) rotateY(-14deg); }
-:global(.portfolio-sphere-active .portfolio-sphere-panel) { pointer-events: auto; opacity: 0.94; filter: blur(0) saturate(0.82) contrast(1.08); scale: 1; transform: translate(0) rotateX(0) rotateY(0); }
+:global(.portfolio-sphere-panel:nth-child(1)) { left: 0; top: 0; border-radius: 100% 8% 8% 8%; transform: translate(50%, 50%) rotateX(-14deg) rotateY(14deg) scale(0.06); }
+:global(.portfolio-sphere-panel:nth-child(2)) { right: 0; top: 0; border-radius: 8% 100% 8% 8%; transform: translate(-50%, 50%) rotateX(-14deg) rotateY(-14deg) scale(0.06); }
+:global(.portfolio-sphere-panel:nth-child(3)) { left: 0; bottom: 0; border-radius: 8% 8% 8% 100%; transform: translate(50%, -50%) rotateX(14deg) rotateY(14deg) scale(0.06); }
+:global(.portfolio-sphere-panel:nth-child(4)) { right: 0; bottom: 0; border-radius: 8% 8% 100% 8%; transform: translate(-50%, -50%) rotateX(14deg) rotateY(-14deg) scale(0.06); }
+:global(.portfolio-sphere-active .portfolio-sphere-panel) { pointer-events: auto; opacity: 0.94; filter: blur(0) saturate(0.82) contrast(1.08); transform: translate(0) rotateX(0) rotateY(0) scale(1); }
 :global(.portfolio-sphere-panel img) { object-fit: cover; }
 :global(.portfolio-sphere-panel > span) {
   position: absolute; left: 7%; right: 7%; bottom: 7%; z-index: 2; overflow: hidden; padding: 5px 7px; background: #0a0a0cdb;
