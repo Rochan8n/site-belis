@@ -12,6 +12,7 @@ import { HeroStation } from "./stations/HeroStation";
 import { GuideStation } from "./stations/GuideStation";
 import { TrialStation } from "./stations/TrialStation";
 import { ContactStation } from "./stations/ContactStation";
+import { PortfolioOrbit } from "./PortfolioOrbit";
 import styles from "./journey.module.css";
 
 const destinations: Record<number, string> = {
@@ -183,6 +184,7 @@ export function BelisJourney() {
           <b />
           <b />
         </div>
+        <PortfolioOrbit active={hud.active === 2} />
 
         <nav className={styles.markers} aria-label="Seções">
           {markers.map((marker) => (
@@ -214,7 +216,6 @@ export function BelisJourney() {
             <TrialStation
               key={trial.station}
               trial={trial}
-              active={hud.active === trial.station}
               onEnter={() => enterAndNavigate(trial.href)}
             />
           ))}
