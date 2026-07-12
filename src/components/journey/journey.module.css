@@ -215,10 +215,21 @@
   .cage { top: 60%; width: min(72vmin, 500px); height: min(72vmin, 500px); }
   .stations :global(.station-block) { left: 22px; right: 22px; top: 82px; translate: none; max-width: none; }
   .stations :global(.hero-copy) { bottom: 90px; }
-  .stations h2 { font-size: clamp(36px, 11vw, 54px); }
-  .stations :global(.station-block > p) { font-size: 14px; max-width: 90%; }
+  .stations h2 { font-size: clamp(34px, 10vw, 48px); }
+  .stations :global(.guide-block h2) {
+    margin-top: 16px; font-size: clamp(29px, min(8.2vw, 4.8vh), 40px); line-height: 1.02; text-wrap: pretty;
+  }
+  .stations :global(.station-block > p) {
+    max-width: min(100%, 470px); margin-top: 14px; padding: 8px 10px; font-size: 14px; line-height: 1.5; text-wrap: pretty;
+    background: color-mix(in srgb, var(--journey-bg) 88%, transparent); backdrop-filter: blur(8px);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--journey-bg) 72%, transparent);
+  }
   .stations :global(.before-after) { display: none; }
-  .stations :global(.journey-cta) { cursor: pointer; }
+  .stations :global(.journey-cta) {
+    margin-top: 18px; cursor: pointer; background: var(--journey-bg);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--journey-bg) 78%, transparent);
+  }
+  .stations :global(.journey-cta.primary) { background: var(--green); }
   .stations :global(.trial-note) {
     top: auto; right: 22px; bottom: 170px; min-width: 0; padding: 8px 10px; font-size: 10px; line-height: 1.35; letter-spacing: 0.12em;
   }
