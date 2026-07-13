@@ -2,63 +2,69 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap-init";
+import styles from "./contato.module.css";
 
 export function ContactInfo() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
-    
-    // Animate info lines
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".info-line", 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: "power3.out", delay: 0.5 }
+        "[data-info-row]",
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.09,
+          duration: 0.65,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 84%",
+          },
+        },
       );
     }, containerRef);
-    
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={containerRef} className="flex flex-col gap-12 sm:gap-16 pt-8 md:pt-0">
-      <div className="info-line">
-        <h3 className="font-heading font-black text-3xl sm:text-4xl text-cream tracking-tight uppercase mb-4">Uma conversa clara</h3>
-        <p className="font-sans text-cream/70 text-lg leading-relaxed max-w-sm mb-6">
-          Você não precisa chegar com briefing pronto. Conte o momento da empresa e onde sente que está perdendo oportunidades. Ajudamos a organizar o próximo passo.
+    <div ref={containerRef} className={styles.contactInfo}>
+      <section data-info-row>
+        <span className={styles.infoIndex}>01 · PROTOCOLO</span>
+        <h3>Uma conversa clara</h3>
+        <p>
+          Você não precisa chegar com briefing pronto. Conte o momento da empresa e onde sente
+          que está perdendo oportunidades. Ajudamos a organizar o próximo passo.
         </p>
-        <span className="block font-sans font-bold text-coral uppercase tracking-widest text-sm py-3 border-l-2 border-coral pl-4">
-          Resposta em até 24 horas.
-        </span>
-      </div>
+        <div className={styles.responseStatus}><i /> Resposta em até 24 horas.</div>
+      </section>
 
-      <div className="info-line flex flex-col gap-6">
-        <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Fale direto com a Belis</h3>
-        <div className="flex flex-col gap-2 font-sans font-bold text-lg text-cream/80">
-          <a href="mailto:Lucas@belis.agency" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
-            Lucas@belis.agency
-          </a>
-          <a href="https://wa.me/5511973138895" target="_blank" rel="noopener noreferrer" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
-            WhatsApp: (11) 97313-8895
-          </a>
-          <a href="tel:+5511973138895" className="hover:text-coral transition-colors duration-300 w-fit outline-none">
-            Tel: (11) 97313-8895
-          </a>
-        </div>
-      </div>
-
-      <div className="info-line flex flex-col gap-6">
-        <h3 className="font-heading font-black text-2xl text-cream tracking-tight uppercase">Acompanhe nosso trabalho</h3>
-        <ul className="flex flex-col gap-3 font-sans font-bold uppercase tracking-widest text-sm text-cream/70">
-          <li>
-            <a href="https://www.instagram.com/belisvideo/" target="_blank" rel="noopener noreferrer" data-magnetic data-magnetic-text="GO!" className="hover:text-coral transition-colors duration-300 inline-block outline-none cursor-pointer md:cursor-none">
-              Instagram
-            </a>
-          </li>
+      <section data-info-row>
+        <span className={styles.infoIndex}>02 · CANAIS DIRETOS</span>
+        <h3>Fale direto com a Belis</h3>
+        <ul className={styles.channelList}>
+          <li><span>E-MAIL</span><a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a></li>
+          <li><span>WHATSAPP</span><a href="https://wa.me/5511973138895" target="_blank" rel="noopener noreferrer">(11) 97313-8895</a></li>
+          <li><span>TELEFONE</span><a href="tel:+5511973138895">(11) 97313-8895</a></li>
         </ul>
-      </div>
+      </section>
 
+      <section data-info-row>
+        <span className={styles.infoIndex}>03 · SINAL PÚBLICO</span>
+        <h3>Acompanhe nosso trabalho</h3>
+        <a className={styles.socialLink} href="https://www.instagram.com/belisvideo/" target="_blank" rel="noopener noreferrer">
+          Instagram <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <div className={styles.coordinates} data-info-row aria-hidden="true">
+        <span>LAT · -23.5505</span>
+        <span>LNG · -46.6333</span>
+      </div>
     </div>
   );
 }

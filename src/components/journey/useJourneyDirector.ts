@@ -104,6 +104,14 @@ export function useJourneyDirector(
         blobRef.current?.setLook(
           interpolateLook(looks[i], looks[i + 1], smooth),
         );
+      // Soft breath only on contact station — fades in as you arrive
+      if (!locked) {
+        const contact = STATION_COUNT - 1;
+        const near = clamp(1 - Math.abs(p - contact) * 2.4, 0, 1);
+        blobRef.current?.setPulse(
+          reduced.matches ? 0 : near * near,
+        );
+      }
       for (let station = 0; station < STATION_COUNT; station++) {
         const el = document.getElementById(`journey-station-${station}`);
         if (!el) continue;

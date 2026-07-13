@@ -41,12 +41,29 @@ export function TestimonialProof() {
     <>
       <div className="testimonial-proof" aria-label="Depoimentos de clientes">
         <span className="proof-label">QUEM JÁ CONSTRUIU COM A GENTE</span>
-        <div className="proof-cards">
-          {proofs.map((proof) => (
-            <button key={proof.youtubeId} className="proof-card" onClick={() => openProof(proof)} aria-label={`Assistir depoimento de ${proof.name}`}>
-              <Image src={proof.image} alt="" fill sizes="88px" />
+        <div className="proof-list">
+          {proofs.map((proof, index) => (
+            <button
+              key={proof.youtubeId}
+              className="proof-row"
+              onClick={() => openProof(proof)}
+              aria-label={`Assistir depoimento de ${proof.name}`}
+            >
+              <span className="proof-avatar">
+                <Image
+                  src={proof.image}
+                  alt=""
+                  fill
+                  sizes="56px"
+                  style={"imagePosition" in proof ? { objectPosition: proof.imagePosition } : undefined}
+                />
+              </span>
+              <span className="proof-meta">
+                <span className="proof-index">0{index + 1}</span>
+                <strong>{proof.name}</strong>
+                <small>{proof.role}</small>
+              </span>
               <span className="proof-play" aria-hidden="true">▶</span>
-              <span><strong>{proof.name}</strong><small>{proof.role}</small></span>
             </button>
           ))}
         </div>

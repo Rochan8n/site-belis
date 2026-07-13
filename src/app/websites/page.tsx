@@ -1,19 +1,6 @@
 import type { Metadata } from "next";
-import { AudienceGrid } from "@/components/solutions/AudienceGrid";
-import { CtaBanner } from "@/components/solutions/CtaBanner";
-import { ItemGrid } from "@/components/solutions/ItemGrid";
-import { ProcessSteps } from "@/components/solutions/ProcessSteps";
-import { QualityGrid } from "@/components/solutions/QualityGrid";
-import { SolutionHero } from "@/components/solutions/SolutionHero";
-import {
-  HERO_CTA_LABEL,
-  WEB_CTA_HEADING,
-  WEB_CTA_LABEL,
-  WEB_HERO_SUBCOPY,
-  WEB_WHATSAPP_HREF,
-  webAudiences,
-  webItems,
-} from "@/components/solutions/solutionsData";
+import { WebReveal } from "@/components/solutions/web/WebReveal";
+import { WebStudio } from "@/components/solutions/web/WebStudio";
 
 const TITLE = "Sites que Transformam Percepção em Oportunidades";
 const DESCRIPTION =
@@ -63,28 +50,13 @@ const webServiceJsonLd = {
 
 export default function WebsitesPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-navy font-sans text-cream">
+    <main className="relative w-full overflow-hidden bg-navy font-sans text-cream">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webServiceJsonLd) }}
       />
-      <SolutionHero
-        eyebrow="Websites"
-        headline="Sua empresa evoluiu."
-        accent="Seu site precisa mostrar isso."
-        subcopy={WEB_HERO_SUBCOPY}
-        ctaLabel={HERO_CTA_LABEL}
-        ctaHref={WEB_WHATSAPP_HREF}
-      />
-      <ItemGrid category="Websites" items={webItems} />
-      <AudienceGrid items={webAudiences} />
-      <ProcessSteps />
-      <QualityGrid />
-      <CtaBanner
-        heading={WEB_CTA_HEADING}
-        ctaLabel={WEB_CTA_LABEL}
-        ctaHref={WEB_WHATSAPP_HREF}
-      />
+      <WebReveal />
+      <WebStudio />
     </main>
   );
 }

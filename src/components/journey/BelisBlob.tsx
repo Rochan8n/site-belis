@@ -10,6 +10,7 @@ import type {
 export interface BelisBlobHandle {
   setLook(look: BelisBlobLook): void;
   setBulge(screenX: number, screenY: number, amount: number): void;
+  setPulse(amount: number): void;
   enter(onMid?: () => void, onDone?: () => void): void;
   reset(): void;
   getRotationDeg(): number;
@@ -30,6 +31,9 @@ export const BelisBlob = forwardRef<BelisBlobHandle, BelisBlobProps>(
         setBulge(screenX, screenY, amount) {
           elementRef.current?.setBulge?.(screenX, screenY, amount);
         },
+        setPulse(amount) {
+          elementRef.current?.setPulse?.(amount);
+        },
         enter(onMid, onDone) {
           elementRef.current?.enter?.(onMid, onDone);
         },
@@ -47,7 +51,7 @@ export const BelisBlob = forwardRef<BelisBlobHandle, BelisBlobProps>(
       <>
         <Script
           id="belis-blob-v2-script"
-          src="/belis-blob-v2.js"
+          src="/belis-blob-v2.js?v=enter-ref"
           strategy="afterInteractive"
         />
         <belis-blob-v2 {...props} ref={elementRef} aria-hidden="true" />

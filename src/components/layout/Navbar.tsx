@@ -1,179 +1,143 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { gsap } from "@/lib/gsap-init";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 import { TransitionLink } from "./TransitionLink";
+import styles from "./siteChrome.module.css";
 
 const links = [
-  { href: "/", label: "Início" },
-  { href: "/portfolio", label: "Portfólio" },
-  { href: "/websites", label: "Websites" },
-  { href: "/sistemas", label: "Sistemas" },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/contato", label: "Contato" },
-];
+  { href: "/", label: "Início", code: "00" },
+  { href: "/portfolio", label: "Studio", code: "01" },
+  { href: "/websites", label: "Web", code: "02" },
+  { href: "/sistemas", label: "Systems", code: "03" },
+  { href: "/sobre", label: "Sobre", code: "04" },
+  { href: "/contato", label: "Contato", code: "05" },
+] as const;
+
+const routeLabels: Record<string, string> = {
+  "/portfolio": "Studio",
+  "/websites": "Web",
+  "/sistemas": "Systems",
+  "/sobre": "Sobre",
+  "/contato": "Contato",
+};
+
+function formatClock(date: Date) {
+  return date.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+}
+
+function formatDate(date: Date) {
+  return date
+    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
+    .replace(".", "")
+    .toUpperCase();
+}
 
 export function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
+  const [now, setNow] = useState<Date | null>(null);
+  const routeLabel = routeLabels[pathname] ?? "Belis";
 
-  const { lenis } = useSmoothScroll();
-  const lastScrollY = useRef(0);
-
-  // Hide/show on scroll using Lenis events (since Lenis hijacks native scroll)
   useEffect(() => {
-    if (!lenis) return;
-
-    const onScroll = ({ scroll, direction }: { scroll: number; direction: number }) => {
-      // Always show when near the top
-      if (scroll <= 50) {
-        setHidden(false);
-        lastScrollY.current = scroll;
-        return;
-      }
-
-      // direction: 1 = down, -1 = up
-      if (direction === 1) {
-        setHidden(true);
-      } else if (direction === -1) {
-        setHidden(false);
-      }
-
-      lastScrollY.current = scroll;
+    const updateClock = () => setNow(new Date());
+    const initial = window.setTimeout(updateClock, 0);
+    const clock = window.setInterval(updateClock, 30_000);
+    return () => {
+      window.clearTimeout(initial);
+      window.clearInterval(clock);
     };
+  }, []);
 
-    lenis.on("scroll", onScroll);
-    return () => lenis.off("scroll", onScroll);
-  }, [lenis]);
-
-  // Mobile drawer animation
   useEffect(() => {
-    if (!drawerRef.current) return;
-
-    if (open) {
-      document.body.style.overflow = "hidden";
-      gsap.to(drawerRef.current, {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.5,
-        ease: "power4.inOut",
-      });
-      gsap.fromTo(
-        drawerRef.current.querySelectorAll(".mobile-link"),
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.08, delay: 0.2 }
-      );
-    } else {
-      document.body.style.overflow = "";
-      gsap.to(drawerRef.current, {
-        clipPath: "inset(0% 0% 100% 0%)",
-        duration: 0.4,
-        ease: "power4.inOut",
-      });
-    }
+    document.body.classList.toggle("menu-open", open);
+    return () => document.body.classList.remove("menu-open");
   }, [open]);
 
-  // Close on ESC
   useEffect(() => {
     if (!open) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
     };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  const close = useCallback(() => setOpen(false), []);
+  const pageCode = useMemo(
+    () => links.find((link) => link.href === pathname)?.code ?? "--",
+    [pathname],
+  );
 
   return (
     <>
-      <nav
-        data-navbar
-        className="fixed top-0 left-0 w-full z-[999] backdrop-blur-xl border-b border-cream/10"
-        style={{
-          background: "rgba(5, 5, 8, 0.80)",
-          transform: hidden ? "translateY(-100%)" : "translateY(0%)",
-          transition: "transform 0.35s cubic-bezier(0.33, 1, 0.68, 1)",
-        }}
-      >
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 h-24 flex items-center justify-between">
-          <TransitionLink href="/" className="text-2xl font-heading font-black text-cream uppercase tracking-widest outline-none">
-            Belis<span className="text-coral">.</span>
-          </TransitionLink>
+      <header className={styles.hudHeader} data-navbar>
+        <span className={styles.headerMeta}>
+          {now ? formatDate(now) : "-- ---"} · PÁG. {pageCode}
+        </span>
+        <TransitionLink href="/" className={styles.headerBrand} aria-label="Belis — início">
+          BELIS <i>®</i>
+        </TransitionLink>
+        <button
+          type="button"
+          className={styles.menuTrigger}
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-controls="site-navigation"
+        >
+          <span>{open ? "Fechar" : "Menu"}</span>
+          <i aria-hidden="true"><b /><b /></i>
+        </button>
+        <span className={styles.headerRoute}>{routeLabel} · {now ? formatClock(now) : "--:--"}</span>
+      </header>
 
-          {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-6 lg:gap-10 font-sans text-xs font-semibold tracking-[0.2em] transform translate-y-[2px] uppercase text-cream/70">
-            {links.map((l) => (
-              <li key={l.href}>
-                <TransitionLink href={l.href} className="hover:text-coral transition-colors duration-300 outline-none">
-                  {l.label}
-                </TransitionLink>
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile hamburger / close */}
-          <button
-            className="md:hidden relative w-10 h-10 flex items-center justify-center outline-none z-[1001]"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
-          >
-            <span
-              className="absolute w-7 h-[2px] bg-cream transition-all duration-300 ease-out"
-              style={{
-                transform: open ? "rotate(45deg)" : "translateY(-5px)",
-              }}
-            />
-            <span
-              className="absolute h-[2px] bg-cream transition-all duration-300 ease-out"
-              style={{
-                width: open ? "1.75rem" : "1.25rem",
-                transform: open ? "rotate(-45deg)" : "translateY(5px)",
-                marginLeft: open ? "0" : "auto",
-                right: open ? "auto" : "0.25rem",
-              }}
-            />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile fullscreen drawer */}
       <div
-        ref={drawerRef}
-        className="fixed inset-0 z-[998] flex flex-col items-center justify-center md:hidden"
-        style={{
-          background: "rgba(5, 5, 8, 0.95)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
-          clipPath: "inset(0% 0% 100% 0%)",
-        }}
+        id="site-navigation"
+        className={`${styles.menuPanel} ${open ? styles.menuPanelOpen : ""}`}
+        aria-hidden={!open}
       >
-        <ul className="flex flex-col items-center gap-8">
-          {links.map((l) => (
-            <li key={l.href} className="mobile-link">
-              <TransitionLink
-                href={l.href}
-                onClick={close}
-                className="text-3xl font-heading font-black uppercase tracking-wider text-cream hover:text-coral transition-colors duration-300 outline-none"
-              >
-                {l.label}
-              </TransitionLink>
-            </li>
-          ))}
-        </ul>
+        <div className={styles.menuGrid} aria-hidden="true" />
+        <div className={styles.menuCorners} aria-hidden="true"><i /><i /><i /><i /></div>
 
-        {/* CTA no drawer */}
-        <div className="mobile-link mt-12">
+        <div className={styles.menuIntro}>
+          <span>MAPA / 006 ROTAS</span>
+          <span>SELECIONE DESTINO</span>
+        </div>
+
+        <nav className={styles.menuNav} aria-label="Navegação principal">
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <TransitionLink
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`${styles.menuLink} ${active ? styles.menuLinkActive : ""}`}
+                aria-current={active ? "page" : undefined}
+                tabIndex={open ? 0 : -1}
+              >
+                <span>{link.code}</span>
+                <strong>{link.label}</strong>
+                <i aria-hidden="true">↗</i>
+              </TransitionLink>
+            );
+          })}
+        </nav>
+
+        <div className={styles.menuFooter}>
+          <span>23.5505° S · 46.6333° W</span>
           <a
             href="https://wa.me/5511973138895"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={close}
-            className="inline-flex items-center gap-2 px-8 py-3 bg-coral text-navy font-sans font-bold text-sm rounded-full uppercase tracking-wider hover:shadow-[0_0_30px_rgba(116,195,101,0.3)] transition-all duration-300"
+            tabIndex={open ? 0 : -1}
           >
-            Conversar com a Belis
+            INICIAR PROJETO ↗
           </a>
+          <span>SÃO PAULO · BR · 2026</span>
         </div>
       </div>
     </>

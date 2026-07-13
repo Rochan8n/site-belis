@@ -5,6 +5,7 @@ import { ItemGrid } from "@/components/solutions/ItemGrid";
 import { ProcessSteps } from "@/components/solutions/ProcessSteps";
 import { QualityGrid } from "@/components/solutions/QualityGrid";
 import { SolutionHero } from "@/components/solutions/SolutionHero";
+import styles from "@/components/solutions/solutions.module.css";
 import {
   HERO_CTA_LABEL,
   SYS_CTA_HEADING,
@@ -64,7 +65,7 @@ const softwareServiceJsonLd = {
 
 export default function SistemasPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-navy font-sans text-cream">
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareServiceJsonLd) }}

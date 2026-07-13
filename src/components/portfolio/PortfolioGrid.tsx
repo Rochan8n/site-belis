@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap-init";
+import styles from "./portfolio.module.css";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -31,7 +32,7 @@ function WhatsAppCTA({ message }: { message: string }) {
       href={`https://wa.me/5511911530257?text=${encoded}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-3 bg-[#25D366] text-navy font-sans font-black text-sm uppercase tracking-[0.15em] px-7 py-4 transition-all duration-300 hover:bg-[#20bc5a] hover:scale-[1.03] active:scale-100"
+      className={styles.ctaBtn}
       aria-label="Falar pelo WhatsApp"
     >
       <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -136,7 +137,8 @@ function PhotoLightbox({ photo, onClose, onPrev, onNext }: {
       // Swipe vertical → fecha
       onClose();
     } else if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      dx < 0 ? onNext() : onPrev();
+      if (dx < 0) onNext();
+      else onPrev();
     }
     touchStartX.current = null;
     touchStartY.current = null;
@@ -181,8 +183,8 @@ function CinematicCarousel({
   const wasDragged = useRef(false);
   const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const prev = () => setActive(i => Math.max(0, i - 1));
-  const next = () => setActive(i => Math.min(items.length - 1, i + 1));
+  const prev = useCallback(() => setActive(i => Math.max(0, i - 1)), []);
+  const next = useCallback(() => setActive(i => Math.min(items.length - 1, i + 1)), [items.length]);
 
   // Wheel scroll suave na horizontal (desktop)
   // Referência estável para active dentro do handler sem re-registrar o listener
@@ -204,7 +206,8 @@ function CinematicCarousel({
       // Só bloqueia o scroll da página se ainda houver item para ir
       if (canNav) {
         e.preventDefault();
-        goingDown ? next() : prev();
+        if (goingDown) next();
+        else prev();
         wheelTimeoutRef.current = setTimeout(() => {
           wheelTimeoutRef.current = null;
         }, 500);
@@ -218,8 +221,7 @@ function CinematicCarousel({
       container?.removeEventListener("wheel", handleWheel);
       if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items.length]);
+  }, [items.length, next, prev]);
 
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
@@ -228,7 +230,7 @@ function CinematicCarousel({
     };
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
-  }, []);
+  }, [next, prev]);
 
   const onPointerDown = (e: React.PointerEvent) => {
     dragStartX.current = e.clientX;
@@ -241,7 +243,8 @@ function CinematicCarousel({
     const delta = e.clientX - dragStartX.current;
     if (Math.abs(delta) > 30) {
       wasDragged.current = true;
-      delta < 0 ? next() : prev();
+      if (delta < 0) next();
+      else prev();
     }
     dragStartX.current = null;
   };
@@ -286,8 +289,6 @@ function CinematicCarousel({
     "border-color 0.4s ease",
   ].join(", ");
 
-  const currentItem = items[active];
-
   return (
     <div
       ref={containerRef}
@@ -316,18 +317,6 @@ function CinematicCarousel({
             filter: "blur(50px)",
           }}
         />
-      </div>
-
-      {/* ── Stats — Left ── */}
-      <div className="absolute left-6 sm:left-10 bottom-16 hidden xl:flex flex-col gap-8 z-30">
-        <div className="flex flex-col">
-          <span className="font-heading font-black text-5xl text-cream leading-none">{String(items.length).padStart(2, "0")}</span>
-          <span className="text-coral font-sans text-[10px] font-black tracking-[0.3em] uppercase mt-1">Categoria</span>
-        </div>
-        <div className="flex flex-col">
-          <span className="font-heading font-black text-5xl text-cream leading-none">45</span>
-          <span className="text-coral font-sans text-[10px] font-black tracking-[0.3em] uppercase mt-1">Clipes ativos</span>
-        </div>
       </div>
 
       {/* ── Pagination dots — Right ── */}
@@ -504,28 +493,20 @@ function SectionHeader({ index, title, subtitle, tag, meta }: {
   meta: { label: string; value: string }[];
 }) {
   return (
-    <div className="mb-12 sm:mb-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-      <div className="flex-1">
-        <div className="flex items-center gap-4 mb-5">
-          <span className="font-heading font-black text-5xl sm:text-7xl text-cream/10 leading-none select-none">
-            {String(index).padStart(2, "0")}
-          </span>
-          <span className="text-[10px] font-sans font-black tracking-[0.3em] uppercase text-coral border border-coral/30 px-3 py-1">
-            {tag}
-          </span>
-        </div>
-        <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tighter text-cream leading-none mb-5">
-          {title}
-        </h2>
-        <p className="font-sans font-light text-cream/55 text-base sm:text-lg max-w-xl leading-relaxed">
-          {subtitle}
-        </p>
+    <div className={styles.sectionHeader}>
+      <div className={styles.sectionIntro}>
+        <span className={styles.eyebrow}>
+          <span className={styles.eyebrowIndex}>{String(index).padStart(2, "0")}</span>
+          {tag}
+        </span>
+        <h2 className={styles.sectionTitle}>{title}</h2>
+        <p className={styles.lede}>{subtitle}</p>
       </div>
-      <div className="flex flex-col gap-3 min-w-[220px]">
+      <div className={styles.sectionMeta}>
         {meta.map(({ label, value }) => (
-          <div key={label} className="flex items-baseline justify-between gap-6 border-b border-cream/10 pb-3 last:border-0 last:pb-0">
-            <span className="text-cream/40 font-sans text-xs tracking-[0.15em] uppercase shrink-0">{label}</span>
-            <span className="text-cream font-sans text-sm font-medium text-right">{value}</span>
+          <div key={label} className={styles.metaItem}>
+            <span className={styles.metaLabel}>{label}</span>
+            <span className={styles.metaValue}>{value}</span>
           </div>
         ))}
       </div>
@@ -535,7 +516,7 @@ function SectionHeader({ index, title, subtitle, tag, meta }: {
 
 // ─── Section Wrapper with scroll-triggered reveal ─────────────────────────────
 
-function TheaterSection({ children, id }: { children: React.ReactNode; id: string }) {
+function TheaterSection({ children, id, paper = false }: { children: React.ReactNode; id: string; paper?: boolean }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -553,7 +534,7 @@ function TheaterSection({ children, id }: { children: React.ReactNode; id: strin
   }, []);
 
   return (
-    <section ref={ref} id={id} className="w-full py-24 sm:py-32 border-t border-cream/5 relative">
+    <section ref={ref} id={id} className={`${styles.theater} ${styles.grid} ${paper ? styles.paperSection : ""}`}>
       {children}
     </section>
   );
@@ -561,48 +542,58 @@ function TheaterSection({ children, id }: { children: React.ReactNode; id: strin
 
 // ─── Photo Masonry ────────────────────────────────────────────────────────────
 
+function PhotoColumn({
+  items,
+  allPhotos,
+  topOffset,
+  onOpen,
+}: {
+  items: PhotoItem[];
+  allPhotos: PhotoItem[];
+  topOffset: number;
+  onOpen: (index: number) => void;
+}) {
+  return (
+    <div className={styles.photoColumn} style={{ marginTop: `${topOffset}px` }}>
+      {items.map((photo) => {
+        const globalIndex = allPhotos.findIndex((item) => item.id === photo.id);
+        return (
+          <div
+            key={photo.id}
+            onClick={() => onOpen(globalIndex)}
+            className={styles.photo}
+            role="button"
+            aria-label={`Ver foto: ${photo.alt}`}
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") onOpen(globalIndex);
+            }}
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={800}
+              height={600}
+              className="w-full h-auto object-cover"
+              sizes="33vw"
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function PhotoMasonry({ photos, onOpen }: { photos: PhotoItem[]; onOpen: (i: number) => void }) {
   const col1 = photos.filter((_, i) => i % 3 === 0);
   const col2 = photos.filter((_, i) => i % 3 === 1);
   const col3 = photos.filter((_, i) => i % 3 === 2);
 
-  function Col({ items, topOffset }: { items: PhotoItem[]; topOffset: number }) {
-    return (
-      <div className="flex flex-col gap-2" style={{ marginTop: `${topOffset}px` }}>
-        {items.map(photo => {
-          const globalIndex = photos.findIndex(p => p.id === photo.id);
-          return (
-            <div
-              key={photo.id}
-              onClick={() => onOpen(globalIndex)}
-              className="relative overflow-hidden cursor-pointer group rounded-xl"
-              role="button" aria-label={`Ver foto: ${photo.alt}`} tabIndex={0}
-              style={{ boxShadow: "0 0 0 1px #74C36555, 0 0 10px #74C36530" }}
-            >
-              <Image
-                src={photo.src} alt={photo.alt} width={800} height={600}
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="33vw"
-              />
-              <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-all duration-500 flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg className="w-7 h-7 text-cream" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
   return (
-    <div className="grid grid-cols-3 gap-2">
-      <Col items={col1} topOffset={0} />
-      <Col items={col2} topOffset={24} />
-      <Col items={col3} topOffset={48} />
+    <div className={styles.photoGrid}>
+      <PhotoColumn items={col1} allPhotos={photos} topOffset={0} onOpen={onOpen} />
+      <PhotoColumn items={col2} allPhotos={photos} topOffset={24} onOpen={onOpen} />
+      <PhotoColumn items={col3} allPhotos={photos} topOffset={48} onOpen={onOpen} />
     </div>
   );
 }
@@ -689,11 +680,33 @@ export function PortfolioGrid() {
   const nextPhoto  = useCallback(() => setPhotoLightbox(i => i !== null ? Math.min(photos.length - 1, i + 1) : null), []);
 
   return (
-    <div className="w-full bg-navy relative z-10">
+    <div className={styles.page}>
+
+      <section className={styles.statement}>
+        <div className={styles.statementGrid}>
+          <h2 className={styles.statementTitle}>
+            Imagem não decora. <span className={styles.accent}>Move percepção.</span>
+          </h2>
+          <div className={styles.statementSide}>
+            <span className={styles.eyebrow}>Nosso trabalho</span>
+            <p className={styles.lede}>
+              Estratégia, roteiro e direção transformam atenção em entendimento. Cada entrega nasce para fazer sua marca parecer tão boa quanto ela já é.
+            </p>
+          </div>
+        </div>
+        <div className={styles.capabilities}>
+          {["Reels estratégicos", "Filmes institucionais", "Campanhas", "Fotografia"].map((item, index) => (
+            <div className={styles.capability} key={item}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ── 01 REELS — 3D Showcase ─────────────────────────────────────── */}
       <TheaterSection id="reels">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 theater-reveal">
+        <div className={`${styles.sectionInner} theater-reveal`}>
           <SectionHeader
             index={1}
             tag="Reels Estratégicos"
@@ -708,17 +721,17 @@ export function PortfolioGrid() {
           />
         </div>
         {/* 3D Reels carousel — matches code.html design */}
-        <div className="theater-reveal py-6">
+        <div className={`${styles.carouselShell} theater-reveal`}>
           <CinematicCarousel items={reels} onPlay={openVideo} bgLabel="REELS" aspect="9/16" initialActive={0} fixedTitle="REELS" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-6 theater-reveal">
+        <div className={`${styles.sectionAction} theater-reveal`}>
           <WhatsAppCTA message="Olá! Quero usar vídeos curtos para tornar minha empresa mais presente e reconhecida. Podemos conversar sobre o melhor caminho?" />
         </div>
       </TheaterSection>
 
       {/* ── 02 INSTITUCIONAIS ──────────────────────────────────────────── */}
       <TheaterSection id="institucionais">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 theater-reveal">
+        <div className={`${styles.sectionInner} theater-reveal`}>
           <SectionHeader
             index={2}
             tag="Vídeos Institucionais"
@@ -732,17 +745,17 @@ export function PortfolioGrid() {
             ]}
           />
         </div>
-        <div className="theater-reveal">
+        <div className={`${styles.carouselShell} theater-reveal`}>
           <CinematicCarousel items={institucionais} onPlay={openVideo} bgLabel="INST." aspect="16/9" fixedTitle="VÍDEOS INSTITUCIONAIS" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
+        <div className={`${styles.sectionAction} theater-reveal`}>
           <WhatsAppCTA message="Olá! Quero apresentar a história, a estrutura e a qualidade da minha empresa com mais clareza. Podemos conversar sobre um vídeo institucional?" />
         </div>
       </TheaterSection>
 
       {/* ── 03 ANÚNCIOS ────────────────────────────────────────────────── */}
       <TheaterSection id="anuncios">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 theater-reveal">
+        <div className={`${styles.sectionInner} theater-reveal`}>
           <SectionHeader
             index={3}
             tag="Anúncios para Tráfego Pago"
@@ -756,17 +769,17 @@ export function PortfolioGrid() {
             ]}
           />
         </div>
-        <div className="theater-reveal">
+        <div className={`${styles.carouselShell} theater-reveal`}>
           <CinematicCarousel items={anuncios} onPlay={openVideo} bgLabel="ADS" aspect="16/9" fixedTitle="ANÚNCIOS PARA TRÁFEGO PAGO" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
+        <div className={`${styles.sectionAction} theater-reveal`}>
           <WhatsAppCTA message="Olá! Quero transformar minha oferta em anúncios mais claros e capazes de gerar oportunidades. Podemos conversar?" />
         </div>
       </TheaterSection>
 
       {/* ── 04 VÍDEOS HORIZONTAIS ────────────────────────────────────────── */}
       <TheaterSection id="horizontais">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 theater-reveal">
+        <div className={`${styles.sectionInner} theater-reveal`}>
           <SectionHeader
             index={4}
             tag="Vídeos Horizontais"
@@ -780,17 +793,17 @@ export function PortfolioGrid() {
             ]}
           />
         </div>
-        <div className="theater-reveal">
+        <div className={`${styles.carouselShell} theater-reveal`}>
           <CinematicCarousel items={horizontais} onPlay={openVideo} bgLabel="WIDE" aspect="16/9" fixedTitle="VÍDEOS YOUTUBE" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 mt-12 theater-reveal">
+        <div className={`${styles.sectionAction} theater-reveal`}>
           <WhatsAppCTA message="Olá! Tenho uma história que precisa ser apresentada com profundidade e qualidade. Quero entender como a Belis pode transformá-la em filme." />
         </div>
       </TheaterSection>
 
       {/* ── 05 FOTOGRAFIAS ─────────────────────────────────────────────── */}
-      <TheaterSection id="fotografias">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
+      <TheaterSection id="fotografias" paper>
+        <div className={styles.sectionInner}>
           <div className="theater-reveal">
             <SectionHeader
               index={5}
@@ -807,11 +820,22 @@ export function PortfolioGrid() {
           <div className="theater-reveal">
             <PhotoMasonry photos={photos} onOpen={openPhoto} />
           </div>
-          <div className="mt-12 theater-reveal">
+          <div className={`${styles.sectionAction} theater-reveal`} style={{ paddingInline: 0 }}>
             <WhatsAppCTA message="Olá! Quero imagens que representem melhor minha empresa e as pessoas por trás dela. Podemos conversar sobre fotografia corporativa?" />
           </div>
         </div>
       </TheaterSection>
+
+      <section className={`${styles.finalCta} ${styles.grid}`}>
+        <span className={styles.eyebrow}>
+          <span className={styles.eyebrowIndex}>→</span>
+          Próximo projeto
+        </span>
+        <h2 className={styles.ctaTitle}>Sua marca pode ser próxima história.</h2>
+        <WhatsAppCTA message="Olá! Vi o portfólio da Belis e quero conversar sobre o próximo projeto da minha marca." />
+        <div className={styles.wordmark} aria-hidden="true"><span>/</span>BELIS</div>
+        <span className={styles.wordmarkSub}>Audiovisual Studio · São Paulo · 2026</span>
+      </section>
 
       {/* ── Lightboxes ─────────────────────────────────────────────────── */}
       {videoLightbox && <VideoLightbox youtubeId={videoLightbox.id} aspect={videoLightbox.aspect} onClose={closeVideo} />}

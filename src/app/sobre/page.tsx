@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AboutHero } from "@/components/sobre/AboutHero";
 import { Timeline } from "@/components/sobre/Timeline";
 import { ValuesSection } from "@/components/sobre/ValuesSection";
+import styles from "@/components/sobre/sobre.module.css";
 
 const SOBRE_TITLE = "Sobre a Belis | Estratégia que Constrói Percepção";
 const SOBRE_DESCRIPTION =
@@ -47,7 +48,7 @@ const breadcrumbJsonLd = {
 
 export default function SobrePage() {
   return (
-    <main className="w-full min-h-screen bg-navy overflow-hidden">
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}

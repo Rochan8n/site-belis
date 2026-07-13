@@ -12,7 +12,7 @@ import { HeroStation } from "./stations/HeroStation";
 import { GuideStation } from "./stations/GuideStation";
 import { TrialStation } from "./stations/TrialStation";
 import { ContactStation } from "./stations/ContactStation";
-import { PortfolioOrbit } from "./PortfolioOrbit";
+import { curtain } from "@/components/layout/curtainController";
 import styles from "./journey.module.css";
 
 const destinations: Record<number, string> = {
@@ -44,14 +44,30 @@ export function BelisJourney() {
       if (locked) return;
       setLocked(true);
       let navigated = false;
+      let covering = false;
       const navigate = () => {
         if (navigated) return;
         navigated = true;
         router.push(href);
       };
-      blobRef.current?.enter(navigate, () => setLocked(false));
-      timers.current.push(window.setTimeout(navigate, 1400));
-      timers.current.push(window.setTimeout(() => setLocked(false), 2200));
+      const coverAndNavigate = () => {
+        if (navigated || covering) return;
+        covering = true;
+        void curtain.cover(href).then((started) => {
+          if (!started) {
+            covering = false;
+            return;
+          }
+          navigate();
+        });
+      };
+
+      // Every landing destination follows approved websites choreography:
+      // blob darkens → persistent /BELIS curtain covers → route commits.
+      blobRef.current?.enter(coverAndNavigate, () => setLocked(false));
+      // Safety: rAF/WebGL starvation must not prevent navigation.
+      timers.current.push(window.setTimeout(coverAndNavigate, 1700));
+      timers.current.push(window.setTimeout(() => setLocked(false), 2600));
     },
     [locked, router],
   );
@@ -184,8 +200,6 @@ export function BelisJourney() {
           <b />
           <b />
         </div>
-        <PortfolioOrbit active={hud.active === 2} />
-
         <nav className={styles.markers} aria-label="Seções">
           {markers.map((marker) => (
             <button
@@ -243,7 +257,6 @@ export function BelisJourney() {
           </div>
           <span>SÃO PAULO · BR</span>
         </footer>
-        <div className={styles.grain} aria-hidden="true" />
       </div>
       <div ref={cursorRef} className={styles.cursor} aria-hidden="true">
         <span>ENTRAR</span>

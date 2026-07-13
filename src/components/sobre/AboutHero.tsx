@@ -1,81 +1,88 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { BelisBlob, type BelisBlobHandle } from "@/components/journey/BelisBlob";
+import { looks } from "@/components/journey/journeyData";
 import { gsap } from "@/lib/gsap-init";
+import styles from "./sobre.module.css";
 
 export function AboutHero() {
   const containerRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const blobRef = useRef<BelisBlobHandle>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
-    
-    const ctx = gsap.context(() => {
-      // Parallax Background Effect
-      gsap.to(bgRef.current, {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
 
-      // Split Text Stagger Reveal
+    let active = true;
+    window.customElements.whenDefined("belis-blob-v2").then(() => {
+      if (!active) return;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      blobRef.current?.setLook({
+        ...looks[1],
+        amp: reduced ? 0.08 : 0.25,
+        spin: reduced ? 0 : 0.05,
+      });
+    });
+
+    const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".char-hero-about", 
-        { yPercent: 120, opacity: 0, rotationZ: 5 }, 
-        { 
-          yPercent: 0, 
-          opacity: 1, 
-          rotationZ: 0,
-          stagger: 0.04, 
-          duration: 1.2, 
-          ease: "power4.out" 
-        }
+        "[data-about-reveal]",
+        { y: 22, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: 0.15,
+        },
       );
     }, containerRef);
-    
-    return () => ctx.revert();
+
+    return () => {
+      active = false;
+      ctx.revert();
+    };
   }, []);
 
-  const text = "Ajudamos boas empresas a serem percebidas como realmente são.";
-
   return (
-    <section ref={containerRef} className="relative w-full h-[80vh] sm:h-screen flex items-center justify-center overflow-hidden bg-navy z-10">
+    <section ref={containerRef} className={styles.hero} aria-labelledby="about-title">
+      <div className={styles.dotGrid} aria-hidden="true" />
 
-      {/* Parallax Background */}
-      <div className="absolute inset-0 w-full h-[130%] -top-[15%]" ref={bgRef}>
-        <Image
-          src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=2000"
-          alt="Studio Background"
-          fill
-          className="object-cover opacity-20 grayscale"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-navy/60 mix-blend-multiply" />
+      <div className={styles.heroTelemetry} data-about-reveal>
+        <span><b>04</b> / 006</span>
+        <span>ORIGEM · BELIS</span>
+        <span>SÃO PAULO · BR</span>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto w-full flex flex-col justify-end h-full pt-32 pb-16 sm:pb-24 gap-6">
-        <h1 className="text-[7vw] font-heading font-black text-cream mix-blend-difference uppercase tracking-tighter leading-[0.9] w-full flex flex-wrap gap-x-3 sm:gap-x-5 gap-y-2 px-6 sm:px-12 lg:px-24">
-          {text.split(" ").map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden pt-3 -mt-3 pb-4 sm:-mb-4">
-              <span className="char-hero-about inline-block origin-bottom-left will-change-transform">
-                {word}
-              </span>
-            </span>
-          ))}
-        </h1>
-        <p className="text-cream/70 text-base sm:text-lg lg:text-xl font-body max-w-3xl px-6 sm:px-12 lg:px-24 leading-relaxed">
-          A Belis nasceu no audiovisual e cresceu acompanhando um problema maior: empresas excelentes
-          que ainda pareciam comuns por fora. Hoje unimos estratégia, audiovisual, web e software para
-          transformar percepção e sustentar crescimento.
-        </p>
+      <div className={styles.heroLayout}>
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow} data-about-reveal>
+            <i aria-hidden="true" /> Parceiro de transformação
+          </p>
+          <h1 id="about-title" data-about-reveal>
+            Ajudamos boas empresas a serem percebidas <em>como realmente são.</em>
+          </h1>
+          <p className={styles.heroLede} data-about-reveal>
+            A Belis nasceu no audiovisual e cresceu acompanhando um problema maior: empresas excelentes
+            que ainda pareciam comuns por fora. Hoje unimos estratégia, audiovisual, web e software para
+            transformar percepção e sustentar crescimento.
+          </p>
+        </div>
+
+        <div className={styles.blobPanel} data-about-reveal aria-hidden="true">
+          <div className={styles.blobCage}>
+            <i /><i /><i /><i />
+            <BelisBlob ref={blobRef} className={styles.blob} />
+          </div>
+          <span className={styles.blobLabel}>OBJ. 01 · PERCEPÇÃO</span>
+          <span className={styles.blobAxis}>FORMA / FUNÇÃO / CRESCIMENTO</span>
+        </div>
+      </div>
+
+      <div className={styles.heroFooter} data-about-reveal>
+        <span>ESTRATÉGIA · AUDIOVISUAL · WEB · SOFTWARE</span>
+        <span>DESDE 2021</span>
       </div>
     </section>
   );

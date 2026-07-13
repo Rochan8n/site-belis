@@ -1,62 +1,48 @@
-"use client";
-
-// Framer Motion removido — efeito hover idêntico implementado com CSS transition nativo.
-// Ganho: ~50KB do bundle eliminados. Visual 100% idêntico ao original.
+import styles from "./sobre.module.css";
 
 const values = [
   {
     title: "Nossa Missão",
+    label: "Missão",
     desc: "Fazer empresas excelentes serem percebidas com a clareza, a confiança e o valor que já existem dentro delas.",
-    bgcolor: "bg-navy",
-    textColor: "text-cream",
-    style: {},
   },
   {
     title: "Nossa Visão",
+    label: "Visão",
     desc: "Construir relações duradouras com empresas que querem alinhar marca, experiência digital e operação à próxima fase do negócio.",
-    bgcolor: "",
-    textColor: "text-cream",
-    style: { backgroundColor: "#001f3f" },
   },
   {
     title: "Como trabalhamos",
+    label: "Método",
     desc: "Escutamos antes de propor. Organizamos antes de executar. Cada decisão precisa fortalecer percepção, facilitar uma escolha ou remover um gargalo real.",
-    bgcolor: "",
-    textColor: "text-cream",
-    style: { backgroundColor: "#44403C" },
-  }
+  },
 ];
 
 export function ValuesSection() {
   return (
-    <section className="w-full bg-navy relative z-20 border-t border-cream/10">
-      <div className="grid grid-cols-1 lg:grid-cols-3 w-full min-h-[60vh] lg:min-h-0">
-        {values.map((v, i) => (
-          // Substituição do motion.div por div com CSS — hover via grupo Tailwind
-          <div
-            key={i}
-            className={`flex flex-col justify-between p-12 sm:p-16 lg:p-20 border-b lg:border-b-0 lg:border-r border-cream/10 last:border-r-0 ${v.bgcolor} ${v.textColor} group cursor-crosshair h-full`}
-            style={v.style}
-          >
-            <div className="mb-24 lg:mb-48">
-              <span className="text-sm font-sans font-bold tracking-[0.3em] uppercase opacity-50 block mb-6 transition-opacity duration-300 group-hover:opacity-100">
-                0{(i + 1)}
-              </span>
-              <h3 className="text-4xl sm:text-5xl font-heading font-black uppercase tracking-tight leading-none">
-                {v.title}
-              </h3>
-            </div>
+    <section className={styles.values} aria-labelledby="values-title">
+      <div className={styles.valuesHead}>
+        <p className={styles.eyebrow}><i aria-hidden="true" /> Princípios operacionais</p>
+        <h2 id="values-title">O que orienta <em>cada decisão.</em></h2>
+      </div>
 
-            {/*
-              Substituição do motion.p (variants idle/hover: y 20→0, opacity 0.7→1).
-              CSS transition nativo é mais performático — roda na GPU sem overhead JS.
-              Efeito final idêntico ao Framer Motion original.
-            */}
-            <p className="text-lg font-sans font-medium leading-relaxed max-w-sm opacity-70 translate-y-5 transition-[opacity,transform] duration-[400ms] ease-out group-hover:opacity-100 group-hover:translate-y-0">
-              {v.desc}
-            </p>
-          </div>
+      <ol className={styles.valuesGrid}>
+        {values.map((value, index) => (
+          <li key={value.title}>
+            <div className={styles.valueMeta}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span>{value.label}</span>
+            </div>
+            <h3>{value.title}</h3>
+            <p>{value.desc}</p>
+            <i className={styles.valueCross} aria-hidden="true" />
+          </li>
         ))}
+      </ol>
+
+      <div className={styles.valuesFooter}>
+        <span>/BELIS</span>
+        <span>CLAREZA · PERCEPÇÃO · ESTRUTURA</span>
       </div>
     </section>
   );

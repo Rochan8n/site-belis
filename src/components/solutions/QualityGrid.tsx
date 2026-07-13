@@ -1,38 +1,29 @@
 import { qualityItems, STACK_LINE } from "./solutionsData";
+import styles from "./solutions.module.css";
 
 export function QualityGrid() {
   return (
     <section
       aria-labelledby="solutions-quality-title"
-      className="relative z-10 border-y border-cream/10 bg-[#09090d]"
+      className={`${styles.section} ${styles.paperSection} ${styles.paperSecond}`}
     >
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:px-12 sm:py-32 lg:px-24">
-        <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.38em] text-coral sm:text-xs">
-          ++ 04 — O que sustenta a entrega
-        </p>
-        <h2
-          id="solutions-quality-title"
-          className="mb-14 font-heading text-4xl font-black uppercase leading-none tracking-tight text-cream sm:text-6xl"
-        >
-          Tecnologia que sustenta
-          <br />
-          sua próxima fase.
+      <div className={styles.sectionShell}>
+        <p className={`${styles.eyebrow} ${styles.eyebrowInk}`}><span aria-hidden="true">✦</span> 04 — O que sustenta a entrega</p>
+        <h2 id="solutions-quality-title" className={`${styles.heading} ${styles.sectionTitle}`}>
+          Tecnologia que sustenta<br />sua próxima fase.
         </h2>
-        <ul className="grid gap-x-12 sm:grid-cols-2">
-          {qualityItems.map((item) => (
-            <li key={item.name} className="border-t border-cream/15 py-7">
-              <h3 className="mb-2 font-heading text-xl font-extrabold text-cream">
-                {item.name}
-              </h3>
-              <p className="text-sm font-light leading-relaxed text-cream/55">
-                {item.description}
-              </p>
+        <ul className={styles.qualityList}>
+          {qualityItems.map((item, index) => (
+            <li key={item.name} className={styles.qualityItem}>
+              <span aria-hidden="true" className={styles.panelIndex}>Q{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+              </div>
             </li>
           ))}
         </ul>
-        <p className="mt-5 text-[10px] font-semibold uppercase leading-loose tracking-[0.22em] text-cream/40 sm:text-xs sm:tracking-[0.28em]">
-          {STACK_LINE}
-        </p>
+        <p className={styles.stackLine}>{STACK_LINE}</p>
       </div>
     </section>
   );

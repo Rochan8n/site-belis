@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { TransitionCurtain } from "@/components/layout/TransitionCurtain";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const redHatDisplay = Red_Hat_Display({
@@ -239,6 +240,7 @@ export default function RootLayout({
       <body className="font-sans bg-navy text-cream selection:bg-coral selection:text-white antialiased cursor-auto overflow-x-hidden">
         <GoogleAnalytics />
         <SiteChrome>{children}</SiteChrome>
+        <TransitionCurtain />
       </body>
     </html>
   );

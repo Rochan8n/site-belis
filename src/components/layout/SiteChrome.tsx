@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
-import { GradientBackground } from "@/components/ui/GradientBackground";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { PageTransition } from "@/components/layout/PageTransition";
+import { PageHud } from "@/components/layout/PageHud";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const hasPageEnding = ["/portfolio", "/websites", "/sistemas"].includes(pathname);
 
   useEffect(() => {
     document.body.classList.toggle("md:cursor-none", pathname !== "/");
@@ -27,15 +27,12 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <SmoothScroll>
-      <PageTransition>
-        {/* Gradient spheres fixas — se movem no scroll via GSAP */}
-        <GradientBackground />
-        <NoiseOverlay />
-        <CustomCursor />
-        <Navbar />
-        {children}
-        <Footer />
-      </PageTransition>
+      <NoiseOverlay />
+      <CustomCursor />
+      <Navbar />
+      <PageHud />
+      {children}
+      {!hasPageEnding && <Footer />}
     </SmoothScroll>
   );
 }

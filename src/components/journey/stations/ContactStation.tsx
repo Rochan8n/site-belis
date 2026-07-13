@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { importantProjects } from "../journeyData";
+import { TransitionLink } from "@/components/layout/TransitionLink";
 import { TestimonialProof } from "../TestimonialProof";
 
 export function ContactStation() {
@@ -22,9 +21,8 @@ export function ContactStation() {
           >
             VAMOS CONSTRUIR ISSO JUNTOS <span aria-hidden="true">→</span>
           </a>
-          <Link className="journey-cta" href="/portfolio">PORTFÓLIO ↗</Link>
+          <TransitionLink className="journey-cta" href="/portfolio">PORTFÓLIO ↗</TransitionLink>
         </div>
-        <p className="projects-line">{importantProjects.join(" · ")}</p>
       </div>
       <TestimonialProof />
       <span className="journey-coordinates">BELIS © 2026 — SÃO PAULO · 23.55°S 46.63°W</span>

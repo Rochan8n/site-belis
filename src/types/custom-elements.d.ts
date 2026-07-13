@@ -24,6 +24,7 @@ export interface BelisBlobElement extends HTMLElement {
 export interface BelisBlobV2Element extends HTMLElement {
   setLook(look: BelisBlobLook): void;
   setBulge(screenX: number, screenY: number, amount: number): void;
+  setPulse(amount: number): void;
   enter(onMid?: () => void, onDone?: () => void): void;
   reset(): void;
   getRotationDeg(): number;

@@ -2,10 +2,10 @@
 
 @theme inline {
   /* ── Luxury Palette ── */
-  --color-navy: #050508;          /* Near Black base  */
+  --color-navy: #0A0A0C;          /* Journey black    */
   --color-blue: #1E488F;          /* Nuit Blanche     */
   --color-coral: #74C365;         /* Mantis (accent)  */
-  --color-cream: #F6F7ED;         /* Praxeti White    */
+  --color-cream: #EFECE2;         /* Journey paper ink */
   /* --color-book-green removido: era idêntico a --color-mantis (#74C365) */
   --color-mantis: #74C365;        /* Mantis           */
 
@@ -13,7 +13,7 @@
   --color-foreground: var(--color-cream);
 
   --font-sans: var(--font-inter-tight);
-  --font-heading: var(--font-red-hat-display);
+  --font-heading: var(--font-archivo);
   --font-archivo: Archivo, sans-serif;
   --font-plex-mono: "IBM Plex Mono", monospace;
 }
@@ -21,6 +21,15 @@
 :root {
   --background: var(--color-navy);
   --foreground: var(--color-cream);
+  --belis-dark: #0A0A0C;
+  --belis-dark-2: #050506;
+  --belis-paper: #E9E5DA;
+  --belis-paper-2: #E5E2D5;
+  --belis-ink: #16161A;
+  --belis-green: #74C365;
+  --belis-display: var(--font-archivo), sans-serif;
+  --belis-mono: var(--font-plex-mono), monospace;
+  --belis-edge: clamp(22px, 6vw, 120px);
 }
 
 html.lenis, html.lenis body {
@@ -40,11 +49,15 @@ html.lenis, html.lenis body {
 }
 
 body {
-  background: #050508;
+  background: var(--belis-dark);
   color: var(--foreground);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 /* 3D Perspective for scroll storytelling */

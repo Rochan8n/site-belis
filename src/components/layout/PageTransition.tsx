@@ -11,6 +11,7 @@ import {
 import { useRouter, usePathname } from "next/navigation";
 import { gsap, ScrollTrigger } from "@/lib/gsap-init";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { curtain } from "@/components/layout/curtainController";
 
 /* ── Context ── */
 interface TransitionContextValue {
@@ -114,6 +115,17 @@ export function PageTransition({ children }: { children: ReactNode }) {
     const pageContent = document.querySelector("[data-page-content]");
     if (!overlay || !b1 || !b2 || !b3) return;
 
+    // Journey → /websites: the persistent curtain owns the whole reveal.
+    // Bail out of the global slide-up / overlay timeline so we don't get a
+    // second motion competing under the black. Navbar → /websites still runs.
+    if (pathname === "/websites" && curtain.getPhase() === "covered") {
+      busyRef.current = false;
+      setTransitioning(false);
+      play();
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+      return;
+    }
+
     const tl = gsap.timeline({
       onComplete: () => {
         gsap.set(overlay, { pointerEvents: "none", opacity: 0 });
@@ -138,7 +150,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
       },
     });
 
-    // 1. Page content slides up from below — creamy ease with soft bounce
+    // 1. Page content slides up from below — creamy ease with soft bounce.
     if (pageContent) {
       tl.fromTo(pageContent,
         { y: "100vh", opacity: 1 },
@@ -176,7 +188,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         ease: "power2.out",
       }, 0.5);
     }
-  }, [play]);
+  }, [play, pathname]);
 
   const ctx: TransitionContextValue = {
     triggerTransition,

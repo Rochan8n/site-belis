@@ -1,4 +1,4 @@
-import { importantProjects, studioStats, type trials } from "../journeyData";
+import { studioStats, type trials } from "../journeyData";
 
 type Trial = (typeof trials)[number];
 interface TrialStationProps { trial: Trial; onEnter: () => void }
@@ -35,7 +35,6 @@ export function TrialStation({ trial, onEnter }: TrialStationProps) {
               <div key={label}><strong>{value}</strong><span>{label}</span></div>
             ))}
           </div>
-          <p>{importantProjects.join(" · ")}</p>
         </div>
       )}
     </section>

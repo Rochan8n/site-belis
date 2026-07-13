@@ -1,24 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { CSSProperties } from "react";
+import { TransitionLink } from "@/components/layout/TransitionLink";
 
 const orbitProjects = [
-  {
-    name: "Krrom Construtora",
-    image: "/images/portfolio/krrom.png",
-  },
-  {
-    name: "Laticínios Latco",
-    image: "/images/portfolio/latco.jpg",
-  },
-  {
-    name: "Salles Nogueira",
-    image: "/images/portfolio/salles-nogueira.png",
-  },
-  {
-    name: "Kofar Metalúrgica",
-    image: "/images/portfolio/kofar.png",
-  },
+  { image: "/images/portfolio/krrom.png" },
+  { image: "/images/portfolio/latco.jpg" },
+  { image: "/images/portfolio/salles-nogueira.png" },
+  { image: "/images/portfolio/kofar.png" },
 ] as const;
 
 interface PortfolioOrbitProps {
@@ -40,25 +28,24 @@ export function PortfolioOrbit({ active }: PortfolioOrbitProps) {
     >
       <span className="portfolio-sphere-axis" aria-hidden="true" />
       {orbitProjects.map((project, index) => (
-        <Link
+        <TransitionLink
           className="portfolio-sphere-orbiter"
           href="/portfolio"
-          key={project.name}
+          key={project.image}
           style={getPanelStyle(index)}
-          aria-label={`${project.name} — conhecer portfólio`}
+          aria-label={`Projeto ${index + 1} — conhecer portfólio`}
           tabIndex={active ? 0 : -1}
         >
           <span className="portfolio-sphere-panel">
             <Image
               src={project.image}
-              alt={project.name}
+              alt=""
               fill
               sizes="(max-width: 800px) 46vw, 320px"
             />
-            <span>{project.name}</span>
             <i aria-hidden="true" />
           </span>
-        </Link>
+        </TransitionLink>
       ))}
     </div>
   );

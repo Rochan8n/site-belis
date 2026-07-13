@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap-init";
+import styles from "./portfolio.module.css";
 
 export function PortfolioHero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -10,9 +11,8 @@ export function PortfolioHero() {
   useEffect(() => {
     if (!containerRef.current) return;
     const ctx = gsap.context(() => {
-      // Reveal both title lines from below
       gsap.fromTo(
-        ".hero-char",
+        "[data-hero-line]",
         { yPercent: 110 },
         {
           yPercent: 0,
@@ -22,41 +22,33 @@ export function PortfolioHero() {
           delay: 0.3,
         }
       );
-      // Subtitle fade
       gsap.fromTo(
-        ".hero-sub",
+        "[data-hero-detail]",
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", delay: 0.7 }
       );
-      // Scroll indicator pulse
-      gsap.to(".scroll-line", {
-        scaleY: 0,
-        transformOrigin: "top",
+      gsap.fromTo("[data-scroll-line]", {
+        scaleX: 0,
+        transformOrigin: "left",
+      }, {
+        scaleX: 1,
+        transformOrigin: "left",
         duration: 1.2,
         ease: "power2.inOut",
         repeat: -1,
+        yoyo: true,
         delay: 1.5,
       });
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
-  const titleLine1 = "PERCEPÇÃO";
-  const titleLine2 = "EM MOVIMENTO";
-
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-screen min-h-[600px] overflow-hidden bg-navy flex flex-col"
+      className={`${styles.hero} ${styles.grid}`}
     >
-      {/* YouTube Embed — fullscreen background */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Global dim */}
-        <div className="absolute inset-0 bg-navy/55 z-10" />
-        {/* Heavy gradient at the bottom — readable text area */}
-        <div className="absolute inset-x-0 bottom-0 h-[75%] bg-gradient-to-t from-navy via-navy/80 to-transparent z-20" />
-
-        {/* iframe — covers viewport at any aspect ratio */}
+      <div className={styles.heroMedia}>
         <iframe
           ref={videoRef}
           src={`https://www.youtube.com/embed/abG_KLFMwCY?autoplay=1&mute=1&loop=1&playlist=abG_KLFMwCY&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&origin=${process.env.NEXT_PUBLIC_SITE_URL ?? "https://belis.agency"}&playsinline=1`}
@@ -75,48 +67,39 @@ export function PortfolioHero() {
         />
       </div>
 
-      {/* Content — layered on top */}
-      <div className="relative z-30 flex flex-col justify-end h-full px-6 sm:px-12 lg:px-24 pb-12 sm:pb-20 w-full">
-        {/* Title */}
-        <div className="overflow-hidden mb-2">
-          <h1 className="font-heading font-black uppercase tracking-tighter leading-[0.85] overflow-hidden">
-            {/* Line 1 — cream */}
-            <div className="overflow-hidden">
-              <div className="hero-char flex will-change-transform">
-                {titleLine1.split("").map((char, i) => (
-                  <span key={i} className="text-[15vw] sm:text-[13vw] lg:text-[11vw] text-cream">
-                    {char}
-                  </span>
-                ))}
-              </div>
-            </div>
-            {/* Line 2 — coral accent, offset right */}
-            <div className="overflow-hidden flex justify-end">
-              <div className="hero-char flex will-change-transform">
-                {titleLine2.split("").map((char, i) => (
-                  <span key={i} className="text-[15vw] sm:text-[13vw] lg:text-[11vw] text-coral">
-                    {char}
-                  </span>
-                ))}
-              </div>
-            </div>
+      <div className={styles.heroContent}>
+        <div className={styles.heroHead}>
+          <span className={styles.eyebrow} data-hero-detail>
+            <span className={styles.eyebrowIndex}>01</span>
+            Belis · Audiovisual
+          </span>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroLine}>
+              <span data-hero-line>Percepção</span>
+            </span>
+            <span className={`${styles.heroLine} ${styles.accent}`}>
+              <span data-hero-line>em movimento.</span>
+            </span>
           </h1>
         </div>
-
-        {/* Subtitle + scroll */}
-        <div className="hero-sub flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mt-6">
-          <p className="text-cream/60 font-sans font-light text-base sm:text-lg max-w-md leading-relaxed">
+        <div className={styles.heroFoot} data-hero-detail>
+          <div>
+            <p className={styles.lede}>
             Marcas reais traduzidas em imagem, som e histórias que aumentam confiança antes da primeira conversa.
-          </p>
-          {/* Scroll indicator */}
-          <div className="flex items-center gap-3 self-end sm:self-auto">
-            <span className="text-cream/30 font-sans text-[10px] tracking-[0.25em] uppercase">
-              Scroll
-            </span>
-            <div className="w-px h-10 bg-cream/20 relative overflow-hidden">
-              <div className="scroll-line absolute inset-0 bg-coral origin-top" />
+            </p>
+            <div className={styles.metaRow} style={{ marginTop: "20px" }}>
+              <span>Filmes</span>
+              <span>Campanhas</span>
+              <span>Conteúdo</span>
+              <span>Fotografia</span>
             </div>
           </div>
+          <span className={styles.scrollCue}>
+            Explorar trabalhos
+            <span className={styles.scrollTrack}>
+              <span className={styles.scrollLine} data-scroll-line />
+            </span>
+          </span>
         </div>
       </div>
     </section>

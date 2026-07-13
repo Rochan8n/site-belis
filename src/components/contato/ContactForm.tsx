@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap-init";
-import clsx from "clsx";
+import styles from "./contato.module.css";
 
 const projectTypes = [
   "Fortalecer minha marca",
@@ -38,127 +38,109 @@ export function ContactForm() {
 
   useEffect(() => {
     if (!formRef.current) return;
-    
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".form-element", 
-        { y: 40, opacity: 0 }, 
-        { 
-          y: 0, 
-          opacity: 1, 
-          stagger: 0.1, 
-          duration: 1, 
+        "[data-form-row]",
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.07,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: formRef.current,
-            start: "top 80%"
-          }
-        }
+            start: "top 84%",
+          },
+        },
       );
     }, formRef);
-    
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <form ref={formRef} className="w-full flex-col flex gap-10" onSubmit={handleSubmit}>
-      
-      {/* Name */}
-      <div className="form-element flex flex-col relative group">
-        <label htmlFor="name" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          Como podemos chamar você?
-        </label>
-        <input 
-          type="text" 
-          id="name" 
+    <form ref={formRef} className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.field} data-form-row>
+        <div className={styles.fieldMeta}><span>01</span><span>IDENTIFICAÇÃO</span></div>
+        <label htmlFor="name">Como podemos chamar você?</label>
+        <input
+          type="text"
+          id="name"
           name="name"
-          required 
-          className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20"
+          autoComplete="name"
+          required
           placeholder="Seu nome"
         />
       </div>
 
-      {/* Email */}
-      <div className="form-element flex flex-col relative group">
-        <label htmlFor="email" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          Melhor e-mail
-        </label>
-        <input 
-          type="email" 
-          id="email" 
+      <div className={styles.field} data-form-row>
+        <div className={styles.fieldMeta}><span>02</span><span>CANAL DE RETORNO</span></div>
+        <label htmlFor="email">Melhor e-mail</label>
+        <input
+          type="email"
+          id="email"
           name="email"
-          required 
-          className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20"
+          autoComplete="email"
+          required
           placeholder="seu@email.com"
         />
       </div>
 
-      {/* Empresa */}
-      <div className="form-element flex flex-col relative group">
-        <label htmlFor="company" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          Sua empresa
-        </label>
-        <input 
-          type="text" 
-          id="company" 
+      <div className={styles.field} data-form-row>
+        <div className={styles.fieldMeta}><span>03</span><span>ORGANIZAÇÃO</span></div>
+        <label htmlFor="company">Sua empresa</label>
+        <input
+          type="text"
+          id="company"
           name="company"
-          required 
-          className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20"
+          autoComplete="organization"
+          required
           placeholder="Nome da empresa"
         />
       </div>
 
-      {/* Mensagem */}
-      <div className="form-element flex flex-col relative group">
-        <label htmlFor="message" className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-2 transition-colors duration-300 group-focus-within:text-coral">
-          O que precisa mudar?
-        </label>
+      <div className={styles.field} data-form-row>
+        <div className={styles.fieldMeta}><span>04</span><span>CONTEXTO</span></div>
+        <label htmlFor="message">O que precisa mudar?</label>
         <textarea
           id="message"
           name="message"
           rows={4}
-          className="w-full bg-transparent border-b border-cream/20 py-3 text-lg font-sans text-cream outline-none transition-colors duration-300 focus:border-coral placeholder:text-cream/20 resize-none"
           placeholder="Conte o momento da empresa, o principal desafio e o resultado que você busca."
         />
       </div>
 
-      {/* Tipo de Projeto (Styled Radio Buttons) */}
-      <div className="form-element flex flex-col mt-4">
-        <label className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-cream/50 mb-6 transition-colors duration-300">
-          Por onde podemos começar?
-        </label>
-        <div className="flex flex-wrap gap-4">
-          {projectTypes.map((type) => (
-            <button
-              key={type}
-              type="button"
-              onClick={() => setSelectedType(type)}
-              className={clsx(
-                "px-6 py-3 rounded-full border text-xs sm:text-sm font-sans font-bold uppercase tracking-widest transition-all duration-300 outline-none cursor-pointer md:cursor-none",
-                selectedType === type
-                  ? "bg-coral border-coral text-navy"
-                  : "bg-transparent border-cream/20 text-cream/60 hover:border-cream/50 hover:text-cream"
-              )}
-            >
-              {type}
-            </button>
+      <fieldset className={styles.projectField} data-form-row>
+        <legend>Por onde podemos começar?</legend>
+        <div className={styles.typeGrid}>
+          {projectTypes.map((type, index) => (
+            <label className={styles.typeOption} key={type}>
+              <input
+                type="radio"
+                name="projectType"
+                value={type}
+                checked={selectedType === type}
+                onChange={() => setSelectedType(type)}
+              />
+              <span className={styles.typeContent}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{type}</strong>
+                <i aria-hidden="true" />
+              </span>
+            </label>
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      {/* Submit Button */}
-      <div className="form-element mt-8">
-        <button
-          type="submit"
-          data-magnetic
-          data-magnetic-text="SEND"
-          className="group relative px-10 sm:px-14 py-6 sm:py-7 overflow-hidden rounded-full bg-coral text-navy font-sans font-bold uppercase tracking-[0.2em] text-sm outline-none cursor-pointer md:cursor-none transition-transform hover:scale-105 duration-300 w-full sm:w-auto"
-        >
-          <span className="relative z-10 pointer-events-none transition-colors duration-500 group-hover:text-cream">CONVERSAR SOBRE MEU PROJETO</span>
-          <div className="absolute inset-0 bg-navy transform scale-y-0 origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-y-100 z-0 rounded-full"></div>
+      <div className={styles.submitRow} data-form-row>
+        <button type="submit" data-magnetic data-magnetic-text="SEND">
+          <span>CONVERSAR SOBRE MEU PROJETO</span>
+          <i aria-hidden="true">→</i>
         </button>
+        <small>Você será direcionado ao WhatsApp com suas respostas.</small>
       </div>
-
     </form>
   );
 }

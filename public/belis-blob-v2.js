@@ -5,6 +5,7 @@
      el.setLook(look)           — { amp, freq, spin, solid, wire, points, colA, colB, base, fadeCol }
                                   colors: '#hex' or [r,g,b] floats 0..1. Smoothly lerped.
      el.setBulge(sx, sy, amt)   — screen-space direction bulge (label hover)
+     el.setPulse(amt)           — 0..1 soft breathing scale (contact CTA cue)
      el.enter(onMid, onDone)    — explode + tunnel-in page transition
      el.reset()                 — recompose after back navigation
      el.getRotationDeg()        — current Y rotation in degrees (HUD readout)
@@ -80,14 +81,31 @@
     'varying vec3 vView;',
     'varying float vNoise;',
     NOISE_GLSL,
+    'float softNoise(vec3 p){',
+    '  float n = snoise(p);',
+    '  // round peaks — viscous liquid, never crystalline',
+    '  return n / (1.0 + abs(n) * 0.55);',
+    '}',
     'float disp(vec3 p){',
     '  vec3 n = normalize(p);',
-    '  float d1 = snoise(n * uFreq + vec3(uTime*0.14, uTime*0.11, 0.0));',
-    '  float d2 = snoise(n * uFreq * 2.4 - vec3(0.0, uTime*0.09, uTime*0.12)) * 0.32;',
-    '  float mb = pow(max(dot(n, uMouseDir), 0.0), 5.0) * uMouseAmt;',
-    '  float sb = pow(max(dot(n, uBulgeDir), 0.0), 3.0) * uBulgeAmt;',
-    '  float base = (d1 + d2) * uAmp + mb + sb;',
-    '  float ex = uExplode * (1.4 + 0.9 * snoise(n * 3.1 + uTime * 0.5));',
+    '  // domain warp — organic asymmetry like the reference',
+    '  vec3 woff = vec3(uTime * 0.07, uTime * 0.055, uTime * 0.04);',
+    '  vec3 warp = vec3(',
+    '    softNoise(n * 0.85 + woff + vec3(0.0, 2.1, 0.0)),',
+    '    softNoise(n * 0.85 + woff + vec3(3.2, 0.0, 1.7)),',
+    '    softNoise(n * 0.85 + woff + vec3(1.1, 4.4, 0.0))',
+    '  );',
+    '  vec3 q = normalize(n + warp * 0.32);',
+    '  // layered low-freq field — big fluid rolls',
+    '  float f1 = softNoise(q * uFreq           + vec3(uTime * 0.11, uTime * 0.09, 0.0));',
+    '  float f2 = softNoise(q * (uFreq * 1.55)  - vec3(0.0, uTime * 0.07, uTime * 0.08)) * 0.38;',
+    '  float f3 = softNoise(q * (uFreq * 0.52)  + vec3(uTime * 0.04, 0.0, 5.0)) * 0.55;',
+    '  float field = f1 * 0.62 + f2 + f3;',
+    '  field = field * (1.12 - 0.22 * field * field);',
+    '  float mb = pow(max(dot(n, uMouseDir), 0.0), 2.0) * uMouseAmt;',
+    '  float sb = pow(max(dot(n, uBulgeDir), 0.0), 1.55) * uBulgeAmt;',
+    '  float base = field * uAmp + mb + sb;',
+    '  float ex = uExplode * (1.35 + 0.85 * softNoise(n * 1.4 + uTime * 0.4));',
     '  return base * (1.0 + uExplode * 4.0) + ex;',
     '}',
     'vec3 displaced(vec3 p){ vec3 n = normalize(p); float r = (1.0 + disp(p)) * uScale; r = min(r, uMaxR + uExplode * 20.0); return n * r; }',
@@ -95,7 +113,7 @@
     '  vec3 n0 = normalize(aPos);',
     '  vec3 t = normalize(cross(n0, abs(n0.y) > 0.98 ? vec3(1.0,0.0,0.0) : vec3(0.0,1.0,0.0)));',
     '  vec3 b = normalize(cross(n0, t));',
-    '  float e = 0.06;',
+    '  float e = 0.03;',
     '  vec3 P  = displaced(aPos);',
     '  vec3 P1 = displaced(aPos + t * e);',
     '  vec3 P2 = displaced(aPos + b * e);',
@@ -106,7 +124,7 @@
     '  vView = vec3(0.0, 0.0, uCamZ) - world;',
     '  vNoise = disp(aPos);',
     '  float dist = max(uCamZ - world.z, 0.35);',
-    '  gl_PointSize = min(uPointSize * 3.3 / dist, uPointSize * 5.0);',
+    '  gl_PointSize = min(uPointSize * 3.6 / dist, uPointSize * 5.5);',
     '  gl_Position = uProj * vec4(world.x, world.y, world.z - uCamZ, 1.0);',
     '}'
   ].join('\n');
@@ -127,45 +145,64 @@
     'void main(){',
     '  if (uPass > 1.5) {',
     '    vec2 pc = gl_PointCoord - 0.5;',
-    '    if (dot(pc, pc) > 0.25) discard;',
+    '    float pr = dot(pc, pc);',
+    '    if (pr > 0.25) discard;',
     '  }',
     '  vec3 N = normalize(vNormal);',
     '  vec3 V = normalize(vView);',
     '  vec3 col;',
     '  float a;',
     '  if (uPass < 0.5) {',
-    // ── polished chrome / liquid metal ──
+    // ── liquid mercury / obsidian (refs 1 & 2) ──
     '    vec3 R = reflect(-V, N);',
-    // studio environment: soft bright top (softbox), darker sides + floor
+    '    float ndv = max(dot(N, V), 0.0);',
+    '    float fres = pow(1.0 - ndv, 2.6);',
     '    float up = clamp(R.y * 0.5 + 0.5, 0.0, 1.0);',
-    '    float env = smoothstep(0.34, 0.98, up);',
-    '    float floorK = smoothstep(0.5, 0.0, up);',
-    '    vec3 metal = mix(uBase, uColA, env * 0.72);',
-    '    metal = mix(metal, uBase * 0.4, floorK * 0.7);',
-    // horizon band: bright equator reflection streak
-    '    float horizon = 1.0 - abs(R.y);',
-    '    metal += pow(horizon, 5.0) * uColA * 0.5;',
-    // soft key + fill reflections
-    '    float key  = pow(max(dot(R, normalize(vec3(0.32, 0.82, 0.42))), 0.0), 5.0);',
-    '    float fill = pow(max(dot(R, normalize(vec3(-0.62, 0.12, 0.58))), 0.0), 3.5);',
-    '    metal += key * uColA * 1.75;',
-    '    metal += fill * mix(uColA, uColB, 0.35) * 0.85;',
-    // tight chrome hotspot
-    '    float hot = pow(max(dot(R, normalize(vec3(0.24, 0.62, 0.72))), 0.0), 96.0);',
-    '    metal += hot * vec3(1.0, 1.0, 0.98) * 1.5;',
-    // fresnel rim with accent tint
-    '    float fres = pow(1.0 - max(dot(N, V), 0.0), 3.0);',
-    '    metal += fres * uColB * 0.5;',
-    // faint iridescence riding the displacement
-    '    metal += max(vNoise, 0.0) * uColB * 0.10;',
+    '    float sky = smoothstep(0.22, 0.92, up);',
+    '    float ground = smoothstep(0.48, 0.0, up);',
+    // near-black body
+    '    vec3 metal = uBase * (0.25 + ground * 0.35);',
+    '    metal = mix(metal, mix(uBase, uColA, 0.7), sky * 0.42);',
+    // wrapping specular ribbons
+    '    float streak = pow(max(1.0 - abs(R.y), 0.0), 3.2);',
+    '    metal += streak * uColA * 0.62;',
+    '    float key  = pow(max(dot(R, normalize(vec3( 0.42, 0.82, 0.40))), 0.0), 3.8);',
+    '    float key2 = pow(max(dot(R, normalize(vec3(-0.50, 0.62, 0.58))), 0.0), 5.5);',
+    '    float fill = pow(max(dot(R, normalize(vec3(-0.78, 0.08, 0.52))), 0.0), 2.4);',
+    '    float rimL = pow(max(dot(R, normalize(vec3( 0.15,-0.35, 0.90))), 0.0), 4.0);',
+    '    metal += key  * vec3(1.0, 1.0, 0.99) * 1.55;',
+    '    metal += key2 * uColA * 1.05;',
+    '    metal += fill * mix(uColA, uColB, 0.15) * 0.38;',
+    '    metal += rimL * uColA * 0.55;',
+    // tight mercury hotspot
+    '    float hot = pow(max(dot(R, normalize(vec3(0.20, 0.55, 0.80))), 0.0), 64.0);',
+    '    metal += hot * vec3(1.0) * 2.4;',
+    // fresnel rim
+    '    metal += fres * uColA * 0.38;',
+    '    metal += fres * fres * vec3(0.95, 0.97, 1.0) * 0.22;',
+    // crush mids — keep mass deep black
+    '    metal = mix(uBase * 0.2, metal, 0.94);',
     '    col = metal;',
     '    a = uPassAlpha * uAlpha;',
-    '  } else {',
+    '  } else if (uPass < 1.5) {',
+    // ── dense organic wire (refs 3 & 4) ──
     '    float facing = max(dot(N, V), 0.0);',
-    '    float rim = pow(1.0 - facing, 1.6);',
-    '    col = mix(uColA, uColB, clamp(0.42 + vNoise * 1.5, 0.0, 1.0));',
-    '    float k = (uPass > 1.5) ? (0.34 + 0.66 * facing) : (0.20 + 0.52 * facing + 0.55 * rim);',
-    '    a = k * uPassAlpha * uAlpha;',
+    '    float rim = pow(1.0 - facing, 1.35);',
+    '    float dens = 0.22 + 0.55 * facing + 0.70 * rim;',
+    '    dens *= 0.85 + 0.25 * smoothstep(-0.2, 0.4, vNoise);',
+    '    col = mix(uColA, uColB, clamp(0.35 + vNoise * 0.9, 0.0, 1.0));',
+    '    col += rim * uColB * 0.25;',
+    '    a = dens * uPassAlpha * uAlpha;',
+    '  } else {',
+    // ── glowing point cloud (ref 4) ──
+    '    vec2 pc = gl_PointCoord - 0.5;',
+    '    float pr = dot(pc, pc);',
+    '    float soft = 1.0 - smoothstep(0.08, 0.25, pr);',
+    '    float facing = max(dot(N, V), 0.0);',
+    '    float rim = pow(1.0 - facing, 1.4);',
+    '    col = mix(uColA, uColB, clamp(0.3 + vNoise * 1.1, 0.0, 1.0));',
+    '    col += rim * uColB * 0.35;',
+    '    a = soft * (0.40 + 0.60 * facing + 0.35 * rim) * uPassAlpha * uAlpha;',
     '  }',
     '  col = mix(col, uFadeCol, uFade);',
     '  gl_FragColor = vec4(col, a);',
@@ -246,9 +283,9 @@
   }
 
   var HERO_LOOK = {
-    amp: 0.07, freq: 1.25, spin: 0.14, solid: 1, wire: 0, points: 0,
-    colA: [0.85, 0.86, 0.89], colB: [0.455, 0.765, 0.396],
-    base: [0.043, 0.047, 0.063], fadeCol: [0.039, 0.039, 0.047]
+    amp: 0.36, freq: 0.95, spin: 0.10, solid: 1, wire: 0, points: 0,
+    colA: [0.957, 0.965, 0.973], colB: [0.455, 0.765, 0.396],
+    base: [0.016, 0.016, 0.020], fadeCol: [0.039, 0.039, 0.047]
   };
 
   var NUM_KEYS = ['amp', 'freq', 'spin', 'solid', 'wire', 'points'];
@@ -286,6 +323,7 @@
     this._dragVel = 0;
     this._mouseScreen = [0, 0]; this._mouseAmt = 0; this._mouseTargetAmt = 0;
     this._bulgeScreen = [1, 0]; this._bulgeAmt = 0; this._bulgeTarget = 0;
+    this._pulseAmt = 0; this._pulseTarget = 0;
     this._explode = 0; this._camZ = 4.2; this._fade = 0; this._alpha = 1;
     this._scale = 0; this._scaleTarget = 1;
     this._entering = false;
@@ -319,7 +357,7 @@
     gl.useProgram(prog);
     this._prog = prog;
 
-    var geo = icosphere(this._mobile ? 3 : 4);
+    var geo = icosphere(this._mobile ? 4 : 5);
     this._nTri = geo.idx.length;
     this._nEdge = geo.edges.length;
     this._nVerts = geo.nVerts;
@@ -380,7 +418,7 @@
     var w = this.clientWidth || 300, h = this.clientHeight || 300;
     this._canvas.width = Math.round(w * dpr);
     this._canvas.height = Math.round(h * dpr);
-    this._pointSize = 2.1 * dpr;
+    this._pointSize = 2.6 * dpr;
     if (this._gl) this._gl.viewport(0, 0, this._canvas.width, this._canvas.height);
     this._aspect = w / h;
   };
@@ -430,6 +468,7 @@
     }
     this._mouseAmt += (this._mouseTargetAmt - this._mouseAmt) * Math.min(dt * 6, 1);
     this._bulgeAmt += (this._bulgeTarget - this._bulgeAmt) * Math.min(dt * 5, 1);
+    this._pulseAmt += (this._pulseTarget - this._pulseAmt) * Math.min(dt * 3.2, 1);
     this._scale += (this._scaleTarget - this._scale) * Math.min(dt * 3.5, 1);
   };
 
@@ -471,7 +510,12 @@
     gl.uniform1f(U.uAmp, cur.amp);
     gl.uniform1f(U.uFreq, cur.freq);
     gl.uniform1f(U.uExplode, this._explode);
-    gl.uniform1f(U.uScale, this._scale);
+    // soft contact breath — ~3s cycle, ±3.5% scale, never during enter
+    var breath = 1;
+    if (!this._entering && this._pulseAmt > 0.01 && !this._reduced) {
+      breath = 1 + Math.sin(this._time * 2.094) * 0.035 * this._pulseAmt;
+    }
+    gl.uniform1f(U.uScale, this._scale * breath);
     gl.uniform1f(U.uFade, this._fade);
     gl.uniform1f(U.uAlpha, this._alpha);
     gl.uniform1f(U.uPointSize, this._pointSize || 2.5);
@@ -500,7 +544,11 @@
     if (cur.points * this._alpha > 0.01) {
       gl.disable(gl.DEPTH_TEST);
       gl.uniform1f(U.uPass, 2);
-      gl.uniform1f(U.uPassAlpha, cur.points);
+      var pointPulse = 1;
+      if (!this._entering && this._pulseAmt > 0.01 && !this._reduced) {
+        pointPulse = 1 + Math.sin(this._time * 2.094) * 0.12 * this._pulseAmt;
+      }
+      gl.uniform1f(U.uPassAlpha, cur.points * pointPulse);
       gl.drawArrays(gl.POINTS, 0, this._nVerts);
     }
   };
@@ -526,6 +574,10 @@
     this._bulgeTarget = amt || 0;
   };
 
+  BelisBlob.prototype.setPulse = function (amt) {
+    this._pulseTarget = Math.max(0, Math.min(1, amt || 0));
+  };
+
   BelisBlob.prototype.getRotationDeg = function () {
     var d = (this._rotY || 0) * 180 / Math.PI;
     d = d % 360; if (d < 0) d += 360;
@@ -538,6 +590,8 @@
     this._entering = true;
     this._bulgeTarget = 0;
     this._mouseTargetAmt = 0;
+    this._pulseTarget = 0;
+    this._pulseAmt = 0;
 
     if (this._reduced || !this._gl) {
       var t0f = performance.now();
@@ -552,29 +606,52 @@
       return;
     }
 
-    var D = 1600;
+    // ── reference transition ──
+    // Morph to a black glossy sphere, push the camera in until it fills the
+    // frame, then dissolve the surface into a dot cloud that fades to black.
+    var tgt = this._tgt;
+    tgt.amp = 0.28; tgt.freq = 0.92; tgt.spin = 0.12;
+    tgt.solid = 1; tgt.wire = 0; tgt.points = 0;
+    tgt.colA = [0.96, 0.97, 1.0];
+    tgt.colB = [0.62, 0.67, 0.74];
+    tgt.base = [0.015, 0.015, 0.020];
+    tgt.fadeCol = [0.0, 0.0, 0.0];
+    // let displaced dots spread past the usual silhouette clamp
+    if (this._U) this._gl.uniform1f(this._U.uMaxR, 2.2);
+
+    var D = 1700;
     var t0 = performance.now();
     var startRotY = this._rotY;
     var midFired = false;
+    var dotsFired = false;
+    this._explode = 0;
     (function anim(now) {
       if (self._dead) return;
       var p = Math.min((now - t0) / D, 1);
-      if (p < 0.3) {
-        var pa = p / 0.3;
-        self._scale = 1 - 0.1 * ease(pa);
+      // slow drift the whole way through
+      self._rotY = startRotY + easeIn(Math.min(p / 0.7, 1)) * 1.1;
+      if (p < 0.28) {
+        // settle into the obsidian sphere
+        var pa = p / 0.28;
+        self._scale = 1 + 0.06 * ease(pa);
         self._scaleTarget = self._scale;
-        self._rotY = startRotY + easeIn(pa) * 0.9;
       } else {
-        var pb = (p - 0.3) / 0.7;
+        var pb = (p - 0.28) / 0.72;
         var eb = ease(pb);
-        self._explode = eb;
-        self._scale = 0.9 + eb * 0.6;
+        // camera pushes in — the sphere swells to fill the viewport
+        self._camZ = 4.2 - eb * 3.0;      // 4.2 -> 1.2
+        self._scale = 1.06 + eb * 0.16;   // gentle, silhouette does the filling
         self._scaleTarget = self._scale;
-        self._camZ = 4.2 - eb * 5.3;
-        self._fade = Math.max(0, (pb - 0.45) / 0.55);
-        if (pb > 0.85) self._alpha = 1 - (pb - 0.85) / 0.15;
+        // solid surface dissolves into the dot cloud
+        if (!dotsFired && pb > 0.04) {
+          dotsFired = true;
+          tgt.solid = 0; tgt.points = 1; tgt.amp = 0.42; tgt.freq = 1.15;
+        }
+        // darken the dots to black
+        self._fade = Math.max(0, (pb - 0.30) / 0.55);
+        if (pb > 0.9) self._alpha = 1 - (pb - 0.9) / 0.1;
       }
-      if (p >= 0.68 && !midFired) { midFired = true; if (onMid) onMid(); }
+      if (p >= 0.72 && !midFired) { midFired = true; if (onMid) onMid(); }
       if (p < 1) requestAnimationFrame(anim);
       else { if (onDone) onDone(); }
     })(t0);
@@ -585,6 +662,8 @@
     this._entering = false;
     this._midFired = false;
     this._explode = 0; this._fade = 0; this._fade2d = 0;
+    this._pulseTarget = 0; this._pulseAmt = 0;
+    if (this._gl && this._U) this._gl.uniform1f(this._U.uMaxR, 1.75);
     this._camZ = 4.2;
     this._scale = 0; this._scaleTarget = 1;
     this._alpha = 0;
@@ -626,7 +705,12 @@
       }
       var cv = self._canvas, w = cv.width, h = cv.height;
       ctx.clearRect(0, 0, w, h);
-      var cxp = w / 2, cyp = h / 2, R = Math.min(w, h) * 0.3 * self._scale;
+      self._pulseAmt += ((self._pulseTarget || 0) - (self._pulseAmt || 0)) * 0.08;
+      var breath = 1;
+      if (!self._reduced && (self._pulseAmt || 0) > 0.01) {
+        breath = 1 + Math.sin(t * 2.5) * 0.035 * self._pulseAmt;
+      }
+      var cxp = w / 2, cyp = h / 2, R = Math.min(w, h) * 0.3 * self._scale * breath;
       ctx.globalAlpha = self._alpha * (1 - self._fade2d);
       ctx.beginPath();
       var STEPS = 90;

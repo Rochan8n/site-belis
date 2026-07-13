@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PortfolioHero } from "@/components/portfolio/PortfolioHero";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
+import styles from "@/components/portfolio/portfolio.module.css";
 
 const PORTFOLIO_TITLE = "Portfólio Audiovisual | Percepção em Movimento";
 const PORTFOLIO_DESCRIPTION =
@@ -58,7 +59,7 @@ const portfolioJsonLd = {
 
 export default function PortfolioPage() {
   return (
-    <main className="w-full min-h-screen bg-navy overflow-hidden">
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioJsonLd) }}
