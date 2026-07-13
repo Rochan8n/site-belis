@@ -80,6 +80,7 @@
     'varying vec3 vNormal;',
     'varying vec3 vView;',
     'varying float vNoise;',
+    'varying vec3 vDir;',
     NOISE_GLSL,
     'float softNoise(vec3 p){',
     '  float n = snoise(p);',
@@ -111,6 +112,7 @@
     'vec3 displaced(vec3 p){ vec3 n = normalize(p); float r = (1.0 + disp(p)) * uScale; r = min(r, uMaxR + uExplode * 20.0); return n * r; }',
     'void main(){',
     '  vec3 n0 = normalize(aPos);',
+    '  vDir = n0;',
     '  vec3 t = normalize(cross(n0, abs(n0.y) > 0.98 ? vec3(1.0,0.0,0.0) : vec3(0.0,1.0,0.0)));',
     '  vec3 b = normalize(cross(n0, t));',
     '  float e = 0.03;',
@@ -134,6 +136,9 @@
     'varying vec3 vNormal;',
     'varying vec3 vView;',
     'varying float vNoise;',
+    'varying vec3 vDir;',
+    'uniform sampler2D uTex;',
+    'uniform float uTexMix;',
     'uniform vec3 uColA;',
     'uniform vec3 uColB;',
     'uniform vec3 uBase;',
@@ -183,6 +188,20 @@
     // crush mids — keep mass deep black
     '    metal = mix(uBase * 0.2, metal, 0.94);',
     '    col = metal;',
+    // ── 360° equirectangular image globe (LED-sphere look) ──
+    '    if (uTexMix > 0.001) {',
+    '      float u = atan(vDir.x, vDir.z) * 0.15915494 + 0.5;',
+    '      float vv = 0.5 - asin(clamp(vDir.y, -1.0, 1.0)) * 0.31830989;',
+    '      vec3 texC = texture2D(uTex, vec2(u, vv)).rgb;',
+    '      float ndv = max(dot(N, V), 0.0);',
+    // emissive LED panel: image reads bright and even, only a gentle rim falloff for volume
+    '      vec3 lit = texC * (0.78 + 0.34 * ndv);',
+    // green LED rim glow around the silhouette, matching the reference sphere
+    '      lit += fres * uColB * 0.4;',
+    // faint specular sheen so it still feels like a lit display, not a flat decal
+    '      lit += hot * vec3(1.0, 1.0, 0.98) * 0.18;',
+    '      col = mix(col, lit, uTexMix);',
+    '    }',
     '    a = uPassAlpha * uAlpha;',
     '  } else if (uPass < 1.5) {',
     // ── dense organic wire (refs 3 & 4) ──
@@ -288,7 +307,7 @@
     base: [0.016, 0.016, 0.020], fadeCol: [0.039, 0.039, 0.047]
   };
 
-  var NUM_KEYS = ['amp', 'freq', 'spin', 'solid', 'wire', 'points'];
+  var NUM_KEYS = ['amp', 'freq', 'spin', 'solid', 'wire', 'points', 'tex'];
   var COL_KEYS = ['colA', 'colB', 'base', 'fadeCol'];
 
   var BelisBlob = function () { return Reflect.construct(HTMLElement, [], BelisBlob); };
@@ -379,13 +398,16 @@
     var U = {};
     ['uRot', 'uProj', 'uCamZ', 'uTime', 'uAmp', 'uFreq', 'uExplode', 'uScale', 'uMaxR', 'uPointSize',
       'uMouseDir', 'uMouseAmt', 'uBulgeDir', 'uBulgeAmt',
-      'uColA', 'uColB', 'uBase', 'uFade', 'uFadeCol', 'uAlpha', 'uPassAlpha', 'uPass'
+      'uColA', 'uColB', 'uBase', 'uFade', 'uFadeCol', 'uAlpha', 'uPassAlpha', 'uPass',
+      'uTex', 'uTexMix'
     ].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
     this._U = U;
 
     gl.uniform1f(U.uMaxR, 1.75);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    this._initGlobeTexture();
 
     this._bindPointer();
     this._resize();
@@ -411,6 +433,95 @@
     this._dead = true;
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._onWinResize) window.removeEventListener('resize', this._onWinResize);
+  };
+
+  /* ── 360° image globe: composite images into an equirectangular texture ── */
+  var GLOBE_IMAGES = [
+    '/images/portfolio/krrom.png',
+    '/images/portfolio/latco.jpg',
+    '/images/portfolio/salles-nogueira.png',
+    '/images/portfolio/kofar.png'
+  ];
+
+  BelisBlob.prototype._initGlobeTexture = function () {
+    var gl = this._gl;
+    if (!gl) return;
+    var tex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    // placeholder until images decode: deep base tone
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+      new Uint8Array([18, 20, 26, 255]));
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.uniform1i(this._U.uTex, 0);
+    this._tex = tex;
+
+    var attr = this.getAttribute('globe-images');
+    var srcs = attr ? attr.split(',').map(function (s) { return s.trim(); }).filter(Boolean) : GLOBE_IMAGES;
+    if (!srcs.length) return;
+
+    var W = 2048, H = 1024;
+    var cvs = document.createElement('canvas');
+    cvs.width = W; cvs.height = H;
+    var ctx = cvs.getContext('2d');
+    var self = this;
+    var loaded = new Array(srcs.length).fill(null);
+
+    function coverDraw(img, dx, dw) {
+      var ir = img.width / img.height, tr = dw / H;
+      var sw, sh, sx, sy;
+      if (ir > tr) { sh = img.height; sw = sh * tr; sx = (img.width - sw) / 2; sy = 0; }
+      else { sw = img.width; sh = sw / tr; sx = 0; sy = (img.height - sh) / 2; }
+      ctx.drawImage(img, sx, sy, sw, sh, dx, 0, dw, H);
+    }
+
+    function composite() {
+      // dark backdrop so equirectangular pole-pinch reads as the sphere shell
+      ctx.fillStyle = '#0b0c10';
+      ctx.fillRect(0, 0, W, H);
+      var slot = W / loaded.length;
+      for (var i = 0; i < loaded.length; i++) {
+        if (loaded[i]) coverDraw(loaded[i], i * slot, slot);
+      }
+      // faint LED-panel grid to echo the reference sphere
+      ctx.save();
+      ctx.globalCompositeOperation = 'overlay';
+      ctx.strokeStyle = 'rgba(116, 195, 101, 0.28)';
+      ctx.lineWidth = 2;
+      for (var lon = 0; lon <= 24; lon++) {
+        var x = (lon / 24) * W;
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (var lat = 0; lat <= 12; lat++) {
+        var y = (lat / 12) * H;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+      ctx.restore();
+      // vignette toward the poles
+      var grd = ctx.createLinearGradient(0, 0, 0, H);
+      grd.addColorStop(0, 'rgba(11,12,16,0.85)');
+      grd.addColorStop(0.18, 'rgba(11,12,16,0)');
+      grd.addColorStop(0.82, 'rgba(11,12,16,0)');
+      grd.addColorStop(1, 'rgba(11,12,16,0.85)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+
+      if (self._dead || !self._gl) return;
+      var g = self._gl;
+      g.bindTexture(g.TEXTURE_2D, self._tex);
+      g.pixelStorei(g.UNPACK_FLIP_Y_WEBGL, false);
+      g.texImage2D(g.TEXTURE_2D, 0, g.RGBA, g.RGBA, g.UNSIGNED_BYTE, cvs);
+    }
+
+    srcs.forEach(function (src, i) {
+      var img = new Image();
+      img.decoding = 'async';
+      img.onload = function () { loaded[i] = img; composite(); };
+      img.onerror = function () { loaded[i] = null; };
+      img.src = src;
+    });
   };
 
   BelisBlob.prototype._resize = function () {
@@ -523,6 +634,11 @@
     gl.uniform3f(U.uColB, cur.colB[0], cur.colB[1], cur.colB[2]);
     gl.uniform3f(U.uBase, cur.base[0], cur.base[1], cur.base[2]);
     gl.uniform3f(U.uFadeCol, cur.fadeCol[0], cur.fadeCol[1], cur.fadeCol[2]);
+    gl.uniform1f(U.uTexMix, cur.tex || 0);
+    if (this._tex) {
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, this._tex);
+    }
 
     // pass 0: solid
     if (cur.solid * this._alpha > 0.01) {
