@@ -2,16 +2,18 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { PageHud } from "@/components/layout/PageHud";
+import dynamic from "next/dynamic";
+
+// Chrome pesado (SmoothScroll/Lenis, CustomCursor, Navbar, Footer, PageHud +
+// gsap) fica num chunk lazy: a home (/) não renderiza nada disso e assim não
+// baixa esse graph no caminho crítico. Demais rotas carregam sob demanda (SSR
+// mantido).
+const SiteChromeFull = dynamic(() =>
+  import("./SiteChromeFull").then((m) => m.SiteChromeFull),
+);
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const hasPageEnding = ["/portfolio", "/websites", "/sistemas"].includes(pathname);
 
   useEffect(() => {
     document.body.classList.toggle("md:cursor-none", pathname !== "/");
@@ -22,17 +24,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   if (pathname === "/") {
-    return children;
+    return <>{children}</>;
   }
 
-  return (
-    <SmoothScroll>
-      <NoiseOverlay />
-      <CustomCursor />
-      <Navbar />
-      <PageHud />
-      {children}
-      {!hasPageEnding && <Footer />}
-    </SmoothScroll>
-  );
+  return <SiteChromeFull pathname={pathname}>{children}</SiteChromeFull>;
 }

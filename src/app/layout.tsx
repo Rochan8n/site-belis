@@ -1,23 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Archivo,
-  IBM_Plex_Mono,
-  Inter_Tight,
-  Red_Hat_Display,
-} from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { TransitionCurtain } from "@/components/layout/TransitionCurtain";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
-const redHatDisplay = Red_Hat_Display({
-  variable: "--font-red-hat-display",
-  subsets: ["latin"],
-});
-
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
   subsets: ["latin"],
+  // Corpo de texto global; a home (journey) usa Archivo + Plex Mono, então não
+  // pré-carrega aqui — evita 2 fontes no caminho crítico da home. Demais rotas
+  // carregam sob demanda (next/font gera fallback métrico → sem CLS).
+  preload: false,
 });
 
 const archivo = Archivo({
@@ -221,7 +215,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${redHatDisplay.variable} ${interTight.variable} ${archivo.variable} ${ibmPlexMono.variable}`}
+      className={`${interTight.variable} ${archivo.variable} ${ibmPlexMono.variable}`}
     >
       <head>
         {/* ── Performance: Resource Hints ── */}
@@ -230,8 +224,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://img.youtube.com" crossOrigin="" />
         {/* DNS-prefetch para subdomínios do YouTube (thumbnails no PortfolioGrid) */}
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
-        {/* Preconnect para CDN de logos dos clientes */}
-        <link rel="preconnect" href="https://belis.agency" crossOrigin="" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

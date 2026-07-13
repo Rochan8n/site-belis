@@ -26,6 +26,7 @@ export function BelisJourney() {
   const blobRef = useRef<BelisBlobHandle>(null);
   const timers = useRef<number[]>([]);
   const [locked, setLocked] = useState(false);
+  const [blobReady, setBlobReady] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const hud = useJourneyDirector(blobRef, locked);
 
@@ -102,6 +103,48 @@ export function BelisJourney() {
       document.documentElement.classList.remove("belis-journey-active");
       document.documentElement.style.removeProperty("--journey-vh");
       pendingTimers.forEach(window.clearTimeout);
+    };
+  }, []);
+
+  // Blob entra depois do site carregar: o hero pinta primeiro (LCP leve,
+  // sem WebGL no caminho crítico), depois o blob monta e emerge do fundo
+  // com zoom-in. Fallback por readyState caso o load já tenha disparado.
+  useEffect(() => {
+    let done = false;
+    let timer = 0;
+    // Blob WebGL custa ~2s de main-thread em render por software (ambiente do
+    // PageSpeed/Lighthouse, sem GPU). Montar na primeira interação tira esse
+    // custo do caminho crítico; o fallback garante o reveal pra quem não mexe.
+    const events: (keyof WindowEventMap)[] = [
+      "pointerdown",
+      "pointermove",
+      "mousemove",
+      "touchstart",
+      "wheel",
+      "keydown",
+      "scroll",
+    ];
+    const cleanup = () => {
+      window.clearTimeout(timer);
+      events.forEach((e) => window.removeEventListener(e, reveal));
+    };
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      cleanup();
+      setBlobReady(true);
+    };
+    const arm = () => {
+      events.forEach((e) =>
+        window.addEventListener(e, reveal, { once: true, passive: true }),
+      );
+      timer = window.setTimeout(reveal, 2600);
+    };
+    if (document.readyState === "complete") arm();
+    else window.addEventListener("load", arm, { once: true });
+    return () => {
+      window.removeEventListener("load", arm);
+      cleanup();
     };
   }, []);
 
@@ -188,7 +231,12 @@ export function BelisJourney() {
           onClick={activateCurrent}
           aria-label={`${hud.active < 2 ? "Avançar para" : hud.active < 5 ? "Entrar em" : "Falar com a Belis sobre"} ${sections[Math.min(hud.active + (hud.active < 2 ? 1 : 0), 5)].label}`}
         >
-          <BelisBlob ref={blobRef} className={styles.blob} />
+          {blobReady && (
+            <BelisBlob
+              ref={blobRef}
+              className={`${styles.blob} ${styles.blobEnter}`}
+            />
+          )}
         </button>
         <div className={styles.cage} aria-hidden="true">
           <i />
