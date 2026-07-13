@@ -51,7 +51,7 @@ export const BelisBlob = forwardRef<BelisBlobHandle, BelisBlobProps>(
       <>
         <Script
           id="belis-blob-v2-script"
-          src="/belis-blob-v2.js?v=enter-ref"
+          src="/belis-blob-v2.js?v=smooth-hover-gpu"
           strategy="afterInteractive"
         />
         <belis-blob-v2 {...props} ref={elementRef} aria-hidden="true" />

@@ -73,6 +73,7 @@
     'uniform float uScale;',
     'uniform float uMaxR;',
     'uniform float uPointSize;',
+    'uniform float uMaxPointSize;',
     'uniform vec3 uMouseDir;',
     'uniform float uMouseAmt;',
     'uniform vec3 uBulgeDir;',
@@ -103,8 +104,8 @@
     '  float f3 = softNoise(q * (uFreq * 0.52)  + vec3(uTime * 0.04, 0.0, 5.0)) * 0.55;',
     '  float field = f1 * 0.62 + f2 + f3;',
     '  field = field * (1.12 - 0.22 * field * field);',
-    '  float mb = pow(max(dot(n, uMouseDir), 0.0), 2.0) * uMouseAmt;',
-    '  float sb = pow(max(dot(n, uBulgeDir), 0.0), 1.55) * uBulgeAmt;',
+    '  float mb = pow(max(dot(n, uMouseDir), 0.0), 1.25) * uMouseAmt;',
+    '  float sb = pow(max(dot(n, uBulgeDir), 0.0), 1.15) * uBulgeAmt;',
     '  float base = field * uAmp + mb + sb;',
     '  float ex = uExplode * (1.35 + 0.85 * softNoise(n * 1.4 + uTime * 0.4));',
     '  return base * (1.0 + uExplode * 4.0) + ex;',
@@ -126,7 +127,7 @@
     '  vView = vec3(0.0, 0.0, uCamZ) - world;',
     '  vNoise = disp(aPos);',
     '  float dist = max(uCamZ - world.z, 0.35);',
-    '  gl_PointSize = min(uPointSize * 3.6 / dist, uPointSize * 5.5);',
+    '  gl_PointSize = min(min(uPointSize * 3.6 / dist, uPointSize * 5.5), uMaxPointSize);',
     '  gl_Position = uProj * vec4(world.x, world.y, world.z - uCamZ, 1.0);',
     '}'
   ].join('\n');
@@ -340,8 +341,10 @@
     this._last = performance.now();
     this._rotY = 0; this._rotX = 0;
     this._dragVel = 0;
-    this._mouseScreen = [0, 0]; this._mouseAmt = 0; this._mouseTargetAmt = 0;
-    this._bulgeScreen = [1, 0]; this._bulgeAmt = 0; this._bulgeTarget = 0;
+    this._mouseScreen = [0, 0]; this._mouseScreenSmooth = [0, 0];
+    this._mouseAmt = 0; this._mouseTargetAmt = 0;
+    this._bulgeScreen = [1, 0]; this._bulgeScreenSmooth = [1, 0];
+    this._bulgeAmt = 0; this._bulgeTarget = 0;
     this._pulseAmt = 0; this._pulseTarget = 0;
     this._explode = 0; this._camZ = 4.2; this._fade = 0; this._alpha = 1;
     this._scale = 0; this._scaleTarget = 1;
@@ -366,8 +369,13 @@
       }
       return sh;
     }
+    // Some GPUs (older mobile, certain drivers) lack highp support in the
+    // fragment stage. Detect it and downgrade to mediump so the shader still
+    // compiles instead of dropping to the plain 2D fallback.
+    var hf = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
+    var fragPrec = (hf && hf.precision > 0) ? 'highp' : 'mediump';
     var vs = compile(gl.VERTEX_SHADER, VERT);
-    var fs = compile(gl.FRAGMENT_SHADER, FRAG);
+    var fs = compile(gl.FRAGMENT_SHADER, FRAG.replace('precision highp float;', 'precision ' + fragPrec + ' float;'));
     if (!vs || !fs) { this._gl = null; this._setup2D(); return; }
     var prog = gl.createProgram();
     gl.attachShader(prog, vs); gl.attachShader(prog, fs);
@@ -397,11 +405,18 @@
 
     var U = {};
     ['uRot', 'uProj', 'uCamZ', 'uTime', 'uAmp', 'uFreq', 'uExplode', 'uScale', 'uMaxR', 'uPointSize',
-      'uMouseDir', 'uMouseAmt', 'uBulgeDir', 'uBulgeAmt',
+      'uMaxPointSize', 'uMouseDir', 'uMouseAmt', 'uBulgeDir', 'uBulgeAmt',
       'uColA', 'uColB', 'uBase', 'uFade', 'uFadeCol', 'uAlpha', 'uPassAlpha', 'uPass',
       'uTex', 'uTexMix'
     ].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
     this._U = U;
+
+    // Driver cap on gl_PointSize. Many drivers clamp this to 1.0, which makes
+    // point-cloud looks collapse into invisible 1px dust. Record it so we can
+    // (a) clamp in-shader to avoid artifacts and (b) compensate point-heavy
+    // looks with wire density when points can't render at size.
+    var psr = gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE);
+    this._maxPoint = (psr && psr[1] > 1) ? psr[1] : 1;
 
     gl.uniform1f(U.uMaxR, 1.75);
     gl.enable(gl.BLEND);
@@ -413,6 +428,24 @@
     this._resize();
     this._onWinResize = function () { self._resize(); };
     window.addEventListener('resize', this._onWinResize);
+
+    // WebGL contexts can be dropped by the browser (GPU reset, tab throttling,
+    // too many contexts). Without this the canvas goes permanently blank.
+    // preventDefault keeps the context restorable, then we rebuild on restore.
+    this._onCtxLost = function (e) {
+      e.preventDefault();
+      self._ctxLost = true;
+      if (self._raf) cancelAnimationFrame(self._raf);
+    };
+    this._onCtxRestored = function () {
+      self._ctxLost = false;
+      self._init = false;
+      self._gl = null;
+      if (self._canvas && self._canvas.parentNode === self) self.removeChild(self._canvas);
+      self.connectedCallback();
+    };
+    canvas.addEventListener('webglcontextlost', this._onCtxLost, false);
+    canvas.addEventListener('webglcontextrestored', this._onCtxRestored, false);
 
     var frameSkip = this._mobile ? 1 : 0;
     var frame = 0;
@@ -433,6 +466,10 @@
     this._dead = true;
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._onWinResize) window.removeEventListener('resize', this._onWinResize);
+    if (this._canvas && this._onCtxLost) {
+      this._canvas.removeEventListener('webglcontextlost', this._onCtxLost, false);
+      this._canvas.removeEventListener('webglcontextrestored', this._onCtxRestored, false);
+    }
   };
 
   /* ── 360° image globe: composite images into an equirectangular texture ── */
@@ -541,7 +578,7 @@
       var nx = ((e.clientX - r.left) / r.width) * 2 - 1;
       var ny = -(((e.clientY - r.top) / r.height) * 2 - 1);
       self._mouseScreen = [nx, ny];
-      self._mouseTargetAmt = 0.22;
+      self._mouseTargetAmt = 0.11;
     });
     this.addEventListener('pointerleave', function () { self._mouseTargetAmt = 0; });
   };
@@ -577,8 +614,15 @@
       this._dragVel *= 0.92;
       this._rotX = Math.sin(this._time * 0.2) * 0.12;
     }
-    this._mouseAmt += (this._mouseTargetAmt - this._mouseAmt) * Math.min(dt * 6, 1);
-    this._bulgeAmt += (this._bulgeTarget - this._bulgeAmt) * Math.min(dt * 5, 1);
+    var dirK = 1 - Math.exp(-dt * 2.8);
+    this._mouseScreenSmooth[0] += (this._mouseScreen[0] - this._mouseScreenSmooth[0]) * dirK;
+    this._mouseScreenSmooth[1] += (this._mouseScreen[1] - this._mouseScreenSmooth[1]) * dirK;
+    this._bulgeScreenSmooth[0] += (this._bulgeScreen[0] - this._bulgeScreenSmooth[0]) * dirK;
+    this._bulgeScreenSmooth[1] += (this._bulgeScreen[1] - this._bulgeScreenSmooth[1]) * dirK;
+    var mouseK = 1 - Math.exp(-dt * (this._mouseTargetAmt > this._mouseAmt ? 2.2 : 1.4));
+    this._mouseAmt += (this._mouseTargetAmt - this._mouseAmt) * mouseK;
+    var bulgeK = 1 - Math.exp(-dt * (this._bulgeTarget > this._bulgeAmt ? 1.8 : 1.1));
+    this._bulgeAmt += (this._bulgeTarget - this._bulgeAmt) * bulgeK;
     this._pulseAmt += (this._pulseTarget - this._pulseAmt) * Math.min(dt * 3.2, 1);
     this._scale += (this._scaleTarget - this._scale) * Math.min(dt * 3.5, 1);
   };
@@ -609,10 +653,10 @@
     ]);
     gl.uniformMatrix3fv(U.uRot, false, rot);
 
-    var md = this._toModel(this._mouseScreen[0], this._mouseScreen[1]);
+    var md = this._toModel(this._mouseScreenSmooth[0], this._mouseScreenSmooth[1]);
     gl.uniform3f(U.uMouseDir, md[0], md[1], md[2]);
     gl.uniform1f(U.uMouseAmt, this._mouseAmt);
-    var bd = this._toModel(this._bulgeScreen[0], this._bulgeScreen[1]);
+    var bd = this._toModel(this._bulgeScreenSmooth[0], this._bulgeScreenSmooth[1]);
     gl.uniform3f(U.uBulgeDir, bd[0], bd[1], bd[2]);
     gl.uniform1f(U.uBulgeAmt, this._bulgeAmt);
 
@@ -630,6 +674,7 @@
     gl.uniform1f(U.uFade, this._fade);
     gl.uniform1f(U.uAlpha, this._alpha);
     gl.uniform1f(U.uPointSize, this._pointSize || 2.5);
+    gl.uniform1f(U.uMaxPointSize, this._maxPoint || 64);
     gl.uniform3f(U.uColA, cur.colA[0], cur.colA[1], cur.colA[2]);
     gl.uniform3f(U.uColB, cur.colB[0], cur.colB[1], cur.colB[2]);
     gl.uniform3f(U.uBase, cur.base[0], cur.base[1], cur.base[2]);
@@ -649,10 +694,17 @@
       gl.drawElements(gl.TRIANGLES, this._nTri, gl.UNSIGNED_SHORT, 0);
     }
     // pass 1: wire
-    if (cur.wire * this._alpha > 0.01) {
+    // When the driver caps point size at 1px, the point pass renders as
+    // invisible dust — carry the point-cloud weight over to the wire so the
+    // silhouette still reads instead of vanishing. No-op on capable GPUs.
+    var wireW = cur.wire;
+    if (this._maxPoint <= 1 && cur.points > 0.01) {
+      wireW = Math.max(wireW, cur.points * 0.7);
+    }
+    if (wireW * this._alpha > 0.01) {
       gl.disable(gl.DEPTH_TEST);
       gl.uniform1f(U.uPass, 1);
-      gl.uniform1f(U.uPassAlpha, cur.wire);
+      gl.uniform1f(U.uPassAlpha, wireW);
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._iboEdge);
       gl.drawElements(gl.LINES, this._nEdge, gl.UNSIGNED_SHORT, 0);
     }
@@ -849,7 +901,7 @@
       ctx.strokeStyle = rgb(cur.colA);
       ctx.stroke();
       ctx.setLineDash([]);
-      self._bulgeAmt += ((self._bulgeTarget || 0) - (self._bulgeAmt || 0)) * 0.08;
+      self._bulgeAmt += ((self._bulgeTarget || 0) - (self._bulgeAmt || 0)) * 0.045;
       ctx.globalAlpha = 1;
     }
     requestAnimationFrame(loop);

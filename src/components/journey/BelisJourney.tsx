@@ -210,7 +210,7 @@ export function BelisJourney() {
                 blobRef.current?.setBulge(
                   marker.bulge[0],
                   marker.bulge[1],
-                  0.32,
+                  0.16,
                 )
               }
               onMouseLeave={() =>
