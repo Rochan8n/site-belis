@@ -3,7 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BelisBlob, type BelisBlobHandle } from "./BelisBlob";
-import { markers, sections, STATION_COUNT, trials } from "./journeyData";
+import { BlobBeltHUD } from "./BlobBeltHUD";
+import {
+  markers,
+  sections,
+  STATION_COUNT,
+  trials,
+} from "./journeyData";
 import {
   getJourneyViewportHeight,
   useJourneyDirector,
@@ -237,10 +243,12 @@ export function BelisJourney() {
           aria-label={`${hud.active < 2 ? "Avançar para" : hud.active < 5 ? "Entrar em" : "Falar com a Belis sobre"} ${sections[Math.min(hud.active + (hud.active < 2 ? 1 : 0), 5)].label}`}
         >
           {blobReady && (
-            <BelisBlob
-              ref={blobRef}
-              className={`${styles.blob} ${styles.blobEnter}`}
-            />
+            <BlobBeltHUD hidden={locked}>
+              <BelisBlob
+                ref={blobRef}
+                className={`${styles.blob} ${styles.blobEnter}`}
+              />
+            </BlobBeltHUD>
           )}
         </button>
         <div className={styles.cage} aria-hidden="true">
