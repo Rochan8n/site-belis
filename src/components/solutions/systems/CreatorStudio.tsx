@@ -112,15 +112,15 @@ function slideBg(slide: Slide) {
     case "02":
       return "linear-gradient(180deg, rgb(7 20 15 / 4%) 24%, rgb(7 20 15 / 90%) 100%), url('/images/systems/carousel-macro-serum.webp') center / cover";
     case "03":
-      return "linear-gradient(180deg, rgb(7 20 15 / 8%) 24%, rgb(7 20 15 / 88%) 100%), url('/images/systems/carousel-macro-serum.webp') 65% center / cover";
+      return "linear-gradient(180deg, rgb(7 20 15 / 4%) 24%, rgb(7 20 15 / 88%) 100%), url('/images/systems/carousel-barreira-cientifica.webp') center / cover";
     case "04":
-      return "linear-gradient(180deg, rgb(9 20 16 / 8%) 28%, rgb(9 20 16 / 88%) 100%), url('/images/systems/carousel-clinica-luxe.webp') 70% center / cover";
+      return "linear-gradient(180deg, rgb(9 20 16 / 5%) 28%, rgb(9 20 16 / 88%) 100%), url('/images/systems/carousel-avaliacao-clinica.webp') center / cover";
     case "05":
       return "linear-gradient(180deg, rgb(244 241 234 / 16%), rgb(244 241 234 / 50%)), url('/images/systems/carousel-protocolo.webp') center / cover";
     case "06":
-      return "linear-gradient(180deg, rgb(6 22 15 / 8%) 26%, rgb(6 22 15 / 88%) 100%), url('/images/systems/carousel-protocolo.webp') 70% center / cover";
+      return "linear-gradient(180deg, rgb(6 22 15 / 5%) 26%, rgb(6 22 15 / 90%) 100%), url('/images/systems/carousel-tres-camadas.webp') center / cover";
     case "07":
-      return "linear-gradient(180deg, rgb(9 20 16 / 10%) 26%, rgb(9 20 16 / 90%) 100%), url('/images/systems/carousel-clinica-luxe.webp') 65% center / cover";
+      return "linear-gradient(180deg, rgb(9 20 16 / 5%) 26%, rgb(9 20 16 / 92%) 100%), url('/images/systems/carousel-consulta-cta.webp') center / cover";
     default:
       return "#0f1412";
   }
@@ -182,7 +182,7 @@ function StudioPanel() {
         </div>
         <div className={`${styles.ctGlass} ${styles.ctCost}`}>
           <p className={styles.ctPanelLabel}>Custo</p>
-          <div>3 imgs · 7 slides</div>
+          <div>7 imgs · 7 slides</div>
           <div className={styles.accent}>$ 0,18 · 22s</div>
         </div>
       </div>
