@@ -42,7 +42,31 @@
     .footer { margin-top:22px; padding-top:10px; border-top:1px solid #dce0e5; color:var(--muted); font-size:10px; }
     .signature { display:grid; grid-template-columns:1fr 120px; gap:25px; margin-top:22px; }
     .line { margin-top:25px; border-bottom:1px solid var(--ink); }
-    @media print { @page { size:A4; margin:0; } body { background:white; } .toolbar { display:none; } .page { width:210mm; min-height:297mm; margin:0; box-shadow:none; break-after:page; } }
+    @media print {
+      @page { size:A4; margin:0; }
+      html, body { width:210mm; background:#fff !important; }
+      body { font-size:11px; line-height:1.35; }
+      .toolbar { display:none !important; }
+      .page { width:210mm !important; min-height:297mm; margin:0 !important; padding:0 12mm 9mm !important; box-shadow:none !important; break-after:page; }
+      .page:last-of-type { break-after:auto; }
+      .stripe { margin:0 -12mm !important; }
+      header { display:flex !important; padding:10px 0 8px !important; }
+      .logo { font-size:24px; }
+      h1 { margin:14px 0 5px; font-size:24px; }
+      h2 { margin:14px 0 5px; }
+      .lead { font-size:12px; }
+      .callout { margin:10px 0; padding:8px 10px; }
+      .grid { display:grid !important; grid-template-columns:repeat(2, minmax(0, 1fr)) !important; gap:7px !important; }
+      .card { margin:0 !important; padding:8px !important; break-inside:avoid; page-break-inside:avoid; }
+      .phase { margin:6px 0; }
+      .number { width:22px; height:22px; }
+      table { margin:6px 0; font-size:10px; }
+      th, td { padding:5px; }
+      .warning { padding:8px 10px; }
+      .footer { margin-top:12px; }
+      .signature { margin-top:14px; }
+      * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+    }
     @media (max-width:760px) { .toolbar { display:none; } .page { width:100%; min-height:0; margin:0; padding:0 22px 25px; } .stripe { margin:0 -22px; } header,.grid { display:block; } .meta { margin-top:12px; text-align:left; } .card { margin:9px 0; } h1 { font-size:26px; } }
   </style>
 </head>
@@ -63,8 +87,8 @@
 
     <h2>Contexto identificado</h2>
     <div class="grid">
-      <article class="card"><strong>Operação atual</strong><br><span class="small">Pedidos, status e portal existem, mas atualizações chegam com atraso. Mudanças no sistema dependem de fornecedor externo.</span></article>
-      <article class="card"><strong>Resultado esperado</strong><br><span class="small">Cliente, operação e portador enxergam mesmo serviço no mesmo estado, com protocolo e rastreio claros.</span></article>
+      <article class="card"><strong>Operação atual</strong><br><span class="small">Pedido demora para chegar à operação. Aceite do portador pode levar minutos para aparecer. Equipe precisa ligar para confirmar status. Mudanças dependem de fornecedor externo e levam meses.</span></article>
+      <article class="card"><strong>Resultado esperado</strong><br><span class="small">Cliente, operação e portador enxergam mesmo serviço no mesmo estado. Menos ligações de conferência, protocolo claro e mais controle da operação.</span></article>
     </div>
 
     <h2>Escopo alvo — plataforma</h2>
@@ -72,16 +96,13 @@
       <article class="card"><strong>Painel de operação</strong><ul><li>Clientes, múltiplos endereços, tabelas e regras comerciais.</li><li>Cobrança avulsa, mensal, quinzenal e mensal fixa.</li><li>Ordens de serviço, despacho, status e fechamento mensal.</li><li>Status visual: lançado, enviado, aceito/em execução e concluído.</li><li>Extrato mensal de valores por portador.</li></ul></article>
       <article class="card"><strong>Portal do cliente</strong><ul><li>Solicitação de coleta e entrega.</li><li>Endereços recorrentes e histórico.</li><li>Status, protocolo, comprovante e rastreio compartilhado.</li><li>Visão de serviços em andamento e concluídos.</li></ul></article>
       <article class="card"><strong>Aplicativo do portador</strong><ul><li>Receber, aceitar, iniciar e concluir serviços.</li><li>Foto do protocolo e registro de ocorrência.</li><li>Notificações, valores por serviço e extrato.</li><li>Atualização de localização durante serviço ativo.</li></ul></article>
-      <article class="card"><strong>Tempo real, rota e mapa</strong><ul><li>Status publicado instantaneamente entre usuários.</li><li>Posição, última atualização e ETA durante serviço ativo.</li><li>Roteirização de múltiplas coletas/entregas e sugestão de sequência eficiente.</li><li>Histórico operacional e alerta de sinal desatualizado.</li></ul></article>
+      <article class="card"><strong>Tempo real, rota e mapa</strong><ul><li>Status publicado instantaneamente entre usuários.</li><li>Posição, última atualização e ETA durante serviço ativo.</li><li>Sugestão de sequência de rota para múltiplas coletas e entregas.</li><li>Histórico operacional e alerta de sinal desatualizado.</li></ul></article>
     </div>
 
-    <h2>Princípio de entrega</h2>
-    <p>Rastreamento ao vivo não significa localização infalível. O sistema mostrará <strong>última posição e horário de atualização</strong>, guardará dados quando conexão cair e reenviará ao recuperar rede. GPS desligado, celular sem sinal, bateria esgotada ou encerramento manual do aplicativo impedem qualquer plataforma de rastrear em tempo real.</p>
-
     <h2>Etapas de entrega</h2>
-    <div class="phase"><div class="number">1</div><div><strong>Mapeamento e protótipo — até 2 semanas.</strong><br><span class="small">Regras de preço, fluxo, perfis, telas e dados essenciais validados com a operação.</span></div></div>
-    <div class="phase"><div class="number">2</div><div><strong>Painel e portal — até 8 semanas.</strong><br><span class="small">Pedidos, clientes, endereços, valores, status, protocolo, fechamento e acompanhamento pelo cliente.</span></div></div>
-    <div class="phase"><div class="number">3</div><div><strong>Aplicativo, mapa e piloto — até 8 semanas.</strong><br><span class="small">Aplicativo Android, push, foto, rastreio, rota e validação controlada com equipe da JR Express.</span></div></div>
+    <div class="phase"><div class="number">1</div><div><strong>Mapeamento e protótipo — até 1 semana.</strong><br><span class="small">Regras de preço, fluxo, perfis, telas e dados essenciais validados com a operação.</span></div></div>
+    <div class="phase"><div class="number">2</div><div><strong>Painel e portal — até 3 semanas.</strong><br><span class="small">Pedidos, clientes, endereços, valores, status, protocolo, fechamento e acompanhamento pelo cliente.</span></div></div>
+    <div class="phase"><div class="number">3</div><div><strong>Aplicativo, mapa e piloto — até 3 semanas.</strong><br><span class="small">Aplicativo Android, push, foto, rastreio, rota e validação controlada com equipe da JR Express.</span></div></div>
   </section>
 
   <section class="page">
@@ -98,32 +119,36 @@
     <table>
       <thead><tr><th>Etapa</th><th>Inclui</th><th>Investimento</th></tr></thead>
       <tbody>
-        <tr><td>Plataforma operacional V1</td><td>Painel, portal, pedidos, status em tempo real, fechamento, app Android, foto de protocolo, rota e rastreio em serviço ativo.</td><td>R$ 15.000</td></tr>
-        <tr class="total"><td colspan="2">Total de implantação</td><td>R$ 15.000</td></tr>
+        <tr><td>Plataforma operacional V1</td><td>Painel, portal, pedidos, status em tempo real, fechamento, app Android, foto de protocolo, rota e rastreio em serviço ativo.</td><td>R$ 20.000</td></tr>
+        <tr class="total"><td colspan="2">Total de implantação</td><td>R$ 20.000</td></tr>
       </tbody>
     </table>
-    <p class="small">Prazo estimado: até 18 semanas após assinatura, recebimento de acessos/dados necessários e validações da JR Express. Ajustes de escopo ou dependências externas podem alterar prazo.</p>
+    <p class="small">Prazo estimado: até 7 semanas após assinatura, recebimento de acessos/dados necessários e validações da JR Express. A JR Express terá até 2 dias úteis para validar cada etapa; atrasos de validação, ajustes de escopo ou dependências externas deslocam o cronograma.</p>
 
-    <div class="warning"><strong>Forma de pagamento:</strong> R$ 3.000 via PIX na assinatura e saldo de R$ 12.000 no cartão. Caso o parcelamento tenha juros/taxas do meio de pagamento, o custo será acrescido ao valor pago no cartão pelo cliente. Nenhuma etapa começa sem o pagamento de entrada.</div>
+    <div class="warning"><strong>Forma de pagamento:</strong> R$ 4.000 via PIX na assinatura, R$ 8.000 após homologação do painel e portal e R$ 8.000 na homologação final do aplicativo/piloto. As parcelas podem ser pagas via PIX ou cartão. Caso o parcelamento tenha juros/taxas do meio de pagamento, o custo será acrescido ao valor pago no cartão pelo cliente. Nenhuma etapa começa sem o pagamento correspondente.</div>
 
     <h2>Operação, suporte e evolução</h2>
     <table>
       <thead><tr><th>Contrato mensal após primeiro go-live</th><th>Valor</th></tr></thead>
       <tbody>
-        <tr><td>Licença de uso, hospedagem básica, backup, monitoramento e correções de defeitos do escopo contratado.</td><td>R$ 400/mês</td></tr>
+        <tr><td><strong>Licença de uso e operação da plataforma:</strong> hospedagem base, banco de dados, atualizações em tempo real, armazenamento de fotos de protocolo, backup, monitoramento, notificações push, rastreio, suporte por WhatsApp em horário comercial e correções de defeitos do escopo contratado.</td><td>R$ 400/mês</td></tr>
         <tr><td>Evoluções, novas regras, relatórios, integrações ou mudanças além do escopo, aprovadas antes da execução.</td><td>R$ 200/h</td></tr>
+        <tr><td><strong>SMS:</strong> notificações enviadas por SMS, cobradas por segmento.</td><td>R$ 0,40/SMS</td></tr>
+        <tr><td><strong>API de mapas acima da franquia:</strong> cobrada somente após exceder franquia do fornecedor. Custo informado e aprovado antes da cobrança; referência atual Mapbox.</td><td>US$ 4/1.000 usuários mobile<br>US$ 5/1.000 cargas web</td></tr>
+        <tr><td><strong>WhatsApp API:</strong> mensagem modelo utilitária, como atualização de pedido, protocolo ou aviso de entrega.</td><td>R$ 0,10/mensagem</td></tr>
       </tbody>
     </table>
-    <p class="small">Contrato mensal mínimo de 24 meses após entrada em produção. A mensalidade não inclui desenvolvimento contínuo. Custos variáveis de mapas/geocodificação, SMS/WhatsApp, lojas de aplicativos, serviços de push e aumento de infraestrutura serão repassados pela JR Express, com transparência e aprovação prévia quando aplicável.</p>
+    <p class="small">Contrato mensal mínimo de 24 meses após entrada em produção. A mensalidade não inclui desenvolvimento contínuo. Valores de SMS, mapas e WhatsApp API são cobrados conforme uso. Valores de fornecedores podem ser atualizados mediante comunicação prévia. Custos de lojas de aplicativos e aumento excepcional de infraestrutura serão repassados pela JR Express, com transparência e aprovação prévia quando aplicável.</p>
+    <p class="small"><strong>Propriedade e licença:</strong> plataforma, código-fonte, componentes e arquitetura permanecem propriedade da Belis. A JR Express recebe licença não exclusiva de uso durante vigência do contrato e enquanto adimplente.</p>
 
     <h2>Fora do escopo inicial</h2>
     <div class="grid">
-      <article class="card"><strong>Não incluso nesta proposta</strong><ul><li>Emissão de nota fiscal.</li><li>Aplicativo iPhone.</li><li>Integrações com ERP, bancos ou aplicativos de terceiros.</li><li>Migração completa de histórico do sistema atual.</li></ul></article>
-      <article class="card"><strong>Premissas para começar</strong><ul><li>Acesso de demonstração ao sistema atual e possibilidade de exportar dados.</li><li>Uma pessoa decisora da JR Express para validações.</li><li>Piloto com grupo definido de portadores e clientes.</li><li>Uso adequado de localização e consentimentos LGPD.</li></ul></article>
+      <article class="card"><strong>Não incluso nesta proposta</strong><ul><li>Emissão de nota fiscal.</li><li>Integrações com ERP, bancos ou aplicativos de terceiros.</li><li>Migração completa de histórico do sistema atual.</li></ul></article>
+      <article class="card"><strong>Premissas para começar</strong><ul><li>Acesso de demonstração ao sistema atual e possibilidade de exportar dados.</li><li>Uma pessoa decisora da JR Express para validações.</li><li>Piloto com grupo definido de portadores e clientes.</li></ul></article>
     </div>
 
     <h2>Próximo passo</h2>
-    <p>Aprovar proposta e contrato, realizar pagamento de entrada e disponibilizar acesso de demonstração ao sistema atual. A Belis inicia mapeamento e protótipo para validar operação antes da construção.</p>
+    <p><strong>Aprovar proposta e contrato, realizar pagamento de R$ 4.000 e disponibilizar acesso de demonstração ao sistema atual.</strong> A Belis inicia mapeamento e protótipo para validar operação antes da construção.</p>
 
     <div class="signature"><div><strong>De acordo — JR Express</strong><div class="line"></div><div class="small">Assinatura do responsável</div></div><div><strong>Data</strong><div class="line"></div></div></div>
     <div class="footer">BELISROCHA PRODUTORA AUDIOVISUAL · CNPJ 45.204.623/0001-14 · São Paulo/SP · (11) 97313-8895 · lucas@belis.agency · belis.agency</div>

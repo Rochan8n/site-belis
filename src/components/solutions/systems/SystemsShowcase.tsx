@@ -19,48 +19,50 @@ const BLOCKS: readonly Block[] = [
   {
     kicker: "Case · SaaS de conteúdo",
     title: "Da ideia ao carrossel pronto pra postar",
-    url: "www.creatortools.com.br/generate",
+    url: "creatortools.com.br",
     logo: { src: "/images/systems/creatortools.png", alt: "Creator Tools", width: 512, height: 512 },
     stackLabel: "Feito com",
     stack: ["React", "TypeScript", "Serverless · Vercel", "IA generativa", "Supabase"],
     render: () => <CreatorStudio />,
-    caption: "Carousel Studio — clique nos slides pra navegar pela sequência",
+    caption: "Explore o menu. Cada seção mostra uma tela real do Creator Tools",
     body: (
       <>
-        O <strong>Creator Tools</strong> transforma um briefing numa sequência de carrosséis prontos
-        pro Instagram. Ele descobre o que está viralizando no nicho, escreve as headlines, monta os
-        slides no template da marca e já sugere a legenda — com o custo e o tempo de cada geração na
-        frente. O que levava uma tarde inteira vira alguns cliques.
+        Quem produz conteúdo sabe quanto tempo existe entre ter uma boa ideia e publicar. O
+        <strong> Creator Tools</strong> encurta esse caminho: você parte de um tema ou briefing e
+        recebe o carrossel montado, com roteiro, headlines, imagens e legenda. O sistema também ajuda
+        a encontrar assuntos em alta e mantém cada slide dentro da identidade da marca. Assim, sobra
+        mais tempo para decidir o que vale dizer e menos para começar tudo do zero.
         <br />
         <br />
-        Por baixo: a tela é feita em <strong>React com TypeScript</strong>, a geração de texto e imagem
-        roda em <strong>funções serverless na Vercel</strong> conversando com modelos de IA, e tudo
-        fica guardado no <strong>Supabase</strong>. Rápido porque quase nada fica travado esperando
-        servidor.
+        Para essa experiência continuar rápida mesmo durante gerações mais longas, construímos a
+        interface em <strong>React com TypeScript</strong>, distribuímos o processamento em
+        <strong> funções serverless na Vercel</strong> e organizamos projetos, versões e arquivos no
+        <strong> Supabase</strong>. Tecnologia presente, mas sem atrapalhar o fluxo de criação.
       </>
     ),
   },
   {
     kicker: "Case · Sistema de operação",
     title: "O pátio da oficina, vivo na tela",
-    url: "app.mecapro.com.br/patio",
+    url: "mecapro.com.br",
     logo: { src: "/images/systems/mecapro.webp", alt: "MecaPRO", width: 168, height: 61 },
     stackLabel: "Feito com",
     stack: ["React", "TypeScript", "Node.js", "PostgreSQL", "WhatsApp API"],
     render: () => <MecaproKanban />,
-    caption: "Interface real do MecaPRO — arraste os cards entre as etapas",
+    caption: "Interface real do MecaPRO. Arraste os cards entre as etapas",
     body: (
       <>
-        O <strong>MecaPRO</strong> deixa uma oficina saber, num relance, onde está cada carro — do
-        orçamento à entrega. O mecânico puxa o próximo serviço sem ninguém mandar, o dono enxerga o
-        que está atrasado pela cor da borda, e cada carro que muda de etapa avisa o cliente sozinho.
-        Você arrasta o card e o pátio inteiro se reorganiza.
+        Oficina cheia exige informação clara. O <strong>MecaPRO</strong> reúne cada carro, orçamento
+        e ordem de serviço num pátio digital que toda equipe consegue acompanhar. O mecânico pode
+        falar pelo WhatsApp para abrir uma OS e incluir peças, enquanto o sistema organiza os dados,
+        consulta fornecedores e compara cotações. Da entrada à entrega, o dono sabe o que está
+        parado, o que precisa de atenção e qual serviço vem depois.
         <br />
         <br />
-        Por baixo: a interface é <strong>React com TypeScript</strong>, as regras do negócio rodam num
-        servidor <strong>Node.js</strong>, e cada ordem de serviço fica salva com segurança no
-        <strong> PostgreSQL</strong>. A <strong>integração com o WhatsApp</strong> avisa o cliente na
-        hora certa, sem ninguém digitar mensagem.
+        A interface em <strong>React com TypeScript</strong> conversa com uma estrutura em
+        <strong> Node.js e PostgreSQL</strong>, preparada para manter histórico, estoque, financeiro
+        e ordens de serviço no mesmo lugar. Com o <strong>WhatsApp integrado</strong>, equipe,
+        fornecedores e clientes recebem as informações certas sem depender de recados soltos.
       </>
     ),
   },
@@ -71,7 +73,7 @@ export function SystemsShowcase() {
     <section aria-labelledby="systems-showcase-title" className={styles.showcase}>
       <div className={styles.shell}>
         <p className={styles.eyebrow}>
-          <span aria-hidden="true">✦</span> Prova real — em produção
+          <span aria-hidden="true">✦</span> Prova real · em produção
         </p>
         <h2 id="systems-showcase-title" className={styles.title}>
           Não é maquete.<br />É produto rodando.
@@ -114,7 +116,14 @@ export function SystemsShowcase() {
                 <div className={styles.browser}>
                   <div className={styles.browserBar}>
                     <div className={styles.dots}><i /><i /><i /></div>
-                    <span className={styles.url}>{b.url}</span>
+                    <a
+                      className={styles.url}
+                      href={`https://${b.url}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {b.url}
+                    </a>
                   </div>
                   <div className={styles.viewport}>{b.render()}</div>
                 </div>
