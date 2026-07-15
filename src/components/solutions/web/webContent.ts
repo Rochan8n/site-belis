@@ -11,9 +11,9 @@ export const stripPhotos = [
 ] as const;
 
 export const workPhotos = [
-  "/images/portfolio/krrom.png",
-  "/images/portfolio/latco.jpg",
-  "/images/portfolio/salles-nogueira.png",
+  "/images/portfolio/krrom.webp",
+  "/images/portfolio/latco.webp",
+  "/images/portfolio/salles-nogueira.webp",
 ] as const;
 
 export const figures = [

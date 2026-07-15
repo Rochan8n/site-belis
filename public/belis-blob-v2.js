@@ -472,13 +472,12 @@
     }
   };
 
-  /* ── 360° image globe: composite images into an equirectangular texture ── */
-  var GLOBE_IMAGES = [
-    '/images/portfolio/krrom.png',
-    '/images/portfolio/latco.jpg',
-    '/images/portfolio/salles-nogueira.png',
-    '/images/portfolio/kofar.png'
-  ];
+  /* ── 360° image globe: composite images into an equirectangular texture ──
+     Default image set removed (2026-07-14): portfolio globe no longer shown on
+     the site. Placeholder texture (deep base tone) still binds so uTex stays
+     valid and the blob renders unchanged. Pass a `globe-images="a,b,.."` attr
+     to re-enable an image globe on any instance. */
+  var GLOBE_IMAGES = [];
 
   BelisBlob.prototype._initGlobeTexture = function () {
     var gl = this._gl;

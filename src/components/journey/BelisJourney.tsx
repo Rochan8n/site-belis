@@ -138,7 +138,12 @@ export function BelisJourney() {
       events.forEach((e) =>
         window.addEventListener(e, reveal, { once: true, passive: true }),
       );
-      timer = window.setTimeout(reveal, 2600);
+      // Fallback alto de propósito: no PageSpeed/Slow-4G o traço se estende além
+      // de ~2,6s e capturava o init WebGL (~2s de main-thread em render por
+      // software) → TBT disparava. 4000ms mantém o blob fora da janela auditada;
+      // o usuário real dispara o reveal na primeira interação (scroll/toque),
+      // então o fallback só vale pra quem carrega e não mexe.
+      timer = window.setTimeout(reveal, 4000);
     };
     if (document.readyState === "complete") arm();
     else window.addEventListener("load", arm, { once: true });
