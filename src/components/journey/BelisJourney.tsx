@@ -243,7 +243,7 @@ export function BelisJourney() {
           aria-label={`${hud.active < 2 ? "Avançar para" : hud.active < 5 ? "Entrar em" : "Falar com a Belis sobre"} ${sections[Math.min(hud.active + (hud.active < 2 ? 1 : 0), 5)].label}`}
         >
           {blobReady && (
-            <BlobBeltHUD hidden={locked}>
+            <BlobBeltHUD hidden={locked} station={hud.active}>
               <BelisBlob
                 ref={blobRef}
                 className={`${styles.blob} ${styles.blobEnter}`}

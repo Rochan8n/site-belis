@@ -4,10 +4,25 @@ import styles from "./blobBeltHUD.module.css";
 type BlobBeltHUDProps = {
   children: ReactNode;
   hidden?: boolean;
+  station: number;
 };
 
-export function BlobBeltHUD({ children, hidden = false }: BlobBeltHUDProps) {
+const BELT_LABELS = [
+  "CLIQUE PARA AVANÇAR",
+  "CLIQUE PARA AVANÇAR",
+  "PORTFÓLIO",
+  "WEBSITES",
+  "SISTEMAS",
+  "ENTRE EM CONTATO",
+];
+
+export function BlobBeltHUD({
+  children,
+  hidden = false,
+  station,
+}: BlobBeltHUDProps) {
   const hiddenClass = hidden ? styles.beltHidden : "";
+  const label = BELT_LABELS[station] ?? BELT_LABELS[0];
 
   return (
     <>
@@ -81,26 +96,26 @@ export function BlobBeltHUD({ children, hidden = false }: BlobBeltHUDProps) {
           <g mask="url(#belt-side-mask)">
             <path
               className={styles.glassBand}
-              d="M112 207 A388 112 0 0 0 888 207 L850 214 A350 70 0 0 1 150 214 Z"
+              d="M112 196 A388 124 0 0 0 888 196 L850 226 A350 82 0 0 1 150 226 Z"
               fill="url(#belt-glass)"
             />
             <path
               className={styles.frontEdgeTop}
-              d="M150 214 A350 70 0 0 0 850 214"
+              d="M150 226 A350 82 0 0 0 850 226"
               stroke="url(#belt-edge)"
             />
             <path
               className={styles.frontEdgeBottom}
-              d="M112 207 A388 112 0 0 0 888 207"
+              d="M112 196 A388 124 0 0 0 888 196"
               stroke="url(#belt-edge)"
             />
             <path
               className={styles.microTicks}
-              d="M150 214 A350 70 0 0 0 850 214"
+              d="M150 226 A350 82 0 0 0 850 226"
             />
             <path
               className={styles.microDots}
-              d="M112 207 A388 112 0 0 0 888 207"
+              d="M112 196 A388 124 0 0 0 888 196"
             />
           </g>
 
@@ -134,32 +149,16 @@ export function BlobBeltHUD({ children, hidden = false }: BlobBeltHUDProps) {
         className={`${styles.beltContent} ${hiddenClass}`}
         aria-hidden="true"
       >
-        <span className={`${styles.arrow} ${styles.arrowLeft}`}>
-          <svg viewBox="0 0 32 24">
-            <path d="M20 4 12 12l8 8M28 4l-8 8 8 8" />
-          </svg>
-        </span>
-
-        <span className={styles.centerPrompt}>
-          <span className={styles.focusIcon}>
-            <i />
-            <i />
-            <i />
-            <i />
-            <svg viewBox="0 0 44 44">
-              <path d="M17 20v-9a3 3 0 0 1 6 0v8-4a3 3 0 0 1 6 0v5-2a3 3 0 0 1 6 0v10c0 7-4 11-11 11h-2c-4 0-7-2-9-5l-5-8a3 3 0 0 1 5-3l4 5" />
-            </svg>
-          </span>
-          <span className={styles.beltLabel}>
-            clique e <b>arraste</b>
-          </span>
-        </span>
-
-        <span className={`${styles.arrow} ${styles.arrowRight}`}>
-          <svg viewBox="0 0 32 24">
-            <path d="m12 4 8 8-8 8M4 4l8 8-8 8" />
-          </svg>
-        </span>
+        <svg className={styles.labelSvg} viewBox="0 0 1000 420">
+          <defs>
+            <path id="belt-label-path" d="M210 205 A290 82 0 0 0 790 205" />
+          </defs>
+          <text className={styles.beltLabel} textAnchor="middle">
+            <textPath href="#belt-label-path" startOffset="50%">
+              {label}
+            </textPath>
+          </text>
+        </svg>
       </span>
     </>
   );
