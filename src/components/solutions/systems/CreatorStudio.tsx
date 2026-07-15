@@ -105,12 +105,24 @@ const SLIDES: Slide[] = [
   { n: "07", text: "Avaliação clínica gratuita", kind: "cta" },
 ];
 
-function slideBg(kind: Slide["kind"]) {
-  switch (kind) {
-    case "cover": return "linear-gradient(160deg,#1a2822 0%,#121a17 100%)";
-    case "image": return "linear-gradient(135deg,#3a4a42 0%,#1a2822 100%)";
-    case "stat": return "#f4f1ea";
-    default: return "#0f1412";
+function slideBg(slide: Slide) {
+  switch (slide.n) {
+    case "01":
+      return "linear-gradient(180deg, rgb(9 20 16 / 12%) 28%, rgb(9 20 16 / 92%) 100%), url('/images/systems/carousel-clinica-luxe.webp') center / cover";
+    case "02":
+      return "linear-gradient(180deg, rgb(7 20 15 / 4%) 24%, rgb(7 20 15 / 90%) 100%), url('/images/systems/carousel-macro-serum.webp') center / cover";
+    case "03":
+      return "linear-gradient(180deg, rgb(7 20 15 / 8%) 24%, rgb(7 20 15 / 88%) 100%), url('/images/systems/carousel-macro-serum.webp') 65% center / cover";
+    case "04":
+      return "linear-gradient(180deg, rgb(9 20 16 / 8%) 28%, rgb(9 20 16 / 88%) 100%), url('/images/systems/carousel-clinica-luxe.webp') 70% center / cover";
+    case "05":
+      return "linear-gradient(180deg, rgb(244 241 234 / 16%), rgb(244 241 234 / 50%)), url('/images/systems/carousel-protocolo.webp') center / cover";
+    case "06":
+      return "linear-gradient(180deg, rgb(6 22 15 / 8%) 26%, rgb(6 22 15 / 88%) 100%), url('/images/systems/carousel-protocolo.webp') 70% center / cover";
+    case "07":
+      return "linear-gradient(180deg, rgb(9 20 16 / 10%) 26%, rgb(9 20 16 / 90%) 100%), url('/images/systems/carousel-clinica-luxe.webp') 65% center / cover";
+    default:
+      return "#0f1412";
   }
 }
 
@@ -134,7 +146,7 @@ function StudioPanel() {
             aria-label={`Slide ${s.n}: ${s.text}`}
             onClick={() => setSlide(i)}
             className={`${styles.ctSlide} ${slide === i ? styles.active : ""}`}
-            style={{ background: slideBg(s.kind) }}
+            style={{ background: slideBg(s) }}
           >
             <span className={styles.ctSlideInner}>
               <span className={`${styles.ctSlideNum} ${s.kind === "stat" ? styles.dark : ""}`}>{s.n}</span>
@@ -324,6 +336,11 @@ function RaioxPanel() {
       <PanelHead kicker="Raio-X Viral · engenharia reversa" title="Por que esse reel bombou" live="analisando" liveMuted />
       <div className={styles.ctRxGrid}>
         <div className={styles.ctRxShot}>
+          <img
+            className={styles.ctRxImage}
+            src="/images/systems/reel-dra-helena.webp"
+            alt="Capa de Reel de uma dermatologista com sérum"
+          />
           <span className={styles.ctRxPlay}>▶</span>
           <span className={styles.ctRxScan} />
           <span className={styles.ctRxTag}>REEL</span>
