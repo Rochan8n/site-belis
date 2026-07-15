@@ -10,7 +10,7 @@ type BlobBeltHUDProps = {
 const BELT_LABELS = [
   "CLIQUE PARA AVANÇAR",
   "CLIQUE PARA AVANÇAR",
-  "PORTFÓLIO",
+  "AUDIOVISUAL",
   "WEBSITES",
   "SISTEMAS",
   "ENTRE EM CONTATO",
@@ -151,7 +151,7 @@ export function BlobBeltHUD({
       >
         <svg className={styles.labelSvg} viewBox="0 0 1000 420">
           <defs>
-            <path id="belt-label-path" d="M225 224 A280 92 0 0 0 775 224" />
+            <path id="belt-label-path" d="M216 234 A292 100 0 0 0 784 234" />
           </defs>
           <text className={styles.beltLabel} textAnchor="middle">
             <textPath href="#belt-label-path" startOffset="50%">

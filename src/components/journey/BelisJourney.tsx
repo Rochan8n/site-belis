@@ -211,13 +211,13 @@ export function BelisJourney() {
     if (!cursor || !window.matchMedia("(pointer: fine)").matches) return;
     const move = (event: MouseEvent) => {
       cursor.style.transform = `translate3d(${event.clientX}px,${event.clientY}px,0)`;
-      const target = (event.target as Element | null)?.closest(
-        "button, a, [data-cursor]",
-      );
-      cursor.dataset.active = target ? "true" : "false";
-      cursor.dataset.enter = target?.hasAttribute("data-cursor")
-        ? "true"
-        : "false";
+      const el = event.target as Element | null;
+      // O blob (data-cursor) não é reativo: o Belt já traz o CTA "CLIQUE PARA
+      // AVANÇAR". Demais elementos interativos mantêm o realce, igual ao resto
+      // do site.
+      const overBlob = Boolean(el?.closest("[data-cursor]"));
+      const interactive = el?.closest("button, a");
+      cursor.dataset.active = interactive && !overBlob ? "true" : "false";
     };
     window.addEventListener("mousemove", move, { passive: true });
     return () => window.removeEventListener("mousemove", move);
@@ -319,9 +319,7 @@ export function BelisJourney() {
           <span>SÃO PAULO · BR</span>
         </footer>
       </div>
-      <div ref={cursorRef} className={styles.cursor} aria-hidden="true">
-        <span>ENTRAR</span>
-      </div>
+      <div ref={cursorRef} className={styles.cursor} aria-hidden="true" />
     </main>
   );
 }

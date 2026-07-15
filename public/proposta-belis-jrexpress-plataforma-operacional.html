@@ -6,17 +6,21 @@
   <title>Proposta BELIS — JR Express · Plataforma Operacional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Red+Hat+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&family=Red+Hat+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root { --navy:#050508; --blue:#1e488f; --green:#74c365; --paper:#fafaf8; --ink:#1b2130; --muted:#647080; }
     * { box-sizing:border-box; }
     body { margin:0; background:#10151d; color:var(--ink); font:14px/1.48 "Inter Tight",Arial,sans-serif; }
     .toolbar { position:fixed; right:20px; top:20px; z-index:3; }
     .toolbar button { border:0; border-radius:7px; padding:11px 17px; background:var(--green); color:var(--navy); font-weight:700; cursor:pointer; }
-    .page { width:210mm; min-height:297mm; margin:24px auto; background:var(--paper); box-shadow:0 22px 60px #0008; padding:0 18mm 14mm; }
+    .page { position:relative; overflow:hidden; width:210mm; min-height:297mm; margin:24px auto; background:var(--paper); box-shadow:0 22px 60px #0008; padding:0 18mm 14mm; }
+    .page::before { content:""; position:absolute; z-index:0; top:50%; right:-70mm; width:190mm; height:190mm; transform:translateY(-50%); background:url("belis-blob-watermark.svg") no-repeat center/contain; opacity:.05; pointer-events:none; }
+    .page::after { content:""; position:absolute; z-index:0; top:4mm; left:-30mm; width:102mm; height:102mm; background:url("belis-blob-watermark.svg") no-repeat center/contain; opacity:.12; pointer-events:none; }
+    .page > * { position:relative; z-index:1; }
     .stripe { height:5px; margin:0 -18mm; background:linear-gradient(90deg,var(--navy),var(--blue),var(--green)); }
     header { display:flex; justify-content:space-between; gap:18px; padding:15px 0 12px; border-bottom:1px solid #dce0e5; }
-    .logo { color:var(--navy); font:800 28px/1 "Red Hat Display",Georgia,serif; letter-spacing:-1px; }
+    .logo { display:inline-flex; align-items:baseline; gap:.14em; color:var(--navy); font:700 22px/1 "Archivo","Inter Tight",Arial,sans-serif; letter-spacing:.3em; text-transform:uppercase; }
+    .logo i { font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:0; font-style:normal; opacity:.45; }
     .kicker, h2, th { color:var(--blue); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
     .meta { text-align:right; color:var(--muted); font-size:11px; }
     .meta strong { color:var(--ink); }
@@ -51,7 +55,9 @@
       .page:last-of-type { break-after:auto; }
       .stripe { margin:0 -12mm !important; }
       header { display:flex !important; padding:10px 0 8px !important; }
-      .logo { font-size:24px; }
+      .logo { font-size:19px; }
+      .page::before { opacity:.045; }
+      .page::after { opacity:.11; top:2mm; left:-26mm; width:90mm; height:90mm; }
       h1 { margin:14px 0 5px; font-size:24px; }
       h2 { margin:14px 0 5px; }
       .lead { font-size:12px; }
@@ -76,7 +82,7 @@
   <section class="page">
     <div class="stripe"></div>
     <header>
-      <div><div class="logo">BELIS</div><div class="kicker">Estratégia, software e operações</div></div>
+      <div><div class="logo">BELIS<i>®</i></div><div class="kicker">Estratégia, software e operações</div></div>
       <div class="meta"><strong>Proposta comercial nº 246</strong><br>São Paulo, 15 de julho de 2026<br><strong>Cliente: JR Express</strong></div>
     </header>
 
@@ -108,7 +114,7 @@
   <section class="page">
     <div class="stripe"></div>
     <header>
-      <div><div class="logo">BELIS</div><div class="kicker">Proposta comercial · Continuação</div></div>
+      <div><div class="logo">BELIS<i>®</i></div><div class="kicker">Proposta comercial · Continuação</div></div>
       <div class="meta"><strong>Plataforma operacional JR Express</strong><br>15 de julho de 2026</div>
     </header>
 

@@ -290,10 +290,7 @@
     background 0.2s,
     border-color 0.2s;
 }
-.cursor span { position: absolute; inset: 0; display: grid; place-items: center; color: #0a0a0c; font-size: 7px; letter-spacing: 0.1em; opacity: 0; }
 .cursor[data-active="true"] { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--green); opacity: 1; }
-.cursor[data-enter="true"] { width: 78px; height: 78px; margin: -39px 0 0 -39px; background: var(--green); }
-.cursor[data-enter="true"] span { opacity: 1; }
 @keyframes blink {
   50% { opacity: 0.1; }
 }
