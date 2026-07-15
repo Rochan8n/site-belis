@@ -187,9 +187,12 @@
 }
 
 .beltLabel {
-  color: #f3f5f1;
-  font: 400 19px / 1 var(--font-plex-mono), monospace;
-  letter-spacing: 0.24em;
+  fill: #f3f5f1;
+  font: 400 22px / 1 var(--font-plex-mono), monospace;
+  letter-spacing: 0.26em;
+  paint-order: stroke fill;
+  stroke: rgb(0 0 0 / 0.28);
+  stroke-width: 0.75px;
   text-transform: uppercase;
   text-shadow: 0 1px 18px rgb(0 0 0 / 0.92);
   transition: opacity 350ms ease, filter 350ms ease;

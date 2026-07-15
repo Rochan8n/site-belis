@@ -96,26 +96,26 @@ export function BlobBeltHUD({
           <g mask="url(#belt-side-mask)">
             <path
               className={styles.glassBand}
-              d="M112 196 A388 124 0 0 0 888 196 L850 226 A350 82 0 0 1 150 226 Z"
+              d="M112 198 A388 158 0 0 0 888 198 L850 210 A350 46 0 0 1 150 210 Z"
               fill="url(#belt-glass)"
             />
             <path
               className={styles.frontEdgeTop}
-              d="M150 226 A350 82 0 0 0 850 226"
+              d="M150 210 A350 46 0 0 0 850 210"
               stroke="url(#belt-edge)"
             />
             <path
               className={styles.frontEdgeBottom}
-              d="M112 196 A388 124 0 0 0 888 196"
+              d="M112 198 A388 158 0 0 0 888 198"
               stroke="url(#belt-edge)"
             />
             <path
               className={styles.microTicks}
-              d="M150 226 A350 82 0 0 0 850 226"
+              d="M150 210 A350 46 0 0 0 850 210"
             />
             <path
               className={styles.microDots}
-              d="M112 196 A388 124 0 0 0 888 196"
+              d="M112 198 A388 158 0 0 0 888 198"
             />
           </g>
 
@@ -151,7 +151,7 @@ export function BlobBeltHUD({
       >
         <svg className={styles.labelSvg} viewBox="0 0 1000 420">
           <defs>
-            <path id="belt-label-path" d="M210 205 A290 82 0 0 0 790 205" />
+            <path id="belt-label-path" d="M225 224 A280 92 0 0 0 775 224" />
           </defs>
           <text className={styles.beltLabel} textAnchor="middle">
             <textPath href="#belt-label-path" startOffset="50%">
