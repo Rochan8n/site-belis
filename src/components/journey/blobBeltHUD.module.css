@@ -363,6 +363,16 @@
 }
 
 @media (max-width: 800px) {
+  .beltMobileHidden {
+    opacity: 0 !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .beltLabelMobileHidden .beltLabel {
+    opacity: 0;
+  }
+
   .belt,
   .beltContent {
     --belt-width: 136%;

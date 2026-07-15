@@ -114,8 +114,6 @@ export const trials = [
 
 export const studioStats = [
   ["150+", "PROJETOS ENTREGUES"],
-  ["07D", "PRIMEIRA VERSÃO"],
-  ["01", "PARCEIRO DO FRAME AO SISTEMA"],
 ] as const;
 
 export const proofs = [

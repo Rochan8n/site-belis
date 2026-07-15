@@ -1,3 +1,4 @@
+import { BELT_LABELS } from "../BlobBeltHUD";
 import { studioStats, type trials } from "../journeyData";
 
 type Trial = (typeof trials)[number];
@@ -37,6 +38,9 @@ export function TrialStation({ trial, onEnter }: TrialStationProps) {
           </div>
         </div>
       )}
+      <span className="scroll-hint trial-scroll-hint" aria-hidden="true">
+        {BELT_LABELS[trial.station]}
+      </span>
     </section>
   );
 }

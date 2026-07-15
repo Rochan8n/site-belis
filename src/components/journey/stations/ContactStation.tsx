@@ -21,7 +21,7 @@ export function ContactStation() {
           >
             VAMOS CONSTRUIR ISSO JUNTOS <span aria-hidden="true">→</span>
           </a>
-          <TransitionLink className="journey-cta" href="/portfolio">PORTFÓLIO ↗</TransitionLink>
+          <TransitionLink className="journey-cta contact-portfolio" href="/portfolio">PORTFÓLIO ↗</TransitionLink>
         </div>
       </div>
       <TestimonialProof />

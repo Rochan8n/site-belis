@@ -75,6 +75,7 @@
   letter-spacing: 0.3em; cursor: none; touch-action: pan-y;
 }
 .stations :global(.scroll-hint) { font-size: 9px; letter-spacing: 0.4em; animation: blink 3s ease-in-out infinite; }
+.stations :global(.trial-scroll-hint) { display: none; }
 .stations :global(.station-block) {
   position: absolute; left: clamp(22px, 6vw, 96px); top: 50%; z-index: 3; translate: 0 -50%; display: flex; flex-direction: column; align-items: flex-start;
   max-width: min(34vw, 470px);
@@ -337,12 +338,16 @@
   :global(.portfolio-sphere-orbiter) { top: 63%; }
   :global(.portfolio-sphere-panel) { min-width: 44px; min-height: 44px; cursor: pointer; }
   :global(.portfolio-sphere-panel > span) { padding: 3px 4px; font-size: 5px; letter-spacing: 0.08em; }
-  .stations :global(.studio-proof) { left: 22px; right: 22px; bottom: 48px; }
-  .stations :global(.stats) { gap: 14px; justify-content: space-between; }
+  .stations :global(.studio-proof) { left: 22px; right: 22px; bottom: 72px; }
+  .stations :global(.stats) { gap: 14px; justify-content: flex-start; }
   .stations :global(.stats div) { min-width: 0; }
   .stations :global(.stats strong) { font-size: 17px; }
   .stations :global(.stats span) { font-size: 10px; letter-spacing: 0.08em; line-height: 1.25; }
-  .stations :global(.testimonial-proof) { right: 22px; left: 22px; top: auto; bottom: 64px; translate: none; width: auto; }
+  .stations :global(.trial-scroll-hint) {
+    display: block; position: absolute; left: 50%; bottom: max(28px, env(safe-area-inset-bottom));
+    translate: -50% 0; z-index: 4; font-size: 9px; letter-spacing: 0.4em;
+  }
+  .stations :global(.testimonial-proof) { right: 22px; left: 22px; top: auto; bottom: 28px; translate: none; width: auto; }
   .stations :global(.proof-label) {
     display: inline-block; padding: 7px 9px; background: var(--journey-bg); opacity: 1;
   }
@@ -350,17 +355,18 @@
   .stations :global(.proof-avatar) { width: 44px; height: 44px; }
   .stations :global(.proof-row) { grid-template-columns: 44px minmax(0, 1fr) 30px; }
   .stations :global(.contact-block) { top: 78px; }
-  .stations :global(.contact-block h2) { font-size: 38px; }
+  .stations :global(.contact-block h2) { font-size: clamp(18px, 5.2vw, 22px); line-height: 1.15; }
   .stations :global(.contact-block > p) { font-size: 12px; line-height: 1.4; }
   .stations :global(.contact-actions) { margin-top: -10px; }
   .stations :global(.contact-actions .journey-cta) { margin-top: 8px; padding: 10px 12px; font-size: 8px; }
+  .stations :global(.contact-portfolio) { display: none; }
   .stations :global(.contact-station .trial-note),
   .stations :global(.journey-coordinates) { display: none; }
   .hudBottom > span { display: none; }
   .hudBottom { justify-content: center; }
   .hudTop > span { min-width: 65px; font-size: 7px; }
   .hudTop button { font-size: 12px; }
-  .hudBottom div > i { width: 60px; }
+  .hudBottom div > i { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .spacer { scroll-snap-align: none; }

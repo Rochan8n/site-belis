@@ -7,14 +7,14 @@ type BlobBeltHUDProps = {
   station: number;
 };
 
-const BELT_LABELS = [
+export const BELT_LABELS = [
   "CLIQUE PARA AVANÇAR",
   "CLIQUE PARA AVANÇAR",
   "AUDIOVISUAL",
   "WEBSITES",
   "SISTEMAS",
   "ENTRE EM CONTATO",
-];
+] as const;
 
 export function BlobBeltHUD({
   children,
@@ -22,12 +22,15 @@ export function BlobBeltHUD({
   station,
 }: BlobBeltHUDProps) {
   const hiddenClass = hidden ? styles.beltHidden : "";
+  // Mobile: belt only on contact (station 5); hide "ENTRE EM CONTATO" label there.
+  const mobileHideBelt = station !== 5 ? styles.beltMobileHidden : "";
+  const mobileHideLabel = station === 5 ? styles.beltLabelMobileHidden : "";
   const label = BELT_LABELS[station] ?? BELT_LABELS[0];
 
   return (
     <>
       <span
-        className={`${styles.belt} ${styles.beltRear} ${hiddenClass}`}
+        className={`${styles.belt} ${styles.beltRear} ${hiddenClass} ${mobileHideBelt}`}
         aria-hidden="true"
       >
         <svg className={styles.beltSvg} viewBox="0 0 1000 420">
@@ -63,7 +66,7 @@ export function BlobBeltHUD({
       <span className={styles.blobLayer}>{children}</span>
 
       <span
-        className={`${styles.belt} ${styles.beltFront} ${hiddenClass}`}
+        className={`${styles.belt} ${styles.beltFront} ${hiddenClass} ${mobileHideBelt}`}
         aria-hidden="true"
       >
         <svg className={styles.beltSvg} viewBox="0 0 1000 420">
@@ -146,7 +149,7 @@ export function BlobBeltHUD({
       </span>
 
       <span
-        className={`${styles.beltContent} ${hiddenClass}`}
+        className={`${styles.beltContent} ${hiddenClass} ${mobileHideBelt} ${mobileHideLabel}`}
         aria-hidden="true"
       >
         <svg className={styles.labelSvg} viewBox="0 0 1000 420">
