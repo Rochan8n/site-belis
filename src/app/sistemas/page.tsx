@@ -5,6 +5,7 @@ import { ItemGrid } from "@/components/solutions/ItemGrid";
 import { ProcessSteps } from "@/components/solutions/ProcessSteps";
 import { QualityGrid } from "@/components/solutions/QualityGrid";
 import { SolutionHero } from "@/components/solutions/SolutionHero";
+import { SystemsShowcase } from "@/components/solutions/systems/SystemsShowcase";
 import styles from "@/components/solutions/solutions.module.css";
 import {
   HERO_CTA_LABEL,
@@ -79,6 +80,7 @@ export default function SistemasPage() {
         ctaHref={SYS_WHATSAPP_HREF}
       />
       <ItemGrid category="Sistemas" items={sysItems} />
+      <SystemsShowcase />
       <AudienceGrid items={systemAudiences} />
       <ProcessSteps />
       <QualityGrid />
