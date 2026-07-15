@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta BELIS — JR Express · Plataforma Operacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Red+Hat+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#050508; --blue:#1e488f; --green:#74c365; --paper:#fafaf8; --ink:#1b2130; --muted:#647080; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#10151d; color:var(--ink); font:14px/1.48 "Inter Tight",Arial,sans-serif; }
+    .toolbar { position:fixed; right:20px; top:20px; z-index:3; }
+    .toolbar button { border:0; border-radius:7px; padding:11px 17px; background:var(--green); color:var(--navy); font-weight:700; cursor:pointer; }
+    .page { width:210mm; min-height:297mm; margin:24px auto; background:var(--paper); box-shadow:0 22px 60px #0008; padding:0 18mm 14mm; }
+    .stripe { height:5px; margin:0 -18mm; background:linear-gradient(90deg,var(--navy),var(--blue),var(--green)); }
+    header { display:flex; justify-content:space-between; gap:18px; padding:15px 0 12px; border-bottom:1px solid #dce0e5; }
+    .logo { color:var(--navy); font:800 28px/1 "Red Hat Display",Georgia,serif; letter-spacing:-1px; }
+    .kicker, h2, th { color:var(--blue); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .meta { text-align:right; color:var(--muted); font-size:11px; }
+    .meta strong { color:var(--ink); }
+    h1 { margin:21px 0 7px; color:var(--navy); font:700 29px/1.05 "Red Hat Display",Georgia,serif; letter-spacing:-.6px; }
+    h2 { margin:22px 0 7px; padding-bottom:5px; border-bottom:1px solid #dce0e5; }
+    p { margin:7px 0; }
+    .lead { max-width:650px; color:#3f4754; font-size:15px; }
+    .callout { margin:15px 0; padding:12px 14px; border:1px solid #b8dbb0; border-left:4px solid var(--green); border-radius:7px; background:#f0f8ee; }
+    .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    .card { border:1px solid #dce0e5; border-radius:7px; background:white; padding:12px; break-inside:avoid; }
+    .card strong { color:var(--navy); }
+    ul { margin:8px 0 0; padding-left:17px; }
+    li { margin:4px 0; }
+    .phase { display:grid; grid-template-columns:28px 1fr; gap:9px; margin:9px 0; }
+    .number { width:28px; height:28px; display:grid; place-items:center; border-radius:50%; background:var(--navy); color:var(--green); font-size:12px; font-weight:700; }
+    table { width:100%; border-collapse:collapse; margin:9px 0; font-size:12px; }
+    th, td { padding:8px; border-bottom:1px solid #dce0e5; text-align:left; vertical-align:top; }
+    th:last-child, td:last-child { text-align:right; white-space:nowrap; }
+    .total td { background:#eaf6e7; font-weight:700; color:var(--navy); }
+    .price { font:700 27px/1 "Red Hat Display",Georgia,serif; color:var(--navy); margin:5px 0; }
+    .small { color:var(--muted); font-size:11px; }
+    .warning { background:#fff8e8; border:1px solid #edd99a; border-radius:7px; padding:11px 13px; }
+    .footer { margin-top:22px; padding-top:10px; border-top:1px solid #dce0e5; color:var(--muted); font-size:10px; }
+    .signature { display:grid; grid-template-columns:1fr 120px; gap:25px; margin-top:22px; }
+    .line { margin-top:25px; border-bottom:1px solid var(--ink); }
+    @media print { @page { size:A4; margin:0; } body { background:white; } .toolbar { display:none; } .page { width:210mm; min-height:297mm; margin:0; box-shadow:none; break-after:page; } }
+    @media (max-width:760px) { .toolbar { display:none; } .page { width:100%; min-height:0; margin:0; padding:0 22px 25px; } .stripe { margin:0 -22px; } header,.grid { display:block; } .meta { margin-top:12px; text-align:left; } .card { margin:9px 0; } h1 { font-size:26px; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><button onclick="window.print()">Salvar como PDF</button></div>
+
+  <section class="page">
+    <div class="stripe"></div>
+    <header>
+      <div><div class="logo">BELIS</div><div class="kicker">Estratégia, software e operações</div></div>
+      <div class="meta"><strong>Proposta comercial nº 246</strong><br>São Paulo, 15 de julho de 2026<br><strong>Cliente: JR Express</strong></div>
+    </header>
+
+    <h1>Plataforma operacional para logística urbana</h1>
+    <p class="lead">Evolução da operação da JR Express para uma plataforma própria: pedidos, despacho, acompanhamento em tempo real, portal do cliente, aplicativo do portador e fechamento mensal em um fluxo único.</p>
+
+    <div class="callout"><strong>Objetivo:</strong> reduzir atraso de informação, dar visibilidade real ao cliente e permitir que a JR Express adapte sua operação sem depender de mudanças lentas em um sistema genérico.</div>
+
+    <h2>Contexto identificado</h2>
+    <div class="grid">
+      <article class="card"><strong>Operação atual</strong><br><span class="small">Pedidos, status e portal existem, mas atualizações chegam com atraso. Mudanças no sistema dependem de fornecedor externo.</span></article>
+      <article class="card"><strong>Resultado esperado</strong><br><span class="small">Cliente, operação e portador enxergam mesmo serviço no mesmo estado, com protocolo e rastreio claros.</span></article>
+    </div>
+
+    <h2>Escopo alvo — plataforma</h2>
+    <div class="grid">
+      <article class="card"><strong>Painel de operação</strong><ul><li>Clientes, múltiplos endereços, tabelas e regras comerciais.</li><li>Cobrança avulsa, mensal, quinzenal e mensal fixa.</li><li>Ordens de serviço, despacho, status e fechamento mensal.</li><li>Status visual: lançado, enviado, aceito/em execução e concluído.</li><li>Extrato mensal de valores por portador.</li></ul></article>
+      <article class="card"><strong>Portal do cliente</strong><ul><li>Solicitação de coleta e entrega.</li><li>Endereços recorrentes e histórico.</li><li>Status, protocolo, comprovante e rastreio compartilhado.</li><li>Visão de serviços em andamento e concluídos.</li></ul></article>
+      <article class="card"><strong>Aplicativo do portador</strong><ul><li>Receber, aceitar, iniciar e concluir serviços.</li><li>Foto do protocolo e registro de ocorrência.</li><li>Notificações, valores por serviço e extrato.</li><li>Atualização de localização durante serviço ativo.</li></ul></article>
+      <article class="card"><strong>Tempo real, rota e mapa</strong><ul><li>Status publicado instantaneamente entre usuários.</li><li>Posição, última atualização e ETA durante serviço ativo.</li><li>Roteirização de múltiplas coletas/entregas e sugestão de sequência eficiente.</li><li>Histórico operacional e alerta de sinal desatualizado.</li></ul></article>
+    </div>
+
+    <h2>Princípio de entrega</h2>
+    <p>Rastreamento ao vivo não significa localização infalível. O sistema mostrará <strong>última posição e horário de atualização</strong>, guardará dados quando conexão cair e reenviará ao recuperar rede. GPS desligado, celular sem sinal, bateria esgotada ou encerramento manual do aplicativo impedem qualquer plataforma de rastrear em tempo real.</p>
+
+    <h2>Etapas de entrega</h2>
+    <div class="phase"><div class="number">1</div><div><strong>Mapeamento e protótipo — até 2 semanas.</strong><br><span class="small">Regras de preço, fluxo, perfis, telas e dados essenciais validados com a operação.</span></div></div>
+    <div class="phase"><div class="number">2</div><div><strong>Painel e portal — até 8 semanas.</strong><br><span class="small">Pedidos, clientes, endereços, valores, status, protocolo, fechamento e acompanhamento pelo cliente.</span></div></div>
+    <div class="phase"><div class="number">3</div><div><strong>Aplicativo, mapa e piloto — até 8 semanas.</strong><br><span class="small">Aplicativo Android, push, foto, rastreio, rota e validação controlada com equipe da JR Express.</span></div></div>
+  </section>
+
+  <section class="page">
+    <div class="stripe"></div>
+    <header>
+      <div><div class="logo">BELIS</div><div class="kicker">Proposta comercial · Continuação</div></div>
+      <div class="meta"><strong>Plataforma operacional JR Express</strong><br>15 de julho de 2026</div>
+    </header>
+
+    <h1>Investimento e modelo de parceria</h1>
+    <p class="lead">Condição pioneira para a JR Express validar uma plataforma própria. Implantação financia construção; mensalidade mantém produto disponível após entrada em operação.</p>
+
+    <h2>Implantação — escopo desta proposta</h2>
+    <table>
+      <thead><tr><th>Etapa</th><th>Inclui</th><th>Investimento</th></tr></thead>
+      <tbody>
+        <tr><td>Plataforma operacional V1</td><td>Painel, portal, pedidos, status em tempo real, fechamento, app Android, foto de protocolo, rota e rastreio em serviço ativo.</td><td>R$ 15.000</td></tr>
+        <tr class="total"><td colspan="2">Total de implantação</td><td>R$ 15.000</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Prazo estimado: até 18 semanas após assinatura, recebimento de acessos/dados necessários e validações da JR Express. Ajustes de escopo ou dependências externas podem alterar prazo.</p>
+
+    <div class="warning"><strong>Forma de pagamento:</strong> R$ 3.000 via PIX na assinatura e saldo de R$ 12.000 no cartão. Caso o parcelamento tenha juros/taxas do meio de pagamento, o custo será acrescido ao valor pago no cartão pelo cliente. Nenhuma etapa começa sem o pagamento de entrada.</div>
+
+    <h2>Operação, suporte e evolução</h2>
+    <table>
+      <thead><tr><th>Contrato mensal após primeiro go-live</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Licença de uso, hospedagem básica, backup, monitoramento e correções de defeitos do escopo contratado.</td><td>R$ 400/mês</td></tr>
+        <tr><td>Evoluções, novas regras, relatórios, integrações ou mudanças além do escopo, aprovadas antes da execução.</td><td>R$ 200/h</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Contrato mensal mínimo de 24 meses após entrada em produção. A mensalidade não inclui desenvolvimento contínuo. Custos variáveis de mapas/geocodificação, SMS/WhatsApp, lojas de aplicativos, serviços de push e aumento de infraestrutura serão repassados pela JR Express, com transparência e aprovação prévia quando aplicável.</p>
+
+    <h2>Fora do escopo inicial</h2>
+    <div class="grid">
+      <article class="card"><strong>Não incluso nesta proposta</strong><ul><li>Emissão de nota fiscal.</li><li>Aplicativo iPhone.</li><li>Integrações com ERP, bancos ou aplicativos de terceiros.</li><li>Migração completa de histórico do sistema atual.</li></ul></article>
+      <article class="card"><strong>Premissas para começar</strong><ul><li>Acesso de demonstração ao sistema atual e possibilidade de exportar dados.</li><li>Uma pessoa decisora da JR Express para validações.</li><li>Piloto com grupo definido de portadores e clientes.</li><li>Uso adequado de localização e consentimentos LGPD.</li></ul></article>
+    </div>
+
+    <h2>Próximo passo</h2>
+    <p>Aprovar proposta e contrato, realizar pagamento de entrada e disponibilizar acesso de demonstração ao sistema atual. A Belis inicia mapeamento e protótipo para validar operação antes da construção.</p>
+
+    <div class="signature"><div><strong>De acordo — JR Express</strong><div class="line"></div><div class="small">Assinatura do responsável</div></div><div><strong>Data</strong><div class="line"></div></div></div>
+    <div class="footer">BELISROCHA PRODUTORA AUDIOVISUAL · CNPJ 45.204.623/0001-14 · São Paulo/SP · (11) 97313-8895 · lucas@belis.agency · belis.agency</div>
+  </section>
+</body>
+</html>

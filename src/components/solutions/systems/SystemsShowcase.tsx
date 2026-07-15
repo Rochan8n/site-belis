@@ -12,7 +12,6 @@ type Block = {
   stack: readonly string[];
   render: () => ReactNode;
   caption: string;
-  flip?: boolean;
   body: ReactNode;
 };
 
@@ -50,7 +49,6 @@ const BLOCKS: readonly Block[] = [
     stack: ["React", "TypeScript", "Node.js", "PostgreSQL", "WhatsApp API"],
     render: () => <MecaproKanban />,
     caption: "Interface real do MecaPRO — arraste os cards entre as etapas",
-    flip: true,
     body: (
       <>
         O <strong>MecaPRO</strong> deixa uma oficina saber, num relance, onde está cada carro — do
@@ -85,7 +83,7 @@ export function SystemsShowcase() {
 
         <div className={styles.blocks}>
           {BLOCKS.map((b) => (
-            <article key={b.title} className={`${styles.block} ${b.flip ? styles.flip : ""}`}>
+            <article key={b.title} className={styles.block}>
               <div className={styles.explain}>
                 <div className={styles.brandRow}>
                   <span className={styles.logoBadge}>
