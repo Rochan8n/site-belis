@@ -1,7 +1,6 @@
 "use client";
 
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -21,7 +20,6 @@ export function SiteChromeFull({
   return (
     <SmoothScroll>
       <NoiseOverlay />
-      <CustomCursor />
       <Navbar />
       <PageHud />
       {children}

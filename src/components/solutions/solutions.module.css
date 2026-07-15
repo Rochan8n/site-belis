@@ -590,7 +590,8 @@
   }
 
   .heroHud span:last-child,
-  .heroFoot > span:first-child {
+  .heroFoot > span:first-child,
+  .progress {
     display: none;
   }
 

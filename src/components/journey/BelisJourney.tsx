@@ -33,7 +33,6 @@ export function BelisJourney() {
   const timers = useRef<number[]>([]);
   const [locked, setLocked] = useState(false);
   const [blobReady, setBlobReady] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const hud = useJourneyDirector(blobRef, locked);
 
   const scrollToStation = useCallback((station: number) => {
@@ -206,23 +205,6 @@ export function BelisJourney() {
     };
   }, [locked]);
 
-  useEffect(() => {
-    const cursor = cursorRef.current;
-    if (!cursor || !window.matchMedia("(pointer: fine)").matches) return;
-    const move = (event: MouseEvent) => {
-      cursor.style.transform = `translate3d(${event.clientX}px,${event.clientY}px,0)`;
-      const el = event.target as Element | null;
-      // O blob (data-cursor) não é reativo: o Belt já traz o CTA "CLIQUE PARA
-      // AVANÇAR". Demais elementos interativos mantêm o realce, igual ao resto
-      // do site.
-      const overBlob = Boolean(el?.closest("[data-cursor]"));
-      const interactive = el?.closest("button, a");
-      cursor.dataset.active = interactive && !overBlob ? "true" : "false";
-    };
-    window.addEventListener("mousemove", move, { passive: true });
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
-
   return (
     <main className={`${styles.journey} ${locked ? styles.locked : ""}`}>
       <div className={styles.spacers} aria-hidden="true">
@@ -237,7 +219,6 @@ export function BelisJourney() {
 
         <button
           className={styles.blobButton}
-          data-cursor
           type="button"
           onClick={activateCurrent}
           aria-label={`${hud.active < 2 ? "Avançar para" : hud.active < 5 ? "Entrar em" : "Falar com a Belis sobre"} ${sections[Math.min(hud.active + (hud.active < 2 ? 1 : 0), 5)].label}`}
@@ -319,7 +300,6 @@ export function BelisJourney() {
           <span>SÃO PAULO · BR</span>
         </footer>
       </div>
-      <div ref={cursorRef} className={styles.cursor} aria-hidden="true" />
     </main>
   );
 }

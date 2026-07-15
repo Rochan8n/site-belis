@@ -120,9 +120,7 @@
   .menuLink { grid-template-columns: 34px 1fr auto; gap: 10px; }
   .menuLink strong { font-size: clamp(1.6rem, 8vw, 2.35rem); }
   .pageHud { mix-blend-mode: normal; }
-  .sideReadout, .hudFooter > span, .viewportCorners { display: none; }
-  .hudFooter { justify-content: center; }
-  .hudFooter div > i { width: 58px; }
+  .sideReadout, .hudFooter, .viewportCorners { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

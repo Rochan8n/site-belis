@@ -1,6 +1,6 @@
 .journey {
   --green: #74c365; --cream: #efece2; position: relative; width: 100%; background: var(--journey-bg, #0a0a0c); color: var(--journey-ink, #efece2);
-  font-family: var(--font-plex-mono), monospace; cursor: none;
+  font-family: var(--font-plex-mono), monospace; cursor: auto;
 }
 .spacers { position: relative; z-index: 1; }
 .spacer { height: var(--journey-vh, 100vh); scroll-snap-align: start; }
@@ -11,7 +11,7 @@
 .grid { position: absolute; inset: 0; opacity: 0.09; background-image: radial-gradient(currentColor 1px, transparent 1.5px); background-size: 30px 30px; }
 .blobButton {
   position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(76vmin, 730px); height: min(76vmin, 730px); z-index: 2;
-  pointer-events: auto; padding: 0; border: 0; background: transparent; cursor: none; touch-action: pan-y;
+  pointer-events: auto; padding: 0; border: 0; background: transparent; cursor: pointer; touch-action: pan-y;
 }
 .blobButton:focus-visible { outline: 2px solid var(--green); outline-offset: -10px; }
 .blob { display: block; width: 100%; height: 100%; }
@@ -40,7 +40,7 @@
 .marker {
   position: absolute; pointer-events: auto; border: 0; padding: 7px 12px; color: inherit; background: transparent;
   font: 500 10px/1 var(--font-plex-mono),
-    monospace; letter-spacing: 0.24em; white-space: nowrap; cursor: none; opacity: 0.6; touch-action: pan-y;
+    monospace; letter-spacing: 0.24em; white-space: nowrap; cursor: pointer; opacity: 0.6; touch-action: pan-y;
   transition: opacity 0.3s,
     background 0.3s,
     color 0.3s;
@@ -72,7 +72,7 @@
 .stations :global(.journey-text-button) {
   pointer-events: auto; border: 0; padding: 4px; color: inherit; background: transparent; font: 500 11px/1.3 var(--font-plex-mono),
     monospace;
-  letter-spacing: 0.3em; cursor: none; touch-action: pan-y;
+  letter-spacing: 0.3em; cursor: pointer; touch-action: pan-y;
 }
 .stations :global(.scroll-hint) { font-size: 9px; letter-spacing: 0.4em; animation: blink 3s ease-in-out infinite; }
 .stations :global(.trial-scroll-hint) { display: none; }
@@ -131,7 +131,7 @@
   pointer-events: auto; display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 14px 22px; border: 1px solid currentColor;
   color: inherit; background: color-mix(in srgb, var(--journey-bg) 55%, transparent); text-decoration: none;
   font: 600 10px/1.2 var(--font-plex-mono),
-    monospace; letter-spacing: 0.26em; cursor: none; touch-action: pan-y; transition: background 0.3s,
+    monospace; letter-spacing: 0.26em; cursor: pointer; touch-action: pan-y; transition: background 0.3s,
     color 0.3s;
 }
 .stations :global(.journey-cta:hover),
@@ -160,7 +160,7 @@
 :global(.portfolio-sphere-orbiter) {
   position: absolute; left: 50%; top: 52%; width: calc(var(--sphere-size) * 0.48); height: calc(var(--sphere-size) * 0.46); z-index: 1;
   pointer-events: none; color: #efece2; text-decoration: none; transform: translate(-50%, -50%); transform-style: preserve-3d;
-  cursor: none; touch-action: pan-y; will-change: transform; filter: drop-shadow(0 18px 32px #0008);
+  cursor: pointer; touch-action: pan-y; will-change: transform; filter: drop-shadow(0 18px 32px #0008);
 }
 :global(.portfolio-sphere-active .portfolio-sphere-orbiter) {
   animation: portfolio-panel-orbit 24s linear calc(var(--panel-index) * -6s) infinite;
@@ -209,13 +209,13 @@
 .stations :global(.proof-list) { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
 .stations :global(.proof-row) {
   display: grid; grid-template-columns: 52px minmax(0, 1fr) 36px; align-items: center; gap: 14px;
-  width: 100%; padding: 8px 12px 8px 8px; border: 1px solid #efece226; border-radius: 999px;
-  background: rgb(239 236 226 / 20%); color: #efece2; cursor: none; touch-action: pan-y; text-align: left;
-  backdrop-filter: blur(10px); transition: border-color 0.35s, background 0.35s, transform 0.35s;
+  width: 100%; padding: 8px 12px 8px 8px; border: 1px solid #efece240; border-radius: 999px;
+  background: #0a0a0cf2; color: #fff; cursor: pointer; touch-action: pan-y; text-align: left;
+  backdrop-filter: blur(12px); transition: border-color 0.35s, background 0.35s, transform 0.35s;
 }
 .stations :global(.proof-row:hover),
 .stations :global(.proof-row:focus-visible) {
-  border-color: #74c36580; background: rgb(239 236 226 / 28%); outline: 0; transform: translateX(-4px);
+  border-color: #74c36580; background: #0a0a0cfa; outline: 0; transform: translateX(-4px);
 }
 .stations :global(.proof-avatar) {
   position: relative; width: 52px; height: 52px; overflow: hidden; border-radius: 50%;
@@ -236,11 +236,11 @@
   letter-spacing: 0.18em; color: var(--green); opacity: 0.85;
 }
 .stations :global(.proof-meta strong) {
-  font: 500 10px/1.2 var(--font-plex-mono), monospace; letter-spacing: 0.14em;
+  font: 500 10px/1.2 var(--font-plex-mono), monospace; letter-spacing: 0.14em; color: #fff;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .stations :global(.proof-meta small) {
-  font: 400 8px/1.2 var(--font-plex-mono), monospace; letter-spacing: 0.16em; color: #efece2;
+  font: 400 8px/1.2 var(--font-plex-mono), monospace; letter-spacing: 0.16em; color: #ffffffcc;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .stations :global(.proof-play) {
@@ -273,7 +273,7 @@
 .hudTop button {
   pointer-events: auto; border: 0; padding: 5px; background: transparent; color: inherit; font: 700 14px var(--font-archivo),
     sans-serif;
-  letter-spacing: 0.38em; cursor: none; touch-action: pan-y;
+  letter-spacing: 0.38em; cursor: pointer; touch-action: pan-y;
 }
 .hudTop i { opacity: 0.45; font-weight: 400; }
 .hudBottom { bottom: 0; align-items: flex-end; padding: 0 clamp(20px, 4vw, 56px) max(16px, env(safe-area-inset-bottom)); }
@@ -282,16 +282,6 @@
 .hudBottom div { display: flex; align-items: center; gap: 14px; }
 .hudBottom div > i { display: block; width: 100px; height: 1px; background: color-mix(in srgb, currentColor 25%, transparent); }
 .hudBottom div > i b { display: block; height: 100%; background: currentColor; }
-.cursor {
-  position: fixed; left: 0; top: 0; z-index: 50; width: 40px; height: 40px; margin: -20px 0 0 -20px; border: 1px solid currentColor;
-  border-radius: 50%; color: var(--journey-ink, #efece2); pointer-events: none; opacity: 0.55;
-  transition: width 0.2s,
-    height 0.2s,
-    margin 0.2s,
-    background 0.2s,
-    border-color 0.2s;
-}
-.cursor[data-active="true"] { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--green); opacity: 1; }
 @keyframes blink {
   50% { opacity: 0.1; }
 }
@@ -305,10 +295,7 @@
   100% { z-index: 4; pointer-events: auto; transform: translate(-50%, -50%) perspective(1000px) rotateY(360deg) rotateX(var(--panel-latitude)) translateZ(var(--orbit-depth)); }
 }
 @media (max-width: 800px) {
-  .journey { cursor: auto; }
-  .cursor,
-  .markers,
-  .story-arc { display: none !important; }
+  .markers { display: none !important; }
   .blobButton { top: 60%; width: min(90vmin, 620px); height: min(90vmin, 620px); cursor: pointer; }
   .cage { top: 60%; width: min(72vmin, 500px); height: min(72vmin, 500px); }
   .stations :global(.station-block) { left: 22px; right: 22px; top: 82px; translate: none; max-width: none; }
@@ -324,6 +311,15 @@
     box-shadow: 0 0 20px color-mix(in srgb, var(--journey-bg) 72%, transparent);
   }
   .stations :global(.before-after) { display: none; }
+  .stations :global(.guide-block .story-arc) {
+    display: flex; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden; margin-top: 16px;
+  }
+  .stations :global(.guide-block .story-arc > div) {
+    flex: 1 1 0; min-width: 0; padding: 10px 8px;
+  }
+  .stations :global(.guide-block .story-arc span) {
+    font-size: 11px; line-height: 1.3;
+  }
   .stations :global(.journey-cta) {
     margin-top: 18px; cursor: pointer; background: var(--journey-bg);
     box-shadow: 0 0 20px color-mix(in srgb, var(--journey-bg) 78%, transparent);
@@ -355,18 +351,21 @@
   .stations :global(.proof-avatar) { width: 44px; height: 44px; }
   .stations :global(.proof-row) { grid-template-columns: 44px minmax(0, 1fr) 30px; }
   .stations :global(.contact-block) { top: 78px; }
-  .stations :global(.contact-block h2) { font-size: clamp(18px, 5.2vw, 22px); line-height: 1.15; }
-  .stations :global(.contact-block > p) { font-size: 12px; line-height: 1.4; }
-  .stations :global(.contact-actions) { margin-top: -10px; }
+  .stations :global(.contact-block .station-badge) { margin-bottom: 0; }
+  .stations :global(.contact-block h2) {
+    margin-top: 8px; font-size: clamp(15px, 4.2vw, 18px); line-height: 1.12;
+  }
+  .stations :global(.contact-block > p) {
+    margin-top: 6px; font-size: 12px; line-height: 1.4;
+  }
+  .stations :global(.contact-actions) { margin-top: 4px; }
   .stations :global(.contact-actions .journey-cta) { margin-top: 8px; padding: 10px 12px; font-size: 8px; }
   .stations :global(.contact-portfolio) { display: none; }
   .stations :global(.contact-station .trial-note),
   .stations :global(.journey-coordinates) { display: none; }
-  .hudBottom > span { display: none; }
-  .hudBottom { justify-content: center; }
+  .hudBottom { display: none !important; }
   .hudTop > span { min-width: 65px; font-size: 7px; }
   .hudTop button { font-size: 12px; }
-  .hudBottom div > i { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .spacer { scroll-snap-align: none; }
@@ -375,8 +374,6 @@
   .markers,
   .marker { transition: none !important; animation: none !important; }
   .blobEnter { animation: none !important; filter: none; }
-  .cursor { display: none; }
-  .journey { cursor: auto; }
   .blobButton,
   .marker,
   .hudTop button,
