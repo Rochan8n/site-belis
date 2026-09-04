@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowDown } from "lucide-react";
 import {
   HERO_CTA_LABEL,
   processSteps,
@@ -11,8 +12,9 @@ import {
   webAudiences,
   webItems,
 } from "../solutionsData";
-import { figures, perfBars, stripPhotos, workPhotos } from "./webContent";
+import { figures, perfBars, stripPhotos } from "./webContent";
 import { WebMetricArtifact } from "./WebMetricArtifact";
+import { WebPortfolio } from "./WebPortfolio";
 import styles from "./web.module.css";
 
 function Eyebrow({ label, index }: { label: string; index?: string }) {
@@ -69,11 +71,18 @@ export function WebStudio() {
             <span>Performance</span>
             <span>Arquitetura semântica</span>
           </div>
-          <a className={styles.ctaBtn} href={WEB_WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">
-            {HERO_CTA_LABEL} <i>→</i>
-          </a>
+          <div className={styles.heroActions}>
+            <a className={styles.portfolioJump} href="#portfolio">
+              Ver portfólio <ArrowDown size={18} aria-hidden="true" />
+            </a>
+            <a className={styles.ctaBtn} href={WEB_WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">
+              {HERO_CTA_LABEL} <i>→</i>
+            </a>
+          </div>
         </div>
       </section>
+
+      <WebPortfolio />
 
       {/* ── 2 · Statement + photo strip ── */}
       <section className={`${styles.section} ${styles.paper}`}>
@@ -152,25 +161,6 @@ export function WebStudio() {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* ── 5 · Work photos ── */}
-      <section className={`${styles.section} ${styles.dark} ${styles.grid}`}>
-        <div className={styles.split}>
-          <h2 className={`${styles.h} ${styles.hBig}`}>
-            O studio por trás
-            <br />
-            de presenças que <span className={styles.accent}>vendem.</span>
-          </h2>
-          <div className={styles.colStack}>
-            <Eyebrow label="Portfólio" index="↗" />
-            <p className={styles.lede}>
-              Marcas que evoluíram e passaram a comunicar, em segundos, a
-              autoridade que já entregavam.
-            </p>
-          </div>
-        </div>
-        <PhotoStrip photos={workPhotos} wide />
       </section>
 
       {/* ── 6 · Audiences ── */}

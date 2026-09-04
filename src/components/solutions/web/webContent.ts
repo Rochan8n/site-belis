@@ -10,12 +10,6 @@ export const stripPhotos = [
   "/images/portfolio/fotos/DSC08434.jpg",
 ] as const;
 
-export const workPhotos = [
-  "/images/portfolio/krrom.webp",
-  "/images/portfolio/latco.webp",
-  "/images/portfolio/salles-nogueira.webp",
-] as const;
-
 export const figures = [
   ["150+", "Sites e landing pages entregues"],
   ["07D", "Da estratégia à primeira versão no ar"],
