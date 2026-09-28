@@ -10,7 +10,7 @@
 - `src/components/blog/`: busca, cards, CTAs, compartilhamento e experiência de leitura.
 - `src/lib/analytics-consent.ts`: consentimento, fila GA4 e eventos.
 - `src/config/site.ts`: domínio canônico `https://www.belis.agency`, correspondente ao destino público do redirecionamento.
-- `scripts/verify-blog.mjs`: verificação HTTP do build local.
+- `scripts/verify-blog.mjs`: verificação HTTP de preview ou produção.
 
 ## Publicar ou atualizar um artigo
 
@@ -20,7 +20,7 @@
 4. Conferir fatos, escopo dos serviços, preços autorizados, português e fontes. A contagem de palavras é um piso estrutural, não medida de qualidade.
 5. Definir FAQ visível, fontes com nota, dois relacionados publicados e CTA que faça sentido para o serviço. Download deve conter perguntas úteis e nome de arquivo `.txt` seguro.
 6. Definir `publishedAt` com a data real de publicação planejada e `updatedAt` com a última revisão substantiva. Não renovar data sem mudança relevante. Datas futuras e cronologia invertida falham no build.
-7. Alterar para `published`, validar e seguir o fluxo de revisão/deploy do projeto. Esta tarefa deixou seis artigos prontos no checkout; não executou publicação externa.
+7. Alterar para `published`, validar e seguir o fluxo de revisão/deploy do projeto. Os seis artigos iniciais foram publicados em 28/09/2026. Evidências de lançamento em `VALIDACAO-PRODUCAO.md`.
 
 O build rejeita slug duplicado/reservado, tema inválido, intenção principal duplicada, títulos/descrições fora dos limites, datas inválidas, texto abaixo de 700 palavras, ausência de resposta/FAQ/fontes/capa, IDs de seção repetidos, tabelas inconsistentes, links inadequados, checklist inválido e relacionados inexistentes ou em rascunho.
 
@@ -50,7 +50,11 @@ Conferir no navegador busca com/sem acento, busca vazia, filtros, sumário por c
 
 ## Analytics e revisão comercial
 
-Definir `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-...` no ambiente de build/deploy para ativar o pedido de consentimento e a medição. Sem ID válido, navegação e conversão continuam disponíveis, sem carregar GA4. Aceite, recusa e alteração da escolha ficam disponíveis pelo controle de cookies.
+Produção usa `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TGVB6Y3VTR`, configurado na Vercel antes do build de lançamento. Alterar essa variável exige novo build. Sem ID válido, navegação e conversão continuam disponíveis, sem carregar GA4. Aceite, recusa e alteração da escolha ficam disponíveis pelo controle de cookies.
+
+GA4: propriedade `Belis Agency` (355143204), fluxo `Belis Agency - Site` (4652305593). `blog_cta_click` é evento principal contado uma vez por sessão, sem valor monetário padrão. Dimensões de evento: `post_slug`, `content_theme`, `cta_placement` e `read_progress`. Mudanças de histórico, rolagem, cliques de saída, pesquisa, formulários e downloads automáticos da medição aprimorada estão desativados; os eventos próprios do blog fazem essa medição. Vídeos do YouTube mantêm medição aprimorada.
+
+Search Console: propriedades de prefixo `https://belis.agency/` e `https://www.belis.agency/` verificadas. Usar a propriedade WWW, correspondente ao canonical, para sitemap e artigos. Sitemap enviado: `https://www.belis.agency/sitemap.xml`. Envio e solicitação de indexação não significam processamento ou indexação concluídos.
 
 Consultar `PESQUISA-E-ESTRATEGIA.md` para configuração da propriedade, prevenção de page views duplicados e distinção entre clique, contato e contrato. Não habilitar metas de lead concluído para eventos que apenas abrem WhatsApp.
 

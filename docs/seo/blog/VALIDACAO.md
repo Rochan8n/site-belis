@@ -1,6 +1,6 @@
 # Validação do blog Belis
 
-Data: 28 de setembro de 2026. Ambiente: checkout local `G:\site-belis`, build de produção Next.js 16.2.10. Nenhum commit, push ou deploy executado.
+Data: 28 de setembro de 2026. Ambiente deste relatório: checkout local `G:\site-belis`, build de produção Next.js 16.2.10, antes do lançamento. A publicação e as verificações externas posteriores estão em [VALIDACAO-PRODUCAO.md](VALIDACAO-PRODUCAO.md).
 
 ## Resultado
 
@@ -41,9 +41,9 @@ Downloads reais também foram acionados pela interface do navegador. Links de Wh
 
 ## Limites
 
-- O checkout está pronto para revisão e publicação. Não houve validação de deploy nem solicitação de indexação.
+- Este relatório registra a revisão local anterior à publicação. Deploy e Search Console foram verificados depois, conforme `VALIDACAO-PRODUCAO.md`.
 - Search Console não está conectado ao projeto OpenSEO Belis; ranking, tráfego e contatos orgânicos atuais não foram medidos.
-- Ambiente local sem ID GA4 válido. Testes da fila e do consentimento não comprovam recebimento em uma propriedade real. DebugView/Realtime e ajustes da medição aprimorada permanecem etapas de lançamento.
+- A revisão local inicial não tinha ID GA4 válido. Depois, o build final usou `G-TGVB6Y3VTR`; configuração e recebimento real foram conferidos no lançamento. Testes isolados da fila e do consentimento continuam sendo evidência distinta do recebimento externo.
 - Desktop e celular foram revisados no navegador Chromium do Codex. Não houve certificação em Safari, Firefox ou aparelho físico, nem auditoria WCAG completa.
 - Não foi medido impacto comercial. Clique, download e leitura não comprovam lead qualificado ou contrato.
 - Publicação editorial usa arquivos e deploy; painel administrativo não faz parte desta versão.

@@ -100,7 +100,7 @@ GA4 só carrega com `NEXT_PUBLIC_GA_MEASUREMENT_ID` válido e aceite do visitant
 
 Parâmetros: `post_slug`, `content_theme`, `cta_placement`, `read_progress`. Não enviar texto do WhatsApp, dados pessoais ou query da URL nos eventos próprios. `page_view` próprio usa origem e caminho, sem query/hash; referrer reduzido à origem.
 
-Antes do lançamento, revisar a medição aprimorada no painel GA4: desativar page views por mudança do histórico para evitar duplicação dos page views próprios e revisar eventos automáticos que possam coletar URL completa. Configurar dimensões personalizadas dos identificadores editoriais e conferir recebimento em DebugView/Realtime. O ambiente local não tinha ID GA4 válido, portanto recebimento real permanece **não verificado**; consentimento e fila de comandos foram testados isoladamente sem enviar tráfego à propriedade.
+No lançamento, a medição aprimorada foi revisada no GA4: page views por mudança do histórico, rolagem, cliques de saída, pesquisa, formulários e downloads automáticos foram desativados. Dimensões personalizadas dos identificadores editoriais foram configuradas. A propriedade `Belis Agency` recebeu page views e eventos próprios em Realtime, inclusive `blog_cta_click` com posição `popup`, contado como evento principal. Consentimento e fila de comandos também têm testes isolados. Evidências e alcance da verificação externa estão em [VALIDACAO-PRODUCAO.md](VALIDACAO-PRODUCAO.md).
 
 **Clique no WhatsApp não é lead concluído.** A mensagem preenche `Origem: URL do artigo` para conferência comercial. O atendimento deve registrar contato adequado, proposta enviada e contrato fechado. Só então comparar temas pelo resultado comercial, sem declarar todo clique como venda.
 
