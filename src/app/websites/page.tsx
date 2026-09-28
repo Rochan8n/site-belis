@@ -5,7 +5,7 @@ import { WebStudio } from "@/components/solutions/web/WebStudio";
 const TITLE = "Sites que Transformam Percepção em Oportunidades";
 const DESCRIPTION =
   "Sites institucionais e landing pages preparados para SEO, GEO, AEO, performance e conversão. Transforme sua presença digital em ativo de crescimento.";
-const CANONICAL = "https://belis.agency/websites";
+const CANONICAL = "https://www.belis.agency/websites";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -36,7 +36,7 @@ const webServiceJsonLd = {
   name: "Criação de websites e landing pages",
   description: DESCRIPTION,
   url: CANONICAL,
-  provider: { "@id": "https://belis.agency/#organization" },
+  provider: { "@id": "https://www.belis.agency/#organization" },
   areaServed: { "@type": "Country", name: "Brasil" },
   serviceType: [
     "Site institucional",

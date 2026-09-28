@@ -19,6 +19,7 @@ import { GuideStation } from "./stations/GuideStation";
 import { TrialStation } from "./stations/TrialStation";
 import { ContactStation } from "./stations/ContactStation";
 import { curtain } from "@/components/layout/curtainController";
+import { TransitionLink } from "@/components/layout/TransitionLink";
 import styles from "./journey.module.css";
 
 const destinations: Record<number, string> = {
@@ -286,7 +287,7 @@ export function BelisJourney() {
           >
             BELIS <i>®</i>
           </button>
-          <span>{hud.time} · 2026</span>
+          <span><TransitionLink className={styles.blogLink} href="/blog">BLOG ↗</TransitionLink> · {hud.time}</span>
         </header>
         <footer className={styles.hudBottom}>
           <span>ROT. {hud.rotation}°</span>

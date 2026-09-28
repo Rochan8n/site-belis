@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${HOME_TITLE} | Belis Agency`,
     description: HOME_DESCRIPTION,
-    url: "https://belis.agency",
+    url: "https://www.belis.agency",
     type: "website",
     locale: "pt_BR",
     siteName: "Belis Agency",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: HOME_DESCRIPTION,
     images: ["/images/og-image.jpg"],
   },
-  alternates: { canonical: "https://belis.agency" },
+  alternates: { canonical: "https://www.belis.agency" },
 };
 
 const faqJsonLd = {

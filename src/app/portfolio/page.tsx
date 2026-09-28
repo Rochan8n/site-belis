@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${PORTFOLIO_TITLE} | Belis Agency`,
     description: PORTFOLIO_DESCRIPTION,
-    url: "https://belis.agency/portfolio",
+    url: "https://www.belis.agency/portfolio",
     type: "website",
     locale: "pt_BR",
     siteName: "Belis Agency",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: PORTFOLIO_DESCRIPTION,
     images: ["/images/og-image.jpg"],
   },
-  alternates: { canonical: "https://belis.agency/portfolio" },
+  alternates: { canonical: "https://www.belis.agency/portfolio" },
 };
 
 const portfolioJsonLd = {
@@ -42,17 +42,17 @@ const portfolioJsonLd = {
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Início", item: "https://belis.agency" },
-        { "@type": "ListItem", position: 2, name: "Portfólio", item: "https://belis.agency/portfolio" },
+        { "@type": "ListItem", position: 1, name: "Início", item: "https://www.belis.agency" },
+        { "@type": "ListItem", position: 2, name: "Portfólio", item: "https://www.belis.agency/portfolio" },
       ],
     },
     {
       "@type": "CollectionPage",
       name: PORTFOLIO_TITLE,
-      url: "https://belis.agency/portfolio",
+      url: "https://www.belis.agency/portfolio",
       description: PORTFOLIO_DESCRIPTION,
-      isPartOf: { "@id": "https://belis.agency/#website" },
-      about: { "@id": "https://belis.agency/#organization" },
+      isPartOf: { "@id": "https://www.belis.agency/#website" },
+      about: { "@id": "https://www.belis.agency/#organization" },
     },
   ],
 };

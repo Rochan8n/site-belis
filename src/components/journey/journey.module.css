@@ -270,6 +270,8 @@
 .hudTop { top: 0; align-items: center; padding: max(18px, env(safe-area-inset-top)) clamp(20px, 4vw, 56px) 0; }
 .hudTop > span { min-width: 110px; }
 .hudTop > span:last-child { text-align: right; }
+.blogLink { display: inline-flex; align-items: center; min-height: 44px; pointer-events: auto; color: inherit; font-size: 11px; text-underline-offset: 4px; padding-block: 12px; }
+.blogLink:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 .hudTop button {
   pointer-events: auto; border: 0; padding: 5px; background: transparent; color: inherit; font: 700 14px var(--font-archivo),
     sans-serif;

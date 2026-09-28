@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  // Keep build-time page generation within the project's process budget.
+  experimental: { cpus: 1 },
   images: {
     remotePatterns: [
       {

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${CONTATO_TITLE} | Belis Agency`,
     description: CONTATO_DESCRIPTION,
-    url: "https://belis.agency/contato",
+    url: "https://www.belis.agency/contato",
     type: "website",
     locale: "pt_BR",
     siteName: "Belis Agency",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: CONTATO_DESCRIPTION,
     images: ["/images/og-image.jpg"],
   },
-  alternates: { canonical: "https://belis.agency/contato" },
+  alternates: { canonical: "https://www.belis.agency/contato" },
 };
 
 const contatoJsonLd = {
@@ -39,17 +39,17 @@ const contatoJsonLd = {
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Início", item: "https://belis.agency" },
-        { "@type": "ListItem", position: 2, name: "Contato", item: "https://belis.agency/contato" },
+        { "@type": "ListItem", position: 1, name: "Início", item: "https://www.belis.agency" },
+        { "@type": "ListItem", position: 2, name: "Contato", item: "https://www.belis.agency/contato" },
       ],
     },
     {
       "@type": "ContactPage",
       name: CONTATO_TITLE,
-      url: "https://belis.agency/contato",
+      url: "https://www.belis.agency/contato",
       description: CONTATO_DESCRIPTION,
-      isPartOf: { "@id": "https://belis.agency/#website" },
-      about: { "@id": "https://belis.agency/#organization" },
+      isPartOf: { "@id": "https://www.belis.agency/#website" },
+      about: { "@id": "https://www.belis.agency/#organization" },
     },
   ],
 };

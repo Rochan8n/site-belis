@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${SOBRE_TITLE} | Belis Agency`,
     description: SOBRE_DESCRIPTION,
-    url: "https://belis.agency/sobre",
+    url: "https://www.belis.agency/sobre",
     type: "website",
     locale: "pt_BR",
     siteName: "Belis Agency",
@@ -34,15 +34,15 @@ export const metadata: Metadata = {
     description: SOBRE_DESCRIPTION,
     images: ["/images/og-image.jpg"],
   },
-  alternates: { canonical: "https://belis.agency/sobre" },
+  alternates: { canonical: "https://www.belis.agency/sobre" },
 };
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Início", item: "https://belis.agency" },
-    { "@type": "ListItem", position: 2, name: "Sobre", item: "https://belis.agency/sobre" },
+    { "@type": "ListItem", position: 1, name: "Início", item: "https://www.belis.agency" },
+    { "@type": "ListItem", position: 2, name: "Sobre", item: "https://www.belis.agency/sobre" },
   ],
 };
 

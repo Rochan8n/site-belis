@@ -12,6 +12,7 @@ const links = [
   { href: "/sistemas", label: "Systems", code: "03" },
   { href: "/sobre", label: "Sobre", code: "04" },
   { href: "/contato", label: "Contato", code: "05" },
+  { href: "/blog", label: "Blog", code: "06" },
 ] as const;
 
 const routeLabels: Record<string, string> = {
@@ -20,6 +21,7 @@ const routeLabels: Record<string, string> = {
   "/sistemas": "Systems",
   "/sobre": "Sobre",
   "/contato": "Contato",
+  "/blog": "Blog",
 };
 
 function formatClock(date: Date) {
@@ -103,7 +105,7 @@ export function Navbar() {
         <div className={styles.menuCorners} aria-hidden="true"><i /><i /><i /><i /></div>
 
         <div className={styles.menuIntro}>
-          <span>MAPA / 006 ROTAS</span>
+          <span>MAPA / {String(links.length).padStart(3, "0")} ROTAS</span>
           <span>SELECIONE DESTINO</span>
         </div>
 

@@ -46,4 +46,4 @@ User-agent: Applebot-Extended
 Allow: /
 
 # Sitemap
-Sitemap: https://belis.agency/sitemap.xml
+Sitemap: https://www.belis.agency/sitemap.xml

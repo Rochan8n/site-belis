@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { TransitionCurtain } from "@/components/layout/TransitionCurtain";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { SITE_URL } from "@/config/site";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -26,7 +27,6 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-const SITE_URL = "https://belis.agency";
 const SITE_NAME = "Belis Agency";
 const DEFAULT_TITLE = "Belis Agency | Ativos Digitais de Crescimento";
 const DEFAULT_DESCRIPTION =
@@ -52,6 +52,9 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "Digital Growth Services",
+  verification: {
+    google: "09OkABOeJfX8W80d-mb6FQD-xSHr9zUM1_-LjNCya5s",
+  },
   formatDetection: {
     email: false,
     address: false,

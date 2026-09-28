@@ -20,7 +20,7 @@ import {
 const TITLE = "Software Sob Medida para Eliminar Gargalos";
 const DESCRIPTION =
   "Sistemas, SaaS, portais e automações criados para reduzir trabalho manual, organizar processos e preparar sua empresa para escalar.";
-const CANONICAL = "https://belis.agency/sistemas";
+const CANONICAL = "https://www.belis.agency/sistemas";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -51,7 +51,7 @@ const softwareServiceJsonLd = {
   name: "Desenvolvimento de software sob medida",
   description: DESCRIPTION,
   url: CANONICAL,
-  provider: { "@id": "https://belis.agency/#organization" },
+  provider: { "@id": "https://www.belis.agency/#organization" },
   areaServed: { "@type": "Country", name: "Brasil" },
   serviceType: [
     "Software sob medida",
