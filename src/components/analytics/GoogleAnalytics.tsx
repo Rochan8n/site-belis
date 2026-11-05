@@ -43,7 +43,7 @@ export function GoogleAnalytics() {
           setReady(true);
         }}
       />}
-      {(consent === "unknown" || settingsOpen) ? <section className={styles.panel} aria-label="Preferências de análise de navegação">
+      {(consent === "unknown" || settingsOpen) ? <section className={`${styles.panel} ${pathname === "/" ? styles.journeyPanel : ""}`} aria-label="Preferências de análise de navegação">
         <p>Podemos usar o Google Analytics para entender quais conteúdos e páginas ajudam nossos visitantes? Você pode recusar e continuar navegando.</p>
         <div className={styles.actions}>
           <button type="button" onClick={() => choose("denied")}>Recusar análise</button>

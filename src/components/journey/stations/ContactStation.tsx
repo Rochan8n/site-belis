@@ -1,7 +1,7 @@
 import { TransitionLink } from "@/components/layout/TransitionLink";
 import { TestimonialProof } from "../TestimonialProof";
 
-export function ContactStation() {
+export function ContactStation({ loadImages = false }: { loadImages?: boolean }) {
   return (
     <section id="journey-station-5" className="journey-station content-station contact-station" aria-label="Contato">
       <div className="station-block contact-block">
@@ -24,7 +24,7 @@ export function ContactStation() {
           <TransitionLink className="journey-cta contact-portfolio" href="/portfolio">PORTFÓLIO ↗</TransitionLink>
         </div>
       </div>
-      <TestimonialProof />
+      <TestimonialProof loadImages={loadImages} />
       <span className="journey-coordinates">BELIS © 2026 — SÃO PAULO · 23.55°S 46.63°W</span>
     </section>
   );

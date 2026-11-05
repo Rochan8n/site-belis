@@ -347,26 +347,31 @@
     this._bulgeAmt = 0; this._bulgeTarget = 0;
     this._pulseAmt = 0; this._pulseTarget = 0;
     this._explode = 0; this._camZ = 4.2; this._fade = 0; this._alpha = 1;
-    this._scale = 0; this._scaleTarget = 1;
+    this._poster = this.hasAttribute('data-poster');
+    this._scale = this._poster ? 1 : 0; this._scaleTarget = 1;
     this._entering = false;
     this._dead = false;
 
+    // A real frame is already visible. Respect reduced motion/data even when
+    // the component script was loaded earlier on another route.
+    if (this._poster && (this._reduced || (navigator.connection && navigator.connection.saveData))) return;
+
     var gl = null;
     try {
-      gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+      gl = canvas.getContext('webgl', {
+        alpha: true, antialias: true, premultipliedAlpha: false,
+        failIfMajorPerformanceCaveat: this._poster
+      });
     } catch (e) { gl = null; }
 
-    if (!gl) { this._setup2D(); return; }
+    if (!gl) { if (!this._poster) this._setup2D(); return; }
     this._gl = gl;
 
     function compile(type, src) {
       var sh = gl.createShader(type);
+      if (!sh) return null;
       gl.shaderSource(sh, src);
       gl.compileShader(sh);
-      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
-        console.error('belis-blob-v2 shader:', gl.getShaderInfoLog(sh));
-        return null;
-      }
       return sh;
     }
     // Some GPUs (older mobile, certain drivers) lack highp support in the
@@ -376,15 +381,41 @@
     var fragPrec = (hf && hf.precision > 0) ? 'highp' : 'mediump';
     var vs = compile(gl.VERTEX_SHADER, VERT);
     var fs = compile(gl.FRAGMENT_SHADER, FRAG.replace('precision highp float;', 'precision ' + fragPrec + ' float;'));
-    if (!vs || !fs) { this._gl = null; this._setup2D(); return; }
+    if (!vs || !fs) { this._gl = null; if (!this._poster) this._setup2D(); return; }
     var prog = gl.createProgram();
     gl.attachShader(prog, vs); gl.attachShader(prog, fs);
     gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { this._gl = null; this._setup2D(); return; }
+    // Poll driver completion without forcing synchronous shader compilation.
+    // The poster remains visible throughout compilation and on failure.
+    var parallel = gl.getExtension('KHR_parallel_shader_compile');
+    function finish() {
+      if (self._dead || gl.isContextLost()) return;
+      if (parallel && !gl.getProgramParameter(prog, parallel.COMPLETION_STATUS_KHR)) {
+        self._raf = requestAnimationFrame(finish);
+        return;
+      }
+      var linked = gl.getProgramParameter(prog, gl.LINK_STATUS);
+      gl.deleteShader(vs); gl.deleteShader(fs);
+      if (!linked) {
+        console.warn('belis-blob-v2 shader link:', gl.getProgramInfoLog(prog));
+        gl.deleteProgram(prog);
+        self._gl = null;
+        if (!self._poster) self._setup2D();
+        return;
+      }
+      self._startWebGL(gl, prog);
+    }
+    this._raf = requestAnimationFrame(finish);
+  };
+
+  BelisBlob.prototype._startWebGL = function (gl, prog) {
+    var self = this;
+    var canvas = this._canvas;
     gl.useProgram(prog);
     this._prog = prog;
 
-    var geo = icosphere(this._mobile ? 4 : 5);
+    // Subdivision 4 preserves the silhouette with 75% fewer desktop triangles.
+    var geo = icosphere(4);
     this._nTri = geo.idx.length;
     this._nEdge = geo.edges.length;
     this._nVerts = geo.nVerts;
@@ -436,9 +467,11 @@
       e.preventDefault();
       self._ctxLost = true;
       if (self._raf) cancelAnimationFrame(self._raf);
+      self.removeAttribute('data-rendered');
     };
     this._onCtxRestored = function () {
       self._ctxLost = false;
+      self.disconnectedCallback();
       self._init = false;
       self._gl = null;
       if (self._canvas && self._canvas.parentNode === self) self.removeChild(self._canvas);
@@ -447,25 +480,33 @@
     canvas.addEventListener('webglcontextlost', this._onCtxLost, false);
     canvas.addEventListener('webglcontextrestored', this._onCtxRestored, false);
 
-    var frameSkip = this._mobile ? 1 : 0;
-    var frame = 0;
+    var frameInterval = 1000 / (this._mobile ? 30 : 60);
+    this._last = performance.now();
     function loop(now) {
-      if (self._dead) return;
+      if (self._dead || self._ctxLost || document.hidden) return;
       self._raf = requestAnimationFrame(loop);
-      frame++;
-      if (frameSkip && frame % (frameSkip + 1) !== 0) return;
+      if (now - self._last < frameInterval - 1) return;
       var dt = Math.min((now - self._last) / 1000, 0.05);
       self._last = now;
       self._tick(dt);
       self._draw();
     }
-    this._raf = requestAnimationFrame(loop);
+    this._onVisibility = function () {
+      cancelAnimationFrame(self._raf);
+      self._last = performance.now();
+      if (!document.hidden && !self._dead && !self._ctxLost) self._raf = requestAnimationFrame(loop);
+    };
+    document.addEventListener('visibilitychange', this._onVisibility);
+    this._onVisibility();
   };
 
   BelisBlob.prototype.disconnectedCallback = function () {
     this._dead = true;
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._onWinResize) window.removeEventListener('resize', this._onWinResize);
+    if (this._onVisibility) document.removeEventListener('visibilitychange', this._onVisibility);
+    if (this._onPointerMove) this.removeEventListener('pointermove', this._onPointerMove);
+    if (this._onPointerLeave) this.removeEventListener('pointerleave', this._onPointerLeave);
     if (this._canvas && this._onCtxLost) {
       this._canvas.removeEventListener('webglcontextlost', this._onCtxLost, false);
       this._canvas.removeEventListener('webglcontextrestored', this._onCtxRestored, false);
@@ -572,14 +613,16 @@
 
   BelisBlob.prototype._bindPointer = function () {
     var self = this;
-    this.addEventListener('pointermove', function (e) {
+    this._onPointerMove = function (e) {
       var r = self.getBoundingClientRect();
       var nx = ((e.clientX - r.left) / r.width) * 2 - 1;
       var ny = -(((e.clientY - r.top) / r.height) * 2 - 1);
       self._mouseScreen = [nx, ny];
       self._mouseTargetAmt = 0.11;
-    });
-    this.addEventListener('pointerleave', function () { self._mouseTargetAmt = 0; });
+    };
+    this._onPointerLeave = function () { self._mouseTargetAmt = 0; };
+    this.addEventListener('pointermove', this._onPointerMove);
+    this.addEventListener('pointerleave', this._onPointerLeave);
   };
 
   BelisBlob.prototype._toModel = function (sx, sy) {
@@ -718,6 +761,7 @@
       gl.uniform1f(U.uPassAlpha, cur.points * pointPulse);
       gl.drawArrays(gl.POINTS, 0, this._nVerts);
     }
+    if (!this.hasAttribute('data-rendered')) this.setAttribute('data-rendered', 'true');
   };
 
   BelisBlob.prototype.setLook = function (look) {
@@ -846,7 +890,13 @@
   /* ── 2D fallback: animated silhouette with identical API ── */
   BelisBlob.prototype._setup2D = function () {
     var self = this;
+    // A canvas that already acquired WebGL cannot also acquire a 2D context.
+    var canvas = document.createElement('canvas');
+    canvas.style.cssText = this._canvas.style.cssText;
+    this._canvas.replaceWith(canvas);
+    this._canvas = canvas;
     var ctx = this._canvas.getContext('2d');
+    if (!ctx) return;
     this._c2d = ctx;
     this._fade2d = 0;
     this._alpha = 1;

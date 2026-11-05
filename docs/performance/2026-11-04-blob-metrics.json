@@ -1,0 +1,893 @@
+{
+  "scope": "Local production-build measurements; not deployed Google PageSpeed or field data.",
+  "reports": [
+    {
+      "file": "output/playwright/lighthouse-blob-before-mobile.json",
+      "sha256": "7d6ea1b5c0d4ab99bb20c7205bb9bd76fc26397c3fbd952e08bc82ce941bcb98",
+      "fetchTime": "2026-11-04T23:22:12.299Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "http://127.0.0.1:3100/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 1,
+      "metrics": {
+        "first-contentful-paint": 912.2748999999999,
+        "largest-contentful-paint": 912.2748999999999,
+        "total-blocking-time": 19,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1070.2003812661646
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 33,
+          "transferSize": 423552
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 14,
+          "transferSize": 234658
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 5,
+          "transferSize": 111588
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 7,
+          "transferSize": 30999
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 3,
+          "transferSize": 23167
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 3,
+          "transferSize": 13326
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 9814
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/lighthouse-blob-before-mobile-observed.json",
+      "sha256": "d0390a2615a954803fcac2c72f1aab87d0ada5f0b42ced27febdf250a23cd9e3",
+      "fetchTime": "2026-11-04T23:32:07.218Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "http://127.0.0.1:3100/",
+      "formFactor": "mobile",
+      "throttlingMethod": "devtools",
+      "performance": 0.76,
+      "metrics": {
+        "first-contentful-paint": 1846.771,
+        "largest-contentful-paint": 1846.771,
+        "total-blocking-time": 1027.6330000000003,
+        "cumulative-layout-shift": 0.0006044280063479498,
+        "speed-index": 2348
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 34,
+          "transferSize": 432578
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 15,
+          "transferSize": 243589
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 5,
+          "transferSize": 111588
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 7,
+          "transferSize": 31003
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 3,
+          "transferSize": 23266
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 3,
+          "transferSize": 13320
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 9812
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-round2-baseline.json",
+      "sha256": "09dd1d9ea30ecb44b70acfe949055793e7b7b4efedc1e84e1944aa7ca46637bf",
+      "fetchTime": "2026-11-04T23:43:52.907Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "http://127.0.0.1:3100/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.91,
+      "metrics": {
+        "first-contentful-paint": 1056.7123,
+        "largest-contentful-paint": 3528.7807500000004,
+        "total-blocking-time": 6,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1085.6039892223503
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 35,
+          "transferSize": 463226
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 15,
+          "transferSize": 244166
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 5,
+          "transferSize": 111588
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 3,
+          "transferSize": 36106
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 7,
+          "transferSize": 30999
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 4,
+          "transferSize": 29306
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 11061
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-verified-mobile-h1.json",
+      "sha256": "6089a79a413a47faefdc938a0eab21570709c5dd8bf924fad39c27d421b2c886",
+      "fetchTime": "2026-11-05T00:10:02.825Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "http://127.0.0.1:3100/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.96,
+      "metrics": {
+        "first-contentful-paint": 904.3511000000001,
+        "largest-contentful-paint": 2771.7021999999997,
+        "total-blocking-time": 6.5,
+        "cumulative-layout-shift": 0.003590902487235449,
+        "speed-index": 904.3511000000001
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 300819
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 183179
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55952
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21662
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17759
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11842
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10425
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-verified-mobile-h2.json",
+      "sha256": "a1a805405ca568f738e0a267276f78aaaae4ccb7fc5ef37dcf25b596055fdecf",
+      "fetchTime": "2026-11-05T00:09:46.899Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.98,
+      "metrics": {
+        "first-contentful-paint": 1093.0665,
+        "largest-contentful-paint": 2256.0665,
+        "total-blocking-time": 20,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1093.0665
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 294905
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179289
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55255
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17204
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10197
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-verified-mobile-observed.json",
+      "sha256": "4fde5fb114efde0c388a7a56287e39596abb2167670fab114a1579992f0c6ae0",
+      "fetchTime": "2026-11-05T00:10:27.405Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "devtools",
+      "performance": 0.97,
+      "metrics": {
+        "first-contentful-paint": 2056.909,
+        "largest-contentful-paint": 2056.909,
+        "total-blocking-time": 38.42900000000009,
+        "cumulative-layout-shift": 0.005904552045644393,
+        "speed-index": 2709
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 294998
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179289
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55356
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21344
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17149
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10197
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-ready-mobile-1.json",
+      "sha256": "587b850faafc559136b1c5a7c152b78e6071965b84117fc6b1a817465d95a2b0",
+      "fetchTime": "2026-11-05T00:11:52.558Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.99,
+      "metrics": {
+        "first-contentful-paint": 909.856,
+        "largest-contentful-paint": 2109.8559999999998,
+        "total-blocking-time": 29,
+        "cumulative-layout-shift": 0.003590902487235449,
+        "speed-index": 909.856
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 294977
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179286
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55254
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17203
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10274
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-ready-mobile-2.json",
+      "sha256": "d0e2ad7538f001a959e0cd26be3344c649075e7e046a0e3d8c2435f06142f4a0",
+      "fetchTime": "2026-11-05T00:12:15.014Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.99,
+      "metrics": {
+        "first-contentful-paint": 906.688,
+        "largest-contentful-paint": 2106.688,
+        "total-blocking-time": 40,
+        "cumulative-layout-shift": 0,
+        "speed-index": 906.688
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 294977
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179286
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55254
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17203
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10274
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-ready-mobile-3.json",
+      "sha256": "e49c7b9be0a334f0b3b6a6255fda895919f29117871d23fc6388c42119703fb4",
+      "fetchTime": "2026-11-05T00:12:41.054Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.99,
+      "metrics": {
+        "first-contentful-paint": 908.374,
+        "largest-contentful-paint": 2258.374,
+        "total-blocking-time": 22,
+        "cumulative-layout-shift": 0,
+        "speed-index": 908.374
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 294977
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179286
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55254
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17203
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10274
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-ready-desktop.json",
+      "sha256": "3a4aca44fb90f03014759d107085d4237e7c2849fe3e1e3f8e404a26a0b484f2",
+      "fetchTime": "2026-11-05T00:12:58.581Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "desktop",
+      "throttlingMethod": "simulate",
+      "performance": 1,
+      "metrics": {
+        "first-contentful-paint": 247.897,
+        "largest-contentful-paint": 465.897,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0.00160785622043916,
+        "speed-index": 355.7499104615122
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 294977
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179286
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55254
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17203
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10274
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-ready-mobile-observed-h1.json",
+      "sha256": "fdd4e888f43c95a93970f60b297769b4483fbe1116f726ad785f8b47807139a2",
+      "fetchTime": "2026-11-05T00:13:17.063Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "http://127.0.0.1:3100/",
+      "formFactor": "mobile",
+      "throttlingMethod": "devtools",
+      "performance": 0.99,
+      "metrics": {
+        "first-contentful-paint": 1688.993,
+        "largest-contentful-paint": 1688.993,
+        "total-blocking-time": 24.546000000000276,
+        "cumulative-layout-shift": 0.0036712756778707317,
+        "speed-index": 2275
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 300896
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 183179
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55952
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21662
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17759
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11842
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 10502
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-round2-inline-poster.json",
+      "sha256": "37d8a550d63b0445b5af9bcc8c32c37b4d8e20cf778e2e55dce29bbe9396ce6e",
+      "fetchTime": "2026-11-05T00:03:41.791Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.99,
+      "metrics": {
+        "first-contentful-paint": 1059.045,
+        "largest-contentful-paint": 2259.045,
+        "total-blocking-time": 37,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1059.045
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 21,
+          "transferSize": 319519
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179366
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 4,
+          "transferSize": 65490
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 36227
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 2,
+          "transferSize": 17139
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    },
+    {
+      "file": "output/playwright/blob-round2-inline-css.json",
+      "sha256": "15415cc1d5635f8eb217ea71242e17aa4e6d9ef36e9fac7447f5214a76802343",
+      "fetchTime": "2026-11-05T00:11:15.072Z",
+      "lighthouseVersion": "13.6.0",
+      "url": "https://127.0.0.1:3443/",
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "performance": 0.98,
+      "metrics": {
+        "first-contentful-paint": 1132.2085,
+        "largest-contentful-paint": 2256.2084999999997,
+        "total-blocking-time": 28,
+        "cumulative-layout-shift": 0.003590902487235449,
+        "speed-index": 1132.2085
+      },
+      "resources": [
+        {
+          "resourceType": "total",
+          "requestCount": 19,
+          "transferSize": 323158
+        },
+        {
+          "resourceType": "script",
+          "requestCount": 12,
+          "transferSize": 179301
+        },
+        {
+          "resourceType": "document",
+          "requestCount": 1,
+          "transferSize": 55587
+        },
+        {
+          "resourceType": "font",
+          "requestCount": 3,
+          "transferSize": 55310
+        },
+        {
+          "resourceType": "other",
+          "requestCount": 2,
+          "transferSize": 21297
+        },
+        {
+          "resourceType": "image",
+          "requestCount": 1,
+          "transferSize": 11663
+        },
+        {
+          "resourceType": "stylesheet",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "media",
+          "requestCount": 0,
+          "transferSize": 0
+        },
+        {
+          "resourceType": "third-party",
+          "requestCount": 0,
+          "transferSize": 0
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "flow": [
+      {
+        "station": 0,
+        "visibility": "visible",
+        "loadedAvatars": 0,
+        "overflow": false
+      },
+      {
+        "station": 1,
+        "visibility": "visible",
+        "loadedAvatars": 0,
+        "overflow": false
+      },
+      {
+        "station": 2,
+        "visibility": "visible",
+        "loadedAvatars": 0,
+        "overflow": false
+      },
+      {
+        "station": 3,
+        "visibility": "visible",
+        "loadedAvatars": 0,
+        "overflow": false
+      },
+      {
+        "station": 4,
+        "visibility": "visible",
+        "loadedAvatars": 0,
+        "overflow": false
+      },
+      {
+        "station": 5,
+        "visibility": "visible",
+        "loadedAvatars": 3,
+        "overflow": false
+      },
+      {
+        "route": "/websites",
+        "settled": true
+      },
+      {
+        "route": "/",
+        "settled": true,
+        "errors": []
+      }
+    ],
+    "blockedMotion": {
+      "blocked": 1,
+      "initial": 0,
+      "first": "http://127.0.0.1:3100/blog",
+      "returned": "http://127.0.0.1:3100/",
+      "settled": true
+    }
+  }
+}

@@ -25,6 +25,8 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  // Hidden journey panels must not preload font weights before the hero image.
+  preload: false,
 });
 
 const SITE_NAME = "Belis Agency";

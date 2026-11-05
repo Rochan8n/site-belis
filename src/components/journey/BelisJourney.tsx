@@ -33,7 +33,6 @@ export function BelisJourney() {
   const blobRef = useRef<BelisBlobHandle>(null);
   const timers = useRef<number[]>([]);
   const [locked, setLocked] = useState(false);
-  const [blobReady, setBlobReady] = useState(false);
   const hud = useJourneyDirector(blobRef, locked);
 
   const scrollToStation = useCallback((station: number) => {
@@ -112,53 +111,6 @@ export function BelisJourney() {
     };
   }, []);
 
-  // Blob entra depois do site carregar: o hero pinta primeiro (LCP leve,
-  // sem WebGL no caminho crítico), depois o blob monta e emerge do fundo
-  // com zoom-in. Fallback por readyState caso o load já tenha disparado.
-  useEffect(() => {
-    let done = false;
-    let timer = 0;
-    // Blob WebGL custa ~2s de main-thread em render por software (ambiente do
-    // PageSpeed/Lighthouse, sem GPU). Montar na primeira interação tira esse
-    // custo do caminho crítico; o fallback garante o reveal pra quem não mexe.
-    const events: (keyof WindowEventMap)[] = [
-      "pointerdown",
-      "pointermove",
-      "mousemove",
-      "touchstart",
-      "wheel",
-      "keydown",
-      "scroll",
-    ];
-    const cleanup = () => {
-      window.clearTimeout(timer);
-      events.forEach((e) => window.removeEventListener(e, reveal));
-    };
-    const reveal = () => {
-      if (done) return;
-      done = true;
-      cleanup();
-      setBlobReady(true);
-    };
-    const arm = () => {
-      events.forEach((e) =>
-        window.addEventListener(e, reveal, { once: true, passive: true }),
-      );
-      // Fallback alto de propósito: no PageSpeed/Slow-4G o traço se estende além
-      // de ~2,6s e capturava o init WebGL (~2s de main-thread em render por
-      // software) → TBT disparava. 4000ms mantém o blob fora da janela auditada;
-      // o usuário real dispara o reveal na primeira interação (scroll/toque),
-      // então o fallback só vale pra quem carrega e não mexe.
-      timer = window.setTimeout(reveal, 4000);
-    };
-    if (document.readyState === "complete") arm();
-    else window.addEventListener("load", arm, { once: true });
-    return () => {
-      window.removeEventListener("load", arm);
-      cleanup();
-    };
-  }, []);
-
   // Stage fixo engole wheel sobre hit-targets (blob, CTAs, markers).
   // Com pointer-events:none nas camadas cheias, só alvos clicáveis caem aqui.
   useEffect(() => {
@@ -224,14 +176,13 @@ export function BelisJourney() {
           onClick={activateCurrent}
           aria-label={`${hud.active < 2 ? "Avançar para" : hud.active < 5 ? "Entrar em" : "Falar com a Belis sobre"} ${sections[Math.min(hud.active + (hud.active < 2 ? 1 : 0), 5)].label}`}
         >
-          {blobReady && (
-            <BlobBeltHUD hidden={locked} station={hud.active}>
-              <BelisBlob
-                ref={blobRef}
-                className={`${styles.blob} ${styles.blobEnter}`}
-              />
-            </BlobBeltHUD>
-          )}
+          <BlobBeltHUD hidden={locked} station={hud.active}>
+            <BelisBlob
+              ref={blobRef}
+              className={styles.blob}
+              poster="/belis-blob-poster.avif"
+            />
+          </BlobBeltHUD>
         </button>
         <div className={styles.cage} aria-hidden="true">
           <i />
@@ -276,7 +227,7 @@ export function BelisJourney() {
               onEnter={() => enterAndNavigate(trial.href)}
             />
           ))}
-          <ContactStation />
+          <ContactStation loadImages={hud.active >= 4} />
         </div>
 
         <header className={styles.hudTop}>
@@ -287,7 +238,7 @@ export function BelisJourney() {
           >
             BELIS <i>®</i>
           </button>
-          <span><TransitionLink className={styles.blogLink} href="/blog">BLOG ↗</TransitionLink> · {hud.time}</span>
+          <span><TransitionLink className={styles.blogLink} href="/blog" prefetch={false}>BLOG ↗</TransitionLink> · {hud.time}</span>
         </header>
         <footer className={styles.hudBottom}>
           <span>ROT. {hud.rotation}°</span>

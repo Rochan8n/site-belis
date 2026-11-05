@@ -1,10 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { proofs } from "./journeyData";
 
-export function TestimonialProof() {
+const Image = dynamic(() => import("next/image"), { ssr: false });
+
+export function TestimonialProof({ loadImages = true }: { loadImages?: boolean }) {
   const [active, setActive] = useState<(typeof proofs)[number] | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -50,13 +52,13 @@ export function TestimonialProof() {
               aria-label={`Assistir depoimento de ${proof.name}`}
             >
               <span className="proof-avatar">
-                <Image
+                {loadImages && <Image
                   src={proof.image}
                   alt=""
                   fill
                   sizes="56px"
                   style={"imagePosition" in proof ? { objectPosition: proof.imagePosition } : undefined}
-                />
+                />}
               </span>
               <span className="proof-meta">
                 <span className="proof-index">0{index + 1}</span>

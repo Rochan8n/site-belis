@@ -120,6 +120,8 @@ export function useJourneyDirector(
         el.style.opacity = String(visibility * visibility);
         el.style.transform = `translateY(${(station - p) * 56}px)`;
         el.style.visibility = visibility > 0.03 ? "visible" : "hidden";
+        // Skip layout and font work for inactive panels, including before hydration.
+        el.style.contentVisibility = visibility > 0.03 ? "visible" : "hidden";
       }
       if (frame++ % 6 === 0) {
         const active = Math.round(p);

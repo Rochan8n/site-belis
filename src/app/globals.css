@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Only application sources define utilities; reports and standalone proposals do not. */
+@import "tailwindcss" source("../");
 
 @theme inline {
   /* ── Luxury Palette ── */
