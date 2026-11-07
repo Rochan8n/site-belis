@@ -8,6 +8,22 @@ export const BLOG_THEMES: Record<BlogTheme, {
   serviceLabel: string;
   accent: string;
 }> = {
+  "engenharia-reversa": {
+    label: "Engenharia reversa",
+    title: "Da peça que falta ao projeto que resolve",
+    description: "Guias para recuperar peças fora de linha, contratar escaneamento 3D e avaliar materiais, protótipos e dispositivos para sua operação.",
+    servicePath: "/engenharia-reversa",
+    serviceLabel: "Avaliar um projeto de engenharia reversa",
+    accent: "#a6c6a2",
+  },
+  "comunicacao-visual": {
+    label: "Comunicação visual",
+    title: "Sua marca ganha forma. Comece pela escolha certa.",
+    description: "Compare letras caixa, iluminação e materiais. Planeje letreiros para fachadas e recepções e prepare seu logo para um orçamento sob medida.",
+    servicePath: "/comunicacao-visual",
+    serviceLabel: "Explorar letras e letreiros personalizados",
+    accent: "#dec393",
+  },
   audiovisual: {
     label: "Audiovisual",
     title: "Vídeos e cobertura de eventos para empresas",

@@ -7,7 +7,7 @@ import styles from "./blog.module.css";
 export function BlogCard({ post }: { post: BlogCardData }) {
   return <article className={styles.card}>
     <Link href={`/blog/${post.slug}`} className={styles.cardImage} tabIndex={-1} aria-hidden="true">
-      <Image src={`/blog/${post.slug}/capa`} alt={post.coverAlt} width={1200} height={630} sizes="(max-width: 700px) 90vw, (max-width: 1000px) 44vw, 360px" unoptimized />
+      <Image src={post.coverImage ?? `/blog/${post.slug}/capa`} alt={post.coverAlt} width={1200} height={630} sizes="(max-width: 700px) 90vw, (max-width: 1000px) 44vw, 360px" unoptimized={!post.coverImage} />
     </Link>
     <div className={styles.cardMeta}><span>{BLOG_THEMES[post.theme].label}</span><span>{post.readingMinutes} min de leitura</span></div>
     <h3><Link href={`/blog/${post.slug}`}>{post.title}</Link></h3>

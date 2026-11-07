@@ -1,0 +1,255 @@
+{
+  "site_url": "https://www.belis.agency/",
+  "date_range": {
+    "start": "2026-08-09",
+    "end": "2026-11-07",
+    "days": 90
+  },
+  "dimensions": [
+    "query",
+    "page"
+  ],
+  "row_count": 30,
+  "rows": [
+    {
+      "query": "belis",
+      "page": "https://www.belis.agency/",
+      "clicks": 1,
+      "impressions": 140,
+      "ctr": 0.0071,
+      "position": 8
+    },
+    {
+      "query": "audiovisual agency",
+      "page": "https://www.belis.agency/blog/temas/audiovisual",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "automatizar processos",
+      "page": "https://www.belis.agency/blog/automatizar-processos-empresa",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 55.3
+    },
+    {
+      "query": "automatizar processos com sistema",
+      "page": "https://www.belis.agency/blog/automatizar-processos-empresa",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 56
+    },
+    {
+      "query": "automatizar processos empresa",
+      "page": "https://www.belis.agency/blog/automatizar-processos-empresa",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 20
+    },
+    {
+      "query": "automação de firmas",
+      "page": "https://www.belis.agency/blog/automatizar-processos-empresa",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 59
+    },
+    {
+      "query": "automação de processos empresariais",
+      "page": "https://www.belis.agency/blog/automatizar-processos-empresa",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 66.3
+    },
+    {
+      "query": "belis",
+      "page": "https://www.belis.agency/sobre",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "query": "belis.",
+      "page": "https://www.belis.agency/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "belscript",
+      "page": "https://www.belis.agency/blog",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 62
+    },
+    {
+      "query": "bélis",
+      "page": "https://www.belis.agency/",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "check-list para eventos audiovisuais",
+      "page": "https://www.belis.agency/blog/cobertura-audiovisual-eventos-corporativos",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.7
+    },
+    {
+      "query": "cobertura audiovisual de eventos",
+      "page": "https://www.belis.agency/blog/cobertura-audiovisual-eventos-corporativos",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.3
+    },
+    {
+      "query": "cobertura de eventos video",
+      "page": "https://www.belis.agency/blog/cobertura-audiovisual-eventos-corporativos",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 70
+    },
+    {
+      "query": "landing page agency",
+      "page": "https://www.belis.agency/blog/temas/sites",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 46.5
+    },
+    {
+      "query": "landing page preço",
+      "page": "https://www.belis.agency/blog/quanto-custa-landing-page",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 52
+    },
+    {
+      "query": "landing page system",
+      "page": "https://www.belis.agency/blog/temas/sites",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "query": "orçamento landing page",
+      "page": "https://www.belis.agency/blog/quanto-custa-landing-page",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 47
+    },
+    {
+      "query": "orçamento video institucional",
+      "page": "https://www.belis.agency/blog/quanto-custa-video-institucional",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 12.3
+    },
+    {
+      "query": "preço landing page",
+      "page": "https://www.belis.agency/blog/quanto-custa-landing-page",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 68
+    },
+    {
+      "query": "quanto custa um vídeo institucional",
+      "page": "https://www.belis.agency/blog/quanto-custa-video-institucional",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 20
+    },
+    {
+      "query": "quanto custa uma landing page",
+      "page": "https://www.belis.agency/blog/quanto-custa-landing-page",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "query": "quanto custa video institucional",
+      "page": "https://www.belis.agency/blog/quanto-custa-video-institucional",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 25
+    },
+    {
+      "query": "site institucional ou landing page",
+      "page": "https://www.belis.agency/blog/site-institucional-ou-landing-page",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 26.5
+    },
+    {
+      "query": "site institucional ou landing page para vender mais",
+      "page": "https://www.belis.agency/blog/site-institucional-ou-landing-page",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 50
+    },
+    {
+      "query": "site institucional para empresa",
+      "page": "https://www.belis.agency/blog/site-institucional-ou-landing-page",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 1.8
+    },
+    {
+      "query": "software sob medida",
+      "page": "https://www.belis.agency/blog/software-sob-medida-ou-pronto",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "query": "valor landing page",
+      "page": "https://www.belis.agency/blog/quanto-custa-landing-page",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 85
+    },
+    {
+      "query": "video institucional preço",
+      "page": "https://www.belis.agency/blog/quanto-custa-video-institucional",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 25
+    },
+    {
+      "query": "was kostet eine landingpage",
+      "page": "https://www.belis.agency/blog/quanto-custa-landing-page",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 76
+    }
+  ]
+}

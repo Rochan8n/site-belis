@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getBlogPost(slug);
   if (!post) notFound();
   const metadata = blogMetadata(post.seoTitle, post.description, blogPath(slug), coverPath(slug));
-  return { ...metadata, authors: [{ name: BLOG_AUTHOR.name, url: BLOG_AUTHOR.url }], openGraph: { ...metadata.openGraph, type: "article", publishedTime: `${post.publishedAt}T12:00:00-03:00`, modifiedTime: `${post.updatedAt}T12:00:00-03:00`, authors: [BLOG_AUTHOR.url], section: BLOG_THEMES[post.theme].label, images: [{ url: coverPath(slug), width: 1200, height: 630, alt: post.coverAlt, type: "image/png" }] } };
+  return { ...metadata, authors: [{ name: BLOG_AUTHOR.name, url: BLOG_AUTHOR.url }], openGraph: { ...metadata.openGraph, type: "article", publishedTime: `${post.publishedAt}T12:00:00-03:00`, modifiedTime: `${post.updatedAt}T12:00:00-03:00`, authors: [BLOG_AUTHOR.url], section: BLOG_THEMES[post.theme].label, images: [{ url: coverPath(slug), width: 1200, height: 630, alt: post.coverAlt, type: post.coverImage ? "image/webp" : "image/png" }] } };
 }
 
 function Block({ block }: { block: BlogBlock }) {
@@ -52,7 +52,10 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
         <div className={styles.meta}><span>Por <Link href="/sobre">{BLOG_AUTHOR.name}</Link></span><time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt)}</time><span>{readingMinutes(post)} min de leitura</span>{post.updatedAt !== post.publishedAt && <span>Atualizado em <time dateTime={post.updatedAt}>{formatBlogDate(post.updatedAt)}</time></span>}</div>
         <BlogShare slug={slug} theme={post.theme} title={post.title} url={url} />
       </header>
-      <Image className={styles.articleCover} src={coverPath(slug)} alt={post.coverAlt} width={1200} height={630} sizes="(max-width: 1000px) 90vw, 960px" preload unoptimized />
+      <figure className={styles.coverFigure}>
+        <Image className={styles.articleCover} src={coverPath(slug)} alt={post.coverAlt} width={1200} height={630} sizes="(max-width: 1000px) 90vw, 960px" preload unoptimized={!post.coverImage} />
+        {post.coverCaption && <figcaption>{post.coverCaption}</figcaption>}
+      </figure>
       <div className={styles.articleLayout}>
         <aside className={styles.sidebar}>
           <nav className={styles.toc} aria-label="Índice do artigo"><p>Neste guia</p><ol>{post.sections.map(section => <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>)}<li><a href="#perguntas-frequentes">Perguntas frequentes</a></li><li><a href="#fontes">Fontes e referências</a></li></ol></nav>
@@ -69,7 +72,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           {post.download && <BlogDownload slug={slug} theme={post.theme} label={post.download.label} />}
           <section id="perguntas-frequentes" className={styles.faq}><h2>Perguntas frequentes</h2>{post.faq.map(item => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</section>
           <section id="fontes" className={styles.sources}><h2>Fontes e referências</h2><p>Orientações de contratação são conteúdo editorial da Belis. As referências abaixo apoiam os pontos técnicos indicados.</p><ul>{post.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a><small>{source.note}</small></li>)}</ul></section>
-          <aside className={styles.author}><p><strong>{BLOG_AUTHOR.name}</strong> publica guias sobre audiovisual, sites e software para ajudar empresas a planejar seus projetos.</p><Link className={styles.textLink} href="/sobre">Sobre a Belis</Link>{" · "}<Link className={styles.textLink} href="/blog/politica-editorial">Política editorial</Link></aside>
+          <aside className={styles.author}><p><strong>{BLOG_AUTHOR.name}</strong> publica guias sobre {theme.label.toLocaleLowerCase("pt-BR")} para ajudar empresas a planejar seus projetos.</p><Link className={styles.textLink} href="/sobre">Sobre a Belis</Link>{" · "}<Link className={styles.textLink} href="/blog/politica-editorial">Política editorial</Link></aside>
           <BlogCta {...offer} placement="bottom" />
           <p><Link className={styles.textLink} href={theme.servicePath}>{theme.serviceLabel} ↗</Link></p>
         </div>

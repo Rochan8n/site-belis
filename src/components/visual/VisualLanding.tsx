@@ -104,7 +104,11 @@ export function VisualLanding() {
       <footer className={styles.footer}>
         <Link href="/" className={styles.brand} aria-label="Belis — página inicial">BELIS<span>®</span></Link>
         <p>Comunicação visual feita para a sua marca.</p>
-        <div><Link href="/">Conheça a Belis</Link><a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a></div>
+        <div>
+          <Link href="/">Conheça a Belis</Link>
+          <Link href="/blog/temas/comunicacao-visual">Guias de comunicação visual</Link>
+          <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
+        </div>
         <small>© {new Date().getFullYear()} Belis Agency · São Paulo</small>
       </footer>
       <FloatingVisualWhatsApp />

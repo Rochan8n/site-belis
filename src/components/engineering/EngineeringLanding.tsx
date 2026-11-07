@@ -81,6 +81,22 @@ export function EngineeringLanding() {
       <section className={styles.brief} id="projeto" aria-labelledby="brief-title"><div className={styles.briefCopy}><p className={styles.eyebrow}>SEU PROJETO COMEÇA AQUI</p><h2 id="brief-title">Qual é a peça<br /><span>que falta?</span></h2><p>Você traz o problema. A gente conversa sobre como transformar isso em projeto.</p><div className={styles.briefChecklist}><span>01 / Escolha sua aplicação</span><span>02 / Conte o que precisa</span><span>03 / Envie fotos pelo WhatsApp</span></div><EngineeringContact placement="direct" className={styles.textLink}>Prefiro falar direto com a Belis <ArrowUpRight size={18} aria-hidden="true" /></EngineeringContact></div><ProjectBrief /></section>
     </main>
 
-    <footer className={styles.footer}><div className={styles.footerTop}><Link href="/" aria-label="Belis — página inicial" className={styles.brand}>BELIS<span>®</span></Link><p>Engenharia reversa.<br />Novas possibilidades.</p><EngineeringContact placement="footer">Seu próximo projeto <ArrowUpRight size={18} aria-hidden="true" /></EngineeringContact></div><div className={styles.footerBottom}><span>© {new Date().getFullYear()} BELIS · SÃO PAULO</span><div><Link href="/">Conheça a Belis</Link><Link href="/comunicacao-visual">Comunicação visual</Link><a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a></div><a href="#conteudo">Voltar ao topo ↑</a></div></footer>
+    <footer className={styles.footer}>
+      <div className={styles.footerTop}>
+        <Link href="/" aria-label="Belis — página inicial" className={styles.brand}>BELIS<span>®</span></Link>
+        <p>Engenharia reversa.<br />Novas possibilidades.</p>
+        <EngineeringContact placement="footer">Seu próximo projeto <ArrowUpRight size={18} aria-hidden="true" /></EngineeringContact>
+      </div>
+      <div className={styles.footerBottom}>
+        <span>© {new Date().getFullYear()} BELIS · SÃO PAULO</span>
+        <div>
+          <Link href="/">Conheça a Belis</Link>
+          <Link href="/blog/temas/engenharia-reversa">Guias de engenharia reversa</Link>
+          <Link href="/comunicacao-visual">Comunicação visual</Link>
+          <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
+        </div>
+        <a href="#conteudo">Voltar ao topo ↑</a>
+      </div>
+    </footer>
   </div>;
 }

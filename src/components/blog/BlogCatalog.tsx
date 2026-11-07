@@ -25,7 +25,7 @@ export function BlogCatalog({ posts, title = "Guias para sua próxima decisão" 
       <div><span className={styles.sectionLabel}>Biblioteca Belis</span><h2 id={`${id}-heading`}>{title}</h2></div>
       <div className={styles.search}>
         <label htmlFor={`${id}-search`}>Buscar nos artigos</label>
-        <input type="search" id={`${id}-search`} value={query} onChange={event => setQuery(event.target.value)} placeholder="Ex.: orçamento, site, automação" autoComplete="off" aria-controls={`${id}-results`} />
+        <input type="search" id={`${id}-search`} value={query} onChange={event => setQuery(event.target.value)} placeholder="Ex.: peças, letreiro, orçamento" autoComplete="off" aria-controls={`${id}-results`} />
       </div>
     </div>
     <p className={styles.resultCount} role="status">{filtered.length} {filtered.length === 1 ? "artigo encontrado" : "artigos encontrados"}</p>
