@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ServiceLinks } from "@/components/layout/ServiceLinks";
 import styles from "@/components/blog/blog.module.css";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
@@ -8,6 +9,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
       <Link href="/" className={styles.brand} aria-label="Belis: início">BELIS</Link>
       <nav aria-label="Navegação principal">
         <Link href="/portfolio">Portfólio</Link><Link href="/websites">Sites</Link><Link href="/sistemas">Sistemas</Link><Link href="/blog">Blog</Link><Link href="/contato">Contato</Link>
+        <ServiceLinks />
       </nav>
     </header>
     {children}
@@ -18,6 +20,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
       </div>
       <nav aria-label="Links do blog">
         <Link href="/blog">Todos os artigos</Link><Link href="/blog/politica-editorial">Política editorial</Link><Link href="/sobre">Sobre a Belis</Link><a href="/blog/feed.xml">RSS</a><Link href="/contato">Conversar sobre um projeto</Link>
+        <ServiceLinks />
       </nav>
       <small>© {new Date().getFullYear()} BELIS AGENCY · SÃO PAULO</small>
     </footer>

@@ -49,7 +49,7 @@ export function GoogleAnalytics() {
           <button type="button" onClick={() => choose("denied")}>Recusar análise</button>
           <button type="button" onClick={() => choose("granted")}>Permitir análise</button>
         </div>
-      </section> : <button type="button" className={styles.settings} onClick={() => setSettingsOpen(true)}>Preferências de cookies</button>}
+      </section> : <button type="button" className={`${styles.settings} ${pathname === "/" ? styles.journeySettings : ""}`} onClick={() => setSettingsOpen(true)}>Preferências de cookies</button>}
     </>
   );
 }

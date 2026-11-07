@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BelisJourney } from "@/components/journey/BelisJourney";
+import { ServicesFooter } from "@/components/layout/ServicesFooter";
 
 const HOME_TITLE = "Ativos Digitais para Percepção e Crescimento";
 const HOME_DESCRIPTION =
@@ -129,6 +130,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <BelisJourney />
+      <ServicesFooter />
     </>
   );
 }

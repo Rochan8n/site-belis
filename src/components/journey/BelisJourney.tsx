@@ -20,6 +20,7 @@ import { TrialStation } from "./stations/TrialStation";
 import { ContactStation } from "./stations/ContactStation";
 import { curtain } from "@/components/layout/curtainController";
 import { TransitionLink } from "@/components/layout/TransitionLink";
+import { SITE_LINKS } from "@/config/site";
 import styles from "./journey.module.css";
 
 const destinations: Record<number, string> = {
@@ -28,20 +29,25 @@ const destinations: Record<number, string> = {
   4: "/sistemas",
 };
 
+const lastStation = STATION_COUNT - 1;
+const menuLinks = SITE_LINKS.filter(({ href }) => href !== "/");
+
+function scrollBehavior(): ScrollBehavior {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
+
 export function BelisJourney() {
   const router = useRouter();
   const blobRef = useRef<BelisBlobHandle>(null);
+  const menuRef = useRef<HTMLDetailsElement>(null);
   const timers = useRef<number[]>([]);
   const [locked, setLocked] = useState(false);
   const hud = useJourneyDirector(blobRef, locked);
 
   const scrollToStation = useCallback((station: number) => {
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
     window.scrollTo({
       top: station * getJourneyViewportHeight(),
-      behavior: reduced ? "auto" : "smooth",
+      behavior: scrollBehavior(),
     });
   }, []);
 
@@ -111,21 +117,6 @@ export function BelisJourney() {
     };
   }, []);
 
-  // Stage fixo engole wheel sobre hit-targets (blob, CTAs, markers).
-  // Com pointer-events:none nas camadas cheias, só alvos clicáveis caem aqui.
-  useEffect(() => {
-    const onWheel = (event: WheelEvent) => {
-      if (event.ctrlKey || event.defaultPrevented) return;
-      const target = event.target as Element | null;
-      if (!target?.closest("[data-journey-stage]")) return;
-      if (target.closest(".proof-lightbox, [role='dialog']")) return;
-      event.preventDefault();
-      window.scrollBy(0, event.deltaY);
-    };
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel);
-  }, []);
-
   // Settle leve: só encaixa se já estiver perto do pico (~18% da viewport).
   useEffect(() => {
     let settleTimer = 0;
@@ -133,18 +124,13 @@ export function BelisJourney() {
       if (locked) return;
       const vh = getJourneyViewportHeight();
       const progress = window.scrollY / vh;
-      const nearest = Math.min(
-        STATION_COUNT - 1,
-        Math.max(0, Math.round(progress)),
-      );
+      if (progress >= lastStation) return;
+      const nearest = Math.max(0, Math.round(progress));
       const distance = Math.abs(progress - nearest);
       if (distance < 0.02 || distance > 0.18) return;
-      const reduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
       window.scrollTo({
         top: nearest * vh,
-        behavior: reduced ? "auto" : "smooth",
+        behavior: scrollBehavior(),
       });
     };
     const onScroll = () => {
@@ -167,6 +153,41 @@ export function BelisJourney() {
       </div>
 
       <div className={styles.stage} data-journey-stage>
+        <header className={styles.hudTop}>
+          <span className={styles.homeClock} aria-hidden="true">{hud.date} · {hud.time}</span>
+          <button
+            type="button"
+            className={styles.homeBrand}
+            onClick={() => scrollToStation(0)}
+            aria-label="Voltar ao início"
+          >
+            BELIS <i>®</i>
+          </button>
+          <details
+            ref={menuRef}
+            className={styles.homeMenu}
+            data-home-menu
+            onBlur={({ currentTarget, relatedTarget }) => {
+              if (relatedTarget && !currentTarget.contains(relatedTarget)) currentTarget.open = false;
+            }}
+            onKeyDown={(event) => {
+              if (event.key !== "Escape" || !event.currentTarget.open) return;
+              event.currentTarget.open = false;
+              event.currentTarget.querySelector("summary")?.focus();
+            }}
+          >
+            <summary>Menu <span aria-hidden="true">≡</span></summary>
+            <nav aria-label="Navegação principal">
+              {menuLinks.map(({ href, label }) => (
+                <TransitionLink key={href} href={href} prefetch={false} onClick={() => {
+                  if (menuRef.current) menuRef.current.open = false;
+                }}>
+                  {label}
+                </TransitionLink>
+              ))}
+            </nav>
+          </details>
+        </header>
         <div className={styles.background} />
         <div className={styles.grid} aria-hidden="true" />
 
@@ -174,7 +195,11 @@ export function BelisJourney() {
           className={styles.blobButton}
           type="button"
           onClick={activateCurrent}
-          aria-label={`${hud.active < 2 ? "Avançar para" : hud.active < 5 ? "Entrar em" : "Falar com a Belis sobre"} ${sections[Math.min(hud.active + (hud.active < 2 ? 1 : 0), 5)].label}`}
+          aria-label={hud.active === lastStation
+            ? "Falar com a Belis pelo WhatsApp"
+            : hud.active < 2
+              ? `Avançar para ${sections[hud.active + 1].label}`
+              : `Entrar em ${sections[hud.active].label}`}
         >
           <BlobBeltHUD hidden={locked} station={hud.active}>
             <BelisBlob
@@ -218,7 +243,7 @@ export function BelisJourney() {
         </nav>
 
         <div className={styles.stations}>
-          <HeroStation onContinue={() => scrollToStation(1)} />
+          <HeroStation />
           <GuideStation onContinue={() => scrollToStation(2)} />
           {trials.map((trial) => (
             <TrialStation
@@ -230,27 +255,6 @@ export function BelisJourney() {
           <ContactStation loadImages={hud.active >= 4} />
         </div>
 
-        <header className={styles.hudTop}>
-          <span>{hud.date}</span>
-          <button
-            onClick={() => scrollToStation(0)}
-            aria-label="Voltar ao início"
-          >
-            BELIS <i>®</i>
-          </button>
-          <span className={styles.homeLinks}><TransitionLink className={styles.blogLink} href="/engenharia-reversa" prefetch={false}>ENGENHARIA REVERSA ↗</TransitionLink><TransitionLink className={styles.blogLink} href="/comunicacao-visual" prefetch={false}>COMUNICAÇÃO VISUAL ↗</TransitionLink><TransitionLink className={styles.blogLink} href="/blog" prefetch={false}>BLOG ↗</TransitionLink><span className={styles.homeClock}>{hud.time}</span></span>
-        </header>
-        <footer className={styles.hudBottom}>
-          <span>ROT. {hud.rotation}°</span>
-          <div>
-            <span>{String(hud.active + 1).padStart(3, "0")} / 006</span>
-            <i>
-              <b style={{ width: `${hud.progress * 100}%` }} />
-            </i>
-            <span>{hud.act}</span>
-          </div>
-          <span>SÃO PAULO · BR</span>
-        </footer>
       </div>
     </main>
   );

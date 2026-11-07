@@ -188,7 +188,7 @@
 .footerTop p { font-size: 13px; color: var(--eng-muted); }
 .footerTop > a:last-child { margin-left: auto; display: flex; align-items: center; gap: 25px; font-size: 14px; }
 .footerBottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-top: 24px; border-top: 1px solid var(--eng-rule); font-size: 8px; line-height: 1.8; color: var(--eng-muted); }
-.footerBottom > div { display: flex; gap: 22px; }
+.footerBottom > div { display: flex; flex-wrap: wrap; gap: 12px 22px; }
 .footer a:hover { color: var(--eng-green); }
 @media (min-width: 1700px) {
   .page { --eng-edge: max(88px, calc((100vw - 1500px) / 2)); }
@@ -220,7 +220,7 @@
   .page { --eng-edge: 24px; }
   .header { padding-top: 22px; padding-bottom: 0; flex-wrap: wrap; gap: 22px; min-height: 114px; }
   .header .brand { font-size: 31px; }
-  .header nav { order: 3; width: 100%; margin: 0; justify-content: space-between; border-top: 1px solid var(--eng-rule); padding: 6px 0; gap: 16px; }
+  .header nav { order: 3; width: 100%; margin: 0; flex-wrap: wrap; justify-content: space-between; border-top: 1px solid var(--eng-rule); padding: 6px 0; gap: 0 12px; }
   .header nav a { font-size: 11px; }
   .headerCta { margin-left: auto; font-size: 10px; gap: 13px; padding: 10px 12px; min-height: 42px; }
   .hero { grid-template-columns: 1fr; padding-top: 40px; min-height: 0; }

@@ -3,13 +3,10 @@
 import { useEffect, useState, type RefObject } from "react";
 import type { BelisBlobColor, BelisBlobLook } from "@/types/custom-elements";
 import type { BelisBlobHandle } from "./BelisBlob";
-import { acts, backgrounds, inks, looks, STATION_COUNT } from "./journeyData";
+import { backgrounds, inks, looks, STATION_COUNT } from "./journeyData";
 
 export interface JourneyHud {
-  progress: number;
   active: number;
-  act: string;
-  rotation: number;
   time: string;
   date: string;
 }
@@ -53,10 +50,7 @@ export function useJourneyDirector(
   locked: boolean,
 ) {
   const [hud, setHud] = useState<JourneyHud>({
-    progress: 0,
     active: 0,
-    act: acts[0],
-    rotation: 0,
     time: "--:--:--",
     date: "—",
   });
@@ -84,7 +78,7 @@ export function useJourneyDirector(
         0,
         STATION_COUNT - 1,
       ),
-      frame = 0;
+      activeStation = -1;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const step = () => {
       const target = clamp(
@@ -123,15 +117,10 @@ export function useJourneyDirector(
         // Skip layout and font work for inactive panels, including before hydration.
         el.style.contentVisibility = visibility > 0.03 ? "visible" : "hidden";
       }
-      if (frame++ % 6 === 0) {
-        const active = Math.round(p);
-        setHud((value) => ({
-          ...value,
-          progress: p / (STATION_COUNT - 1),
-          active,
-          act: acts[active],
-          rotation: Math.round(blobRef.current?.getRotationDeg() ?? 0),
-        }));
+      const active = Math.round(p);
+      if (active !== activeStation) {
+        activeStation = active;
+        setHud((value) => value.active === active ? value : { ...value, active });
       }
       raf = window.requestAnimationFrame(step);
     };

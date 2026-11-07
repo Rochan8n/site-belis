@@ -20,16 +20,6 @@ export const inks = [
   "#EFECE2",
 ] as const;
 
-/** Labels quietos no HUD — arco interno, sem nomenclatura de monomito */
-export const acts = [
-  "INÍCIO",
-  "PARCEIRO",
-  "STUDIO",
-  "WEB",
-  "SYSTEMS",
-  "CONTATO",
-] as const;
-
 export const looks: readonly BelisBlobLook[] = [
   // 0 Início — mercury sólido no escuro (ref foto 1)
   { amp: 0.36, freq: 0.95, spin: 0.10, solid: 1, wire: 0, points: 0, colA: "#F4F6F8", colB: "#74C365", base: "#040405", fadeCol: "#0A0A0C" },

@@ -113,7 +113,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .closingLetter span { position: absolute; font-size: 35px; right: -35px; top: 20px; color: var(--ink); text-shadow: none; }
 .footer { display: grid; grid-template-columns: auto 1fr auto; gap: 25px 45px; align-items: center; padding: 50px var(--edge) 82px; }
 .footer p { color: var(--muted); font-size: 13px; }
-.footer > div { display: flex; gap: 25px; font-size: 12px; }
+.footer > div { display: flex; flex-wrap: wrap; gap: 8px 25px; font-size: 12px; }
 .footer a { color: inherit; }
 .footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .footer small { grid-column: 2 / -1; color: var(--muted); font-size: 11px; }
@@ -146,7 +146,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 @media (max-width: 760px) {
   .header { min-height: 80px; gap: 16px; flex-wrap: wrap; padding-block: 20px 14px; }
   .brand { font-size: 29px; }
-  .nav { order: 3; width: 100%; margin: 0; justify-content: space-between; gap: 14px; }
+  .nav { order: 3; width: 100%; margin: 0; flex-wrap: wrap; gap: 0 14px; }
   .nav a { font-size: 12px; min-height: 32px; }
   .headerCta { font-size: 12px; gap: 8px; min-height: 44px; padding: 10px 12px; }
   .hero { display: flex; flex-direction: column; min-height: auto; align-items: stretch; }

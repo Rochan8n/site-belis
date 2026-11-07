@@ -198,6 +198,13 @@
   transition: opacity 350ms ease, filter 350ms ease;
 }
 
+.beltTapLabel { display: none; }
+
+@media (pointer: coarse) {
+  .beltClickLabel { display: none; }
+  .beltTapLabel { display: block; }
+}
+
 .beltLabel b {
   color: var(--belt-green);
   font-weight: 500;
@@ -364,13 +371,7 @@
 
 @media (max-width: 800px) {
   .beltMobileHidden {
-    opacity: 0 !important;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .beltLabelMobileHidden .beltLabel {
-    opacity: 0;
+    display: none;
   }
 
   .belt,
@@ -395,8 +396,8 @@
   }
 
   .beltLabel {
-    font-size: clamp(10px, 3.25vw, 12px);
-    letter-spacing: 0.2em;
+    font-size: 36px;
+    letter-spacing: 0.08em;
   }
 
   .focusIcon {

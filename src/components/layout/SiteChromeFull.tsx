@@ -5,6 +5,7 @@ import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHud } from "@/components/layout/PageHud";
+import { ServicesFooter } from "./ServicesFooter";
 
 const PAGE_ENDING_ROUTES = ["/portfolio", "/websites", "/sistemas"];
 
@@ -23,7 +24,7 @@ export function SiteChromeFull({
       <Navbar />
       <PageHud />
       {children}
-      {!hasPageEnding && <Footer />}
+      {hasPageEnding ? <ServicesFooter /> : <Footer />}
     </SmoothScroll>
   );
 }

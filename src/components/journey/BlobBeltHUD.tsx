@@ -7,7 +7,7 @@ type BlobBeltHUDProps = {
   station: number;
 };
 
-export const BELT_LABELS = [
+const BELT_LABELS = [
   "CLIQUE PARA AVANÇAR",
   "CLIQUE PARA AVANÇAR",
   "AUDIOVISUAL",
@@ -22,9 +22,10 @@ export function BlobBeltHUD({
   station,
 }: BlobBeltHUDProps) {
   const hiddenClass = hidden ? styles.beltHidden : "";
-  // Mobile: belt only on contact (station 5); hide "ENTRE EM CONTATO" label there.
-  const mobileHideBelt = station !== 5 ? styles.beltMobileHidden : "";
-  const mobileHideLabel = station === 5 ? styles.beltLabelMobileHidden : "";
+  const showsAdvance = station < 2;
+  const isContact = station === BELT_LABELS.length - 1;
+  const mobileHideBelt = !showsAdvance && !isContact ? styles.beltMobileHidden : "";
+  const mobileHideLabel = isContact ? styles.beltMobileHidden : "";
   const label = BELT_LABELS[station] ?? BELT_LABELS[0];
 
   return (
@@ -156,11 +157,16 @@ export function BlobBeltHUD({
           <defs>
             <path id="belt-label-path" d="M216 234 A292 100 0 0 0 784 234" />
           </defs>
-          <text className={styles.beltLabel} textAnchor="middle">
+          <text className={showsAdvance ? `${styles.beltLabel} ${styles.beltClickLabel}` : styles.beltLabel} textAnchor="middle">
             <textPath href="#belt-label-path" startOffset="50%">
               {label}
             </textPath>
           </text>
+          {showsAdvance && (
+            <text className={`${styles.beltLabel} ${styles.beltTapLabel}`} textAnchor="middle">
+              <textPath href="#belt-label-path" startOffset="50%">TOQUE PARA AVANÇAR</textPath>
+            </text>
+          )}
         </svg>
       </span>
     </>

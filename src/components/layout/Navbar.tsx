@@ -1,32 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { SITE_LINKS } from "@/config/site";
 import { TransitionLink } from "./TransitionLink";
 import styles from "./siteChrome.module.css";
-
-const links = [
-  { href: "/", label: "Início", code: "00" },
-  { href: "/portfolio", label: "Studio", code: "01" },
-  { href: "/websites", label: "Web", code: "02" },
-  { href: "/sistemas", label: "Systems", code: "03" },
-  { href: "/sobre", label: "Sobre", code: "04" },
-  { href: "/contato", label: "Contato", code: "05" },
-  { href: "/blog", label: "Blog", code: "06" },
-  { href: "/comunicacao-visual", label: "Comunicação visual", code: "07" },
-  { href: "/engenharia-reversa", label: "Engenharia reversa", code: "08" },
-] as const;
-
-const routeLabels: Record<string, string> = {
-  "/portfolio": "Studio",
-  "/websites": "Web",
-  "/sistemas": "Systems",
-  "/sobre": "Sobre",
-  "/contato": "Contato",
-  "/blog": "Blog",
-  "/comunicacao-visual": "Comunicação visual",
-  "/engenharia-reversa": "Engenharia reversa",
-};
 
 function formatClock(date: Date) {
   return date.toLocaleTimeString("pt-BR", {
@@ -45,9 +23,12 @@ function formatDate(date: Date) {
 
 export function Navbar() {
   const pathname = usePathname();
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [now, setNow] = useState<Date | null>(null);
-  const routeLabel = routeLabels[pathname] ?? "Belis";
+  const pageIndex = SITE_LINKS.findIndex(({ href }) => href === pathname);
+  const routeLabel = SITE_LINKS[pageIndex]?.label ?? "Belis";
+  const pageCode = pageIndex < 0 ? "--" : String(pageIndex).padStart(2, "0");
 
   useEffect(() => {
     const updateClock = () => setNow(new Date());
@@ -67,16 +48,14 @@ export function Navbar() {
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
-
-  const pageCode = useMemo(
-    () => links.find((link) => link.href === pathname)?.code ?? "--",
-    [pathname],
-  );
 
   return (
     <>
@@ -89,6 +68,7 @@ export function Navbar() {
         </TransitionLink>
         <button
           type="button"
+          ref={triggerRef}
           className={styles.menuTrigger}
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
@@ -104,17 +84,18 @@ export function Navbar() {
         id="site-navigation"
         className={`${styles.menuPanel} ${open ? styles.menuPanelOpen : ""}`}
         aria-hidden={!open}
+        data-lenis-prevent
       >
         <div className={styles.menuGrid} aria-hidden="true" />
         <div className={styles.menuCorners} aria-hidden="true"><i /><i /><i /><i /></div>
 
         <div className={styles.menuIntro}>
-          <span>MAPA / {String(links.length).padStart(3, "0")} ROTAS</span>
+          <span>MAPA / {String(SITE_LINKS.length).padStart(3, "0")} ROTAS</span>
           <span>SELECIONE DESTINO</span>
         </div>
 
         <nav className={styles.menuNav} aria-label="Navegação principal">
-          {links.map((link) => {
+          {SITE_LINKS.map((link, index) => {
             const active = pathname === link.href;
             return (
               <TransitionLink
@@ -125,7 +106,7 @@ export function Navbar() {
                 aria-current={active ? "page" : undefined}
                 tabIndex={open ? 0 : -1}
               >
-                <span>{link.code}</span>
+                <span aria-hidden="true">{String(index).padStart(2, "0")}</span>
                 <strong>{link.label}</strong>
                 <i aria-hidden="true">↗</i>
               </TransitionLink>

@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ServiceLinks } from "@/components/layout/ServiceLinks";
+import { ENGINEERING_SERVICE, VISUAL_SERVICE } from "@/config/site";
 import { ArrowDown, ArrowUpRight, Check, MapPin, Plus } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { HeroShowcase } from "./HeroShowcase";
@@ -16,10 +18,11 @@ export function VisualLanding() {
       <a href="#conteudo" className={styles.skipLink}>Pular para o conteúdo</a>
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="Belis — página inicial">BELIS<span>®</span></Link>
-        <nav aria-label="Comunicação visual" className={styles.nav}>
+        <nav aria-label="Navegação da página" className={styles.nav}>
           <a href="#inspiracoes">Inspirações</a>
           <a href="#como-funciona">Como funciona</a>
           <a href="#duvidas">Dúvidas</a>
+          <Link href={ENGINEERING_SERVICE.href} prefetch={false}>{ENGINEERING_SERVICE.label}</Link>
         </nav>
         <WhatsAppLink placement="header" className={styles.headerCta}>Criar meu projeto <ArrowUpRight size={17} aria-hidden="true" /></WhatsAppLink>
       </header>
@@ -104,7 +107,11 @@ export function VisualLanding() {
       <footer className={styles.footer}>
         <Link href="/" className={styles.brand} aria-label="Belis — página inicial">BELIS<span>®</span></Link>
         <p>Comunicação visual feita para a sua marca.</p>
-        <div><Link href="/">Conheça a Belis</Link><a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a></div>
+        <div>
+          <Link href="/">Conheça a Belis</Link>
+          <ServiceLinks currentPath={VISUAL_SERVICE.href} />
+          <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
+        </div>
         <small>© {new Date().getFullYear()} Belis Agency · São Paulo</small>
       </footer>
       <FloatingVisualWhatsApp />
