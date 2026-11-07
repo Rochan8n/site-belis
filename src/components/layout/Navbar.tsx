@@ -13,6 +13,8 @@ const links = [
   { href: "/sobre", label: "Sobre", code: "04" },
   { href: "/contato", label: "Contato", code: "05" },
   { href: "/blog", label: "Blog", code: "06" },
+  { href: "/comunicacao-visual", label: "Comunicação visual", code: "07" },
+  { href: "/engenharia-reversa", label: "Engenharia reversa", code: "08" },
 ] as const;
 
 const routeLabels: Record<string, string> = {
@@ -22,6 +24,8 @@ const routeLabels: Record<string, string> = {
   "/sobre": "Sobre",
   "/contato": "Contato",
   "/blog": "Blog",
+  "/comunicacao-visual": "Comunicação visual",
+  "/engenharia-reversa": "Engenharia reversa",
 };
 
 function formatClock(date: Date) {

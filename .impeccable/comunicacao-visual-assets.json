@@ -1,0 +1,61 @@
+{
+  "generator": "image_gen built-in",
+  "assets": [
+    {
+      "name": "hero-letras",
+      "prompt": "Premium photoreal architectural lettering material sample photograph, landscape 3:2. On a warm pale limestone studio plinth, an enormous sculptural lowercase double-storey sans serif 'a' with ivory cream matte front and deep muted leaf green #74C365 extruded sides, next to a tall charcoal black elegant serif uppercase B slightly behind on right. This is physically dimensional signage, painted solid material with realistic thickness, subtle surface texture, clear edge craftsmanship. Letter a fills left-center foreground, B right-center, both entirely within frame with 10% breathing room. Offwhite plaster wall behind, afternoon window sunlight creates beautiful diagonal soft shadows; restrained neutral and green palette. Camera slightly below front at 3/4 angle, 85mm product photography, ultra realistic, tactile, excellent smooth edges. No other words, no labels, no ruler, no graphic overlays, no interface, no watermarks, no rainbow. Image to be the principal hero photograph of a professional custom signage website.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-33bf9629-b9b3-47cb-a174-6ed63760af23.png",
+      "workspacePath": "public/images/comunicacao-visual/hero-letras.webp"
+    },
+    {
+      "name": "fachada-origem",
+      "prompt": "Photoreal architectural photograph of a fictional premium Brazilian boutique shop facade. Landscape 3:2. Large sculptural black serif channel letters spelling exactly 'ORIGEM' mounted above tall dark metal framed shop entrance on pale textured off-white stone facade. Small understated subtitle 'objetos & encontros'. Restrained warm sunlight, tree-leaf shadows, slight low angle perspective showing real extruded letter depth 6cm, elegant planting in far right edge, warmly lit interior through glass. Hero subject is lettering, occupies middle half of frame, entire word completely visible. Build believable custom painted signage, natural professionally shot photography, 50mm architectural lens, fine material detail, no people, no vehicles, no extra brands, no RGB, no text overlays, no website interface. Illustrative fictional concept, not evidence of real completed work.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-b32bd626-0732-4239-9987-6bd3e95a78fb.png",
+      "workspacePath": "public/images/comunicacao-visual/fachada-origem.webp"
+    },
+    {
+      "name": "logo-vertice",
+      "prompt": "Photoreal high-end Brazilian architecture studio reception, landscape 3:2. Hero is sculptural matte ivory dimensional geometric monogram above text 'VÉRTICE' in spaced elegant sans serif, small subtitle 'arquitetura'. Logo a simple interlocking abstract V shape, precise crisp edges and natural cast shadows, raised about 3cm from muted deep olive green plaster wall. Warm solid oak counter at bottom edge, sliver of daylight and plant on left. Tight interior architectural composition, believable painted polymer raised lettering not metal, sculptural relief and refined professional workmanship. Editorial photography, natural light, 85mm lens, sophisticated serious understated interior. No people, no fake certificates, no website UI, no text overlay, no rainbow. Fictional illustrative signage concept.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-df6be2f7-e925-437f-90cf-7148ec6252e9.png",
+      "workspacePath": "public/images/comunicacao-visual/logo-vertice.webp"
+    },
+    {
+      "name": "letreiro-boa-energia",
+      "prompt": "Photoreal close-up interior architectural sign on charcoal painted textured plaster wall in a stylish Brazilian cafe. Landscape 3:2. Exact text 'boa energia' in beautiful continuous handwritten lowercase script, warm-white neon-effect illuminated thick raised letters. Not glass neon tubes: softly diffused luminous faces with solid cream custom dimensional housing, real projection from wall, warm glow localized to letters and realistic falloff. Entire word readable across the central field, beautifully crafted cursive with generous spacing, no crossing confused letters. Lower left edge hints of dark wood cafe bench and small foliage, professional editorial interior photograph, refined and serious, no rainbow or multicolor, no RGB, no other text, no logos, no UI. Fictional illustrative example for custom visual communication service.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-902a8e01-0173-4192-8aa7-b53a4856dc8a.png",
+      "workspacePath": "public/images/comunicacao-visual/letreiro-boa-energia.webp"
+    },
+    {
+      "name": "letras-serena",
+      "prompt": "Photoreal exterior of fictional contemporary Brazilian beauty boutique, 3:2 landscape. Store name 'serena' in beautiful sculptural smooth cream rounded lowercase letters mounted on muted terracotta earth wall, each letter deep and dimensional with convincing sidewall shadows, medium close-up centered on shop sign above glass facade. Small subtitle 'beleza natural' beneath, elegant neutral facade, no saturated rainbow colors. Sophisticated modern Brazilian commercial architecture, gentle afternoon daylight, partial beige awning to right, small plant along bottom corner, editorial camera 50mm, tack sharp signage, realistic matte paint fine texture. No people, vehicles, third party brands, graphic overlay, interface or watermarks. Fictional sign concept, not a completed client project.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-51cbf869-9882-4cd1-8ac0-5318828c8d22.png",
+      "workspacePath": "public/images/comunicacao-visual/letras-serena.webp"
+    }
+  ],
+  "comps": [
+    {
+      "name": "composicao-1",
+      "prompt": "Create a high fidelity desktop website UI design mockup, aspect 3:2, for BELIS Brazilian custom architectural signage studio. This is a flat screenshot of a website, NOT a poster. Navigation across top BELIS / Projetos / Como funciona / green button Criar meu projeto. Page light warm off-white #E9E5DA, ink #16161A, brand green #74C365, Archivo-like bold grotesk type. Hero: generous bold left headline 'Sua marca. Em outra dimensão.' in three lines, body 'Letras caixa, fachadas e logos feitos para o seu espaço.', green CTA 'Criar meu projeto'. Right two-thirds sculptural photoreal extruded lowercase 'a' enormous bone white front and green sides with dark black serif 'B' behind, on stone studio plinth, strong sunlight and physical soft shadows. This is a material/lettering sample studio, professional not childish. Small material style buttons below image. Below hero a visible strip 'São Paulo · Projetos para todo o Brasil', then beginning of asymmetric photographic signage gallery with caption 'Uma ideia. Muitas formas de aparecer.' Three columns of different proportions. Floated bottom right WhatsApp control. No gradients, rainbow, glowing web decoration, star ratings, fake metrics, prices or stock cards. Strong composition with true photographic object material.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-c21727fe-1ad6-4760-9be4-b34cb8e9214f.png",
+      "approved": true,
+      "approvalBasis": "Escolha de composição delegada no briefing: usuário pede que agente pense e crie a landing page; composição 1 selecionada e comunicada.",
+      "workspacePath": ".impeccable/mocks/composicao-1.png"
+    },
+    {
+      "name": "composicao-2",
+      "prompt": "Create high fidelity flat desktop website screenshot mockup 3:2 for BELIS custom signage landing page. Fixed identity off-white #E9E5DA ink black #16161A and green #74C365, bold Archivo grotesk, elegant serious creative typography. Top navigation BELIS, Projetos, Seu projeto, green CTA. Composition variant B within lettering sample studio: very large headline 'Sua marca. Em outra dimensão.' occupies upper 1/3 left to right, then full-width horizontal photographic studio stage with giant physical cream serif letter B, green deep lowercase a, sculptural charcoal sans letter S, all dimensional painted channel lettering showing depth and shadows, photographed naturally. Green button 'Criar meu projeto' anchored upper right near headline. Below photo, compact caption and beginning of two large facade photos side by side, showing custom shop letters. Photoreal premium material sample stage, credible craft. No metrics, testimonials, prices, rainbow, dark cyberpunk or generic icon card grid. Website screenshot composition, all interface real readable Portuguese.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-56d3c6ae-a528-49c1-9477-70fad0280c5d.png",
+      "approved": false,
+      "approvalBasis": null,
+      "workspacePath": ".impeccable/mocks/composicao-2.png"
+    },
+    {
+      "name": "composicao-3",
+      "prompt": "Create high fidelity desktop website screenshot design mockup 3:2 BELIS Brazilian custom letters signage service. Existing brand light paper #E9E5DA, ink #16161A, green #74C365 and Archivo bold grotesk. Top nav BELIS / Inspirações / Como funciona / green Criar meu projeto. Composition variant C within material-lettering studio: giant typographic layout left 40% 'Sua marca. Em outra dimensão.' short service copy for 'Letras caixa, fachadas e logos personalizados.' green WhatsApp CTA. Right 60% asymmetric photographic collage, large upper image of elegant dimensional BELIS sign on plaster wall in natural sunlight, small overlapping bottom images of a sculptural ivory serif letter A and warm white cursive illuminated sign on charcoal. Everything is polished and believable, rich dimensional photography not a boxed UI dashboard. Bottom of viewport shows full-width bright paper section 'Imagine sua marca aqui.' with functional-looking text field and 3 letter style controls and dimensional sample. Serious, high-end creative studio, no gradients, rainbow, ratings, fake proof or icon tiles.",
+      "source": "C:\\Users\\Lucas PC\\.codex\\generated_images\\01a1af02-8ae7-7102-a486-c8eead0d62b7\\exec-0638028b-a219-4adb-8772-a44c1522723b.png",
+      "approved": false,
+      "approvalBasis": null,
+      "workspacePath": ".impeccable/mocks/composicao-3.png"
+    }
+  ]
+}

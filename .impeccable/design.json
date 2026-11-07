@@ -1,0 +1,444 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-06T06:18:32Z",
+  "title": "Design System: Belis Agency",
+  "extensions": {
+    "colorMeta": {
+      "belis-dark": {
+        "role": "neutral",
+        "displayName": "Preto Belis",
+        "tonalRamp": [
+          "oklch(15% 0.0043 285.86)",
+          "oklch(26% 0.0043 285.86)",
+          "oklch(37% 0.0043 285.86)",
+          "oklch(48% 0.0043 285.86)",
+          "oklch(59% 0.0043 285.86)",
+          "oklch(70% 0.0043 285.86)",
+          "oklch(81% 0.0043 285.86)",
+          "oklch(95% 0.0043 285.86)"
+        ]
+      },
+      "belis-dark-2": {
+        "role": "neutral",
+        "displayName": "Preto profundo",
+        "tonalRamp": [
+          "oklch(15% 0.0032 285.88)",
+          "oklch(26% 0.0032 285.88)",
+          "oklch(37% 0.0032 285.88)",
+          "oklch(48% 0.0032 285.88)",
+          "oklch(59% 0.0032 285.88)",
+          "oklch(70% 0.0032 285.88)",
+          "oklch(81% 0.0032 285.88)",
+          "oklch(95% 0.0032 285.88)"
+        ]
+      },
+      "belis-paper": {
+        "role": "neutral",
+        "displayName": "Papel Belis",
+        "tonalRamp": [
+          "oklch(15% 0.0153 90.24)",
+          "oklch(26% 0.0153 90.24)",
+          "oklch(37% 0.0153 90.24)",
+          "oklch(48% 0.0153 90.24)",
+          "oklch(59% 0.0153 90.24)",
+          "oklch(70% 0.0153 90.24)",
+          "oklch(81% 0.0153 90.24)",
+          "oklch(95% 0.0153 90.24)"
+        ]
+      },
+      "belis-paper-2": {
+        "role": "neutral",
+        "displayName": "Papel secundário",
+        "tonalRamp": [
+          "oklch(15% 0.0177 96.12)",
+          "oklch(26% 0.0177 96.12)",
+          "oklch(37% 0.0177 96.12)",
+          "oklch(48% 0.0177 96.12)",
+          "oklch(59% 0.0177 96.12)",
+          "oklch(70% 0.0177 96.12)",
+          "oklch(81% 0.0177 96.12)",
+          "oklch(95% 0.0177 96.12)"
+        ]
+      },
+      "belis-ink": {
+        "role": "neutral",
+        "displayName": "Tinta Belis",
+        "tonalRamp": [
+          "oklch(15% 0.0079 285.67)",
+          "oklch(26% 0.0079 285.67)",
+          "oklch(37% 0.0079 285.67)",
+          "oklch(48% 0.0079 285.67)",
+          "oklch(59% 0.0079 285.67)",
+          "oklch(70% 0.0079 285.67)",
+          "oklch(81% 0.0079 285.67)",
+          "oklch(95% 0.0079 285.67)"
+        ]
+      },
+      "belis-green": {
+        "role": "primary",
+        "displayName": "Verde Belis",
+        "tonalRamp": [
+          "oklch(15% 0.1506 140.51)",
+          "oklch(26% 0.1506 140.51)",
+          "oklch(37% 0.1506 140.51)",
+          "oklch(48% 0.1506 140.51)",
+          "oklch(59% 0.1506 140.51)",
+          "oklch(70% 0.1506 140.51)",
+          "oklch(81% 0.1506 140.51)",
+          "oklch(95% 0.1506 140.51)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Creme global",
+        "tonalRamp": [
+          "oklch(15% 0.0137 92.99)",
+          "oklch(26% 0.0137 92.99)",
+          "oklch(37% 0.0137 92.99)",
+          "oklch(48% 0.0137 92.99)",
+          "oklch(59% 0.0137 92.99)",
+          "oklch(70% 0.0137 92.99)",
+          "oklch(81% 0.0137 92.99)",
+          "oklch(95% 0.0137 92.99)"
+        ]
+      },
+      "visual-muted": {
+        "role": "neutral",
+        "displayName": "Tinta secundária",
+        "tonalRamp": [
+          "oklch(15% 0.0127 106.90)",
+          "oklch(26% 0.0127 106.90)",
+          "oklch(37% 0.0127 106.90)",
+          "oklch(48% 0.0127 106.90)",
+          "oklch(59% 0.0127 106.90)",
+          "oklch(70% 0.0127 106.90)",
+          "oklch(81% 0.0127 106.90)",
+          "oklch(95% 0.0127 106.90)"
+        ]
+      },
+      "visual-rule": {
+        "role": "neutral",
+        "displayName": "Linha de papel",
+        "tonalRamp": [
+          "oklch(15% 0.0141 93.01)",
+          "oklch(26% 0.0141 93.01)",
+          "oklch(37% 0.0141 93.01)",
+          "oklch(48% 0.0141 93.01)",
+          "oklch(59% 0.0141 93.01)",
+          "oklch(70% 0.0141 93.01)",
+          "oklch(81% 0.0141 93.01)",
+          "oklch(95% 0.0141 93.01)"
+        ]
+      },
+      "visual-focus": {
+        "role": "primary",
+        "displayName": "Verde de foco",
+        "tonalRamp": [
+          "oklch(15% 0.1215 140.68)",
+          "oklch(26% 0.1215 140.68)",
+          "oklch(37% 0.1215 140.68)",
+          "oklch(48% 0.1215 140.68)",
+          "oklch(59% 0.1215 140.68)",
+          "oklch(70% 0.1215 140.68)",
+          "oklch(81% 0.1215 140.68)",
+          "oklch(95% 0.1215 140.68)"
+        ]
+      },
+      "visual-field": {
+        "role": "neutral",
+        "displayName": "Papel de campo",
+        "tonalRamp": [
+          "oklch(15% 0.0094 99.99)",
+          "oklch(26% 0.0094 99.99)",
+          "oklch(37% 0.0094 99.99)",
+          "oklch(48% 0.0094 99.99)",
+          "oklch(59% 0.0094 99.99)",
+          "oklch(70% 0.0094 99.99)",
+          "oklch(81% 0.0094 99.99)",
+          "oklch(95% 0.0094 99.99)"
+        ]
+      },
+      "visual-action-hover": {
+        "role": "primary",
+        "displayName": "Verde de interação",
+        "tonalRamp": [
+          "oklch(15% 0.1433 140.34)",
+          "oklch(26% 0.1433 140.34)",
+          "oklch(37% 0.1433 140.34)",
+          "oklch(48% 0.1433 140.34)",
+          "oklch(59% 0.1433 140.34)",
+          "oklch(70% 0.1433 140.34)",
+          "oklch(81% 0.1433 140.34)",
+          "oklch(95% 0.1433 140.34)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "brand-heading": {
+        "displayName": "Identidade tipográfica",
+        "purpose": "Marca e títulos do sistema Belis existente."
+      },
+      "global-body": {
+        "displayName": "Leitura global",
+        "purpose": "Família padrão do layout global; a landing possui família própria."
+      },
+      "global-mono": {
+        "displayName": "Códigos e medições",
+        "purpose": "Uso preservado nas superfícies existentes."
+      },
+      "visual-display": {
+        "displayName": "Título principal",
+        "purpose": "Hero da landing de comunicação visual."
+      },
+      "visual-headline": {
+        "displayName": "Título de seção",
+        "purpose": "Hierarquia recorrente da landing."
+      },
+      "visual-body": {
+        "displayName": "Leitura da landing",
+        "purpose": "Texto corrido em Archivo."
+      },
+      "visual-label": {
+        "displayName": "Rótulo de controle",
+        "purpose": "Rótulo do campo de nome e aba selecionada do personalizador; fontes das amostras não ampliam a escala da interface."
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating-contact",
+        "value": "0 8px 28px #11271740",
+        "purpose": "Separação ambiente do contato fixo; não é sombra padrão de cartões."
+      },
+      {
+        "name": "selected-reference",
+        "value": "inset 0 0 0 1px #347029",
+        "purpose": "Reforço de seleção dos radios de letra, efeito e cor."
+      },
+      {
+        "name": "sample-cast",
+        "value": "8px 13px 10px #121b1460",
+        "purpose": "Text-shadow da camada de volume da prévia; não usar em lettering dos fundos ou B de encerramento."
+      },
+      {
+        "name": "sample-halo",
+        "value": "0 0 10px var(--sign-light), 0 0 25px var(--sign-light), 0 0 45px color-mix(in srgb, var(--sign-light), transparent 40%)",
+        "purpose": "Halo restrito aos efeitos Halo de luz e Dupla luz; usa a tonalidade da cor escolhida."
+      },
+      {
+        "name": "atmosphere-tube",
+        "value": "drop-shadow(0 0 3px #74c365) drop-shadow(0 0 9px #74c36580)",
+        "purpose": "Filter dos contornos SVG decorativos claros; luz verde local, sem elevação dos controles."
+      },
+      {
+        "name": "atmosphere-script",
+        "value": "0 0 3px #e5ca8d, 0 0 15px #c2a36a90, 0 9px 32px #c2a36a30",
+        "purpose": "Text-shadow do lettering oi em branco quente, restrito à composição neon."
+      }
+    ],
+    "motion": [
+      {
+        "name": "button-state",
+        "value": "background .18s ease",
+        "purpose": "Hover dos CTAs verdes."
+      },
+      {
+        "name": "secondary-link",
+        "value": "transform .2s ease",
+        "purpose": "Deslocamento discreto da seta."
+      },
+      {
+        "name": "hero-tilt",
+        "value": "transform .5s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Inclinação da imagem apenas com mouse, desabilitada com movimento reduzido."
+      },
+      {
+        "name": "hero-arrival",
+        "value": "1.4s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Entrada única da imagem principal; removida com movimento reduzido."
+      },
+      {
+        "name": "sample-turn",
+        "value": "transform .6s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Giro solicitado pelo visitante ou posição inicial do efeito; transição removida com movimento reduzido."
+      },
+      {
+        "name": "sample-environment",
+        "value": "background-color .3s ease",
+        "purpose": "Troca de ambiente Dia/Noite da prévia; transição removida com movimento reduzido."
+      },
+      {
+        "name": "atmosphere-pointer",
+        "value": "transform 700ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Deslocamento decorativo por propriedades CSS e rAF agrupado por eventos de mouse; sem loop contínuo ou estado React. Estático no toque e em movimento reduzido; reset em saída, offscreen, visibilidade, mudança de preferência e blur."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "visual-mobile-max",
+        "value": "760px"
+      },
+      {
+        "name": "visual-compact-max",
+        "value": "1100px"
+      },
+      {
+        "name": "visual-wide-min",
+        "value": "1700px"
+      },
+      {
+        "name": "studio-compact-max",
+        "value": "1050px"
+      },
+      {
+        "name": "studio-sticky-max-height",
+        "value": "600px"
+      },
+      {
+        "name": "studio-narrow-max",
+        "value": "380px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "CTA primário",
+      "kind": "button",
+      "refersTo": "visual-button-primary",
+      "description": "Ação verde recorrente da landing de comunicação visual.",
+      "html": "<button type=\"button\" class=\"ds-button-primary\">Criar meu projeto <svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button>",
+      "css": ".ds-button-primary{font-family:var(--font-archivo,Archivo),sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:16px 22px;font-size:15px;font-weight:600;line-height:1.6;border:0;border-radius:4px;text-decoration:none;cursor:pointer;transition:background .18s ease;background:var(--belis-green,#74C365);color:var(--belis-ink,#16161A)}.ds-button-primary:hover{background:#89d47a}.ds-button-primary:focus-visible{outline:3px solid #347029;outline-offset:5px;}.ds-button-primary svg{flex-shrink:0;margin-left:8px}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none}}"
+    },
+    {
+      "name": "CTA invertido",
+      "kind": "button",
+      "refersTo": "visual-button-inverse",
+      "description": "Ação escura utilizada sobre o encerramento verde.",
+      "html": "<button type=\"button\" class=\"ds-button-inverse\">Falar com a Belis <svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button>",
+      "css": ".ds-button-inverse{font-family:var(--font-archivo,Archivo),sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:16px 22px;font-size:15px;font-weight:600;line-height:1.6;border:0;border-radius:4px;text-decoration:none;cursor:pointer;transition:background .18s ease;background:var(--belis-ink,#16161A);color:var(--belis-paper,#E9E5DA)}.ds-button-inverse:hover{background:#2c3329}.ds-button-inverse:focus-visible{outline:3px solid #347029;outline-offset:5px;}.ds-button-inverse svg{flex-shrink:0;margin-left:8px}@media(prefers-reduced-motion:reduce){.ds-button-inverse{transition:none}}"
+    },
+    {
+      "name": "Link de ação",
+      "kind": "button",
+      "refersTo": "visual-text-link",
+      "description": "Ação secundária com linha inferior e deslocamento discreto da seta.",
+      "html": "<a class=\"ds-text-link\" href=\"#seu-projeto\">Quero algo assim <svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a>",
+      "css": ".ds-text-link{font-family:var(--font-archivo,Archivo),sans-serif;display:inline-flex;align-items:center;gap:19px;min-height:44px;width:fit-content;color:var(--belis-ink,#16161A);font-size:14px;line-height:1.6;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding:10px 0 7px}.ds-text-link svg{transition:transform .2s ease}.ds-text-link:hover svg{transform:translate(2px,-2px)}.ds-text-link:focus-visible{outline:3px solid #347029;outline-offset:5px;}@media(prefers-reduced-motion:reduce){.ds-text-link svg{transition:none}}"
+    },
+    {
+      "name": "Campo de nome",
+      "kind": "input",
+      "refersTo": "visual-name-field",
+      "description": "Entrada de texto rotulada, usada para a amostra de letras.",
+      "html": "<div class=\"ds-name-field\"><label for=\"ds-sign-name\">Nome ou palavra</label><input id=\"ds-sign-name\" name=\"ds-sign-name\" value=\"Sua marca\" maxlength=\"24\" autocomplete=\"off\" spellcheck=\"false\" aria-describedby=\"ds-sign-help\"><span id=\"ds-sign-help\">Até 24 caracteres. Já tem um logo? Envie pelo WhatsApp.</span></div>",
+      "css": ".ds-name-field{font-family:var(--font-archivo,Archivo),sans-serif;color:var(--belis-ink,#16161A);line-height:1.6;max-width:420px}.ds-name-field label{display:block;font-size:14px;font-weight:600;margin-bottom:9px}.ds-name-field input{font-family:var(--font-archivo,Archivo),sans-serif;display:block;width:100%;background:#f1f0e9;border:1px solid #848879;border-radius:4px;padding:13px 16px;color:var(--belis-ink,#16161A);font-size:20px}.ds-name-field input:focus-visible{outline:3px solid #347029;outline-offset:5px;}.ds-name-field span{display:block;margin-top:8px;font-size:11px;color:#505548}"
+    },
+    {
+      "name": "Navegação de seção",
+      "kind": "nav",
+      "description": "Âncoras sempre visíveis; no mobile ocupam uma linha própria no cabeçalho.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Comunicação visual\"><a href=\"#inspiracoes\">Inspirações</a><a href=\"#como-funciona\">Como funciona</a><a href=\"#duvidas\">Dúvidas</a></nav>",
+      "css": ".ds-nav{font-family:var(--font-archivo,Archivo),sans-serif;display:flex;gap:clamp(20px,3vw,44px);line-height:1.6}.ds-nav a{color:var(--belis-ink,#16161A);font-size:14px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none}.ds-nav a:hover{text-decoration:underline;text-underline-offset:5px}.ds-nav a:focus-visible{outline:3px solid #347029;outline-offset:5px;}@media(max-width:760px){.ds-nav{justify-content:space-between;gap:14px;width:100%}.ds-nav a{font-size:12px;min-height:32px}}"
+    },
+    {
+      "name": "Referências de letra",
+      "kind": "custom",
+      "refersTo": "visual-style-choice",
+      "description": "18 radios em quatro colunas, três até 380px, com rolagem interna. A aplicação ativa as fontes das amostras a 700px da seção, sem preload; a interface continua em Archivo.",
+      "html": "<fieldset class=\"ds-style-fieldset\"><legend>Qual letra tem a sua cara? <span>18 estilos</span></legend><div class=\"ds-style-options\"><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"essencial\" checked><span class=\"ds-style-choice\"><span class=\"ds-essencial\" aria-hidden=\"true\">Aa</span><span>Essencial</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"classica\"><span class=\"ds-style-choice\"><span class=\"ds-classica\" aria-hidden=\"true\">Aa</span><span>Clássica</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"manuscrita\"><span class=\"ds-style-choice\"><span class=\"ds-manuscrita\" aria-hidden=\"true\">Aa</span><span>Manuscrita</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"marcante\"><span class=\"ds-style-choice\"><span class=\"ds-marcante\" aria-hidden=\"true\">Aa</span><span>Marcante</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"retro\"><span class=\"ds-style-choice\"><span class=\"ds-retro\" aria-hidden=\"true\">Aa</span><span>Retrô</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"geometrica\"><span class=\"ds-style-choice\"><span class=\"ds-geometrica\" aria-hidden=\"true\">Aa</span><span>Geométrica</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"criativa\"><span class=\"ds-style-choice\"><span class=\"ds-criativa\" aria-hidden=\"true\">Aa</span><span>Criativa</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"assinatura\"><span class=\"ds-style-choice\"><span class=\"ds-assinatura\" aria-hidden=\"true\">Aa</span><span>Assinatura</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"elegante\"><span class=\"ds-style-choice\"><span class=\"ds-elegante\" aria-hidden=\"true\">Aa</span><span>Elegante</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"editorial\"><span class=\"ds-style-choice\"><span class=\"ds-editorial\" aria-hidden=\"true\">Aa</span><span>Editorial</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"romana\"><span class=\"ds-style-choice\"><span class=\"ds-romana\" aria-hidden=\"true\">Aa</span><span>Romana</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"moderna\"><span class=\"ds-style-choice\"><span class=\"ds-moderna\" aria-hidden=\"true\">Aa</span><span>Moderna</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"arredondada\"><span class=\"ds-style-choice\"><span class=\"ds-arredondada\" aria-hidden=\"true\">Aa</span><span>Arredondada</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"compacta\"><span class=\"ds-style-choice\"><span class=\"ds-compacta\" aria-hidden=\"true\">Aa</span><span>Compacta</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"impacto\"><span class=\"ds-style-choice\"><span class=\"ds-impacto\" aria-hidden=\"true\">Aa</span><span>Impacto</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"artesanal\"><span class=\"ds-style-choice\"><span class=\"ds-artesanal\" aria-hidden=\"true\">Aa</span><span>Artesanal</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"caligrafica\"><span class=\"ds-style-choice\"><span class=\"ds-caligrafica\" aria-hidden=\"true\">Aa</span><span>Caligráfica</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-style-option\"><input type=\"radio\" name=\"ds-style\" value=\"futurista\"><span class=\"ds-style-choice\"><span class=\"ds-futurista\" aria-hidden=\"true\">Aa</span><span>Futurista</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label></div></fieldset>",
+      "css": ".ds-style-fieldset{font-family:var(--font-archivo,Archivo),sans-serif;border:0;padding:0;min-width:0;color:var(--belis-ink,#16161A);line-height:1.6}.ds-style-fieldset legend{padding:0;margin-bottom:14px;font-size:13px;color:#414b38}.ds-style-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-height:334px;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-gutter:stable;scrollbar-color:#6d7c61 #cbd0bf;padding:4px;scroll-padding:8px}.ds-style-option{position:relative;cursor:pointer;min-width:0}.ds-style-option>input{position:absolute;inset:0;width:100%;height:100%;opacity:0;z-index:1;cursor:pointer;margin:0}.ds-style-choice{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid #a4a895;padding:16px 3px 12px;border-radius:4px;min-height:105px}.ds-style-choice>span:first-child{font-size:32px;line-height:1.3}.ds-style-choice>span:nth-child(2){font-size:11px;overflow-wrap:anywhere;text-align:center;line-height:1.3}.ds-selected{opacity:0;color:#2b6125;flex-shrink:0}.ds-style-choice .ds-selected{position:absolute;top:6px;right:6px}.ds-style-option input:checked+.ds-style-choice{background:#f1f0e9;border-color:#347029;box-shadow:inset 0 0 0 1px #347029}.ds-style-option input:checked+.ds-style-choice>.ds-selected{opacity:1}.ds-style-option:hover>.ds-style-choice{background-color:#ffffff35}.ds-style-option input:focus-visible+.ds-style-choice{outline:3px solid #347029;outline-offset:3px}.ds-essencial{font-family: var(--font-archivo,\"Archivo\"), sans-serif; font-weight: 500;}.ds-classica{font-family: var(--font-sign-serif,\"Bodoni Moda\"), Georgia, serif; font-weight: 500;}.ds-manuscrita{font-family: var(--font-sign-script,\"Satisfy\"), cursive; font-weight: 400;}.ds-marcante{font-family: var(--font-sign-condensed,\"Bebas Neue\"), sans-serif; font-weight: 400;}.ds-retro{font-family: var(--font-sign-retro,\"Righteous\"), sans-serif; font-weight: 400;}.ds-geometrica{font-family: var(--font-sign-geometric,\"Syne\"), sans-serif; font-weight: 700;}.ds-criativa{font-family: var(--font-sign-display,\"Bungee\"), sans-serif; font-weight: 400;}.ds-assinatura{font-family: var(--font-sign-hand,\"Pacifico\"), cursive; font-weight: 400;}.ds-elegante{font-family: var(--font-sign-elegant,\"Cormorant Garamond\"), Georgia, serif; font-weight: 600;}.ds-editorial{font-family: var(--font-sign-editorial,\"Playfair Display\"), Georgia, serif; font-weight: 600;}.ds-romana{font-family: var(--font-sign-roman,\"Cinzel\"), Georgia, serif; font-weight: 600;}.ds-moderna{font-family: var(--font-sign-modern,\"Montserrat\"), sans-serif; font-weight: 600;}.ds-arredondada{font-family: var(--font-sign-rounded,\"Quicksand\"), sans-serif; font-weight: 600;}.ds-compacta{font-family: var(--font-sign-compact,\"Oswald\"), sans-serif; font-weight: 600;}.ds-impacto{font-family: var(--font-sign-impact,\"Anton\"), sans-serif; font-weight: 400;}.ds-artesanal{font-family: var(--font-sign-artisan,\"Caveat\"), cursive; font-weight: 600;}.ds-caligrafica{font-family: var(--font-sign-calligraphy,\"Dancing Script\"), cursive; font-weight: 600;}.ds-futurista{font-family: var(--font-sign-future,\"Orbitron\"), sans-serif; font-weight: 500;}.ds-style-fieldset legend>span{float:right;font-size:11px;color:#505548;padding-top:2px}@media(max-width:760px){.ds-style-options{max-height:286px;gap:7px}.ds-style-choice{min-height:98px;padding-top:14px}}@media(max-width:380px){.ds-style-options{grid-template-columns:repeat(3,minmax(0,1fr))}}"
+    },
+    {
+      "name": "Ambiente e giro da prévia",
+      "kind": "button",
+      "description": "Botões com aria-pressed e nomes acessíveis que contêm os textos visíveis; alternância é controlada pela aplicação.",
+      "html": "<div class=\"ds-preview-tools\"><button type=\"button\" aria-pressed=\"false\" aria-label=\"Ambiente: Dia\">Dia</button><button type=\"button\" aria-pressed=\"false\" aria-label=\"Girar amostra: Ver de lado\">Ver de lado</button></div>",
+      "css": ".ds-preview-tools{font-family:var(--font-archivo,Archivo),sans-serif;display:flex;justify-content:space-between;gap:12px;padding:16px 22px;background:#bfc1b2;color:#303c2c}.ds-preview-tools button{font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 10px;border:1px solid #77816d;border-radius:4px;background:transparent;color:inherit;font-size:12px;cursor:pointer}.ds-preview-tools button:hover{background:#ffffff20}.ds-preview-tools button:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Pergunta expansível",
+      "kind": "custom",
+      "description": "Details/summary nativos com divisórias e ícone de adição.",
+      "html": "<div class=\"ds-questions\"><details><summary>Como começar o projeto?<svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></summary><p>Uma foto, um logo ou uma referência já ajudam a tirar a ideia do papel.</p></details></div>",
+      "css": ".ds-questions{font-family:var(--font-archivo,Archivo),sans-serif;border-top:1px solid #c9c6bc;color:var(--belis-ink,#16161A);line-height:1.6}.ds-questions details{border-bottom:1px solid #c9c6bc}.ds-questions summary{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:74px;padding:20px 0;list-style:none;font-size:16px;font-weight:500;cursor:pointer}.ds-questions summary::-webkit-details-marker{display:none}.ds-questions summary svg{flex-shrink:0;transition:transform .2s}.ds-questions details[open] summary svg{transform:rotate(45deg)}.ds-questions summary:focus-visible{outline:3px solid #347029;outline-offset:5px;}.ds-questions details>p{color:#55554d;font-size:14px;line-height:1.8;padding:0 24px 25px 0;margin:0}@media(prefers-reduced-motion:reduce){.ds-questions summary svg{transition:none}}"
+    },
+    {
+      "name": "Amostra de letra com volume",
+      "kind": "custom",
+      "description": "Recorte estático do efeito Letras em relevo: 24 camadas, cor Verde e ambiente Dia. Miniaturas na aplicação usam 12 camadas. Catálogo com 18 fontes, 25 cores e 15 efeitos: Letras em relevo, Luz frontal, Halo de luz, Dupla luz, Efeito neon, Lateral translúcida, Faixa de luz, Duas faixas de luz, Meia lateral de luz, Luz por inteiro, Pontos de luz, Frente ripada, Luz emoldurada, Relevo bicolor, Borda elevada. Profundidade ilustrativa; ambiente e giro iniciais seguem lit/sideView. Pesquisa e limites: docs/comunicacao-visual-efeitos.md.",
+      "html": "<div class=\"ds-letter-preview ds-volume\"><div class=\"ds-letter-object\" role=\"img\" aria-label=\"Simulação ilustrativa de Sua marca, letra Essencial, Letras em relevo, cor Verde\"><span class=\"ds-letter-glow\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.0\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.043478260869565216\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.08695652173913043\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.13043478260869565\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.17391304347826086\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.21739130434782608\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.2608695652173913\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.30434782608695654\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.34782608695652173\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.391304347826087\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.43478260869565216\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.4782608695652174\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.5217391304347826\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.5652173913043478\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.6086956521739131\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.6521739130434783\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.6956521739130435\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.7391304347826086\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.782608695652174\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.8260869565217391\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.8695652173913043\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.9130434782608695\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:0.9565217391304348\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-layer\" data-translucent=\"false\" style=\"--layer:1.0\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-diffuser\" aria-hidden=\"true\">Sua marca</span><span class=\"ds-letter-face\" aria-hidden=\"true\">Sua marca</span></div></div>",
+      "css": ".ds-letter-preview{--sign-depth:14px;--sign-contrast:#eee7d5;--sign-face:#355e3c;--sign-edge:#203b27;--sign-light:#c3ecbc;font-family:var(--font-archivo,Archivo),sans-serif;height:280px;background:#bfc1b2;background-image:radial-gradient(ellipse at 35% 20%,#e6e5d2b3,transparent 70%);position:relative;display:grid;place-items:center;overflow:hidden;container-type:inline-size;perspective:900px}.ds-letter-preview::after{content:\"\";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 -35px 65px #484f4320}.ds-letter-object { display: grid; place-items: center; transform-style: preserve-3d; transform: rotateX(6deg) rotateY(-12deg); transition: transform .6s cubic-bezier(.16, 1, .3, 1); white-space: nowrap; font-size: min(17cqw, 104px); line-height: 1.5; }\n.ds-rotated { transform: rotateX(-7deg) rotateY(34deg); }\n.ds-letter-layer, .ds-letter-face, .ds-letter-glow, .ds-letter-diffuser { grid-area: 1 / 1; display: block; backface-visibility: hidden; }\n.ds-letter-layer { color: var(--sign-edge); transform: translateZ(calc(var(--layer) * var(--sign-depth))); }\n.ds-letter-layer[data-translucent=\"true\"] { color: var(--sign-light); }\n.ds-letter-layer:nth-child(2) { text-shadow: 8px 13px 10px #121b1460; }\n.ds-letter-face { color: var(--sign-face); transform: translateZ(calc(var(--sign-depth) + .8px)); text-shadow: 0 1px 1px #ffffff60; -webkit-text-stroke: .35px #ffffff28; }\n.ds-letter-diffuser { visibility: hidden; color: var(--sign-light); transform: translateZ(calc(var(--sign-depth) + .4px)); }\n.ds-letter-glow { color: transparent; transform: translateZ(-4px); }\n.ds-night.ds-volume .ds-letter-face { filter: brightness(1.25); }\n.ds-halo .ds-letter-glow, .ds-dupla .ds-letter-glow { color: var(--sign-light); text-shadow: 0 0 10px var(--sign-light), 0 0 25px var(--sign-light), 0 0 45px color-mix(in srgb, var(--sign-light), transparent 40%); filter: blur(5px); }\n.ds-halo .ds-letter-face { color: var(--sign-face); }\n.ds-frontal .ds-letter-face, .ds-dupla .ds-letter-face, .ds-total .ds-letter-face { color: var(--sign-light); text-shadow: 0 0 6px var(--sign-light), 0 0 22px color-mix(in srgb, var(--sign-light), transparent 65%); -webkit-text-stroke: .6px var(--sign-face); }\n.ds-neon .ds-letter-layer { color: transparent; -webkit-text-stroke: 1.4px var(--sign-edge); }\n.ds-neon .ds-letter-face { color: transparent; -webkit-text-stroke: 1.5px var(--sign-light); text-shadow: none; filter: drop-shadow(0 0 2px var(--sign-light)) drop-shadow(0 0 7px var(--sign-light)); }\n.ds-lateral .ds-letter-layer[data-translucent=\"true\"], .ds-total .ds-letter-layer[data-translucent=\"true\"] { text-shadow: 0 0 2px color-mix(in srgb, var(--sign-light), transparent 60%); }\n.ds-perfurado .ds-letter-diffuser, .ds-ripado .ds-letter-diffuser, .ds-recuado .ds-letter-diffuser { visibility: visible; text-shadow: 0 0 6px color-mix(in srgb, var(--sign-light), transparent 45%); }\n/* Masks depict actual apertures in an opaque face, with a diffuser behind it. */\n.ds-perfurado .ds-letter-face { mask-image: radial-gradient(circle at center, transparent 1.5px, #000 1.8px); mask-size: 6px 6px; -webkit-text-stroke: 0; text-shadow: none; }\n.ds-ripado .ds-letter-face { mask-image: repeating-linear-gradient(90deg, #000 0 5px, transparent 5px 7px); -webkit-text-stroke: 0; text-shadow: none; }\n.ds-recuado .ds-letter-layer { color: transparent; -webkit-text-stroke: .018em var(--sign-edge); }\n.ds-recuado .ds-letter-face { color: transparent; -webkit-text-stroke: .018em var(--sign-face); text-shadow: none; transform: translateZ(calc(var(--sign-depth) + 3px)); }\n.ds-recuado .ds-letter-diffuser { transform: translateZ(calc(var(--sign-depth) - 4px)); }\n.ds-bicolor .ds-letter-layer { color: var(--sign-contrast); }\n.ds-borda .ds-letter-face { -webkit-text-stroke: .028em var(--sign-contrast); paint-order: stroke fill; text-shadow: 1px 2px 2px #00000050; }\n"
+    },
+    {
+      "name": "Cores de referência",
+      "kind": "custom",
+      "description": "25 cores de produto em grade de cinco colunas, quatro até 380px, com rolagem interna. Face, lateral e luz vêm de signCatalog.ts; não ampliam a identidade Belis.",
+      "html": "<fieldset class=\"ds-color-fieldset\"><legend>Encontre o tom da sua ideia. <span>25 cores</span></legend><div class=\"ds-colors\"><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"verde\" checked><span class=\"ds-color-choice\"><span style=\"background-color:#355e3c\" aria-hidden=\"true\"></span><span>Verde</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"marfim\"><span class=\"ds-color-choice\"><span style=\"background-color:#e9e2cf\" aria-hidden=\"true\"></span><span>Marfim</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"grafite\"><span class=\"ds-color-choice\"><span style=\"background-color:#383c40\" aria-hidden=\"true\"></span><span>Grafite</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"terracota\"><span class=\"ds-color-choice\"><span style=\"background-color:#ad5d47\" aria-hidden=\"true\"></span><span>Terracota</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"champagne\"><span class=\"ds-color-choice\"><span style=\"background-color:#bda16c\" aria-hidden=\"true\"></span><span>Champagne</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"branco\"><span class=\"ds-color-choice\"><span style=\"background-color:#f7f5ee\" aria-hidden=\"true\"></span><span>Branco</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"preto\"><span class=\"ds-color-choice\"><span style=\"background-color:#202122\" aria-hidden=\"true\"></span><span>Preto</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"cinza\"><span class=\"ds-color-choice\"><span style=\"background-color:#7c8181\" aria-hidden=\"true\"></span><span>Cinza</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"prata\"><span class=\"ds-color-choice\"><span style=\"background-color:#c5c8c7\" aria-hidden=\"true\"></span><span>Prata</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"areia\"><span class=\"ds-color-choice\"><span style=\"background-color:#d3bfa0\" aria-hidden=\"true\"></span><span>Areia</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"caramelo\"><span class=\"ds-color-choice\"><span style=\"background-color:#b47b43\" aria-hidden=\"true\"></span><span>Caramelo</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"cobre\"><span class=\"ds-color-choice\"><span style=\"background-color:#b76b4a\" aria-hidden=\"true\"></span><span>Cobre</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"chocolate\"><span class=\"ds-color-choice\"><span style=\"background-color:#654337\" aria-hidden=\"true\"></span><span>Chocolate</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"vinho\"><span class=\"ds-color-choice\"><span style=\"background-color:#742f3f\" aria-hidden=\"true\"></span><span>Vinho</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"vermelho\"><span class=\"ds-color-choice\"><span style=\"background-color:#b83c39\" aria-hidden=\"true\"></span><span>Vermelho</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"coral\"><span class=\"ds-color-choice\"><span style=\"background-color:#d97b66\" aria-hidden=\"true\"></span><span>Coral</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"rosaantigo\"><span class=\"ds-color-choice\"><span style=\"background-color:#bf8890\" aria-hidden=\"true\"></span><span>Rosa antigo</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"blush\"><span class=\"ds-color-choice\"><span style=\"background-color:#e8bfb1\" aria-hidden=\"true\"></span><span>Blush</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"lavanda\"><span class=\"ds-color-choice\"><span style=\"background-color:#a396b7\" aria-hidden=\"true\"></span><span>Lavanda</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"ameixa\"><span class=\"ds-color-choice\"><span style=\"background-color:#644961\" aria-hidden=\"true\"></span><span>Ameixa</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"marinho\"><span class=\"ds-color-choice\"><span style=\"background-color:#243e5c\" aria-hidden=\"true\"></span><span>Azul marinho</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"petroleo\"><span class=\"ds-color-choice\"><span style=\"background-color:#30656b\" aria-hidden=\"true\"></span><span>Azul petróleo</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"azul\"><span class=\"ds-color-choice\"><span style=\"background-color:#487ca5\" aria-hidden=\"true\"></span><span>Azul</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"salvia\"><span class=\"ds-color-choice\"><span style=\"background-color:#9cae98\" aria-hidden=\"true\"></span><span>Sálvia</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label><label class=\"ds-color-option\"><input type=\"radio\" name=\"ds-color\" value=\"oliva\"><span class=\"ds-color-choice\"><span style=\"background-color:#7c8151\" aria-hidden=\"true\"></span><span>Verde oliva</span><svg class=\"ds-selected\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span></label></div></fieldset>",
+      "css": ".ds-color-fieldset{font-family:var(--font-archivo,Archivo),sans-serif;border:0;padding:0;min-width:0;color:var(--belis-ink,#16161A)}.ds-color-fieldset legend{font-size:13px;color:#414b38;margin-bottom:14px;width:100%}.ds-color-fieldset legend>span{float:right;font-size:11px;color:#505548;padding-top:2px}.ds-colors{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;max-height:334px;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-gutter:stable;scrollbar-color:#6d7c61 #cbd0bf;padding:4px;scroll-padding:8px}.ds-color-option{position:relative;cursor:pointer;min-width:0}.ds-color-option>input{position:absolute;inset:0;width:100%;height:100%;opacity:0;z-index:1;cursor:pointer;margin:0}.ds-color-choice{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:8px;min-height:84px;border:1px solid #a4a895;border-radius:4px;padding:10px 2px 6px;font-size:10px;text-align:center;line-height:1.2}.ds-color-choice>span:first-child{width:30px;height:30px;border-radius:50%;border:1px solid #00000020}.ds-color-choice>span:nth-child(2){max-width:100%;overflow-wrap:anywhere}.ds-color-choice>.ds-selected{opacity:0;color:#2b6125;flex-shrink:0;position:absolute;top:4px;right:4px;background:#f1f0e9;border-radius:50%;width:14px;height:14px}.ds-color-option input:checked+span{background:#f1f0e9;border-color:#347029;box-shadow:inset 0 0 0 1px #347029}.ds-color-option input:checked+span>.ds-selected{opacity:1}.ds-color-option:hover>span{background-color:#ffffff35}.ds-color-option input:focus-visible+span{outline:3px solid #347029;outline-offset:3px}@media(max-width:760px){.ds-colors{max-height:286px}}@media(max-width:380px){.ds-colors{grid-template-columns:repeat(4,minmax(0,1fr))}}"
+    },
+    {
+      "name": "Atmosfera de letras luminosas",
+      "kind": "custom",
+      "description": "Recorte estático da variante neon: monograma b., oi, arco e marca geométrica, com SVGs e CSS do componente. A aplicação também possui hero, gallery e closing com marca d’água original public/belis-blob-watermark.svg, não duplicada neste recorte. Arte passiva e ilustrativa; movimento de mouse é gerido pela aplicação.",
+      "html": "<div class=\"ds-atmosphere-surface\"><div class=\"ds-atmosphere ds-neon\" aria-hidden=\"true\"><div class=\"ds-neonArch ds-piece\"><svg class=\"ds-lightTube\" viewBox=\"0 0 260 330\" fill=\"none\" focusable=\"false\"><path d=\"M34 298V132a96 96 0 0 1 192 0v166H34Z\"/></svg></div><div class=\"ds-neonMonogram ds-piece\"><svg class=\"ds-lightTube\" viewBox=\"0 0 240 260\" fill=\"none\" focusable=\"false\"><path d=\"M58 28v190h62a62 62 0 0 0 0-124H89V28H58Zm31 97h31a31 31 0 0 1 0 62H89v-62Z\"/><circle cx=\"208\" cy=\"210\" r=\"8\"/></svg></div><span class=\"ds-neonScript ds-piece\">oi</span><svg class=\"ds-neonSpark ds-piece ds-lightTube\" viewBox=\"0 0 120 120\" fill=\"none\" focusable=\"false\"><path d=\"M60 12c0 32-16 48-48 48 32 0 48 16 48 48 0-32 16-48 48-48-32 0-48-16-48-48Z\"/></svg></div></div>",
+      "css": ".ds-atmosphere-surface{position:relative;overflow:hidden;background:#171b16;max-width:650px}.ds-atmosphere {\n  --cursor-x: 0;\n  --cursor-y: 0;\n  position: absolute;\n  inset: 0;\n  pointer-events: none;\n  user-select: none;\n}\n.ds-piece {\n  --travel-x: 20px;\n  --travel-y: 14px;\n  --angle: 0deg;\n  position: absolute;\n  transform: translate3d(calc(var(--cursor-x) * var(--travel-x)), calc(var(--cursor-y) * var(--travel-y)), 0) rotate(var(--angle));\n  transition: transform 700ms cubic-bezier(.16, 1, .3, 1);\n}\n.ds-lightTube {\n  overflow: visible;\n  stroke: #e5f6d5;\n  stroke-width: 3;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  filter: drop-shadow(0 0 3px #74c365) drop-shadow(0 0 9px #74c36580);\n}\n.ds-neon {\n  position: relative;\n  min-width: 0;\n  min-height: 620px;\n  isolation: isolate;\n  background: radial-gradient(ellipse at 42% 48%, #3e53312b, transparent 68%);\n}\n.ds-neonArch { width: 48%; max-width: 330px; left: 11%; top: 9%; --angle: -17deg; --travel-x: -22px; --travel-y: -16px; }\n.ds-neonArch svg { display: block; width: 100%; stroke: #91ce79; stroke-width: 2; filter: drop-shadow(0 0 3px #74c36580) drop-shadow(0 0 14px #74c36550); }\n.ds-neonMonogram { width: 44%; max-width: 290px; left: 33%; top: 17%; --angle: 12deg; --travel-x: 32px; --travel-y: 20px; }\n.ds-neonMonogram svg { display: block; width: 100%; stroke-width: 3.5; filter: drop-shadow(0 0 2px #74c365) drop-shadow(0 0 10px #74c365b3) drop-shadow(0 9px 22px #74c36535); }\n.ds-neonScript { left: 22%; bottom: 8%; font-family: var(--font-sign-script,Satisfy), cursive; font-size: clamp(150px, 17vw, 250px); line-height: 1; color: #f2ead6; text-shadow: 0 0 3px #e5ca8d, 0 0 15px #c2a36a90, 0 9px 32px #c2a36a30; --angle: -14deg; --travel-x: -28px; --travel-y: 22px; }\n.ds-neonSpark { width: 17%; max-width: 105px; right: 10%; bottom: 19%; --angle: 18deg; --travel-x: 24px; --travel-y: -20px; }\n@media(max-width:760px){.ds-neon{min-height:360px;max-width:520px;width:100%;margin-inline:auto}.ds-neonArch{width:40%;left:12%;top:9%}.ds-neonMonogram{width:40%;left:39%;top:12%}.ds-neonScript{font-size:160px;bottom:6%;left:23%}.ds-neonSpark{width:15%;right:10%;bottom:13%}}\n@media(max-width:380px){.ds-neon{min-height:320px}.ds-neonScript{font-size:140px}}\n@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){.ds-piece{transform:rotate(var(--angle));transition:none}}\n@media print{.ds-atmosphere{display:none}}\n"
+    }
+  ],
+  "narrative": {
+    "northStar": "Estúdio material Belis",
+    "overview": "A identidade existente combina marca tipográfica BELIS, preto, papel, tinta e verde, composição ampla e contraste forte. Archivo conduz títulos e marca; Inter Tight permanece como família de leitura global; IBM Plex Mono atende códigos e medições nas superfícies existentes. Volume e movimento já pertencem à linguagem Belis.\n\nComunicação visual estende essa identidade com uma superfície clara e amostras de letras, acabamentos e aplicações físicas. O estúdio material descreve esta extensão, não uma substituição do site inteiro. Os tokens `visual-*` e os componentes abaixo têm esse escopo. Cores de materiais e luz nas imagens não criam novas cores de marca. A extensão inclui a marca d’água original do blob Belis, letras contornadas e monogramas luminosos nas margens; a composição mais expressiva foi solicitada pelo usuário e mantém fotografia, leitura e ações como conteúdo principal.",
+    "keyCharacteristics": [
+      "Contraste de papel, tinta e preto com o verde Belis como assinatura.",
+      "Tipografia expressiva, áreas abertas e imagens de materiais em destaque.",
+      "Controles discretos, volume nas amostras e fundos com letras e contornos luminosos.",
+      "Marca d’água Belis e movimento decorativo que acompanha o mouse.",
+      "Conceitos ilustrativos identificados junto da experiência."
+    ],
+    "rules": [
+      {
+        "name": "The Identity Continuity Rule",
+        "body": "A extensão clara conserva papel, tinta e verde Belis; acabamentos de produto não redefinem a paleta global.",
+        "section": "colors"
+      },
+      {
+        "name": "The Clear Hierarchy Rule",
+        "body": "Na landing, o título principal usa 700 e os títulos de seção usam 600; não acrescentar pequenos rótulos acima deles.",
+        "section": "typography"
+      },
+      {
+        "name": "The Specimen Font Rule",
+        "body": "Famílias serifadas, manuscritas e de exibição demonstram possibilidades de letras; a interface da landing permanece em Archivo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Scope Rule",
+        "body": "Margens, escala e composição da comunicação visual se aplicam à sua landing; preservar as decisões das páginas existentes.",
+        "section": "layout"
+      },
+      {
+        "name": "The Material Depth Rule",
+        "body": "Na landing, extrusão demonstra letras e materiais na prévia; fundos decorativos podem usar contornos luminosos, sombras de luz e sobreposição, mantendo controles de navegação planos.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Passive Atmosphere Rule",
+        "body": "Fundos decorativos nunca recebem cliques ou foco e ficam fora da árvore de acessibilidade; movimento só acompanha o mouse em seções visíveis, com composição estática no toque e em movimento reduzido.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** preservar a identidade global Belis e aplicar os tokens `visual-*` somente à extensão de comunicação visual.",
+      "**Do** usar títulos diretos, fotografias de materiais e composições abertas na landing.",
+      "**Do** manter identificações de conceitos ilustrativos próximas das imagens e da simulação.",
+      "**Do** manter foco visível, rótulos associados e resposta à preferência por movimento reduzido.",
+      "**Do** usar o blob original como marca d’água e manter formas luminosas em verde e branco quente como decoração passiva.",
+      "**Do** reservar as 17 famílias específicas do catálogo às amostras e ao lettering decorativo documentado; manter Archivo na interface."
+    ],
+    "donts": [
+      "**Don't** introduzir arco-íris ou estética RGB como identidade Belis.",
+      "**Don't** aplicar a composição clara da landing automaticamente às páginas existentes.",
+      "**Don't** acrescentar rótulos decorativos acima dos títulos da landing ou extrusão ao lettering dos fundos e ao `B` de encerramento.",
+      "**Don't** tratar imagens geradas ou monogramas decorativos como trabalhos entregues, nem a simulação como especificação final.",
+      "**Don't** transformar medidas isoladas de legendas, ornamentos ou cenários em tokens globais."
+    ]
+  }
+}
