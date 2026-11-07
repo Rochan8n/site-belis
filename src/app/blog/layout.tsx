@@ -16,7 +16,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     <footer className={styles.footer}>
       <div className={styles.footerTop}>
         <Link href="/" className={styles.brand}>BELIS</Link>
-        <p>Audiovisual, sites e software para apresentar sua empresa e organizar sua próxima etapa.</p>
+        <p>Engenharia, comunicação visual e soluções digitais. Conhecimento para dar forma ao seu próximo projeto.</p>
       </div>
       <nav aria-label="Links do blog">
         <Link href="/blog">Todos os artigos</Link><Link href="/blog/politica-editorial">Política editorial</Link><Link href="/sobre">Sobre a Belis</Link><a href="/blog/feed.xml">RSS</a><Link href="/contato">Conversar sobre um projeto</Link>

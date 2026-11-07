@@ -64,6 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog`, lastModified: new Date(blogUpdatedAt), changeFrequency: "weekly", priority: 0.8 },
     ...BLOG_THEME_IDS.map(theme => ({ url: `${BASE_URL}${themePath(theme)}`, lastModified: new Date(posts.filter(post => post.theme === theme).reduce((latest, post) => post.updatedAt > latest ? post.updatedAt : latest, "2026-09-28")), changeFrequency: "monthly" as const, priority: 0.7 })),
     ...posts.map(post => ({ url: `${BASE_URL}/blog/${post.slug}`, lastModified: new Date(post.updatedAt), changeFrequency: "monthly" as const, priority: 0.7 })),
-    { url: `${BASE_URL}/blog/politica-editorial`, lastModified: new Date("2026-09-28"), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/blog/politica-editorial`, lastModified: new Date("2026-11-07"), changeFrequency: "yearly", priority: 0.3 },
   ];
 }

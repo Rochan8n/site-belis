@@ -1,4 +1,4 @@
-export type BlogTheme = "audiovisual" | "sites" | "sistemas";
+export type BlogTheme = "audiovisual" | "sites" | "sistemas" | "engenharia-reversa" | "comunicacao-visual";
 
 export type BlogBlock =
   | { type: "paragraph"; text: string }
@@ -20,6 +20,8 @@ export interface BlogPost {
   updatedAt: string;
   coverTitle: string;
   coverAlt: string;
+  coverImage?: string;
+  coverCaption?: string;
   quickAnswer: string;
   introduction: string[];
   sections: { id: string; title: string; blocks: BlogBlock[] }[];
@@ -40,4 +42,5 @@ export interface BlogCardData {
   publishedAt: string;
   readingMinutes: number;
   coverAlt: string;
+  coverImage?: string;
 }

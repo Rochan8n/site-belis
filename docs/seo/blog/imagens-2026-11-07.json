@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-11-07",
+  "tool": "image_gen (ferramenta nativa)",
+  "purpose": "Capas editoriais conceituais; não representam portfólio ou ensaios.",
+  "images": [
+    {
+      "slug": "pecas-fora-de-linha-engenharia-reversa",
+      "prompt": "Use case: product-mockup. Asset type: wide editorial cover for a Brazilian reverse engineering guide, landscape 16:9. A broken vintage black plastic dashboard air vent next to its carefully reconstructed new matte charcoal vent, on a warm ivory workshop surface. Original has one cracked mounting tab, replacement complete. Very refined editorial product photography, visible subtle additive layer texture on replacement, a small steel caliper at the edge. Restrained palette charcoal, ivory and muted sage green. Side softbox lighting, physically plausible parts, generous margins, no people, no text, no numbers, no labels, no logos, no watermark, no collage. Illustrative concept, not a documented customer project.",
+      "output": "public/images/blog/2026/pecas-fora-de-linha-engenharia-reversa.webp"
+    },
+    {
+      "slug": "escaneamento-3d-ou-modelagem-cad",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. A compact cast aluminum mechanical housing on a dark graphite surface, beside a second visualization of the SAME housing as a fine muted green triangular wireframe, and a third smooth clean ivory CAD-style solid housing. Three stages physically aligned left to right with breathing room. Elegant technical editorial 3D visualization, accurate matched silhouettes, no hologram environment.",
+      "output": "public/images/blog/2026/escaneamento-3d-ou-modelagem-cad.webp"
+    },
+    {
+      "slug": "quanto-custa-engenharia-reversa",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Overhead editorial still life of a single dark gray industrial plastic cover with rounded corners and four fixing holes, steel caliper, a plain blank cream engineering sheet containing only fine unlabeled orthographic drawings of this cover, green pencil and a tiny matching test coupon. Warm ivory workbench, editorial real materials, ordered asymmetrical composition.",
+      "output": "public/images/blog/2026/quanto-custa-engenharia-reversa.webp"
+    },
+    {
+      "slug": "pecas-carros-antigos-impressao-3d",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Editorial automotive photograph, wide close view through open passenger door of an anonymous classic 1980s coupe, brown leather interior, black dashboard, a small new dark plastic vent trim resting beside a weathered matching trim on a clean workbench in foreground. Soft daylight, warm brown and muted green details, no badges, no recognizable brand, no text.",
+      "output": "public/images/blog/2026/pecas-carros-antigos-impressao-3d.webp"
+    },
+    {
+      "slug": "materiais-impressao-3d-pecas-funcionais",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Macro editorial product photograph of four different 3D printed functional sample brackets on warm ivory blocks: matte black carbon-fiber-filled nylon (fine layer lines, NO woven carbon), soft off-white polymer, translucent smoky polymer, sage green polymer. Distinct surface textures, three-quarter view, restrained scientific still life, no text or numeric scales.",
+      "output": "public/images/blog/2026/materiais-impressao-3d-pecas-funcionais.webp"
+    },
+    {
+      "slug": "gabaritos-dispositivos-impressao-3d",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Photorealistic technical editorial close-up of a sage green custom 3D printed positioning fixture cradling a small aluminum housing on a clean workshop bench. Two sensible metal locating pins, a compact manual toggle clamp, one part seated correctly. Dark charcoal and warm ivory workshop background, high fidelity, no running machine, no people.",
+      "output": "public/images/blog/2026/gabaritos-dispositivos-impressao-3d.webp"
+    },
+    {
+      "slug": "letra-caixa-3d-ou-acrilico",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Premium editorial product photograph comparing three unbranded uppercase B letter samples with the same geometry: matte charcoal 3D printed dimensional B, solid polished milk-white acrylic B, brushed champagne metal B. Standing side by side on warm ivory plinth, beautifully lit, slight three-quarter view reveals thickness and layered versus smooth surface. Only three Bs, no additional text.",
+      "output": "public/images/blog/2026/letra-caixa-3d-ou-acrilico.webp"
+    },
+    {
+      "slug": "quanto-custa-letreiro-personalizado",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Premium overhead product editorial on cream studio desk: one large matte sage green dimensional uppercase B sign sample, a slim smaller dark letter B, a small neutral frosted lighting diffuser swatch, plain measuring tape without visible markings, blank cream paper and graphite pencil. Strong shadow, thoughtful composition, warm contemporary craft, no readable text except sculptural B.",
+      "output": "public/images/blog/2026/quanto-custa-letreiro-personalizado.webp"
+    },
+    {
+      "slug": "letra-caixa-iluminada-frontal-retroiluminada",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Photorealistic editorial comparison in a single wide composition: two identical large uppercase B channel letters mounted side by side on a matte charcoal wall. LEFT letter has bright warm-white luminous front and opaque dark sides, no back glow. RIGHT letter has completely opaque matte black face and a warm-white halo glowing on wall behind, clear separation from wall. Clear precise lighting difference, no labels, no extra text, restrained premium studio.",
+      "output": "public/images/blog/2026/letra-caixa-iluminada-frontal-retroiluminada.webp"
+    },
+    {
+      "slug": "logotipo-3d-parede-recepcao",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Editorial architectural photograph of a sophisticated small Brazilian reception: warm off-white textured wall, custom sculptural abstract sage green dimensional emblem of two curved interlocking geometric forms above a pale oak reception counter, a plant and discreet seating at edge. No lettering or brand names. Realistic natural daylight, calm composition, sign is focus, plausible physical shadows.",
+      "output": "public/images/blog/2026/logotipo-3d-parede-recepcao.webp"
+    },
+    {
+      "slug": "fachada-comercial-letreiro",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Architectural editorial photograph of a refined small storefront at blue hour: cream plaster facade, dark green door frame and broad window, warm illuminated dimensional uppercase sign reading ATELIÊ centered above entrance. Simple lettering entirely legible, no other words or logos. Tree shadow, subtle warm internal lighting, straight verticals, facade and sign are primary, no people or cars.",
+      "output": "public/images/blog/2026/fachada-comercial-letreiro.webp"
+    },
+    {
+      "slug": "como-preparar-logo-letreiro-3d",
+      "prompt": "Use case: product-mockup. Asset type: unique wide blog editorial cover for Belis Agency, landscape 16:9, refined contemporary material photography. No watermark. Not a client case, conceptual illustration. Generous margins to allow mild landscape cropping. Beautiful overhead editorial scene on ivory desk: a flat white card with a simple sage green B symbol drawn as a clean flat vector shape beside a physical dimensional matte sage green B of exactly same silhouette, small separate material swatches and pencil at edge. Visual transition from flat identity to physical sign, no UI, no screen, no labels or extra text.",
+      "output": "public/images/blog/2026/como-preparar-logo-letreiro-3d.webp"
+    }
+  ]
+}

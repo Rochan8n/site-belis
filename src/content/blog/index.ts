@@ -4,6 +4,18 @@ import { orcamentoLandingPage } from "./posts/orcamento-landing-page";
 import { siteOuLandingPage } from "./posts/site-ou-landing-page";
 import { softwareProntoOuSobMedida } from "./posts/software-pronto-ou-sob-medida";
 import { videoInstitucional } from "./posts/video-institucional";
+import { pecasForaDeLinha } from "./posts/pecas-fora-de-linha";
+import { escaneamentoCad } from "./posts/escaneamento-cad";
+import { orcamentoEngenharia } from "./posts/orcamento-engenharia";
+import { pecasClassicos } from "./posts/pecas-classicos";
+import { materiaisFuncionais } from "./posts/materiais-funcionais";
+import { gabaritos } from "./posts/gabaritos";
+import { letraCaixaMateriais } from "./posts/letra-caixa-materiais";
+import { orcamentoLetreiro } from "./posts/orcamento-letreiro";
+import { iluminacaoLetreiro } from "./posts/iluminacao-letreiro";
+import { logoRecepcao } from "./posts/logo-recepcao";
+import { fachadaLetreiro } from "./posts/fachada-letreiro";
+import { prepararLogo } from "./posts/preparar-logo";
 import { BLOG_THEMES, isBlogTheme } from "./themes";
 import type { BlogBlock, BlogCardData, BlogPost, BlogTheme } from "./types";
 import { SITE_URL } from "@/config/site";
@@ -15,7 +27,13 @@ export const BLOG_AUTHOR = {
   id: `${BLOG_SITE_URL}/#organization`,
 };
 
-const posts: BlogPost[] = [videoInstitucional, siteOuLandingPage, softwareProntoOuSobMedida, coberturaEventos, orcamentoLandingPage, automatizarProcessos];
+const posts: BlogPost[] = [
+  pecasForaDeLinha, letraCaixaMateriais, escaneamentoCad, orcamentoLetreiro,
+  orcamentoEngenharia, iluminacaoLetreiro, pecasClassicos, logoRecepcao,
+  materiaisFuncionais, fachadaLetreiro, gabaritos, prepararLogo,
+  videoInstitucional, siteOuLandingPage, softwareProntoOuSobMedida,
+  coberturaEventos, orcamentoLandingPage, automatizarProcessos,
+];
 
 function blockText(block: BlogBlock): string {
   switch (block.type) {
@@ -66,6 +84,9 @@ function validatePublishedPosts(inventory: BlogPost[]): void {
     if (wordCount(post) < 700 || !post.quickAnswer.trim() || post.sections.length < 3 || !post.faq.length || !post.sources.length || !post.coverAlt.trim()) {
       throw new Error(`Blog ${post.slug}: conteúdo, resposta, FAQ, fontes ou capa incompletos`);
     }
+    if (post.coverImage && (!/^\/images\/blog\/\d{4}\/[a-z0-9-]+\.webp$/.test(post.coverImage) || !post.coverCaption?.trim())) {
+      throw new Error(`Blog ${post.slug}: imagem editorial ou legenda inválida`);
+    }
     const sectionIds = new Set<string>();
     for (const section of post.sections) {
       if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(section.id) || sectionIds.has(section.id) || !section.title.trim()) throw new Error(`Blog ${post.slug}: seção inválida ou duplicada`);
@@ -100,7 +121,7 @@ export function getBlogPost(slug: string): BlogPost | undefined {
 }
 
 export function getBlogCards(theme?: BlogTheme): BlogCardData[] {
-  return getBlogPosts(theme).map(post => ({ slug: post.slug, title: post.title, description: post.description, theme: post.theme, format: post.format, publishedAt: post.publishedAt, readingMinutes: readingMinutes(post), coverAlt: post.coverAlt }));
+  return getBlogPosts(theme).map(post => ({ slug: post.slug, title: post.title, description: post.description, theme: post.theme, format: post.format, publishedAt: post.publishedAt, readingMinutes: readingMinutes(post), coverAlt: post.coverAlt, coverImage: post.coverImage }));
 }
 
 export function getRelatedPosts(post: BlogPost): BlogCardData[] {
@@ -109,7 +130,7 @@ export function getRelatedPosts(post: BlogPost): BlogCardData[] {
 }
 
 export function blogPath(slug: string): string { return `/blog/${slug}`; }
-export function coverPath(slug: string): string { return `${blogPath(slug)}/capa`; }
+export function coverPath(slug: string): string { return getBlogPost(slug)?.coverImage ?? `${blogPath(slug)}/capa`; }
 export function whatsappHref(post: BlogPost): string { return `https://wa.me/5511973138895?text=${encodeURIComponent(`${post.cta.message}\nOrigem: ${BLOG_SITE_URL}${blogPath(post.slug)}`)}`; }
 
 export function formatBlogDate(value: string): string {

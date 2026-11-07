@@ -109,6 +109,7 @@ export function VisualLanding() {
         <p>Comunicação visual feita para a sua marca.</p>
         <div>
           <Link href="/">Conheça a Belis</Link>
+          <Link href="/blog/temas/comunicacao-visual">Guias de comunicação visual</Link>
           <ServiceLinks currentPath={VISUAL_SERVICE.href} />
           <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
         </div>

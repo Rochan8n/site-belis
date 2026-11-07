@@ -98,6 +98,7 @@ export function EngineeringLanding() {
         <span>© {new Date().getFullYear()} BELIS · SÃO PAULO</span>
         <div>
           <Link href="/">Conheça a Belis</Link>
+          <Link href="/blog/temas/engenharia-reversa">Guias de engenharia reversa</Link>
           <ServiceLinks currentPath={ENGINEERING_SERVICE.href} />
           <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
         </div>
