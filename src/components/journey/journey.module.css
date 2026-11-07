@@ -266,6 +266,7 @@
 .hudTop > span:last-child { text-align: right; }
 .blogLink { display: inline-flex; align-items: center; min-height: 44px; pointer-events: auto; color: inherit; font-size: 11px; text-underline-offset: 4px; padding-block: 12px; }
 .blogLink:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.homeLinks { display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
 .hudTop button {
   pointer-events: auto; border: 0; padding: 5px; background: transparent; color: inherit; font: 700 14px var(--font-archivo),
     sans-serif;
@@ -362,6 +363,10 @@
   .hudBottom { display: none !important; }
   .hudTop > span { min-width: 65px; font-size: 7px; }
   .hudTop button { font-size: 12px; }
+  .hudTop { flex-wrap: wrap; }
+  .hudTop .homeLinks { width: 100%; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+  .homeLinks .blogLink { font-size: 8px; min-height: 32px; padding-block: 6px; }
+  .homeClock { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .spacer { scroll-snap-align: none; }

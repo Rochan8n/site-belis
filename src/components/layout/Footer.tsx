@@ -69,6 +69,8 @@ export function Footer() {
           <a href="https://www.instagram.com/belisvideo/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
           <a href="mailto:Lucas@belis.agency">LUCAS@BELIS.AGENCY</a>
           <Link href="/blog">BLOG ↗</Link>
+          <Link href="/comunicacao-visual">COMUNICAÇÃO VISUAL ↗</Link>
+          <Link href="/engenharia-reversa">ENGENHARIA REVERSA ↗</Link>
         </div>
         <span>23.5505° S · 46.6333° W</span>
         <span>© {new Date().getFullYear()} BELIS · SÃO PAULO</span>

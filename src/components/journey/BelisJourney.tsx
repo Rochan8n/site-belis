@@ -238,7 +238,7 @@ export function BelisJourney() {
           >
             BELIS <i>®</i>
           </button>
-          <span><TransitionLink className={styles.blogLink} href="/blog" prefetch={false}>BLOG ↗</TransitionLink> · {hud.time}</span>
+          <span className={styles.homeLinks}><TransitionLink className={styles.blogLink} href="/engenharia-reversa" prefetch={false}>ENGENHARIA REVERSA ↗</TransitionLink><TransitionLink className={styles.blogLink} href="/comunicacao-visual" prefetch={false}>COMUNICAÇÃO VISUAL ↗</TransitionLink><TransitionLink className={styles.blogLink} href="/blog" prefetch={false}>BLOG ↗</TransitionLink><span className={styles.homeClock}>{hud.time}</span></span>
         </header>
         <footer className={styles.hudBottom}>
           <span>ROT. {hud.rotation}°</span>

@@ -13,7 +13,7 @@ const SiteChromeFull = dynamic(() =>
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  if (pathname === "/" || pathname === "/blog" || pathname.startsWith("/blog/")) {
+  if (pathname === "/" || pathname === "/comunicacao-visual" || pathname === "/engenharia-reversa" || pathname === "/blog" || pathname.startsWith("/blog/")) {
     return <>{children}</>;
   }
 
