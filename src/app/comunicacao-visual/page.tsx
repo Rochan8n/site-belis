@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Anton, Bebas_Neue, Bodoni_Moda, Bungee, Caveat, Cinzel, Cormorant_Garamond, Dancing_Script, Montserrat, Orbitron, Oswald, Pacifico, Playfair_Display, Quicksand, Righteous, Satisfy, Syne } from "next/font/google";
 import { VisualLanding } from "@/components/visual/VisualLanding";
+import { VISUAL_IMAGE_VERSION } from "@/components/visual/visualContent";
 import { SITE_URL } from "@/config/site";
 
 const bodoni = Bodoni_Moda({ subsets: ["latin"], weight: "500", variable: "--font-sign-serif", preload: false, display: "swap" });
@@ -23,7 +24,7 @@ const orbitron = Orbitron({ subsets: ["latin"], weight: "500", variable: "--font
 const TITLE = "Comunicação Visual: Letras Caixa e Fachadas em SP";
 const DESCRIPTION = "Letras caixa, logos em relevo e letreiros com efeito neon feitos para sua marca. Criação e produção em São Paulo, com envio para todo o Brasil. Peça seu orçamento.";
 const URL = `${SITE_URL}/comunicacao-visual`;
-const IMAGE = "/images/comunicacao-visual/og-comunicacao-visual.jpg";
+const IMAGE = `/images/comunicacao-visual/og-comunicacao-visual.jpg?v=${VISUAL_IMAGE_VERSION}`;
 
 export const viewport: Viewport = { themeColor: "#e9e5da", colorScheme: "light" };
 export const metadata: Metadata = {

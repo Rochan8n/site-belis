@@ -18,7 +18,7 @@ export function ScanWorkbench() {
       {stages.map(({ label, icon: Icon }, index) => <button key={label} type="button" aria-pressed={stage === index} onClick={() => setStage(index)}><Icon size={17} aria-hidden="true" />{label}</button>)}
     </div>
     <div className={styles.cadViewport} data-stage={stage}>
-      <div className={styles.viewportMeta}><span>BELIS / ESTUDO DE COMPONENTE</span><span>ISO VIEW</span></div>
+      <div className={styles.viewportMeta}><span>Estudo ilustrativo de componente</span></div>
       <svg viewBox="0 0 680 390" role="img" aria-label={`Estudo ilustrativo de flange na etapa ${current.label}; sem escala`} className={styles.cadDrawing}>
         <defs>
           <pattern id="engineering-scan-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="currentColor" /></pattern>
@@ -40,8 +40,8 @@ export function ScanWorkbench() {
           {[[137, 229], [238, 274], [444, 91], [548, 136]].map(([cx, cy]) => <ellipse key={cx} cx={cx} cy={cy} rx="7" ry="3.5" className={styles.cadHole} />)}
         </g>
         <g fill="none" stroke="currentColor" className={styles.cadCallouts}><path d="M212 150 131 95H67M493 129 558 63H620M372 221 463 307h120" /><circle cx="212" cy="150" r="4" /><circle cx="493" cy="129" r="4" /><circle cx="372" cy="221" r="4" /></g>
-        <g fill="currentColor" fontFamily="monospace" fontSize="11"><text x="64" y="85">SUPERFÍCIE</text><text x="556" y="53">ENCAIXE</text><text x="468" y="325">FIXAÇÃO</text></g>
       </svg>
+      <p className={styles.cadLegend}>Superfície · Encaixes · Fixação</p>
       <div className={styles.viewportBottom}><span>{current.code}</span><span>ILUSTRAÇÃO / SEM ESCALA</span></div>
     </div>
     <div className={styles.stageDescription} aria-live="polite" aria-atomic="true"><h3>{current.title}</h3><p>{current.text}</p></div>

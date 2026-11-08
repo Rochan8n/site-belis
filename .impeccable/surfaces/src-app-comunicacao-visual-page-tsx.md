@@ -7,7 +7,7 @@ related_targets: ["src/components/visual/VisualLanding.tsx","src/components/visu
 
 # Comunicação visual
 
-Last Updated: 2026-11-06
+Last Updated: 2026-11-08
 
 Target: src/app/comunicacao-visual/page.tsx
 Mode: persuade
@@ -27,6 +27,11 @@ letras que acompanham o mouse e formas/logos neon; registrado em
 .impeccable/visual-brief.md. Amplia a decoração sem substituir a composição ou o seed.
 
 Inventory:
+- Refinamento de 8/11: CTA de orçamento explícito e atalho do hero para #seu-projeto;
+  quatro combinações iniciais aplicam fonte/efeito/cor, mantendo catálogo completo;
+  seção escura explica critérios do projeto em vez de repetir personalização.
+  Imagens atuais e identificação de conceitos preservadas; novos prompts em
+  docs/prompts-comunicacao-visual.md aguardam geração externa e seleção.
 - Marca, navegação, títulos, texto, CTA: HTML/CSS com Archivo do sistema existente.
 - Hero a/B com material e sombra: raster gerado, sem recorte do comp; CSS perspective.
 - Controles de materiais do comp: omitidos por materiais não confirmados; substituídos

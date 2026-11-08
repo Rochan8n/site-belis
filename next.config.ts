@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   // Keep build-time page generation within the project's process budget.
   experimental: { cpus: 1 },
   images: {
+    localPatterns: [
+      { pathname: "/**", search: "" },
+      { pathname: "/images/comunicacao-visual/**", search: "?v=20261108" },
+    ],
     remotePatterns: [
       {
         protocol: "https",

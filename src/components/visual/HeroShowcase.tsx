@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, type PointerEvent } from "react";
+import { VISUAL_IMAGE_VERSION } from "./visualContent";
 import styles from "./visual.module.css";
 
 export function HeroShowcase() {
@@ -26,8 +27,8 @@ export function HeroShowcase() {
       <div ref={scene} className={styles.heroScene} onPointerMove={move} onPointerLeave={reset}>
         <div className={styles.heroImage}>
           <Image
-            src="/images/comunicacao-visual/hero-letras.webp"
-            alt="Estudo de letras com volume: a em branco e verde, B serifado preto, sobre uma base de pedra"
+            src={`/images/comunicacao-visual/hero-letras.webp?v=${VISUAL_IMAGE_VERSION}`}
+            alt="Estudo de letras caixa sobre uma bancada: B grafite e a com frente marfim e laterais verdes"
             width={1536}
             height={1024}
             sizes="(max-width: 760px) 100vw, 62vw"

@@ -71,6 +71,14 @@ export type FontId = typeof signFonts[number]["id"];
 export type DesignId = typeof signDesigns[number]["id"];
 export type ColorId = typeof signColors[number]["id"];
 
+// Starting points for the visual preview, not manufacturing specifications.
+export const signPresets = [
+  { id: "recepcao", label: "Recepção discreta", description: "Traço simples, relevo e grafite.", fontId: "moderna", designId: "volume", colorId: "grafite" },
+  { id: "fachada", label: "Fachada marcante", description: "Letra alta com luz por trás.", fontId: "marcante", designId: "halo", colorId: "branco" },
+  { id: "luz", label: "Letreiro luminoso", description: "Escrita leve com efeito neon.", fontId: "manuscrita", designId: "neon", colorId: "marfim" },
+  { id: "delicada", label: "Traço delicado", description: "Letra clássica em terracota.", fontId: "classica", designId: "volume", colorId: "terracota" },
+] as const satisfies readonly { id: string; label: string; description: string; fontId: FontId; designId: DesignId; colorId: ColorId }[];
+
 /** Position along the letter's depth, back (0) to front (1). */
 export function isTranslucentLayer(design: DesignId, position: number) {
   if (design === "lateral" || design === "total") return position > 0.04 && position < 0.96;

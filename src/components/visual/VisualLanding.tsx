@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ServiceLinks } from "@/components/layout/ServiceLinks";
+import { VISUAL_SERVICE } from "@/config/site";
 import { ArrowDown, ArrowUpRight, Check, MapPin, Plus } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { HeroShowcase } from "./HeroShowcase";
@@ -7,7 +9,7 @@ import { SignStudio } from "./SignStudio";
 import { WhatsAppLink } from "./WhatsAppLink";
 import { FloatingVisualWhatsApp } from "./FloatingVisualWhatsApp";
 import { VisualAtmosphere } from "./VisualAtmosphere";
-import { visualFaqs, visualProjects } from "./visualContent";
+import { VISUAL_IMAGE_VERSION, visualFaqs, visualProjects } from "./visualContent";
 import styles from "./visual.module.css";
 
 export function VisualLanding() {
@@ -16,12 +18,12 @@ export function VisualLanding() {
       <a href="#conteudo" className={styles.skipLink}>Pular para o conteúdo</a>
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="Belis — página inicial">BELIS<span>®</span></Link>
-        <nav aria-label="Comunicação visual" className={styles.nav}>
+        <nav aria-label="Navegação da página" className={styles.nav}>
           <a href="#inspiracoes">Inspirações</a>
           <a href="#como-funciona">Como funciona</a>
           <a href="#duvidas">Dúvidas</a>
         </nav>
-        <WhatsAppLink placement="header" className={styles.headerCta}>Criar meu projeto <ArrowUpRight size={17} aria-hidden="true" /></WhatsAppLink>
+        <WhatsAppLink placement="header" className={styles.headerCta}>Pedir orçamento <ArrowUpRight size={17} aria-hidden="true" /></WhatsAppLink>
       </header>
 
       <main id="conteudo">
@@ -29,9 +31,9 @@ export function VisualLanding() {
           <VisualAtmosphere variant="hero" />
           <div className={styles.heroCopy}>
             <h1 id="hero-title">Sua marca.<br />Em outra<br /><span>dimensão.</span></h1>
-            <p className={styles.heroDescription}>Letras caixa, fachadas e logos feitos para a sua marca. Do seu jeito.</p>
-            <WhatsAppLink placement="hero" className={styles.button}><FaWhatsapp size={22} aria-hidden="true" /> Criar meu projeto <ArrowUpRight size={19} aria-hidden="true" /></WhatsAppLink>
-            <a href="#inspiracoes" className={styles.exploreLink}>Encontre sua inspiração <ArrowDown size={16} aria-hidden="true" /></a>
+            <p className={styles.heroDescription}>Letras caixa, logos em relevo e letreiros sob medida para fachadas e ambientes. Criamos, produzimos e enviamos para você.</p>
+            <WhatsAppLink placement="hero" className={styles.button}><FaWhatsapp size={22} aria-hidden="true" /> Pedir orçamento no WhatsApp <ArrowUpRight size={19} aria-hidden="true" /></WhatsAppLink>
+            <a href="#seu-projeto" className={styles.exploreLink}>Simular meu letreiro <ArrowDown size={16} aria-hidden="true" /></a>
           </div>
           <HeroShowcase />
         </section>
@@ -45,14 +47,14 @@ export function VisualLanding() {
         <section className={styles.gallery} id="inspiracoes" aria-labelledby="gallery-title">
           <VisualAtmosphere variant="gallery" />
           <div className={styles.sectionIntro}>
-            <h2 id="gallery-title">Letras caixa, fachadas e logos.<br />Com a sua cara.</h2>
-            <div><p>Da primeira impressão na rua ao detalhe que recebe seu cliente. A gente transforma a identidade da sua marca em algo que ocupa o mundo.</p><p className={styles.disclosure}>As imagens a seguir são conceitos ilustrativos gerados por IA para inspirar seu projeto, não trabalhos já entregues.</p></div>
+            <h2 id="gallery-title">Na fachada.<br />Na recepção. Na sua marca.</h2>
+            <div><p>Veja possibilidades de aplicação: letras para a entrada, logos em relevo e letreiros com luz. Seu espaço e sua identidade orientam o desenho.</p><p className={styles.disclosure}>As imagens a seguir são conceitos ilustrativos gerados por IA para inspirar seu projeto, não trabalhos já entregues.</p></div>
           </div>
           <div className={styles.projectGrid}>
             {visualProjects.map((project) => (
               <article key={project.id} className={`${styles.project} ${styles[`project_${project.id}`]}`}>
                 <figure>
-                  <Image src={`/images/comunicacao-visual/${project.image}.webp`} alt={project.alt} width={1536} height={1024} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 60vw" loading="lazy" />
+                  <Image src={`/images/comunicacao-visual/${project.image}.webp?v=${VISUAL_IMAGE_VERSION}`} alt={project.alt} width={1536} height={1024} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 60vw" loading="lazy" />
                 </figure>
                 <div className={styles.projectDescription}>
                   <h3>{project.title}</h3>
@@ -68,7 +70,7 @@ export function VisualLanding() {
 
         <section className={styles.process} id="como-funciona" aria-labelledby="process-title">
           <div className={styles.processIntro}>
-            <h2 id="process-title">Uma conversa.<br />O começo da sua<br />próxima fachada.</h2>
+            <h2 id="process-title">Da sua referência<br />à peça pronta.</h2>
             <p>Você não precisa chegar com tudo resolvido. Uma foto, um logo ou uma referência já ajudam a tirar a ideia do papel.</p>
             <WhatsAppLink placement="process" className={styles.textLink}>Vamos falar sobre seu projeto <ArrowUpRight size={19} aria-hidden="true" /></WhatsAppLink>
           </div>
@@ -82,10 +84,14 @@ export function VisualLanding() {
         <section className={styles.personal} aria-labelledby="personal-title">
           <VisualAtmosphere variant="neon" />
           <div className={styles.personalCopy}>
-            <h2 id="personal-title">A letra certa muda<br />toda a conversa.</h2>
-            <p>Uma fachada delicada pede um traço. Uma marca ousada pede outro. Por isso, a escolha vai além de uma fonte bonita: precisa conversar com o seu negócio.</p>
-            <p>Criamos letras e logos personalizados, combinando proporção, volume, cor e acabamento para o seu espaço. Tem uma ideia diferente? É por aí que a gente começa.</p>
-            <ul><li><Check size={18} aria-hidden="true" /> Identidade da sua marca como ponto de partida</li><li><Check size={18} aria-hidden="true" /> Formatos e medidas pensados para o local</li><li><Check size={18} aria-hidden="true" /> Opções com volume e efeito de luz</li></ul>
+            <h2 id="personal-title">O que define<br />o seu letreiro.</h2>
+            <p>Uma foto do espaço e uma medida aproximada ajudam a definir proporção, acabamento e iluminação. Você recebe uma proposta com escopo, valor e prazo antes da produção.</p>
+            <dl className={styles.projectDecisions}>
+              <div><dt><Check size={18} aria-hidden="true" /> Tamanho e leitura</dt><dd>Distância de quem olha, área disponível e detalhes do logo orientam o desenho.</dd></div>
+              <div><dt><Check size={18} aria-hidden="true" /> Acabamento e luz</dt><dd>Volume, cor e efeito de iluminação são avaliados junto do local de uso.</dd></div>
+              <div><dt><Check size={18} aria-hidden="true" /> Fixação e envio</dt><dd>Superfície, cidade e condições de montagem entram na proposta. Instalação combinada à parte.</dd></div>
+            </dl>
+            <WhatsAppLink placement="details" className={styles.textLink}>Avaliar meu espaço <ArrowUpRight size={19} aria-hidden="true" /></WhatsAppLink>
           </div>
         </section>
 
@@ -107,6 +113,7 @@ export function VisualLanding() {
         <div>
           <Link href="/">Conheça a Belis</Link>
           <Link href="/blog/temas/comunicacao-visual">Guias de comunicação visual</Link>
+          <ServiceLinks currentPath={VISUAL_SERVICE.href} />
           <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
         </div>
         <small>© {new Date().getFullYear()} Belis Agency · São Paulo</small>

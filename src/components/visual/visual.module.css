@@ -48,7 +48,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .button { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-height: 56px; padding: 16px 22px; background: var(--green); color: var(--ink); font-size: 15px; font-weight: 600; border-radius: 4px; transition: background .18s ease; }
 .hero .button { margin-top: 24px; }
 .button svg:last-child { margin-left: 8px; flex-shrink: 0; }
-.exploreLink { width: fit-content; display: flex; align-items: center; gap: 12px; min-height: 36px; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.exploreLink { width: fit-content; display: flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 4px; font-size: 14px; color: var(--muted); }
 .exploreLink:hover { color: var(--ink); }
 .heroFigure { min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding: 26px 0 26px 22px; position: relative; z-index: 1; }
 .heroScene { position: relative; perspective: 1000px; }
@@ -89,9 +89,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .personal { display: grid; grid-template-columns: 1fr 1fr; background: #171b16; color: var(--paper); position: relative; overflow: clip; }
 .personalCopy { padding: 85px var(--edge) 80px 36px; align-self: center; position: relative; z-index: 1; }
 .personalCopy > p { font-size: 15px; line-height: 1.8; max-width: 490px; color: #c6c8bc; margin-top: 24px; }
-.personalCopy ul { list-style: none; padding: 0; margin: 30px 0 0; }
-.personalCopy li { display: flex; gap: 11px; align-items: flex-start; margin-top: 14px; font-size: 13px; }
-.personalCopy li svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+.projectDecisions { margin: 30px 0 0; }
+.projectDecisions > div { border-top: 1px solid #454f40; padding-block: 18px; }
+.projectDecisions dt { display: flex; gap: 11px; align-items: center; font-size: 16px; font-weight: 600; }
+.projectDecisions dt svg { color: var(--green); flex-shrink: 0; }
+.projectDecisions dd { margin: 8px 0 0 29px; color: #c6c8bc; font-size: 14px; line-height: 1.65; }
+.personalCopy .textLink { margin-top: 12px; }
 .faq { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; padding: 112px var(--edge); }
 .faqIntro p { max-width: 300px; margin-top: 22px; color: var(--muted); font-size: 15px; }
 .faqIntro .textLink { margin-top: 22px; }
@@ -113,8 +116,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .closingLetter span { position: absolute; font-size: 35px; right: -35px; top: 20px; color: var(--ink); text-shadow: none; }
 .footer { display: grid; grid-template-columns: auto 1fr auto; gap: 25px 45px; align-items: center; padding: 50px var(--edge) 82px; }
 .footer p { color: var(--muted); font-size: 13px; }
-.footer > div { display: flex; gap: 25px; font-size: 12px; }
+.footer > div { display: flex; flex-wrap: wrap; gap: 8px 25px; font-size: 12px; }
 .footer a { color: inherit; }
+.footer > div a { display: inline-flex; align-items: center; min-height: 44px; }
 .footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .footer small { grid-column: 2 / -1; color: var(--muted); font-size: 11px; }
 .floatingWhatsApp { position: fixed; z-index: 950; right: 24px; bottom: max(24px, env(safe-area-inset-bottom)); min-height: 58px; display: flex; align-items: center; gap: 12px; padding: 14px 20px 14px 16px; border-radius: 40px; background: #183d25; color: #fff; box-shadow: 0 8px 28px #11271740; font-size: 12px; font-weight: 500; }
@@ -146,8 +150,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 @media (max-width: 760px) {
   .header { min-height: 80px; gap: 16px; flex-wrap: wrap; padding-block: 20px 14px; }
   .brand { font-size: 29px; }
-  .nav { order: 3; width: 100%; margin: 0; justify-content: space-between; gap: 14px; }
-  .nav a { font-size: 12px; min-height: 32px; }
+  .nav { order: 3; width: 100%; margin: 0; flex-wrap: wrap; gap: 0 14px; }
+  .nav a { font-size: 12px; min-height: 44px; }
   .headerCta { font-size: 12px; gap: 8px; min-height: 44px; padding: 10px 12px; }
   .hero { display: flex; flex-direction: column; min-height: auto; align-items: stretch; }
   .heroCopy { padding: 37px var(--edge) 30px; }
@@ -155,7 +159,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   .hero h1 br:nth-child(2) { display: none; }
   .hero h1 span::before { content: " "; }
   .heroDescription { padding-top: 22px; font-size: 16px; line-height: 1.6; max-width: 480px; }
-  .hero .button { margin-top: 24px; }
+  .hero .button { margin-top: 24px; font-size: 13px; gap: 8px; padding-inline: 13px; }
+  .hero .button svg { flex-shrink: 0; }
+  .hero .button svg:last-child { margin-left: 0; }
   .hero .exploreLink { margin-top: 8px; }
   .heroFigure { padding: 0; }
   .heroImage img { height: auto; aspect-ratio: 1.5; object-fit: cover; }
@@ -184,7 +190,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   .personal { grid-template-columns: 1fr; }
   .personalCopy { padding: 20px var(--edge) 60px; }
   .personalCopy > p { font-size: 14px; margin-top: 20px; }
-  .personalCopy li { font-size: 12px; }
+  .projectDecisions dd { margin-left: 0; }
   .faq { grid-template-columns: 1fr; gap: 36px; padding-block: 65px; }
   .questions summary { font-size: 15px; min-height: 70px; }
   .closing { grid-template-columns: 1fr; padding-block: 55px 62px; }

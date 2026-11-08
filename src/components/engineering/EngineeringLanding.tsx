@@ -1,20 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Plus, ScanLine, Box, Layers3, MoveUpRight } from "lucide-react";
+import { ServiceLinks } from "@/components/layout/ServiceLinks";
+import { ENGINEERING_SERVICE } from "@/config/site";
+import { ArrowDown, ArrowUpRight, Plus, ScanLine, Box, Layers3 } from "lucide-react";
 import { EngineeringContact } from "./EngineeringContact";
 import { EngineeringExplorer, ProjectBrief } from "./EngineeringExplorer";
 import { ScanWorkbench } from "./ScanWorkbench";
+import { EngineeringProjectProvider } from "./EngineeringProjectContext";
 import { engineeringFaqs } from "./engineeringContent";
 import styles from "./engineering.module.css";
 
 export function EngineeringLanding() {
-  return <div className={styles.page}>
+  return <EngineeringProjectProvider><div className={styles.page}>
     <a href="#conteudo" className={styles.skipLink}>Pular para o conteúdo</a>
     <header className={styles.header}>
       <Link href="/" aria-label="Belis — página inicial" className={styles.brand}>BELIS<span>®</span></Link>
       <span className={styles.headerDivision}>ENGENHARIA<br />& FABRICAÇÃO 3D</span>
-      <nav aria-label="Engenharia reversa"><a href="#aplicacoes">Aplicações</a><a href="#processo">Processo</a><a href="#materiais">Materiais</a></nav>
-      <a href="#projeto" className={styles.headerCta}>Vamos criar sua peça <ArrowUpRight size={18} aria-hidden="true" /></a>
+      <nav aria-label="Navegação da página">
+        <a href="#aplicacoes">Aplicações</a>
+        <a href="#processo">Processo</a>
+        <a href="#materiais">Materiais</a>
+      </nav>
+      <a href="#projeto" className={styles.headerCta}>Preparar briefing <ArrowUpRight size={18} aria-hidden="true" /></a>
     </header>
 
     <main id="conteudo">
@@ -22,8 +29,8 @@ export function EngineeringLanding() {
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}><span /> ENGENHARIA REVERSA & IMPRESSÃO 3D</p>
           <h1 id="engineering-title">A peça<br />que falta.<br /><span>A gente cria.</span></h1>
-          <p className={styles.heroDescription}>Do clássico que merece voltar à rua à máquina que precisa continuar. Escaneamento, modelagem e peças sob medida para o seu projeto.</p>
-          <a href="#projeto" className={styles.button}>Tirar minha peça do papel <ArrowUpRight size={21} aria-hidden="true" /></a>
+          <p className={styles.heroDescription}>Engenharia reversa, modelagem CAD e fabricação sob medida para peças automotivas e industriais. Envie fotos e conte onde sua peça será usada.</p>
+          <EngineeringContact placement="hero" className={styles.button}>Avaliar minha peça no WhatsApp <ArrowUpRight size={21} aria-hidden="true" /></EngineeringContact>
           <a href="#aplicacoes" className={styles.heroExplore}>Explore as possibilidades <ArrowDown size={16} aria-hidden="true" /></a>
         </div>
         <figure className={styles.heroFigure}>
@@ -52,7 +59,13 @@ export function EngineeringLanding() {
       </section>
 
       <section className={styles.process} id="processo" aria-labelledby="process-title">
-        <div className={styles.processCopy}><p className={styles.eyebrow}>02 / DO FÍSICO AO DIGITAL. E DE VOLTA.</p><h2 id="process-title">A forma é só<br /><span>o começo.</span></h2><p>Copiar o contorno não basta. Sua peça precisa encaixar, cumprir uma função e fazer sentido no ambiente em que vai trabalhar.</p><p>Unimos escaneamento 3D, reconstrução CAD e fabricação para transformar uma referência em um projeto sob medida.</p><a href="#projeto" className={styles.textLink}>Já tem uma peça ou arquivo? <ArrowUpRight size={18} aria-hidden="true" /></a><span className={styles.processAside}>Contrate o processo completo ou uma etapa específica.</span></div>
+        <div className={styles.processCopy}><p className={styles.eyebrow}>02 / DO FÍSICO AO DIGITAL. E DE VOLTA.</p><h2 id="process-title">O processo completo.<br /><span>Ou a etapa que falta.</span></h2><p>Você pode começar com uma peça, um fragmento, medidas ou um arquivo 3D. Definimos a entrega conforme o que seu projeto precisa.</p>
+          <dl className={styles.deliverables}>
+            <div><dt>Escaneamento 3D</dt><dd>Uma malha da superfície como referência para medição e reconstrução.</dd></div>
+            <div><dt>Modelagem CAD</dt><dd>Reconstrução ou criação do modelo, com encaixes, espessuras e fixações definidos no escopo.</dd></div>
+            <div><dt>Protótipo ou fabricação</dt><dd>Uma peça ou um pequeno lote, com material, acabamento e conferências combinados.</dd></div>
+          </dl>
+          <a href="#projeto" className={styles.textLink}>Descrever minha peça ou arquivo <ArrowUpRight size={18} aria-hidden="true" /></a><p className={styles.processAside}>Malha, CAD e peça física são entregas diferentes. Formatos de arquivo e validações constam na proposta.</p></div>
         <ScanWorkbench />
       </section>
 
@@ -61,9 +74,9 @@ export function EngineeringLanding() {
         <div className={styles.materialGrid}>
           <div className={styles.materialSpec}><span className={styles.specKicker}>COMPÓSITOS DE ENGENHARIA</span><div className={styles.materialFormula} aria-label="Poliamida com fibra de carbono">PA<span>+</span>CF</div><h3>Nylon com fibra de carbono.</h3><p>Rigidez, baixo peso e possibilidades de geometrias complexas para peças funcionais. A formulação e o processo são escolhidos conforme o projeto.</p><div className={styles.materialTags}><span>FUNCIONAL</span><span>SOB MEDIDA</span><span>POR APLICAÇÃO</span></div></div>
           <div className={styles.materialRows}>
-            <article><span>01</span><div><h3>Calor faz parte da especificação.</h3><p>Trabalha perto de 200 ou 250 °C? Precisamos avaliar o polímero específico, a carga e o tempo de exposição. HDT de ficha técnica não é garantia de uso contínuo nessa temperatura.</p></div><MoveUpRight size={20} aria-hidden="true" /></article>
-            <article><span>02</span><div><h3>Química também.</h3><p>Óleos, graxas, combustíveis e solventes pedem análise de compatibilidade. Informar o agente, a concentração e a temperatura permite selecionar o material adequado.</p></div><MoveUpRight size={20} aria-hidden="true" /></article>
-            <article><span>03</span><div><h3>O ambiente muda a escolha.</h3><p>No interior, no cofre do motor, na carroceria ou na fábrica: vibração, umidade, sol, esforço e acabamento orientam o desenvolvimento.</p></div><MoveUpRight size={20} aria-hidden="true" /></article>
+            <article><span>01</span><div><h3>Onde a peça vai trabalhar?</h3><p>Interior, cofre do motor ou chão de fábrica: sol, umidade, vibração e acabamento orientam a escolha do material e do processo.</p></div></article>
+            <article><span>02</span><div><h3>Que esforço e calor recebe?</h3><p>Informe carga, temperatura e tempo de exposição. A formulação precisa ser avaliada: HDT de ficha técnica não é garantia de uso contínuo nessa temperatura.</p></div></article>
+            <article><span>03</span><div><h3>Com quais fluidos tem contato?</h3><p>Óleo, combustível e solventes exigem análise específica. Agente, concentração, temperatura e duração do contato entram na avaliação.</p></div></article>
           </div>
         </div>
         <p className={styles.materialFootnote}>Cada aplicação é avaliada individualmente. Não substituímos componentes críticos de segurança por uma peça impressa sem projeto e validação apropriados.</p>
@@ -92,11 +105,11 @@ export function EngineeringLanding() {
         <div>
           <Link href="/">Conheça a Belis</Link>
           <Link href="/blog/temas/engenharia-reversa">Guias de engenharia reversa</Link>
-          <Link href="/comunicacao-visual">Comunicação visual</Link>
+          <ServiceLinks currentPath={ENGINEERING_SERVICE.href} />
           <a href="mailto:Lucas@belis.agency">Lucas@belis.agency</a>
         </div>
         <a href="#conteudo">Voltar ao topo ↑</a>
       </div>
     </footer>
-  </div>;
+  </div></EngineeringProjectProvider>;
 }

@@ -65,6 +65,32 @@ test("studio sends the chosen text, font, effect and color to WhatsApp without s
   await expect(page.getByRole("img", { name: /Simulação de Sua marca/ })).toBeVisible();
 });
 
+test("hero opens the studio and curated combinations remain editable", async ({ page }) => {
+  await page.goto("/comunicacao-visual");
+  const reject = page.getByRole("button", { name: "Recusar análise" });
+  if (await reject.isVisible()) await reject.click();
+  await page.getByRole("link", { name: "Simular meu letreiro", exact: true }).click();
+  await expect(page).toHaveURL(/#seu-projeto$/);
+  await page.getByLabel("Nome ou palavra").fill("Meu café");
+  await page.getByRole("button", { name: /Recepção discreta/ }).click();
+  await expect(page.getByRole("img", { name: /Simulação de Meu café/ })).toHaveAttribute("aria-label", /Moderna, Letras em relevo, cor Grafite/);
+  await expect(page.getByRole("button", { name: "Ambiente: Dia" })).toHaveAttribute("aria-pressed", "false");
+  const luminous = page.getByRole("button", { name: /Letreiro luminoso/ });
+  await luminous.focus();
+  await page.keyboard.press("Enter");
+  await expect(luminous).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("img", { name: /Simulação de Meu café/ })).toHaveAttribute("aria-label", /Manuscrita, Efeito neon, cor Marfim/);
+  await expect(page.getByRole("button", { name: "Ambiente: Noite" })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("tab", { name: "Cor", exact: true }).click();
+  await page.getByRole("radio", { name: "Azul", exact: true }).check();
+  await expect(luminous).toHaveAttribute("aria-pressed", "false");
+  const message = new URL((await page.locator('[data-whatsapp-placement="studio"]').getAttribute("href"))!).searchParams.get("text");
+  expect(message).toContain("Texto: Meu café.");
+  expect(message).toContain("Manuscrita (Satisfy)");
+  expect(message).toContain("Efeito neon");
+  expect(message).toContain("Cor de referência: Azul.");
+});
+
 test("FAQ and conversion links remain usable without JavaScript", async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();

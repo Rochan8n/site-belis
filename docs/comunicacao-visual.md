@@ -1,5 +1,17 @@
 # Comunicação visual Belis
 
+## Refinamento de conversão — 8 de novembro de 2026
+
+- Abertura com orçamento explícito no WhatsApp e atalho direto para o personalizador.
+- Quatro combinações iniciais no simulador, com fonte, efeito e cor aplicados em conjunto. O catálogo completo de 18 fontes, 15 efeitos e 25 cores permanece editável.
+- A seleção de uma combinação preserva o nome digitado; ajustes individuais atualizam sua indicação de seleção e o resumo enviado ao WhatsApp.
+- Seção escura passa a explicar tamanho/leitura, acabamento/luz e fixação/envio. Processo e CTAs usam linguagem mais concreta.
+- Áreas de toque ampliadas na navegação, controles da prévia e rodapé. Links entre serviços permanecem no rodapé.
+- Imagens atuais e avisos de conceitos de IA mantidos até a próxima captação. Prompts alternativos em [Prompts de comunicação visual](prompts-comunicacao-visual.md).
+- Novo identificador editorial de clique: `cta_placement: details`; preservadas regras de consentimento e exclusão de texto pessoal dos eventos.
+
+Validação deste refinamento: build/TypeScript, ESLint e 22 testes unitários aprovados. Os 26 casos de navegador desta landing passaram em desktop e celular, incluindo combinações, edição posterior, teclado, consentimento e layout. As imagens foram mantidas nesse refinamento inicial; sua substituição posterior está documentada em Assets. Sem commit, push ou publicação.
+
 ## Página e oferta
 
 Rota: `/comunicacao-visual`. Primeira página da frente de fabricação personalizada;
@@ -54,10 +66,23 @@ Nenhum código garante indexação, posição ou taxa de conversão.
 
 ## Assets
 
-Gerados pelo recurso nativo image_gen. Prompts e arquivos de origem em
-`.impeccable/comunicacao-visual-assets.json`; imagens finais em
-`public/images/comunicacao-visual/`. Três estudos de composição em
-`.impeccable/mocks/`; primeira composição escolhida na direção criativa delegada.
+Em 8 de novembro de 2026, as cinco imagens foram substituídas pelas novas gerações fornecidas e aprovadas pelo usuário. Os PNGs originais permanecem em `F:/Nova pasta/`; os arquivos do site usam WebP, 1536 × 1024, qualidade 86. Total dos cinco arquivos: 501.150 bytes, ante 11.285.147 bytes dos PNGs recebidos. Nenhuma alteração criativa foi aplicada às imagens.
+
+| Arquivo recebido | Arquivo no site | Bytes |
+| --- | --- | ---: |
+| Freshly painted a and B-6.png | hero-letras.webp | 79.384 |
+| Origem storefront in São Paulo-2.png | fachada-origem.webp | 157.594 |
+| Vértice sign in a small Brazilian office-3.png | logo-vertice.webp | 55.724 |
+| Boa energia neon sign installation-4.png | letreiro-boa-energia.webp | 55.378 |
+| Serena on a terracotta storefront-5.png | letras-serena.webp | 153.070 |
+
+A imagem Open Graph/Twitter foi refeita a partir da nova abertura, em JPEG 1200 × 630 (76.048 bytes). URLs usam `v=20261108` para invalidar caches das imagens anteriores. Descrições alternativas atualizadas conforme os novos objetos. Arquivos finais em `public/images/comunicacao-visual/`.
+
+O Next permite essa query somente na pasta de comunicação visual. Ao trocar `VISUAL_IMAGE_VERSION`, atualizar também o `search` correspondente em `images.localPatterns` de `next.config.ts`.
+
+Validação da substituição: build/TypeScript, ESLint e quatro testes focados de navegador aprovados (metadados, contatos, carregamento das imagens e layout em desktop/celular). Abertura, galeria e recorte de compartilhamento inspecionados visualmente. Servidor temporário encerrado. Sem commit, push ou publicação.
+
+A primeira geração e seus prompts estão registrados em `.impeccable/comunicacao-visual-assets.json`; os três estudos de composição iniciais, em `.impeccable/mocks/`. Esses registros são históricos. Os prompts preparados para a nova direção estão em [Prompts de comunicação visual](prompts-comunicacao-visual.md).
 
 Os exemplos ORIGEM, VÉRTICE, boa energia e serena são conceitos fictícios.
 Substituir por fotos de trabalhos reais quando existirem, com autorização de uso.

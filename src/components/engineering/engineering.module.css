@@ -18,7 +18,7 @@
 .page a { text-decoration: none; }
 .page button, .page select, .page summary { cursor: pointer; }
 .page :is(section, main) { scroll-margin-top: 24px; }
-.page h2 { font-size: clamp(36px, 3.7vw, 60px); line-height: 1.06; font-weight: 500; letter-spacing: -.055em; }
+.page h2 { font-size: clamp(36px, 3.7vw, 60px); line-height: 1.08; font-weight: 500; letter-spacing: -.04em; }
 .page h2 span { color: var(--eng-green); }
 .page p { font-size: 16px; line-height: 1.65; }
 .mono, .eyebrow, .headerDivision, .heroFigure figcaption, .componentLabel, .materialLabel, .heroBottom, .viewportMeta, .viewportBottom, .specKicker, .materialTags, .briefChecklist, .footerBottom, .processAside { font-family: var(--font-plex-mono), monospace; }
@@ -31,7 +31,7 @@
 .brand span { font-size: 12px; letter-spacing: 0; margin: 2px 0 0 5px; }
 .headerDivision { font-size: 9px; line-height: 1.5; letter-spacing: .05em; padding-left: 26px; border-left: 1px solid var(--eng-rule); color: var(--eng-muted); }
 .header nav { display: flex; gap: 27px; margin-left: auto; font-size: 12px; }
-.header nav a { padding: 10px 0; color: var(--eng-muted); }
+.header nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; color: var(--eng-muted); }
 .header nav a:hover { color: var(--eng-green); }
 .headerCta { min-height: 44px; display: inline-flex; align-items: center; gap: 22px; border: 1px solid #697863; padding: 12px 16px; font-size: 12px; margin-left: 20px; }
 .headerCta:hover { border-color: var(--eng-green); color: var(--eng-green); }
@@ -43,10 +43,10 @@
 .heroCopy { position: relative; z-index: 2; padding-bottom: 55px; }
 .heroCopy .eyebrow { display: flex; align-items: center; gap: 9px; color: #c1c9bd; margin-bottom: 32px; }
 .heroCopy .eyebrow > span { display: block; width: 6px; height: 6px; flex-shrink: 0; background: var(--eng-green); border-radius: 50%; box-shadow: 0 0 16px #98ce8740; }
-.hero h1 { font-size: clamp(62px, 6.75vw, 108px); line-height: .96; letter-spacing: -.065em; font-weight: 500; }
+.hero h1 { font-size: clamp(62px, 6.75vw, 96px); line-height: .98; letter-spacing: -.04em; font-weight: 500; }
 .hero h1 > span { color: var(--eng-green); white-space: nowrap; }
 .page .heroDescription { max-width: 395px; font-size: 15px; line-height: 1.7; color: var(--eng-muted); margin: 27px 0; }
-.heroExplore { display: flex; align-items: center; gap: 20px; width: fit-content; margin-top: 23px; font-size: 12px; color: var(--eng-muted); padding: 7px 0; }
+.heroExplore { display: flex; align-items: center; gap: 20px; width: fit-content; min-height: 44px; margin-top: 16px; font-size: 13px; color: var(--eng-muted); padding: 7px 0; }
 .heroExplore:hover { color: var(--eng-paper); }
 .heroFigure { position: relative; align-self: center; margin-left: -65px !important; margin-right: calc(-1 * var(--eng-edge) + 24px) !important; }
 .heroImage { position: relative; }
@@ -60,7 +60,7 @@
 .componentLabel strong { color: var(--eng-paper); font-weight: 400; font-size: 11px; }
 .materialLabel { position: absolute; z-index: 1; bottom: 4%; right: 7%; display: flex; align-items: center; gap: 10px; background: #101412d9; padding: 10px 12px; font-size: 9px; letter-spacing: .06em; color: var(--eng-green); border: 1px solid #98ce8733; }
 .materialLabel > span { width: 5px; height: 5px; background: currentColor; }
-.heroFigure figcaption { margin: 19px 7% 0 17%; display: flex; justify-content: space-between; gap: 12px; font-size: 8px; line-height: 1.6; color: #9da796; }
+.heroFigure figcaption { margin: 19px 7% 0 17%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: 12px; line-height: 1.6; color: #b3beac; }
 .heroBottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--eng-rule); font-size: 9px; letter-spacing: .08em; color: var(--eng-muted); min-height: 69px; }
 .heroBottom > span:nth-child(2) { margin-left: auto; margin-right: 70px; }
 .heroBottom > span > span { color: var(--eng-green); padding: 0 12px; }
@@ -84,6 +84,9 @@
 .applicationChoices .activeChoice { border-color: #35452f; color: #20381b; }
 .applicationPanel { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; min-height: 330px; padding-top: 42px; }
 .applicationPanel[hidden] { display: none; }
+.otherApplication { max-width: 620px; padding-top: 42px; }
+.otherApplication h3 { font-size: 26px; font-weight: 500; line-height: 1.25; }
+.otherApplication p { margin-block: 18px; color: #575f55; }
 .applicationPanel h3 { white-space: pre-line; font-size: clamp(26px, 2.6vw, 37px); line-height: 1.18; font-weight: 500; letter-spacing: -.04em; }
 .applicationPanel > div > p { margin-top: 19px; max-width: 500px; color: #575f55; font-size: 14px; }
 .applicationPanel .textLink { margin-top: 15px; }
@@ -92,26 +95,31 @@
 .applicationPanel li { display: flex; align-items: flex-start; gap: 13px; border-bottom: 1px solid #c7c9bd; padding: 15px 0; font-size: 14px; line-height: 1.5; }
 .applicationPanel li svg { color: #3a5b30; flex-shrink: 0; margin-top: 2px; }
 .page .applicationNote { font-size: 12px; line-height: 1.6; }
-.heritage { position: relative; min-height: 620px; display: flex; align-items: center; padding: 90px var(--eng-edge); background: #111511; isolation: isolate; }
+.heritage { position: relative; min-height: 500px; display: flex; align-items: center; padding: 70px var(--eng-edge); background: #111511; isolation: isolate; }
 .heritage > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: -2; }
 .heritage::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0d120df2 0%, #0d120dcc 30%, #0d120d24 73%), linear-gradient(0deg, #0d120d99, transparent 35%); z-index: -1; }
 .heritageCopy { max-width: 600px; }
 .heritageCopy h2 { margin: 25px 0; }
 .heritageCopy > p:not(.eyebrow) { max-width: 350px; font-size: 15px; color: #c3c8be; }
 .lightLink { margin-top: 22px; }
-.imageDisclosure { position: absolute; bottom: 20px; right: var(--eng-edge); left: var(--eng-edge); text-align: right; font-size: 10px; color: #d1d7ca; }
+.imageDisclosure { position: absolute; bottom: 20px; right: var(--eng-edge); left: var(--eng-edge); text-align: right; font-size: 12px; line-height: 1.6; color: #d1d7ca; }
 .process { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: center; padding: 110px var(--eng-edge); }
 .processCopy h2 { margin: 24px 0 28px; }
 .processCopy > p:not(.eyebrow) { color: var(--eng-muted); font-size: 15px; margin-top: 19px; max-width: 380px; }
 .processCopy .textLink { margin-top: 26px; }
-.processAside { display: block; font-size: 10px; color: var(--eng-muted); margin-top: 22px; max-width: 290px; line-height: 1.7; }
+.processCopy > p.processAside { font-size: 12px; color: var(--eng-muted); margin-top: 22px; max-width: 390px; line-height: 1.7; }
+.deliverables { margin: 30px 0 0; }
+.deliverables > div { border-top: 1px solid var(--eng-rule); padding-block: 17px; }
+.deliverables dt { font-size: 16px; font-weight: 500; }
+.deliverables dd { margin: 8px 0 0; color: var(--eng-muted); font-size: 14px; line-height: 1.65; }
 .workbench { border: 1px solid var(--eng-rule); min-width: 0; }
 .stageControls { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--eng-rule); }
 .stageControls button { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 54px; padding: 10px 5px; font: 400 11px var(--font-archivo), sans-serif; color: #b1bcac; background: transparent; border: 0; border-bottom: 2px solid transparent; }
 .stageControls button[aria-pressed="true"] { background: #98ce8710; color: var(--eng-green); border-bottom-color: var(--eng-green); }
 .stageControls button:hover { background: #98ce871a; }
 .cadViewport { position: relative; background-image: linear-gradient(#98ce8707 1px, transparent 1px), linear-gradient(90deg, #98ce8707 1px, transparent 1px); background-size: 28px 28px; padding: 20px 15px 14px; }
-.viewportMeta, .viewportBottom { display: flex; justify-content: space-between; gap: 10px; font-size: 7px; color: #a1ae99; letter-spacing: .04em; }
+.viewportMeta, .viewportBottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; font-size: 12px; line-height: 1.6; color: #b3beac; }
+.page .cadLegend { color: var(--eng-muted); font-size: 12px; line-height: 1.5; margin-bottom: 18px; }
 .cadDrawing { width: 100%; height: auto; color: var(--eng-green); margin: 8px 0; overflow: visible; }
 .cadGuides { opacity: .19; }
 .cadSolid { fill: #101412; transition: fill .3s; }
@@ -130,7 +138,7 @@
 .materialHeader { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 30px; }
 .materialHeader .eyebrow { padding-top: 10px; }
 .materialGrid { margin-top: 65px; display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
-.materialSpec { padding: 25px 32px 30px; border: 1px solid #506047; position: relative; background: repeating-linear-gradient(135deg, transparent 0, transparent 8px, #98ce8705 8px, #98ce8705 9px); }
+.materialSpec { padding: 25px 32px 30px; border: 1px solid #506047; position: relative; background: var(--eng-surface); }
 .specKicker { color: #b4bfae; font-size: 9px; letter-spacing: .08em; }
 .materialFormula { font-size: clamp(65px, 7.3vw, 112px); font-weight: 500; letter-spacing: -.06em; line-height: 1.3; margin: 26px 0 17px; color: var(--eng-green); }
 .materialFormula span { font-size: .58em; font-weight: 400; margin: 0 10px; color: #697d60; vertical-align: 10%; }
@@ -140,10 +148,9 @@
 .materialRows article { display: flex; gap: 17px; padding: 28px 0; border-top: 1px solid #3c4938; }
 .materialRows article:first-child { padding-top: 0; border-top: 0; }
 .materialRows article > span { padding-top: 4px; font: 10px var(--font-plex-mono), monospace; color: var(--eng-green); }
-.materialRows article > svg { flex-shrink: 0; color: var(--eng-green); }
 .materialRows h3 { font-size: 21px; line-height: 1.3; font-weight: 500; letter-spacing: -.035em; }
 .materialRows p { font-size: 13px; color: var(--eng-muted); margin-top: 12px; }
-.page .materialFootnote { border-top: 1px solid var(--eng-rule); padding: 22px 0 0; margin-top: 45px; color: var(--eng-muted); font-size: 11px; }
+.page .materialFootnote { border-top: 1px solid var(--eng-rule); padding: 22px 0 0; margin-top: 45px; color: var(--eng-muted); font-size: 12px; }
 .delivery { padding: 100px var(--eng-edge); background: var(--eng-paper); color: var(--eng-ink); }
 .delivery > div { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
 .delivery > div .eyebrow { padding-top: 12px; }
@@ -173,7 +180,7 @@
 .briefForm label { display: block; font-size: 12px; font-weight: 500; line-height: 1.5; }
 .briefForm label > span { font-size: 11px; font-weight: 400; }
 .briefRow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.briefRow label { min-width: 0; }
+.briefRow > div { min-width: 0; }
 .briefForm input, .briefForm select, .briefForm textarea { width: 100%; min-height: 50px; margin: 9px 0 20px; padding: 13px 12px; border: 1px solid #668f56; border-radius: 2px; background: #a5d593; color: #182315; font: 13px/1.5 var(--font-archivo), sans-serif; }
 .briefForm select { padding-right: 25px; }
 .briefForm textarea { resize: vertical; min-height: 112px; }
@@ -181,14 +188,15 @@
 .briefForm :is(input, select, textarea):focus-visible { outline-color: #25451c; outline-offset: 2px; }
 .briefForm .button { width: 100%; background: var(--eng-ink); color: var(--eng-paper); }
 .briefForm .button:hover { background: #2b3a28; }
-.page .briefNote { font-size: 11px; color: #304d27; margin-top: 14px; max-width: 400px; }
+.page .briefNote { font-size: 12px; color: #304d27; margin-top: 14px; max-width: 400px; }
 .footer { padding: 60px var(--eng-edge) 25px; }
 .footerTop { display: flex; align-items: center; gap: 55px; padding-bottom: 45px; }
 .footerTop .brand { font-size: 58px; }
 .footerTop p { font-size: 13px; color: var(--eng-muted); }
 .footerTop > a:last-child { margin-left: auto; display: flex; align-items: center; gap: 25px; font-size: 14px; }
-.footerBottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-top: 24px; border-top: 1px solid var(--eng-rule); font-size: 8px; line-height: 1.8; color: var(--eng-muted); }
-.footerBottom > div { display: flex; gap: 22px; }
+.footerBottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 25px; padding-top: 24px; border-top: 1px solid var(--eng-rule); font-size: 12px; line-height: 1.8; color: var(--eng-muted); }
+.footerBottom > div { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+.footerBottom a { display: inline-flex; align-items: center; min-height: 44px; }
 .footer a:hover { color: var(--eng-green); }
 @media (min-width: 1700px) {
   .page { --eng-edge: max(88px, calc((100vw - 1500px) / 2)); }
@@ -220,26 +228,26 @@
   .page { --eng-edge: 24px; }
   .header { padding-top: 22px; padding-bottom: 0; flex-wrap: wrap; gap: 22px; min-height: 114px; }
   .header .brand { font-size: 31px; }
-  .header nav { order: 3; width: 100%; margin: 0; justify-content: space-between; border-top: 1px solid var(--eng-rule); padding: 6px 0; gap: 16px; }
+  .header nav { order: 3; width: 100%; margin: 0; flex-wrap: wrap; justify-content: space-between; border-top: 1px solid var(--eng-rule); padding: 6px 0; gap: 0 12px; }
   .header nav a { font-size: 11px; }
-  .headerCta { margin-left: auto; font-size: 10px; gap: 13px; padding: 10px 12px; min-height: 42px; }
+  .headerCta { margin-left: auto; font-size: 12px; gap: 8px; padding: 10px; min-height: 44px; }
   .hero { grid-template-columns: 1fr; padding-top: 40px; min-height: 0; }
   .heroCopy { padding-bottom: 0; }
   .heroCopy .eyebrow { font-size: 8px; margin-bottom: 24px; }
   .hero h1 { font-size: clamp(59px, 12.4vw, 92px); line-height: .98; }
   .page .heroDescription { margin: 23px 0; font-size: 14px; max-width: 420px !important; }
-  .hero .button { font-size: 13px; min-height: 54px; gap: 28px; }
-  .heroExplore { margin-top: 14px; font-size: 11px; }
+  .hero .button { font-size: 13px; min-height: 54px; gap: 12px; padding-inline: 16px; }
+  .hero .button svg { flex-shrink: 0; }
+  .heroExplore { margin-top: 10px; font-size: 13px; }
   .heroFigure { margin: 27px -24px 23px !important; }
   .heroImage img { width: 100%; }
-  .componentLabel { top: 3%; left: 12%; font-size: 7px; padding-bottom: 10px; }
-  .componentLabel strong { font-size: 9px; }
+  .componentLabel { display: none; }
   .heroCrosshair { width: 50px; height: 50px; right: 10%; }
   .heroCrosshair::before { height: 70px; left: 24px; }
   .heroCrosshair::after { width: 70px; top: 24px; }
-  .materialLabel { font-size: 7px; padding: 7px 9px; }
-  .heroFigure figcaption { margin: 12px 24px 0; flex-direction: row; font-size: 6px; }
-  .heroBottom { font-size: 7px; min-height: 60px; gap: 12px; }
+  .materialLabel { font-size: 12px; padding: 7px 9px; }
+  .heroFigure figcaption { margin: 12px 24px 0; flex-direction: column; font-size: 12px; }
+  .heroBottom { font-size: 12px; min-height: 76px; gap: 12px; letter-spacing: 0; }
   .heroBottom > span:nth-child(2) { margin: 0 0 0 auto; max-width: 115px; text-align: right; line-height: 1.8; }
   .heroBottom a { display: none; }
   .heroBottom > span > span { padding: 0 3px; }
@@ -260,19 +268,19 @@
   .applicationPanel > div > p { font-size: 14px; }
   .applicationPanel li { font-size: 13px; }
   .page .applicationNote { font-size: 12px; }
-  .heritage { min-height: 620px; align-items: flex-end; padding-top: 180px; padding-bottom: 65px; }
+  .heritage { min-height: 540px; align-items: flex-end; padding-top: 150px; padding-bottom: 95px; }
   .heritage > img { object-position: 63% center; }
   .heritage::before { background: linear-gradient(0deg, #0d120d 2%, #0d120dd9 35%, #0d120d33 100%); }
   .heritageCopy h2 { font-size: 39px; margin: 20px 0; }
   .heritageCopy > p:not(.eyebrow) { font-size: 14px; max-width: 330px; }
-  .imageDisclosure { text-align: left; font-size: 8px; bottom: 18px; }
+  .imageDisclosure { text-align: left; font-size: 12px; bottom: 18px; }
   .process { grid-template-columns: 1fr; gap: 35px; }
   .processCopy > p:not(.eyebrow) { max-width: none; font-size: 14px; }
   .processAside { max-width: none; }
   .stageControls button { font-size: 10px; gap: 5px; }
   .stageControls button svg { width: 14px; }
   .cadViewport { padding: 16px 10px; }
-  .viewportMeta, .viewportBottom { font-size: 5px; }
+  .viewportMeta, .viewportBottom { font-size: 12px; }
   .stageDescription { min-height: 155px; padding: 22px; }
   .stageDescription p { font-size: 12px; }
   .materialHeader { grid-template-columns: 1fr; gap: 22px; }
@@ -284,7 +292,7 @@
   .materialRows h3 { font-size: 20px; }
   .materialRows article { gap: 12px; padding: 24px 0; }
   .materialRows article:last-child { padding-bottom: 0; }
-  .page .materialFootnote { font-size: 10px; margin-top: 30px; }
+  .page .materialFootnote { font-size: 12px; margin-top: 30px; }
   .delivery > div { flex-direction: column; gap: 23px; }
   .delivery > div .eyebrow { padding: 0; }
   .delivery ol { grid-template-columns: 1fr 1fr; margin-top: 36px; gap: 30px 22px; }
@@ -304,14 +312,14 @@
   .footerTop .brand { font-size: 45px; }
   .footerTop p { font-size: 12px; }
   .footerTop > a:last-child { margin-left: 0; width: 100%; font-size: 13px; }
-  .footerBottom { flex-direction: column; align-items: flex-start; gap: 18px; font-size: 9px; }
+  .footerBottom { flex-direction: column; align-items: flex-start; gap: 18px; font-size: 12px; }
   .footerBottom > div { flex-wrap: wrap; gap: 12px 20px; }
 }
 @media (max-width: 360px) {
   .page { --eng-edge: 19px; }
-  .hero h1 { font-size: 54px; }
+  .hero h1 { font-size: 50px; }
   .heroFigure { margin-left: -19px !important; margin-right: -19px !important; }
-  .headerCta { font-size: 9px; gap: 7px; padding: 9px; }
+  .headerCta { font-size: 12px; gap: 7px; padding: 9px; }
   .delivery ol { grid-template-columns: 1fr; }
   .materialFormula { font-size: 77px; }
 }

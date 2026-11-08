@@ -83,9 +83,17 @@ components:
 
 # Design System: Belis Agency
 
-**Last Updated:** 2026-11-06
+**Last Updated:** 2026-11-08
 
 ## Overview
+
+Refinamento de conversão de 8/11/2026: a identidade visual permanece. A landing de
+comunicação visual oferece quatro combinações iniciais no personalizador antes do
+catálogo completo, acesso direto pelo hero e critérios de tamanho, luz e montagem
+na seção escura. Controles da prévia, navegação e links de rodapé têm área mínima
+de 44px. A engenharia usa legendas informativas de pelo menos 12px, seletores de
+aplicação/briefing sincronizados e apresentação explícita das entregas. Fotografias
+atuais continuam identificadas como conceitos; sua substituição é uma etapa futura.
 
 **Creative North Star: "Estúdio material Belis"**
 
