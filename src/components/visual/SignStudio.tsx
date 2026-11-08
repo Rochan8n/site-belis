@@ -6,7 +6,7 @@ import { WhatsAppLink } from "./WhatsAppLink";
 import landing from "./visual.module.css";
 import styles from "./signStudio.module.css";
 
-import { signFonts as fonts, signDesigns as designs, signColors as colors, isTranslucentLayer, specimenContrast, type FontId, type DesignId, type ColorId } from "./signCatalog";
+import { signFonts as fonts, signDesigns as designs, signColors as colors, signPresets, isTranslucentLayer, specimenContrast, type FontId, type DesignId, type ColorId } from "./signCatalog";
 const tabs = [
   { id: "font", label: "Letra" },
   { id: "design", label: "Efeito" },
@@ -106,8 +106,8 @@ export function SignStudio() {
   return (
     <section ref={studioRef} className={styles.studio} id="seu-projeto" aria-labelledby="studio-title" data-specimens-ready={specimensReady}>
       <div className={styles.intro}>
-        <h2 id="studio-title">Já imaginou<br />o seu nome aqui?</h2>
-        <p>Escreva o nome da sua marca. Troque a letra, brinque com as cores e veja qual estilo combina com você.</p>
+        <h2 id="studio-title">Teste letras,<br />cores e luz.</h2>
+        <p>Escreva o nome da sua marca e experimente uma combinação. Depois, ajuste cada detalhe e leve sua referência para o orçamento.</p>
       </div>
       <div className={styles.body}>
         <div className={styles.nameField}>
@@ -140,6 +140,22 @@ export function SignStudio() {
         </div>
 
         <div className={styles.controls}>
+          <div className={styles.presetIntro}>
+            <h3 id="sign-presets-title">Comece por uma combinação</h3>
+            <p>Um ponto de partida. Você pode mudar todas as escolhas abaixo.</p>
+          </div>
+          <div className={styles.presets} role="group" aria-labelledby="sign-presets-title">
+            {signPresets.map((preset) => (
+              <button key={preset.id} type="button" aria-pressed={fontId === preset.fontId && designId === preset.designId && colorId === preset.colorId} onClick={() => {
+                setFontId(preset.fontId);
+                setColorId(preset.colorId);
+                chooseDesign(preset.designId);
+              }}>
+                <strong>{preset.label}</strong>
+                <span>{preset.description}</span>
+              </button>
+            ))}
+          </div>
           <div className={styles.tabs} role="tablist" aria-label="Personalizar letreiro">
             {tabs.map((item, index) => (
               <button key={item.id} ref={(element) => { tabRefs.current[index] = element; }} type="button" role="tab" id={"sign-tab-" + item.id} aria-controls={"sign-panel-" + item.id} aria-selected={tab === item.id} tabIndex={tab === item.id ? 0 : -1} onClick={() => setTab(item.id)} onKeyDown={(event) => navigateTabs(event, index)}>{item.label}</button>

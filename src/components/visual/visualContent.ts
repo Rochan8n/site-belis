@@ -1,5 +1,6 @@
 export const VISUAL_PATH = "/comunicacao-visual";
 export const VISUAL_WHATSAPP = "5511973138895";
+export const VISUAL_IMAGE_VERSION = "20261108";
 
 export function visualWhatsAppUrl(message = "Olá, Belis! Quero criar um projeto de comunicação visual. Podemos conversar sobre a minha ideia?") {
   return `https://wa.me/${VISUAL_WHATSAPP}?text=${encodeURIComponent(message)}`;
@@ -19,7 +20,7 @@ export const visualProjects = [
     title: "Seu logo, em relevo.",
     description: "Símbolos, monogramas e letras feitos para levar a identidade da sua marca à recepção, ao escritório ou ao consultório.",
     image: "logo-vertice",
-    alt: "Conceito de logo Vértice em relevo, com monograma e letras claras sobre parede verde",
+    alt: "Conceito de logo Vértice em relevo, com símbolo em V e letras claras sobre parede verde em uma recepção",
     message: "Olá, Belis! Quero transformar o logo da minha marca em uma peça em relevo. Vi a referência da recepção na página de comunicação visual.",
   },
   {
@@ -27,7 +28,7 @@ export const visualProjects = [
     title: "Efeito neon para a sua ideia.",
     description: "Uma frase, um nome ou um desenho com efeito de luz. Para criar um ponto de atenção que combina com o seu ambiente.",
     image: "letreiro-boa-energia",
-    alt: "Conceito de letreiro manuscrito boa energia com efeito neon em luz quente",
+    alt: "Conceito de letreiro manuscrito boa energia com efeito neon em luz quente sobre suporte transparente",
     message: "Olá, Belis! Gostei do letreiro com efeito neon e quero criar uma versão personalizada para o meu espaço.",
   },
   {

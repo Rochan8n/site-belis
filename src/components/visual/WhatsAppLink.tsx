@@ -4,7 +4,7 @@ import type { AnchorHTMLAttributes } from "react";
 import { getAnalyticsConsent, initializeAnalytics } from "@/lib/analytics-consent";
 import { visualWhatsAppUrl } from "./visualContent";
 
-type Placement = "header" | "hero" | "gallery" | "studio" | "process" | "faq" | "closing" | "floating";
+type Placement = "header" | "hero" | "gallery" | "studio" | "process" | "details" | "faq" | "closing" | "floating";
 
 type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   placement: Placement;

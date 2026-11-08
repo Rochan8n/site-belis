@@ -7,19 +7,19 @@ export function engineeringWhatsAppUrl(message = "Olá, Belis! Vim pela página 
 
 export const applications = [
   {
-    id: "classicos", label: "Clássicos & raros", number: "01", title: "Fora de catálogo.\nDe volta ao seu projeto.",
+    id: "classicos", label: "Clássicos & raros", sector: "Automotivo — clássicos e raros", number: "01", title: "Fora de catálogo.\nDe volta ao seu projeto.",
     description: "A peça sumiu do mercado, só existe usada ou custa uma fortuna para importar? Partimos da original, de um fragmento ou do local de montagem para estudar uma nova solução.",
     items: ["Difusores de ar, botões e acabamentos internos", "Molduras de painel e consoles personalizados", "Presilhas, tampas e suportes descontinuados", "Peças de reposição para importados e restaurações"],
     note: "Originalidade onde importa. Ajustes onde o projeto pede.",
   },
   {
-    id: "performance", label: "Performance & custom", number: "02", title: "Seu projeto não veio\ncom peça de prateleira.",
+    id: "performance", label: "Performance & custom", sector: "Automotivo — performance e custom", number: "02", title: "Seu projeto não veio\ncom peça de prateleira.",
     description: "Carros preparados, swaps e projetos personalizados pedem soluções próprias. Desenvolvemos geometrias para o espaço, a montagem e as condições reais do seu conjunto.",
     items: ["Coletores de admissão, plenums e cornetas sob projeto", "Dutos de ar, caixas de filtro e direcionadores", "Suportes de sensores, instrumentos e eletrônica", "Acabamentos externos e peças para o cofre do motor"],
     note: "Admissão e cofre do motor exigem validação térmica, mecânica e de estanqueidade. Ganhos de potência dependem de ensaios.",
   },
   {
-    id: "industria", label: "Indústria & máquinas", number: "03", title: "Uma peça pequena.\nUma operação inteira.",
+    id: "industria", label: "Indústria & máquinas", sector: "Industrial — máquinas e equipamentos", number: "03", title: "Uma peça pequena.\nUma operação inteira.",
     description: "Máquina antiga, fornecedor distante ou componente fora de linha: avaliamos a fabricação sob demanda para manutenção, adaptação de equipamentos e melhoria de processos.",
     items: ["Guias, espaçadores, carenagens e suportes", "Gabaritos de montagem, posicionamento e inspeção", "Dispositivos para automação e fixação de sensores", "Protótipos funcionais, reposição e pequenos lotes"],
     note: "Material, tolerâncias e esforços definidos conforme a função de cada componente.",

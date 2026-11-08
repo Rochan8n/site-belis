@@ -1,5 +1,16 @@
 # Landing de engenharia reversa
 
+## Refinamento de conversão — 8 de novembro de 2026
+
+- Hero permite conversa direta no WhatsApp; o cabeçalho oferece “Preparar briefing”.
+- Aplicações e briefing compartilham o setor escolhido. Alterar setor no briefing também atualiza a aplicação; “Outro projeto” limpa os radios e apresenta orientação própria. Campos de descrição permanecem preservados.
+- Processo distingue malha de escaneamento, modelo CAD e protótipo/fabricação. Os formatos e as verificações continuam sujeitos à proposta.
+- Critérios de materiais organizados por ambiente, esforço/calor e fluidos. Preservados limites de HDT, compatibilidade e segurança; removidas setas de artigos sem ação.
+- Avisos das imagens e metadados CAD têm pelo menos 12px, inclusive no celular. Microtextos dentro do desenho substituídos por legenda HTML legível. Áreas de toque ampliadas e bloco automobilístico mais compacto.
+- Imagens conceituais preservadas. A demonstração com peças reais e a diversificação visual por aplicação dependem da captação do usuário.
+
+Validação deste refinamento: build/TypeScript, ESLint e 22 testes unitários aprovados. Os 8 casos de navegador desta landing passaram em desktop e celular, incluindo sincronização do setor, retorno de “Outro projeto”, preservação dos campos, teclado e axe. Layout conferido em 320, 390, 768 e 1440px. Sem envio real no WhatsApp.
+
 Rota: `/engenharia-reversa`. Criada em 2026-11-06. Implementação local, sem commit, push ou publicação nesta tarefa.
 
 ## Objetivo e direção
