@@ -5,7 +5,7 @@ import { getAnalyticsConsent, initializeAnalytics } from "@/lib/analytics-consen
 import { ENGINEERING_PATH, engineeringWhatsAppUrl } from "./engineeringContent";
 
 type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
-  placement: "header" | "hero" | "applications" | "process" | "brief" | "direct" | "footer";
+  placement: "header" | "hero" | "applications" | "process" | "brief" | "direct" | "footer" | "floating";
   message?: string;
 };
 
