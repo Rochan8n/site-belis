@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaWhatsapp } from "react-icons/fa";
-import { WhatsAppLink } from "./WhatsAppLink";
-import styles from "./visual.module.css";
+import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 
 export function FloatingVisualWhatsApp() {
   const [studioVisible, setStudioVisible] = useState(false);
@@ -17,10 +15,5 @@ export function FloatingVisualWhatsApp() {
   }, []);
 
   // The studio has its own CTA carrying the selected design. Keep it unobstructed.
-  if (studioVisible) return null;
-  return (
-    <WhatsAppLink placement="floating" className={styles.floatingWhatsApp} aria-label="Conversar no WhatsApp sobre comunicação visual">
-      <FaWhatsapp size={28} aria-hidden="true" /><span>Seu projeto começa aqui</span>
-    </WhatsAppLink>
-  );
+  return studioVisible ? null : <FloatingWhatsApp service="visual" />;
 }

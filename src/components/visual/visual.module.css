@@ -121,9 +121,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .footer > div a { display: inline-flex; align-items: center; min-height: 44px; }
 .footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .footer small { grid-column: 2 / -1; color: var(--muted); font-size: 11px; }
-.floatingWhatsApp { position: fixed; z-index: 950; right: 24px; bottom: max(24px, env(safe-area-inset-bottom)); min-height: 58px; display: flex; align-items: center; gap: 12px; padding: 14px 20px 14px 16px; border-radius: 40px; background: #183d25; color: #fff; box-shadow: 0 8px 28px #11271740; font-size: 12px; font-weight: 500; }
-.floatingWhatsApp:hover { background: #235b36; }
-.floatingWhatsApp svg { flex-shrink: 0; }
 
 @keyframes materialArrival {
   from { transform: rotateX(4deg) rotateY(-6deg) translateY(10px); }
@@ -203,15 +200,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   .footer { grid-template-columns: 1fr; gap: 20px; padding-block: 40px 100px; }
   .footer > div { flex-direction: row; flex-wrap: wrap; gap: 20px; }
   .footer small { grid-column: 1; }
-  .floatingWhatsApp { right: 18px; bottom: max(20px, env(safe-area-inset-bottom)); width: 58px; height: 58px; min-height: 58px; justify-content: center; padding: 0; }
-  .floatingWhatsApp span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .heroImage { animation: none; transform: none !important; }
   .page *, .page *::before, .page *::after { transition: none !important; animation: none !important; }
 }
 @media print {
-  .headerCta, .floatingWhatsApp, .skipLink { display: none; }
+  .headerCta, .skipLink { display: none; }
   .page { overflow: visible; }
   .heroImage { animation: none; transform: none; }
   .questions details > p { display: block !important; }

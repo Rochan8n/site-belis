@@ -116,7 +116,6 @@
 .share { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 14px; margin-top: 20px; }
 .share button { color: inherit; font: inherit; background: transparent; border: 1px solid #8f8c82; padding: 10px 16px; cursor: pointer; }
 .share a { color: inherit; text-underline-offset: 4px; }
-.mobileBar { display: none; }
 .dialog { position: fixed; max-width: 520px; width: calc(100% - 40px); max-height: calc(100svh - 40px); overflow: auto; padding: 32px; color: #16161a; background: #e9e5da; border: 1px solid #8f8c82; margin: auto; }
 .dialog::backdrop { background: rgba(10, 10, 12, .72); }
 .dialog > button { display: block; margin-left: auto; margin-bottom: 20px; }
@@ -142,9 +141,7 @@
   .grid, .related .grid { grid-template-columns: 1fr; gap: 40px; } .card h3 { font-size: 26px; } .featuredContent { padding: 22px 0 26px; }
   .articleHeader { padding-top: 28px; } .articleHeader > p { font-size: 18px; } .coverFigure { margin-bottom: 28px; }
   .articleBody { font-size: 17px; } .quickAnswer p { font-size: 18px; } .toc ol { columns: 1; }
-  .mobileBar { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 950; padding: 10px 16px max(10px, env(safe-area-inset-bottom)); background: #16161a; color: #efece2; align-items: center; justify-content: space-between; gap: 12px; }
-  .mobileBar a { color: inherit; font-size: 14px; font-weight: 600; padding: 8px 0; text-underline-offset: 5px; } .mobileBar button { color: inherit; }
   .footer { padding-bottom: 120px; } .footerTop { flex-direction: column; } .dialog { padding: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { .cardImage img { transition: none; } }
-@media print { .header, .footer, .sidebar, .cta, .mobileBar, .share, .progress, .dialog, .skip { display: none !important; } .shell { background: white; color: black; } .container { width: 100%; } .articleLayout { display: block; } .articleBody { font-size: 11pt; } .articleHeader h1 { font-size: 26pt; } .tableWrap { overflow: visible; } .tableWrap table { min-width: 0; } .articleBody section { break-inside: auto; } .articleBody h2 { break-after: avoid; } }
+@media print { .header, .footer, .sidebar, .cta, .share, .progress, .dialog, .skip { display: none !important; } .shell { background: white; color: black; } .container { width: 100%; } .articleLayout { display: block; } .articleBody { font-size: 11pt; } .articleHeader h1 { font-size: 26pt; } .tableWrap { overflow: visible; } .tableWrap table { min-width: 0; } .articleBody section { break-inside: auto; } .articleBody h2 { break-after: avoid; } }

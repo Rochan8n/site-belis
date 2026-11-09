@@ -64,7 +64,7 @@ export function setAnalyticsConsent(value: Exclude<AnalyticsConsent, "unknown">)
 }
 
 type BlogEvent = "blog_cta_impression" | "blog_cta_click" | "blog_popup_impression" | "blog_popup_dismiss" | "blog_read_progress" | "blog_share" | "blog_download";
-export type BlogPlacement = "top" | "middle" | "bottom" | "sidebar" | "mobile" | "popup" | "download" | "share" | "article";
+export type BlogPlacement = "top" | "middle" | "bottom" | "sidebar" | "floating" | "popup" | "download" | "share" | "article";
 
 // Only editorial identifiers enter Analytics; never the WhatsApp message or URL query.
 export function trackBlogEvent(name: BlogEvent, slug: string, theme: string, placement: BlogPlacement, progress?: number): void {
