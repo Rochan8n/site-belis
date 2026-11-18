@@ -2,7 +2,7 @@
 THESIS: A lettering studio makes the visitor's brand tangible, with samples before claims.
 OWN-WORLD: Belis paper, ink and green; Archivo; tactile dimensional letters and open photographic compositions.
 STORY: See the possibilities, try your name, understand the process, start a WhatsApp conversation.
-FIRST VIEWPORT: Left headline and green CTA; right monumental a/B sample; authentic blob watermark and pointer-reactive lettering with neon contours, as requested in the background refinement.
+FIRST VIEWPORT: Service headline, dated November offer and WhatsApp CTA; right photograph of a backlit letter R.
 FORM: Material-sample studio, grounded candidate 3, seed f132dd92; composition 1 selected under delegated creative direction.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 */
@@ -47,13 +47,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .heroDescription { max-width: 410px; font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; padding-top: 22px; padding-right: 18px; }
 .button { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-height: 56px; padding: 16px 22px; background: var(--green); color: var(--ink); font-size: 15px; font-weight: 600; border-radius: 4px; transition: background .18s ease; }
 .hero .button { margin-top: 24px; }
+.heroHelp { max-width: 410px; padding: 12px 18px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.offer { display: grid; gap: 3px; max-width: 410px; margin-top: 20px; padding: 12px 15px; border-left: 3px solid #36692e; background: #dce8d2; color: #24471f; }
+.offer strong { font-size: 18px; line-height: 1.3; }
+.offer span { font-size: 12px; line-height: 1.5; }
+.heroCopy:has(.offer) .button { margin-top: 16px; }
 .button svg:last-child { margin-left: 8px; flex-shrink: 0; }
 .exploreLink { width: fit-content; display: flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 4px; font-size: 14px; color: var(--muted); }
 .exploreLink:hover { color: var(--ink); }
-.heroFigure { min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding: 26px 0 26px 22px; position: relative; z-index: 1; }
+.heroFigure { min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding: 26px var(--edge) 26px 28px; position: relative; z-index: 1; }
 .heroScene { position: relative; perspective: 1000px; }
 .heroImage { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .5s cubic-bezier(.16, 1, .3, 1); transform-origin: center; animation: materialArrival 1.4s cubic-bezier(.16, 1, .3, 1) backwards; }
-.heroImage img { display: block; width: 100%; height: clamp(360px, 36vw, 600px); object-fit: cover; object-position: 47% 50%; }
+.heroImage img { display: block; width: 100%; height: clamp(420px, 41vw, 640px); object-fit: cover; object-position: 50% 50%; border-radius: 6px; }
 .materialNote { position: absolute; bottom: 22px; left: 24px; padding: 9px 13px; background: var(--paper); color: var(--ink); font-size: 11px; letter-spacing: .02em; transform: translateZ(15px); }
 .heroFigure figcaption { padding: 10px 20px 0 0; text-align: right; font-size: 10px; color: var(--muted); }
 .reassurance { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 24px; padding: 23px var(--edge); border-block: 1px solid var(--rule); font-size: 13px; }
@@ -70,7 +75,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .project_logo { padding-top: 72px; }
 .project_personalizado { padding-top: 72px; }
 .project figure { position: relative; }
-.project figure img { display: block; width: 100%; height: auto; aspect-ratio: 1.5; object-fit: cover; }
+.project figure img { display: block; width: 100%; height: auto; aspect-ratio: 1.5; object-fit: cover; border-radius: 5px; }
+.project_luz figure img { object-position: center 30%; }
 .projectDescription { margin-top: 20px; }
 .projectDescription h3 { font-size: clamp(23px, 2.05vw, 30px); font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
 .projectDescription p { max-width: 500px; color: var(--muted); margin-top: 12px; font-size: 15px; line-height: 1.7; }
@@ -86,8 +92,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .steps li > span { font-size: 13px; color: var(--muted); padding-top: 3px; }
 .steps h3 { font-size: 21px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
 .steps p { font-size: 15px; color: var(--muted); margin-top: 10px; }
-.personal { display: grid; grid-template-columns: 1fr 1fr; background: #171b16; color: var(--paper); position: relative; overflow: clip; }
-.personalCopy { padding: 85px var(--edge) 80px 36px; align-self: center; position: relative; z-index: 1; }
+.personal { background: #171b16; color: var(--paper); position: relative; overflow: clip; }
+.personalCopy { max-width: 1000px; margin-inline: auto; padding: 70px var(--edge); position: relative; z-index: 1; }
 .personalCopy > p { font-size: 15px; line-height: 1.8; max-width: 490px; color: #c6c8bc; margin-top: 24px; }
 .projectDecisions { margin: 30px 0 0; }
 .projectDecisions > div { border-top: 1px solid #454f40; padding-block: 18px; }
@@ -151,17 +157,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   .nav a { font-size: 12px; min-height: 44px; }
   .headerCta { font-size: 12px; gap: 8px; min-height: 44px; padding: 10px 12px; }
   .hero { display: flex; flex-direction: column; min-height: auto; align-items: stretch; }
-  .heroCopy { padding: 37px var(--edge) 30px; }
+  .heroCopy { padding: 26px var(--edge) 24px; }
   .hero h1 { font-size: clamp(48px, 12.8vw, 78px); line-height: .99; }
   .hero h1 br:nth-child(2) { display: none; }
-  .hero h1 span::before { content: " "; }
   .heroDescription { padding-top: 22px; font-size: 16px; line-height: 1.6; max-width: 480px; }
   .hero .button { margin-top: 24px; font-size: 13px; gap: 8px; padding-inline: 13px; }
   .hero .button svg { flex-shrink: 0; }
   .hero .button svg:last-child { margin-left: 0; }
   .hero .exploreLink { margin-top: 8px; }
   .heroFigure { padding: 0; }
-  .heroImage img { height: auto; aspect-ratio: 1.5; object-fit: cover; }
+  .heroImage img { height: auto; aspect-ratio: 1.5; object-fit: cover; border-radius: 0; }
   .heroFigure figcaption { font-size: 10px; padding: 10px var(--edge) 15px; }
   .materialNote { left: var(--edge); bottom: 16px; font-size: 10px; padding: 6px 10px; }
   .reassurance { gap: 10px; padding-block: 21px; font-size: 12px; }
@@ -185,7 +190,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   .steps p { font-size: 14px; }
   .steps h3 { font-size: 20px; }
   .personal { grid-template-columns: 1fr; }
-  .personalCopy { padding: 20px var(--edge) 60px; }
+  .personalCopy { padding: 50px var(--edge); }
   .personalCopy > p { font-size: 14px; margin-top: 20px; }
   .projectDecisions dd { margin-left: 0; }
   .faq { grid-template-columns: 1fr; gap: 36px; padding-block: 65px; }

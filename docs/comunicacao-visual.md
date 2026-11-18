@@ -230,3 +230,9 @@ material visual ou React/TypeScript. A revisão usou código e capturas desktop/
 não foi fornecido um cartão QUALITY BAR adicional para esse refinamento.
 Prévia atualizada no navegador, com a combinação anterior do personalizador
 preservada. Servidor local mantido para uso; nenhum commit, push ou publicação.
+
+## Fotos e oferta — revisão local de 17/11/2026
+
+Substituídos hero e quatro conceitos da galeria por cinco imagens fornecidas pelo usuário, com legendas descritivas sem alegar autoria ou clientes. Isso substitui a descrição histórica de quatro conceitos de IA acima. Oferta autorizada de 30% em novembro de 2026, com término em 30/11 no fuso São Paulo e remoção automática no navegador após o prazo. CTA principal de orçamento; simulador e rastreamento com consentimento preservados.
+
+Build, lint e 21 testes passaram; layout verificado em 320, 390 e 1440 px. Versão local, sem commit/push/deploy e sem ganho de conversão medido. Detalhes em trafego/monitoramento/diario/2026-11-17-cro-fotos-oferta.md.

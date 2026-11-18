@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useRef, type PointerEvent } from "react";
-import { VISUAL_IMAGE_VERSION } from "./visualContent";
 import styles from "./visual.module.css";
 
 export function HeroShowcase() {
@@ -27,17 +26,17 @@ export function HeroShowcase() {
       <div ref={scene} className={styles.heroScene} onPointerMove={move} onPointerLeave={reset}>
         <div className={styles.heroImage}>
           <Image
-            src={`/images/comunicacao-visual/hero-letras.webp?v=${VISUAL_IMAGE_VERSION}`}
-            alt="Estudo de letras caixa sobre uma bancada: B grafite e a com frente marfim e laterais verdes"
-            width={1536}
-            height={1024}
+            src="/images/comunicacao-visual/letra-r-luz-azul.png"
+            alt="Letra R com frente preta texturizada, volume e iluminação azul nas bordas"
+            width={1600}
+            height={1200}
             sizes="(max-width: 760px) 100vw, 62vw"
             preload
           />
         </div>
-        <span className={styles.materialNote}>Forma. Volume. Personalidade.</span>
+        <span className={styles.materialNote}>Volume e luz que destacam cada traço.</span>
       </div>
-      <figcaption>Estudo ilustrativo de letras e acabamentos.</figcaption>
+      <figcaption>Letra caixa com iluminação azul e acabamento texturizado.</figcaption>
     </figure>
   );
 }

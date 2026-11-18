@@ -1,3 +1,5 @@
+import { analyticsPageLocation, analyticsReferrer } from "./analytics-page";
+
 export type AnalyticsConsent = "unknown" | "granted" | "denied";
 const STORAGE_KEY = "belis_analytics_consent";
 const CHANGE_EVENT = "belis:analytics-consent";
@@ -5,6 +7,8 @@ let sessionChoice: AnalyticsConsent = "unknown";
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 export const analyticsEnabled = Boolean(measurementId && /^G-[A-Z0-9]+$/.test(measurementId));
 const configuredTags = new Set<string>();
+let pageContext: { page_location: string; page_referrer: string; page_title: string } | undefined;
+let lastPageView: string | undefined;
 type AnalyticsWindow = Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void };
 
 export function initializeAnalytics(): AnalyticsWindow["gtag"] {
@@ -14,13 +18,33 @@ export function initializeAnalytics(): AnalyticsWindow["gtag"] {
   // gtag's command queue expects the native Arguments object.
   // eslint-disable-next-line prefer-rest-params
   analyticsWindow.gtag ??= function () { analyticsWindow.dataLayer?.push(arguments); };
+  const location = analyticsPageLocation(window.location.href);
+  const previous = pageContext;
+  pageContext = {
+    page_location: location,
+    page_referrer: previous && previous.page_location !== location
+      ? new URL(previous.page_location).origin + new URL(previous.page_location).pathname
+      : previous?.page_referrer ?? analyticsReferrer(document.referrer),
+    page_title: document.title,
+  };
   if (!configuredTags.has(measurementId)) {
     analyticsWindow.gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
     analyticsWindow.gtag("js", new Date());
+    analyticsWindow.gtag("set", pageContext);
     analyticsWindow.gtag("config", measurementId, { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false });
     configuredTags.add(measurementId);
+  } else if (previous?.page_location !== location || previous?.page_title !== pageContext.page_title) {
+    // Keep subsequent events on the current, sanitized URL after SPA navigation.
+    analyticsWindow.gtag("set", pageContext);
   }
   return analyticsWindow.gtag;
+}
+
+export function trackPageView(): void {
+  const gtag = initializeAnalytics();
+  if (!gtag || !pageContext || lastPageView === pageContext.page_location) return;
+  gtag("event", "page_view", { ...pageContext, page_path: window.location.pathname });
+  lastPageView = pageContext.page_location;
 }
 
 export function getAnalyticsConsent(): AnalyticsConsent {
