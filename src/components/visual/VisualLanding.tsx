@@ -5,11 +5,12 @@ import { VISUAL_SERVICE } from "@/config/site";
 import { ArrowDown, ArrowUpRight, Check, MapPin, Plus } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { HeroShowcase } from "./HeroShowcase";
+import { NovemberOffer } from "./NovemberOffer";
 import { SignStudio } from "./SignStudio";
 import { WhatsAppLink } from "./WhatsAppLink";
 import { FloatingVisualWhatsApp } from "./FloatingVisualWhatsApp";
 import { VisualAtmosphere } from "./VisualAtmosphere";
-import { VISUAL_IMAGE_VERSION, visualFaqs, visualProjects } from "./visualContent";
+import { visualFaqs, visualProjects } from "./visualContent";
 import styles from "./visual.module.css";
 
 export function VisualLanding() {
@@ -30,9 +31,11 @@ export function VisualLanding() {
         <section className={styles.hero} aria-labelledby="hero-title">
           <VisualAtmosphere variant="hero" />
           <div className={styles.heroCopy}>
-            <h1 id="hero-title">Sua marca.<br />Em outra<br /><span>dimensão.</span></h1>
-            <p className={styles.heroDescription}>Letras caixa, logos em relevo e letreiros sob medida para fachadas e ambientes. Criamos, produzimos e enviamos para você.</p>
+            <h1 id="hero-title">Letras caixa<br />e letreiros<br /> <span>sob medida.</span></h1>
+            <p className={styles.heroDescription}>Para fachadas, recepções e lojas. Produção em São Paulo e envio para todo o Brasil, com o tamanho, as cores e a luz da sua marca.</p>
+            <NovemberOffer />
             <WhatsAppLink placement="hero" className={styles.button}><FaWhatsapp size={22} aria-hidden="true" /> Pedir orçamento no WhatsApp <ArrowUpRight size={19} aria-hidden="true" /></WhatsAppLink>
+            <p className={styles.heroHelp}>Envie seu logo ou uma foto do local e a cidade de entrega. Você recebe uma proposta com valor e prazo.</p>
             <a href="#seu-projeto" className={styles.exploreLink}>Simular meu letreiro <ArrowDown size={16} aria-hidden="true" /></a>
           </div>
           <HeroShowcase />
@@ -48,13 +51,13 @@ export function VisualLanding() {
           <VisualAtmosphere variant="gallery" />
           <div className={styles.sectionIntro}>
             <h2 id="gallery-title">Na fachada.<br />Na recepção. Na sua marca.</h2>
-            <div><p>Veja possibilidades de aplicação: letras para a entrada, logos em relevo e letreiros com luz. Seu espaço e sua identidade orientam o desenho.</p><p className={styles.disclosure}>As imagens a seguir são conceitos ilustrativos gerados por IA para inspirar seu projeto, não trabalhos já entregues.</p></div>
+            <div><p>Explore combinações de volume, cor e iluminação. Escolha o efeito que combina com seu espaço e envie sua ideia para receber um orçamento.</p></div>
           </div>
           <div className={styles.projectGrid}>
             {visualProjects.map((project) => (
               <article key={project.id} className={`${styles.project} ${styles[`project_${project.id}`]}`}>
                 <figure>
-                  <Image src={`/images/comunicacao-visual/${project.image}.webp?v=${VISUAL_IMAGE_VERSION}`} alt={project.alt} width={1536} height={1024} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 60vw" loading="lazy" />
+                  <Image src={`/images/comunicacao-visual/${project.image}`} alt={project.alt} width={project.width} height={project.height} sizes="(max-width: 760px) 100vw, 50vw" loading="lazy" />
                 </figure>
                 <div className={styles.projectDescription}>
                   <h3>{project.title}</h3>
