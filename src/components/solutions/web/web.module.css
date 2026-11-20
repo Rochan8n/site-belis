@@ -39,6 +39,7 @@
 /* ── shared section shell ── */
 .section {
   position: relative;
+  overflow: clip;
   padding: clamp(88px, 13vh, 190px) var(--edge);
   isolation: isolate;
 }
@@ -631,10 +632,20 @@
 
 .hero.salesHero { min-height: auto; gap: 32px; padding-top: clamp(120px, 14vh, 160px); }
 .hHero.salesTitle { font-size: clamp(2.55rem, 5.8vw, 6rem); }
+.salesHero .heroFoot { align-items: center; }
+@media (min-width: 701px) {
+  .salesHero .heroHead { width: 61%; }
+  .paper .sectionTitle, .dark .sectionTitle { max-width: 72%; }
+  .salesClosing > .h { max-width: 68%; }
+}
+@media (max-width: 700px) {
+  .salesHero .heroHead > .eyebrow { max-width: 52%; min-height: 70px; line-height: 1.7; }
+  .salesHero .heroFoot { gap: 12px 24px; }
+  .salesClosing { padding-bottom: 150px; }
+}
 @media (max-width: 600px) {
   .heroActions { align-items: stretch; flex-direction: column; }
   .heroActions .ctaBtn { align-self: stretch; justify-content: center; letter-spacing: 0.06em; }
-  .salesClosing { padding-bottom: 150px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

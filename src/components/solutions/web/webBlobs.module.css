@@ -1,0 +1,119 @@
+.art {
+  --angle: 0deg;
+  --period: 13s;
+  --pointer-x: 0;
+  --pointer-y: 0;
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  pointer-events: none;
+  user-select: none;
+  transform: perspective(800px)
+    translate(calc(var(--pointer-x) * 16px), calc(var(--pointer-y) * 12px))
+    rotateX(calc(var(--pointer-y) * -8deg)) rotateY(calc(var(--pointer-x) * 12deg));
+  transition: transform 380ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.form {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--angle));
+}
+
+.hero {
+  --angle: -10deg;
+  width: clamp(300px, 35vw, 610px);
+  right: max(3vw, calc((100vw - 1760px) / 2));
+  top: clamp(145px, 13vw, 225px);
+}
+
+.hero .form {
+  background: url("/images/websites-blob.avif") center / contain no-repeat;
+}
+
+.scope .form,
+.process .form,
+.closing .form {
+  -webkit-mask: url("/images/websites-contour.svg") center / contain no-repeat;
+  mask: url("/images/websites-contour.svg") center / contain no-repeat;
+  background: var(--material);
+}
+
+.scope {
+  --angle: 18deg;
+  --period: 16s;
+  --material: linear-gradient(135deg, #1e488f 16%, #1e488f 49%, #7a7648);
+  width: clamp(300px, 29vw, 500px);
+  right: -1.5%;
+  top: -1%;
+}
+
+.process {
+  --angle: -64deg;
+  --period: 17s;
+  --material: linear-gradient(145deg, #7a7648, #c2b86e 55%, #f2ebda);
+  width: clamp(240px, 26vw, 420px);
+  right: 2%;
+  top: -3%;
+}
+
+.closing {
+  --angle: 112deg;
+  --period: 15s;
+  --material: linear-gradient(160deg, #74c365 14%, #9fe38c 48%, #1e488f);
+  width: clamp(360px, 39vw, 680px);
+  right: -3%;
+  bottom: -9%;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--cream);
+  font: 500 .84rem/1.3 var(--grote);
+  cursor: pointer;
+}
+
+.toggle:hover { color: var(--green); }
+.toggle:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+
+@keyframes float {
+  from { transform: translateY(0) rotate(var(--angle)) scale(1); }
+  to { transform: translateY(-14px) rotate(calc(var(--angle) + 11deg)) scale(1.025, .98); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .form {
+    animation: float var(--period) ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+  .art[data-moving] .form { animation-play-state: running; }
+}
+
+@media (min-width: 701px) and (max-width: 1023px) {
+  .hero { width: 33vw; right: 1%; top: 160px; }
+  .scope { right: -8%; width: 32vw; }
+}
+
+@media (max-width: 700px) {
+  .hero { width: clamp(114px, 30vw, 165px); right: 6%; top: 88px; }
+  .scope { width: 190px; right: -52px; top: -52px; opacity: .72; }
+  .process { width: 185px; right: -68px; top: -46px; opacity: .75; }
+  .closing { width: 240px; right: -72px; bottom: -58px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art { transform: none; transition: none; }
+  .toggle { display: none; }
+}
+
+@media (scripting: none) {
+  .toggle { display: none; }
+}
+
+@media print {
+  .art, .toggle { display: none; }
+}

@@ -2,6 +2,7 @@ import { ArrowDown, Check } from "lucide-react";
 import { WebPortfolio } from "./WebPortfolio";
 import { WebContact } from "./WebContact";
 import { WebNovemberOffer } from "./WebNovemberOffer";
+import { WebBlob, WebBlobMotion, WebBlobToggle } from "./WebBlobs";
 import styles from "./web.module.css";
 
 const included = [
@@ -31,8 +32,9 @@ const faqs = [
 
 export function WebStudio() {
   return (
-    <div className={styles.page}>
+    <WebBlobMotion className={styles.page}>
       <section className={`${styles.section} ${styles.dark} ${styles.grid} ${styles.hero} ${styles.salesHero}`}>
+        <WebBlob placement="hero" />
         <div className={styles.heroHead}>
           <span className={`${styles.eyebrow} ${styles.eyebrowGreen}`}>BELIS · Criação de sites para empresas</span>
           <h1 className={`${styles.h} ${styles.hHero} ${styles.salesTitle}`}>
@@ -51,12 +53,14 @@ export function WebStudio() {
         </div>
         <div className={styles.heroFoot}>
           <div className={styles.metaRow}><span>Design sob medida</span><span>Celular e computador</span><span>Prazo definido na proposta</span></div>
+          <WebBlobToggle />
         </div>
       </section>
 
       <WebPortfolio />
 
       <section className={`${styles.section} ${styles.paper}`} aria-labelledby="web-included">
+        <WebBlob placement="scope" />
         <span className={styles.eyebrow}>O que seu projeto pode incluir</span>
         <h2 id="web-included" className={`${styles.h} ${styles.hBig} ${styles.sectionTitle}`}>Bonito para apresentar.<br />Simples para entrar em contato.</h2>
         <p className={styles.lede}>Definimos juntos o que faz sentido para seu negócio. Você aprova o escopo antes de começarmos.</p>
@@ -69,6 +73,7 @@ export function WebStudio() {
       </section>
 
       <section className={`${styles.section} ${styles.dark}`} aria-labelledby="web-process">
+        <WebBlob placement="process" />
         <span className={styles.eyebrow}>Do primeiro contato à publicação</span>
         <h2 id="web-process" className={`${styles.h} ${styles.hBig} ${styles.sectionTitle}`}>Você sabe o que acontece<br />em cada etapa.</h2>
         <div className={styles.list}>
@@ -86,12 +91,13 @@ export function WebStudio() {
       </section>
 
       <section className={`${styles.section} ${styles.dark} ${styles.salesClosing}`}>
+        <WebBlob placement="closing" />
         <span className={`${styles.eyebrow} ${styles.eyebrowGreen}`}>Vamos falar sobre seu site</span>
         <h2 className={`${styles.h} ${styles.hBig}`}>Sua empresa tem algo<br />bom para mostrar.</h2>
         <p className={styles.lede}>Conte o que você vende e para quem. A partir disso, montamos uma proposta para seu novo site.</p>
         <WebNovemberOffer />
         <WebContact placement="closing" className={styles.ctaBtn}>Pedir minha proposta <i aria-hidden="true">↗</i></WebContact>
       </section>
-    </div>
+    </WebBlobMotion>
   );
 }
