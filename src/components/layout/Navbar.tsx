@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { TransitionLink } from "./TransitionLink";
+import { WebContact } from "@/components/solutions/web/WebContact";
 import styles from "./siteChrome.module.css";
 
 const links = [
@@ -135,14 +136,18 @@ export function Navbar() {
 
         <div className={styles.menuFooter}>
           <span>23.5505° S · 46.6333° W</span>
-          <a
-            href="https://wa.me/5511973138895"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabIndex={open ? 0 : -1}
-          >
-            INICIAR PROJETO ↗
-          </a>
+          {pathname === "/websites" ? (
+            <WebContact placement="header" tabIndex={open ? 0 : -1}>INICIAR PROJETO ↗</WebContact>
+          ) : (
+            <a
+              href="https://wa.me/5511973138895"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={open ? 0 : -1}
+            >
+              INICIAR PROJETO ↗
+            </a>
+          )}
           <span>SÃO PAULO · BR · 2026</span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, Monitor, Smartphone } from "lucide-react";
-import { WEB_WHATSAPP_HREF } from "../solutionsData";
+import { WebContact } from "./WebContact";
 import { webProjects } from "./webPortfolioData";
 import styles from "./webPortfolio.module.css";
 
@@ -68,11 +68,11 @@ export function WebPortfolio() {
 
         <div className={styles.footer}>
           <p>Seu próximo site pode estar aqui.</p>
-          <a href={WEB_WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">
-            Conversar sobre meu site
+          <WebContact placement="portfolio">
+            Pedir orçamento para meu site
             <ArrowUpRight size={20} aria-hidden="true" />
             <span className={styles.srOnly}> (WhatsApp, abre em nova aba)</span>
-          </a>
+          </WebContact>
         </div>
       </div>
     </section>

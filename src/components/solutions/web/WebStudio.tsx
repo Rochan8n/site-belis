@@ -1,241 +1,96 @@
-import Image from "next/image";
-import { ArrowDown } from "lucide-react";
-import {
-  HERO_CTA_LABEL,
-  processSteps,
-  qualityItems,
-  STACK_LINE,
-  WEB_CTA_HEADING,
-  WEB_CTA_LABEL,
-  WEB_HERO_SUBCOPY,
-  WEB_WHATSAPP_HREF,
-  webAudiences,
-  webItems,
-} from "../solutionsData";
-import { figures, perfBars, stripPhotos } from "./webContent";
-import { WebMetricArtifact } from "./WebMetricArtifact";
+import { ArrowDown, Check } from "lucide-react";
 import { WebPortfolio } from "./WebPortfolio";
+import { WebContact } from "./WebContact";
+import { WebNovemberOffer } from "./WebNovemberOffer";
 import styles from "./web.module.css";
 
-function Eyebrow({ label, index }: { label: string; index?: string }) {
-  return (
-    <span className={styles.eyebrow}>
-      <b />
-      {index ? <span className={styles.eyebrowGreen}>{index}</span> : null}
-      {label}
-    </span>
-  );
-}
+const included = [
+  ["Design para sua empresa", "Identidade visual aplicada a uma página clara, com seus serviços, diferenciais e formas de contato."],
+  ["Experiência no celular", "Layout adaptado a celular e computador, com navegação simples e botões fáceis de encontrar."],
+  ["Caminho direto ao orçamento", "Chamadas para o WhatsApp e organização do conteúdo para ajudar o visitante a dar o próximo passo."],
+  ["Base para aparecer no Google", "Títulos, descrições e estrutura técnica para indexação. Posição no Google depende de trabalho contínuo."],
+  ["Medição de contatos", "Configuração de Analytics e eventos de clique, respeitando a escolha de consentimento do visitante."],
+  ["Publicação acompanhada", "Revisão dos links, telas e conteúdo antes de colocar o site no ar. Escopo e custos recorrentes definidos na proposta."],
+] as const;
 
-function PhotoStrip({
-  photos,
-  wide = false,
-}: {
-  photos: readonly string[];
-  wide?: boolean;
-}) {
-  return (
-    <div className={styles.strip}>
-      {photos.map((src) => (
-        <div key={src} className={`${styles.shot} ${wide ? styles.shotWide : ""}`}>
-          <Image
-            src={src}
-            alt=""
-            fill
-            sizes="(max-width: 900px) 40vw, 18vw"
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
+const steps = [
+  ["Conte o que sua empresa faz", "Envie seu segmento, o site atual (se tiver) e o que precisa apresentar. Não precisa chegar com tudo pronto."],
+  ["Receba uma proposta clara", "Você conhece o escopo, o investimento, o prazo e as condições antes de contratar."],
+  ["Acompanhe a criação", "Alinhamos a direção visual e desenvolvemos o site com etapas de revisão combinadas."],
+  ["Coloque seu site no ar", "Conferimos a experiência no celular e os caminhos de contato antes da publicação."],
+] as const;
+
+const faqs = [
+  ["Quanto custa criar um site?", "O valor depende da quantidade de páginas, conteúdo e funcionalidades. Conte o que precisa pelo WhatsApp para receber uma proposta com escopo e investimento definidos."],
+  ["Quanto tempo leva?", "Um site institucional costuma levar cerca de três semanas. O prazo final depende do escopo, do envio dos materiais e das aprovações, e fica definido na proposta."],
+  ["Vocês atendem empresas de qualquer cidade?", "Sim. O atendimento e as etapas do projeto podem ser feitos remotamente para empresas de todo o Brasil."],
+  ["Já tenho site. Preciso começar do zero?", "Podemos avaliar o site atual e indicar o que vale manter ou refazer. Envie o endereço e explique o que não está funcionando para seu negócio."],
+  ["Preciso ter textos, fotos e domínio?", "Envie o que já tiver. Na conversa inicial, identificamos os materiais que faltam e definimos a necessidade de produção de conteúdo, domínio e hospedagem. Esses itens ficam discriminados na proposta."],
+  ["O site garante vendas ou primeiro lugar no Google?", "Não. O site ajuda a apresentar sua empresa e facilitar contatos. Vendas também dependem de público, oferta, tráfego e atendimento; posição no Google não é garantida."],
+] as const;
 
 export function WebStudio() {
   return (
     <div className={styles.page}>
-      {/* ── 1 · Hero ── */}
-      <section className={`${styles.section} ${styles.dark} ${styles.grid} ${styles.hero}`}>
+      <section className={`${styles.section} ${styles.dark} ${styles.grid} ${styles.hero} ${styles.salesHero}`}>
         <div className={styles.heroHead}>
-          <Eyebrow label="Belis · Web" index="02" />
-          <h1 className={`${styles.h} ${styles.hHero}`}>
-            Seu site deveria
-            <br />
-            trabalhar <span className={styles.accent}>todos os dias.</span>
+          <span className={`${styles.eyebrow} ${styles.eyebrowGreen}`}>BELIS · Criação de sites para empresas</span>
+          <h1 className={`${styles.h} ${styles.hHero} ${styles.salesTitle}`}>
+            Um site profissional.<br /><span className={styles.accent}>Um caminho claro até você.</span>
           </h1>
-          <p className={styles.lede}>{WEB_HERO_SUBCOPY}</p>
+          <p className={styles.lede}>
+            Apresente sua empresa, mostre seus serviços e facilite pedidos de orçamento.
+            Criamos sites institucionais e landing pages sob medida, com atendimento direto e remoto para todo o Brasil.
+          </p>
+          <WebNovemberOffer />
+          <div className={styles.heroActions}>
+            <WebContact placement="hero" className={styles.ctaBtn}>Pedir orçamento no WhatsApp <i aria-hidden="true">↗</i></WebContact>
+            <a className={styles.portfolioJump} href="#portfolio">Ver sites que criamos <ArrowDown size={18} aria-hidden="true" /></a>
+          </div>
+          <p className={styles.contactHint}>Envie seu segmento e o que precisa. Proposta sem compromisso.</p>
         </div>
         <div className={styles.heroFoot}>
-          <div className={styles.metaRow}>
-            <span>Conversão</span>
-            <span>SEO · GEO · AEO</span>
-            <span>Performance</span>
-            <span>Arquitetura semântica</span>
-          </div>
-          <div className={styles.heroActions}>
-            <a className={styles.portfolioJump} href="#portfolio">
-              Ver portfólio <ArrowDown size={18} aria-hidden="true" />
-            </a>
-            <a className={styles.ctaBtn} href={WEB_WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">
-              {HERO_CTA_LABEL} <i>→</i>
-            </a>
-          </div>
+          <div className={styles.metaRow}><span>Design sob medida</span><span>Celular e computador</span><span>Prazo definido na proposta</span></div>
         </div>
       </section>
 
       <WebPortfolio />
 
-      {/* ── 2 · Statement + photo strip ── */}
-      <section className={`${styles.section} ${styles.paper}`}>
-        <div className={styles.split}>
-          <h2 className={`${styles.h} ${styles.hBig}`}>
-            De site que apenas apresenta
-            <br />
-            <span className={styles.muted}>a</span> ativo que atrai e converte.
-          </h2>
-          <div className={styles.colStack}>
-            <Eyebrow label="Fundação" />
-            <p className={styles.lede}>
-              Seu cliente decide em segundos. Estrutura, copy, velocidade e
-              experiência trabalham juntos para tornar visível a qualidade que
-              sua empresa levou anos para construir.
-            </p>
-          </div>
-        </div>
-        <PhotoStrip photos={stripPhotos} />
-      </section>
-
-      {/* ── 3 · Metrics + bars ── */}
-      <section className={`${styles.section} ${styles.dark2} ${styles.grid}`}>
-        <Eyebrow label="Números" index="—" />
-        <div className={styles.metrics} style={{ marginTop: "clamp(28px,4vh,56px)" }}>
-          <div className={styles.figures}>
-            {figures.map(([num, label]) => (
-              <div key={label} className={styles.figure}>
-                <span className={styles.figureNum}>{num}</span>
-                <span className={styles.figureLabel}>{label}</span>
-              </div>
-            ))}
-          </div>
-          <WebMetricArtifact />
-          <div className={styles.barsPanel}>
-            <div className={styles.bars} aria-hidden="true">
-              {perfBars.map((h, i) => (
-                <span
-                  key={i}
-                  className={styles.bar}
-                  style={{ height: `${h}%`, animationDelay: `${i * 55}ms` }}
-                />
-              ))}
-            </div>
-            <div className={styles.barsLabel}>
-              <span>Carregamento</span>
-              <span>Interação</span>
-              <span>Conversão</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4 · Offerings ── */}
-      <section className={`${styles.section} ${styles.paper2}`}>
-        <div className={styles.split}>
-          <h2 className={`${styles.h} ${styles.hMed}`}>O que construímos</h2>
-          <div className={styles.colStack}>
-            <Eyebrow label="Escopo" />
-            <p className={styles.lede}>
-              Cada projeto nasce do negócio e do resultado esperado. Tecnologia
-              entra depois da clareza.
-            </p>
-          </div>
-        </div>
-        <div className={styles.list}>
-          {webItems.map((item, i) => (
-            <div key={item.name} className={styles.row}>
-              <span className={styles.rowIndex}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className={styles.rowBody}>
-                <span className={styles.rowName}>{item.name}</span>
-                <span className={styles.rowDesc}>{item.description}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 6 · Audiences ── */}
-      <section className={`${styles.section} ${styles.paper}`}>
-        <Eyebrow label="Para quem" index="—" />
-        <h2
-          className={`${styles.h} ${styles.hMed}`}
-          style={{ marginTop: "clamp(16px,2vh,28px)" }}
-        >
-          Feito para empresas em movimento.
-        </h2>
+      <section className={`${styles.section} ${styles.paper}`} aria-labelledby="web-included">
+        <span className={styles.eyebrow}>O que seu projeto pode incluir</span>
+        <h2 id="web-included" className={`${styles.h} ${styles.hBig} ${styles.sectionTitle}`}>Bonito para apresentar.<br />Simples para entrar em contato.</h2>
+        <p className={styles.lede}>Definimos juntos o que faz sentido para seu negócio. Você aprova o escopo antes de começarmos.</p>
         <div className={`${styles.cards} ${styles.cardsThree}`}>
-          {webAudiences.map((item, i) => (
-            <div key={item.name} className={styles.card}>
-              <span className={styles.cardTop}>{String(i + 1).padStart(2, "0")}</span>
-              <span className={styles.cardName}>{item.name}</span>
-              <span className={styles.cardDesc}>{item.description}</span>
-            </div>
-          ))}
+          {included.map(([title, description]) => <article className={styles.card} key={title}>
+            <Check size={22} aria-hidden="true" /><h3 className={styles.cardName}>{title}</h3><p className={styles.cardDesc}>{description}</p>
+          </article>)}
         </div>
+        <WebContact placement="scope" className={`${styles.ctaBtn} ${styles.sectionCta}`}>Quero um orçamento para minha empresa <i aria-hidden="true">↗</i></WebContact>
       </section>
 
-      {/* ── 7 · Process ── */}
-      <section className={`${styles.section} ${styles.dark2} ${styles.grid}`}>
-        <Eyebrow label="Processo" index="04" />
-        <h2
-          className={`${styles.h} ${styles.hMed}`}
-          style={{ marginTop: "clamp(16px,2vh,28px)" }}
-        >
-          Da clareza ao ativo no ar.
-        </h2>
+      <section className={`${styles.section} ${styles.dark}`} aria-labelledby="web-process">
+        <span className={styles.eyebrow}>Do primeiro contato à publicação</span>
+        <h2 id="web-process" className={`${styles.h} ${styles.hBig} ${styles.sectionTitle}`}>Você sabe o que acontece<br />em cada etapa.</h2>
         <div className={styles.list}>
-          {processSteps.map((step) => (
-            <div key={step.index} className={styles.row}>
-              <span className={styles.rowIndex}>{step.index}</span>
-              <div className={styles.rowBody}>
-                <span className={styles.rowName}>{step.name}</span>
-                <span className={styles.rowDesc}>{step.description}</span>
-              </div>
-            </div>
-          ))}
+          {steps.map(([title, description], index) => <article className={styles.row} key={title}>
+            <span className={styles.rowIndex}>0{index + 1}</span><div className={styles.rowBody}><h3 className={styles.rowName}>{title}</h3><p className={styles.rowDesc}>{description}</p></div>
+          </article>)}
         </div>
       </section>
 
-      {/* ── 8 · Quality ── */}
-      <section className={`${styles.section} ${styles.paper2}`}>
-        <Eyebrow label="Fundação técnica" />
-        <h2
-          className={`${styles.h} ${styles.hMed}`}
-          style={{ marginTop: "clamp(16px,2vh,28px)" }}
-        >
-          Rápido, claro e preparado para evoluir.
-        </h2>
-        <div className={styles.cards}>
-          {qualityItems.map((item) => (
-            <div key={item.name} className={styles.card}>
-              <span className={styles.cardName}>{item.name}</span>
-              <span className={styles.cardDesc}>{item.description}</span>
-            </div>
-          ))}
-        </div>
-        <p className={styles.stackLine}>{STACK_LINE}</p>
+      <section className={`${styles.section} ${styles.paper2}`} aria-labelledby="web-faq">
+        <h2 id="web-faq" className={`${styles.h} ${styles.hMed}`}>Antes de pedir seu orçamento.</h2>
+        <div className={styles.faqList}>{faqs.map(([question, answer]) => <details key={question} className={styles.faqItem}>
+          <summary>{question}</summary><p>{answer}</p>
+        </details>)}</div>
       </section>
 
-      {/* ── 9 · CTA + wordmark echo ── */}
-      <section className={`${styles.section} ${styles.dark} ${styles.grid} ${styles.cta}`}>
-        <Eyebrow label="Próximo passo" index="→" />
-        <h2 className={`${styles.h} ${styles.hBig}`}>{WEB_CTA_HEADING}</h2>
-        <a className={styles.ctaBtn} href={WEB_WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">
-          {WEB_CTA_LABEL} <i>→</i>
-        </a>
-        <div className={styles.wordmark} aria-hidden="true">
-          <s>/</s>BELIS
-        </div>
-        <span className={styles.wordmarkSub}>Web Studio · São Paulo · 2026</span>
+      <section className={`${styles.section} ${styles.dark} ${styles.salesClosing}`}>
+        <span className={`${styles.eyebrow} ${styles.eyebrowGreen}`}>Vamos falar sobre seu site</span>
+        <h2 className={`${styles.h} ${styles.hBig}`}>Sua empresa tem algo<br />bom para mostrar.</h2>
+        <p className={styles.lede}>Conte o que você vende e para quem. A partir disso, montamos uma proposta para seu novo site.</p>
+        <WebNovemberOffer />
+        <WebContact placement="closing" className={styles.ctaBtn}>Pedir minha proposta <i aria-hidden="true">↗</i></WebContact>
       </section>
     </div>
   );

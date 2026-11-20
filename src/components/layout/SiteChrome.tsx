@@ -25,7 +25,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       {usesCustomChrome ? children : <SiteChromeFull pathname={pathname}>{children}</SiteChromeFull>}
-      {!hasLocalWhatsApp && <FloatingWhatsApp service={isEngineering ? "engineering" : undefined} />}
+      {!hasLocalWhatsApp && <FloatingWhatsApp service={isEngineering ? "engineering" : pathname === "/websites" ? "websites" : undefined} />}
     </>
   );
 }

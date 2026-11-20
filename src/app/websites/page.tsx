@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { WebReveal } from "@/components/solutions/web/WebReveal";
 import { WebStudio } from "@/components/solutions/web/WebStudio";
 
-const TITLE = "Sites que Transformam Percepção em Oportunidades";
+const TITLE = "Criação de Sites Profissionais para Empresas";
 const DESCRIPTION =
-  "Sites institucionais e landing pages preparados para SEO, GEO, AEO, performance e conversão. Transforme sua presença digital em ativo de crescimento.";
+  "Sites institucionais e landing pages sob medida para empresas de todo o Brasil. Veja nosso portfólio e peça uma proposta pelo WhatsApp.";
 const CANONICAL = "https://www.belis.agency/websites";
 
 export const metadata: Metadata = {
